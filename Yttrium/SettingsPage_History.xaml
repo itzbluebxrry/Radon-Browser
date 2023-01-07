@@ -1,0 +1,54 @@
+﻿<Page x:Class="Yttrium_browser.SettingsPage_History"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Yttrium_browser"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+      winui:BackdropMaterial.ApplyToRootOrPageBackground="True">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="HistoryListGrid"
+              Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!-- Card -->
+            <Border  Grid.Row="1"
+                     Background="{ThemeResource LayerFillColorDefaultBrush}"
+                     Margin="16"
+                     CornerRadius="8"
+                     BorderThickness="1"
+                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+
+                <!-- Expander in which is history -->
+                <winui:Expander Header="Full history"
+                                Margin="10,10,10,10"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalAlignment="Stretch">
+
+                    <winui:Expander.Content>
+                        <!-- Listview with history items -->
+                        <ListView x:Name="HistoryListView">
+                            <ListViewItem Content="Google.com"
+                                          Background="{ThemeResource LayerFillColorAltBrush}" />
+                        </ListView>
+                    </winui:Expander.Content>
+                </winui:Expander>
+            </Border>
+
+
+
+        </Grid>
+
+    </Grid>
+</Page>

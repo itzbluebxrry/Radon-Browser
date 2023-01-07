@@ -1,0 +1,191 @@
+﻿<Page x:Class="Yttrium_browser.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+      winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
+      x:Name="MainWindow">
+    <Page.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="TabViewItemHeaderBackgroundSelected" Color="{ThemeResource ControlFillColorDefault}"  />
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid x:Name="BaseGrid">
+        <Grid x:Name="TitleBarGrid"
+              Grid.Row="0"
+              Canvas.ZIndex="1">
+            <!-- title bar grid -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="35" />
+                <!-- nav buttons -->
+                <ColumnDefinition Width="2*" />
+                <!-- search bar column -->
+                <ColumnDefinition />
+                <!-- settings column -->
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- titlebar drag area -->
+            <Border x:Name="DragArea"
+                    Loaded="DragArea_Loaded"
+                    Background="Transparent"
+                    Canvas.ZIndex="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    Grid.RowSpan="2" />
+
+            <!-- refresh and home buttons -->
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="top"
+                        Margin="10,10,0,0"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Canvas.ZIndex="1">
+                <Button x:Name="BackButton"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Margin="0,0,10,0"
+                        Click="BackButton_Click"
+                        Padding="8.5">
+                    <FontIcon Glyph="&#59538;" FontSize="15"/>
+                </Button>
+                <Button x:Name="ForwardButton"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Margin="0,0,10,0"
+                        Click="ForwardButton_Click"
+                        Padding="8.5">
+                    <FontIcon Glyph="&#59539;"
+                              FontSize="15" />
+                </Button>
+                <Button x:Name="RefreshButton"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Margin="0,0,10,0"
+                        Click="RefreshButton_Click"
+                        Padding="8.5">
+                    <FontIcon Glyph="&#59541;"
+                              FontSize="15" />
+                </Button>
+                <Button x:Name="StopRefreshButton"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Margin="0,0,10,0"
+                        Visibility="Collapsed"
+                        Click="StopRefreshButton_Click"
+                        Padding="8.5">
+                    <winui:ProgressRing x:Name="WebsiteLoadingProgressRing"
+                                        Margin="0,0,-1,0"
+                                        Width="15"
+                                        Height="15"/>
+                </Button>
+                <Button x:Name="HomeButton"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Click="HomeButton_Click"
+                        Padding="8.5">
+                    <FontIcon Glyph="&#xE80F;"
+                              FontSize="15" />
+                </Button>
+            </StackPanel>
+
+            <!-- SSL certification icon-->
+
+            <Button x:Name="favicon"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Margin="0,0,0,0"
+                    BorderThickness="0"
+                    Canvas.ZIndex="1"
+                    Padding="8.5"
+                    Grid.Row="0"
+                    ToolTipService.ToolTip=""
+                    Width="32" Height="32">
+                <Image x:Name="FaviconIcon"/>
+
+            </Button>
+            <Button x:Name="SSLButton"
+                    VerticalAlignment="Center"
+                    Grid.Column="2"
+                    Margin="5,0,0,0"
+                    BorderThickness="0"
+                    Canvas.ZIndex="1"
+                    Padding="8.5"
+                    Grid.Row="0"
+                    ToolTipService.ToolTip="">
+                <FontIcon  x:Name="SSLIcon"
+                           Glyph="&#xE72E;"
+                           FontSize="15" />
+
+            </Button>
+
+            <!-- search bar -->
+            <TextBox x:Name="SearchBar"
+                     KeyDown="SearchBar_KeyDown"
+                     VerticalAlignment="Center"
+                     Margin="43,0,35,0"
+                     BorderThickness="0"
+                     IsSpellCheckEnabled="False"
+                     Grid.Column="2"
+                     PlaceholderText="Search the web or enter a URL"
+                     Height="25"
+                     VerticalContentAlignment="Center"
+                     Grid.Row="0"
+                     GotFocus="SearchBar_GotFocus"
+                     TextAlignment="Center"/>
+
+            <!-- settings flyout -->
+            <Button x:Name="MenuButton"
+                    Grid.Column="3"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Margin="10,10,0,0"
+                    Grid.Row="0"
+                    Padding="8.5">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <!-- settings button -->
+                        <MenuFlyoutItem x:Name="SettingsMenuItem"
+                                        Text="Settings"
+                                        Click="SettingsMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE713;" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem x:Name="AboutMenuItem"
+                                        Text="About"
+                                        Click="AboutMenuItem_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE946;" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </Button.Flyout>
+
+                <FontIcon Glyph="&#xE712;"
+                          FontSize="15" />
+
+            </Button>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" ><TextBlock x:Name="homescreen" Text="Project Radon" FontSize="50" FontWeight="Light"/>
+            <TextBlock x:Name="homescreensub" Text="ALPHA" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Light"/>
+            </StackPanel>
+            
+            <winui:WebView2 NavigationStarting="WebBrowser_NavigationStarting"
+                                    NavigationCompleted="WebBrowser_NavigationCompleted"
+                                    x:Name="WebBrowser"
+                                    Visibility="Visible"
+                                    Source="https://start.zorin.com"
+                                    Grid.Row="2" Grid.ColumnSpan="4"/>
+
+            
+        </Grid>
+        
+    </Grid>
+</Page>
