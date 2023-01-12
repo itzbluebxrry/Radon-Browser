@@ -8,7 +8,7 @@
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Yttrium</RootNamespace>
-    <AssemblyName>Yttrium</AssemblyName>
+    <AssemblyName>Project Radon</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22000.0</TargetPlatformVersion>
@@ -122,6 +122,9 @@
     <Compile Include="SettingsPage_SearchEngine.xaml.cs">
       <DependentUpon>SettingsPage_SearchEngine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserProfileDialog.xaml.cs">
+      <DependentUpon>UserProfileDialog.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -129,6 +132,21 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="accountpictures\ball.png" />
+    <Content Include="accountpictures\bot.png" />
+    <Content Include="accountpictures\butterfly.png" />
+    <Content Include="accountpictures\car.png" />
+    <Content Include="accountpictures\clippy.png" />
+    <Content Include="accountpictures\crayon.png" />
+    <Content Include="accountpictures\sunflower.png" />
+    <Content Include="accountpictures\duckcool.png" />
+    <Content Include="accountpictures\fish.png" />
+    <Content Include="accountpictures\goofywindow.png" />
+    <Content Include="accountpictures\guitar.png" />
+    <Content Include="accountpictures\music.png" />
+    <Content Include="accountpictures\present.png" />
+    <Content Include="accountpictures\stairs.png" />
+    <Content Include="accountpictures\starfish.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -183,6 +201,13 @@
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Screenshots\1.png" />
+    <Content Include="Screenshots\2.png" />
+    <Content Include="Screenshots\3.png" />
+    <Content Include="Screenshots\4.png" />
+    <Content Include="Screenshots\demo1.png" />
+    <Content Include="Screenshots\demo2.png" />
+    <Content Include="Screenshots\image.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -217,9 +242,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsPage_SearchEngine.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="UserProfileDialog.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +259,7 @@
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
+    <None Include="Screenshots\readme.md" />
     <None Include="Yttrium_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
