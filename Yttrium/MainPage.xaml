@@ -69,7 +69,7 @@
                         BorderThickness="0"
                         Margin="0,0,10,0"
                         Click="RefreshButton_Click"
-                        Padding="7.2">
+                        Padding="7.2" ToolTipService.ToolTip="Reload">
                     <FontIcon Glyph="&#xedab;"
                               FontSize="18" FontFamily="segoe fluent icons"/>
                 </Button>
@@ -79,7 +79,7 @@
                         Margin="0,0,10,0"
                         Visibility="Collapsed"
                         Click="StopRefreshButton_Click"
-                        Padding="8.5">
+                        Padding="8.5" ToolTipService.ToolTip="Stop navigation">
                     <winui:ProgressRing x:Name="WebsiteLoadingProgressRing"
                                         Margin="0,0,-1,0"
                                         Width="15"
@@ -124,15 +124,16 @@
                            FontSize="18" />
                 <Button.Flyout>
                     <Flyout x:Name="SSLFlyout">
-                        <StackPanel Padding="10">
+                        <StackPanel Width="340">
                             <StackPanel Orientation="Horizontal">
                                 <FontIcon  x:Name="SSLFlyoutIcon"
                                     Glyph="&#xe705;"
                                     FontSize="18" />
                                 <TextBlock x:Name="SSLFlyoutHeader" Style="{ThemeResource BaseTextBlockStyle}" Margin="10,0" Text="Connection informations"/>
-                                <TextBlock x:Name="SSLFlyoutStatus" Margin="0,20" Text="Website's SSL status goes here."/>
+                                
                             </StackPanel>
-
+                            <TextBlock x:Name="SSLFlyoutStatus" TextWrapping="WrapWholeWords" Margin="0,20,0,0" Text="Website's SSL status goes here."/>
+                            <TextBlock x:Name="SSLFlyoutStatus2" TextWrapping="WrapWholeWords" Margin="0,15,0,10" Text="Website's SSL status goes here."/>
                         </StackPanel>
                     </Flyout>
                 </Button.Flyout>
@@ -152,8 +153,8 @@
                      VerticalContentAlignment="Center"
                      Grid.Row="0"
                      GotFocus="SearchBar_GotFocus"
-                     TextAlignment="Center"/>
-            <winui:ProgressBar x:Name="loadingbar" Grid.Column="2" VerticalAlignment="Bottom" Margin="44,0,45,9" IsIndeterminate="True"/>
+                     TextAlignment="Center" FontWeight="SemiBold"/>
+            <winui:ProgressBar x:Name="loadingbar" Grid.Column="2" VerticalAlignment="Bottom" Margin="44,0,46,9" IsIndeterminate="True"/>
 
             <!-- settings flyout -->
             <Button x:Name="MenuButton"

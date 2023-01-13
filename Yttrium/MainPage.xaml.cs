@@ -118,10 +118,14 @@ namespace Yttrium_browser
         //navigation completed
         private void WebBrowser_NavigationCompleted(WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
         {
-            
-            
-            WebBrowser.Focus(FocusState.Pointer);
-            WebBrowser.Focus(FocusState.Keyboard);
+
+            if (SearchBar.FocusState == FocusState.Unfocused)
+            {
+                SearchBar.Text = WebBrowser.Source.AbsoluteUri;
+                WebBrowser.Focus(FocusState.Pointer);
+                WebBrowser.Focus(FocusState.Keyboard);
+            }
+
             WebBrowser.Visibility = Visibility.Visible;
 
             if (WebBrowser.Source.AbsoluteUri.Contains("start.zorin"))
@@ -152,7 +156,9 @@ namespace Yttrium_browser
                 Uri icoURI = new Uri("https://www.google.com/s2/favicons?sz=64&domain_url=" + WebBrowser.Source);
                 // FaviconIcon.Source = new Windows.UI.Xaml.Media.ImageSource() == icoURI;
                 // favicon. = WebBrowser.CoreWebView2.DocumentTitle.ToString();
-                SearchBar.Text = WebBrowser.Source.AbsoluteUri;
+                
+                
+
                 RefreshButton.Visibility = Visibility.Visible;
                 StopRefreshButton.Visibility = Visibility.Collapsed;
                 if (loadingbar.ShowError == true)
@@ -184,6 +190,13 @@ namespace Yttrium_browser
                 SSLIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
                 SSLIcon.Glyph = "\xe705";
 
+                //change icon to lock
+                SSLFlyoutIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
+                SSLFlyoutIcon.Glyph = "\xe705";
+                SSLFlyoutHeader.Text = "Your connection is secured";
+                SSLFlyoutStatus.Text = "This site has a valid SSL certificate with secure connections.";
+                SSLFlyoutStatus2.Text = "Your personal informations will be securely sent to the site and cannot be intercepted or seen by others.";
+
                 //ToolTip tooltip = new ToolTip
                 //{
                 //    Content = "This website has a SSL certificate"
@@ -197,6 +210,12 @@ namespace Yttrium_browser
                 SSLIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
                 SSLIcon.Glyph = "\xe783";
 
+                //change icon to lock
+                SSLFlyoutIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
+                SSLFlyoutIcon.Glyph = "\xe783";
+                SSLFlyoutHeader.Text = "This site seems dangerous";
+                SSLFlyoutStatus.Text = "This site does not have a valid SSL certificate.";
+                SSLFlyoutStatus2.Text = "Informations will not be securely sent to this site and likely to be intercepted and seen by others.";
 
             }
 
@@ -237,10 +256,14 @@ namespace Yttrium_browser
                 {
                     Search();
                 }
-
-                
             }
 
+            if (e.Key == Windows.System.VirtualKey.Escape)
+            {
+                SearchBar.Text = WebBrowser.Source.AbsoluteUri;
+                WebBrowser.Focus(FocusState.Pointer);
+                WebBrowser.Focus(FocusState.Keyboard);
+            }
             
         }
 
@@ -275,7 +298,7 @@ namespace Yttrium_browser
 
 
             WebBrowser.Visibility = Visibility.Collapsed;
-            SearchBar.Text = "Search the web or enter a URL";
+            SearchBar.Text = string.Empty;
         }
 
         //opens settings page
