@@ -5,8 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,6 +18,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Yttrium;
+
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -36,7 +40,8 @@ namespace Yttrium_browser
             SettingsData settings = new SettingsData();
             settings.CreateSettingsFile();
 
-            
+
+
             RefreshButton.IsEnabled = false;
 
 
@@ -117,6 +122,7 @@ namespace Yttrium_browser
             
             WebBrowser.Focus(FocusState.Pointer);
             WebBrowser.Focus(FocusState.Keyboard);
+            WebBrowser.Visibility = Visibility.Visible;
 
             if (WebBrowser.Source.AbsoluteUri.Contains("start.zorin"))
             {
@@ -149,6 +155,15 @@ namespace Yttrium_browser
                 SearchBar.Text = WebBrowser.Source.AbsoluteUri;
                 RefreshButton.Visibility = Visibility.Visible;
                 StopRefreshButton.Visibility = Visibility.Collapsed;
+                if (loadingbar.ShowError == true)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    loadingbar.IsIndeterminate = false;
+                }
+                
 
                 //history
                 DataTransfer datatransfer = new DataTransfer();
@@ -167,25 +182,21 @@ namespace Yttrium_browser
             {
                 //change icon to lock
                 SSLIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
-                SSLIcon.Glyph = "\xE72E";
+                SSLIcon.Glyph = "\xe705";
 
-                ToolTip tooltip = new ToolTip
-                {
-                    Content = "This website has a SSL certificate"
-                };
-                ToolTipService.SetToolTip(SSLButton, tooltip);
+                //ToolTip tooltip = new ToolTip
+                //{
+                //    Content = "This website has a SSL certificate"
+                //};
+                //ToolTipService.SetToolTip(SSLButton, tooltip);
 
             }
             else
             {
                 //change icon to warning
                 SSLIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
-                SSLIcon.Glyph = "\xE7BA";
-                ToolTip tooltip = new ToolTip
-                {
-                    Content = "This website is unsafe and doesn't have a SSL certificate"
-                };
-                ToolTipService.SetToolTip(SSLButton, tooltip);
+                SSLIcon.Glyph = "\xe783";
+
 
             }
 
@@ -214,15 +225,13 @@ namespace Yttrium_browser
             {
                 WebBrowser.Visibility = Visibility.Visible;
                 if (SearchBar.Text.Contains("."))
-                    if (SearchBar.Text.Contains("://"))
-                    {
-                        WebBrowser.Source = new Uri(SearchBar.Text);
-                    }
-                    else
 
-                    {
                         WebBrowser.Source = new Uri("https://" + SearchBar.Text);
-                    }
+
+                else if (SearchBar.Text.Contains(":"))
+                {
+                    WebBrowser.Source = new Uri(SearchBar.Text);
+                }
 
                 else
                 {
@@ -284,6 +293,7 @@ namespace Yttrium_browser
             WebBrowser.Focus(FocusState.Pointer);
             WebBrowser.Focus(FocusState.Keyboard);
             RefreshButton.IsEnabled = true;
+            loadingbar.IsIndeterminate = true;
             
 
 
@@ -293,9 +303,13 @@ namespace Yttrium_browser
         }
 
         //stops refreshing if clicked on progressbar
-        private void StopRefreshButton_Click(object sender, RoutedEventArgs e)
+        private async void StopRefreshButton_Click(object sender, RoutedEventArgs e)
         {
             WebBrowser.CoreWebView2.Stop();
+            loadingbar.ShowError = true;
+            await Task.Delay(2000);
+            loadingbar.ShowError = false;
+            loadingbar.IsIndeterminate = false;
         }
 
         //titlebar

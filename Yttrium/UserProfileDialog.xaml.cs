@@ -28,7 +28,7 @@ namespace Yttrium
 
         }
 
-        private async void pfpchanged_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void pfpchanged_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             pfppreview.ProfilePicture = new BitmapImage(new Uri(string.Join("ms-appx:///accountpictures/", pfpchanged.SelectedValue, ".png")));
 

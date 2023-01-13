@@ -18,16 +18,16 @@
               Canvas.ZIndex="1">
             <!-- title bar grid -->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="35" />
+                <ColumnDefinition Width="173"/>
+                <ColumnDefinition Width="80"/>
                 <!-- nav buttons -->
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
                 <!-- search bar column -->
-                <ColumnDefinition />
+                <ColumnDefinition x:Name="righttitlebarpadding" Width="253"/>
                 <!-- settings column -->
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="45" />
+                <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -42,8 +42,8 @@
 
             <!-- refresh and home buttons -->
             <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="top"
-                        Margin="10,10,0,0"
+                        VerticalAlignment="Center"
+                        Margin="12,0,0,0"
                         Grid.Column="0"
                         Grid.Row="0"
                         Canvas.ZIndex="1">
@@ -52,26 +52,26 @@
                         BorderThickness="0"
                         Margin="0,0,10,0"
                         Click="BackButton_Click"
-                        Padding="8.5">
-                    <FontIcon Glyph="&#59538;" FontSize="15"/>
+                        Padding="6" ToolTipService.ToolTip="Back">
+                    <FontIcon Glyph="&#xe760;" FontSize="20" FontFamily="Segoe Fluent Icons"/>
                 </Button>
                 <Button x:Name="ForwardButton"
                         Background="Transparent"
                         BorderThickness="0"
                         Margin="0,0,10,0"
                         Click="ForwardButton_Click"
-                        Padding="8.5">
-                    <FontIcon Glyph="&#59539;"
-                              FontSize="15" />
+                        Padding="6" ToolTipService.ToolTip="Forward">
+                    <FontIcon Glyph="&#xe761;"
+                              FontSize="20" FontFamily="segoe fluent icons" />
                 </Button>
                 <Button x:Name="RefreshButton"
                         Background="Transparent"
                         BorderThickness="0"
                         Margin="0,0,10,0"
                         Click="RefreshButton_Click"
-                        Padding="8.5">
-                    <FontIcon Glyph="&#59541;"
-                              FontSize="15" />
+                        Padding="7.2">
+                    <FontIcon Glyph="&#xedab;"
+                              FontSize="18" FontFamily="segoe fluent icons"/>
                 </Button>
                 <Button x:Name="StopRefreshButton"
                         Background="Transparent"
@@ -89,9 +89,9 @@
                         Background="Transparent"
                         BorderThickness="0"
                         Click="HomeButton_Click"
-                        Padding="8.5">
-                    <FontIcon Glyph="&#xE80F;"
-                              FontSize="15" />
+                        Padding="8.5" ToolTipService.ToolTip="Start page">
+                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xe7c4;"
+                              FontSize="18" />
                 </Button>
             </StackPanel>
 
@@ -99,7 +99,7 @@
 
             <Button x:Name="favicon"
                     VerticalAlignment="Center"
-                    Grid.Column="1"
+                    Grid.Column="1" HorizontalAlignment="Right"
                     Margin="0,0,0,0"
                     BorderThickness="0"
                     Canvas.ZIndex="1"
@@ -116,12 +116,19 @@
                     Margin="5,0,0,0"
                     BorderThickness="0"
                     Canvas.ZIndex="1"
-                    Padding="8.5"
+                    Padding="6.5"
                     Grid.Row="0"
-                    ToolTipService.ToolTip="">
+                    ToolTipService.ToolTip="View connection informations.">
                 <FontIcon  x:Name="SSLIcon"
-                           Glyph="&#xE72E;"
-                           FontSize="15" />
+                           Glyph="&#xe705;"
+                           FontSize="18" />
+                <Button.Flyout>
+                    <Flyout x:Name="SSLFlyout">
+                        <StackPanel Padding="10">
+                            <StackPanel Orientation="Horizontal"/>
+                        </StackPanel>
+                    </Flyout>
+                </Button.Flyout>
 
             </Button>
 
@@ -129,7 +136,7 @@
             <TextBox x:Name="SearchBar"
                      KeyDown="SearchBar_KeyDown"
                      VerticalAlignment="Center"
-                     Margin="43,0,35,0"
+                     Margin="43,0,45,0"
                      BorderThickness="0"
                      IsSpellCheckEnabled="False"
                      Grid.Column="2"
@@ -139,14 +146,15 @@
                      Grid.Row="0"
                      GotFocus="SearchBar_GotFocus"
                      TextAlignment="Center"/>
+            <winui:ProgressBar x:Name="loadingbar" Grid.Column="2" VerticalAlignment="Bottom" Margin="44,0,45,9" IsIndeterminate="True"/>
 
             <!-- settings flyout -->
             <Button x:Name="MenuButton"
-                    Grid.Column="3"
-                    VerticalAlignment="Top"
+                    Grid.Column="2" HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
                     Background="Transparent"
                     BorderThickness="0"
-                    Margin="10,10,0,0"
+                    Margin="10,0,0,0"
                     Grid.Row="0"
                     Padding="8.5">
                 <Button.Flyout>
@@ -169,8 +177,8 @@
                     </MenuFlyout>
                 </Button.Flyout>
 
-                <FontIcon Glyph="&#xE712;"
-                          FontSize="15" />
+                <FontIcon Glyph="&#xe712;"
+                          FontSize="20" />
 
             </Button>
             <StackPanel Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" ><TextBlock x:Name="homescreen" Text="Project Radon" FontSize="50" FontWeight="Light"/>
