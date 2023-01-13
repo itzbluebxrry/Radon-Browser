@@ -34,13 +34,18 @@ namespace Yttrium
 
         private async void bluebxrry_Click(object sender, RoutedEventArgs e)
         {
-            var success = await Windows.System.Launcher.LaunchUriAsync(new Uri("https://youtube.com/@_itzbluebxrry"));
+            var success = await Windows.System.Launcher.LaunchUriAsync(new Uri("https://youtube.com/@itzbluebxrry"));
 
         }
 
         private void done_Click(object sender, RoutedEventArgs e)
         {
             Hide();
+        }
+
+        private async void register_as_contributor_Click(object sender, RoutedEventArgs e)
+        {
+            var success = await Windows.System.Launcher.LaunchUriAsync(new Uri("https://forms.gle/CD6m5gHBRPWBT1LD7"));
         }
     }
 }

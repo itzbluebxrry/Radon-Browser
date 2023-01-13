@@ -19,11 +19,11 @@
             <!-- title bar grid -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="173"/>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="50"/>
                 <!-- nav buttons -->
                 <ColumnDefinition Width="*" />
                 <!-- search bar column -->
-                <ColumnDefinition x:Name="righttitlebarpadding" Width="253"/>
+                <ColumnDefinition x:Name="righttitlebarpadding" Width="223"/>
                 <!-- settings column -->
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -116,7 +116,7 @@
                     Margin="5,0,0,0"
                     BorderThickness="0"
                     Canvas.ZIndex="1"
-                    Padding="6.5"
+                    Padding="6.9"
                     Grid.Row="0"
                     ToolTipService.ToolTip="View connection informations.">
                 <FontIcon  x:Name="SSLIcon"
@@ -125,7 +125,14 @@
                 <Button.Flyout>
                     <Flyout x:Name="SSLFlyout">
                         <StackPanel Padding="10">
-                            <StackPanel Orientation="Horizontal"/>
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon  x:Name="SSLFlyoutIcon"
+                                    Glyph="&#xe705;"
+                                    FontSize="18" />
+                                <TextBlock x:Name="SSLFlyoutHeader" Style="{ThemeResource BaseTextBlockStyle}" Margin="10,0" Text="Connection informations"/>
+                                <TextBlock x:Name="SSLFlyoutStatus" Margin="0,20" Text="Website's SSL status goes here."/>
+                            </StackPanel>
+
                         </StackPanel>
                     </Flyout>
                 </Button.Flyout>
@@ -178,7 +185,7 @@
                 </Button.Flyout>
 
                 <FontIcon Glyph="&#xe712;"
-                          FontSize="20" />
+                          FontSize="16" />
 
             </Button>
             <StackPanel Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" ><TextBlock x:Name="homescreen" Text="Project Radon" FontSize="50" FontWeight="Light"/>

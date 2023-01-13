@@ -29,10 +29,10 @@
                         </TransitionCollection>
                     </StackPanel.ChildrenTransitions>
                     <Image Width="100" Source="assets\StoreLogo.scale-400.png"/>
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" Text="KioskBox Display"/>
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" Text="Project Radon"/>
                     <TextBlock Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" x:Name="txtVersion" Text="version 0.0.0"/>
-                    <TextBlock HorizontalAlignment="Center">© 2021-2022 ItzBluebxrry</TextBlock>
-                    <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWholeWords" Text="KioskBox display is a multipurpose digital display&#10;app which aims for a more flexible customizations."/>
+                    <TextBlock HorizontalAlignment="Center">© 2021-2023 ItzBluebxrry</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWholeWords" Text="Project Radon is a minimal web browser powered by &#10;WebView2with integrated Windows 11 design system with &#10;a focused and uncluttered user interface."/>
                 </StackPanel>
                 <muxc:Expander IsExpanded="True" Grid.Row="1" Margin="0,15,0,0" HorizontalAlignment="Stretch" Header="List of Contributors" HorizontalContentAlignment="Left">
                     <ScrollViewer HorizontalScrollMode="Enabled">
@@ -40,12 +40,15 @@
                             <StackPanel Orientation="Horizontal">
                                 <Button x:Name="bluebxrry" Click="bluebxrry_Click" Height="150" Width="120">
                                     <StackPanel HorizontalAlignment="Center">
-                                        <Image Source="Assets\bx-dev.png" Width="70"/>
+                                        <Grid Width="70" Height="70">
+                                            <muxc:PersonPicture Initials="Bx" Width="70"/>
+                                            <muxc:PersonPicture ProfilePicture="https://avatars.githubusercontent.com/u/99461083" Width="70"/>
+                                        </Grid>
                                         <TextBlock Text="ItzBluebxrry" Margin="0,5" FontWeight="SemiBold" FontSize="16"/>
                                         <TextBlock TextAlignment="Center">Developer</TextBlock>
                                     </StackPanel>
                                 </Button>
-                                <Button Height="150" Width="120" Margin="10,0">
+                                <Button x:Name="register_as_contributor" Click="register_as_contributor_Click" Height="150" Width="120" Margin="10,0">
                                     <StackPanel HorizontalAlignment="Center">
                                         <SymbolIcon Symbol="AddFriend"/>
                                         <TextBlock TextAlignment="Center" TextWrapping="WrapWholeWords" Text="Register as a contributor!" Margin="0,5" FontWeight="SemiBold" FontSize="14"/>
