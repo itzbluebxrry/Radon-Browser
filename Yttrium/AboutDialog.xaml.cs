@@ -29,7 +29,7 @@ namespace Yttrium
                     Package.Current.Id.Version.Minor,
                     Package.Current.Id.Version.Build,
                     Package.Current.Id.Version.Revision);
-
+            txtVersion.Text = appVersion;
         }
 
         private async void bluebxrry_Click(object sender, RoutedEventArgs e)

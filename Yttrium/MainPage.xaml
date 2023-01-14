@@ -19,15 +19,16 @@
             <!-- title bar grid -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="173"/>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="60"/>
                 <!-- nav buttons -->
                 <ColumnDefinition Width="*" />
                 <!-- search bar column -->
-                <ColumnDefinition x:Name="righttitlebarpadding" Width="223"/>
+                <ColumnDefinition x:Name="righttitlebarpadding" Width="233"/>
                 <!-- settings column -->
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="40"  x:Name="tabs_grid"/>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -103,11 +104,11 @@
                     Margin="0,0,0,0"
                     BorderThickness="0"
                     Canvas.ZIndex="1"
-                    Padding="8.5"
+                    Padding="6.9"
                     Grid.Row="0"
                     ToolTipService.ToolTip=""
                     Width="32" Height="32">
-                <Image x:Name="FaviconIcon"/>
+                <BitmapIcon x:Name="faviconicon" Width="18" Height="18"/>
 
             </Button>
             <Button x:Name="SSLButton"
@@ -166,41 +167,101 @@
                     Grid.Row="0"
                     Padding="8.5">
                 <Button.Flyout>
-                    <MenuFlyout>
-                        <!-- settings button -->
-                        <MenuFlyoutItem x:Name="SettingsMenuItem"
-                                        Text="Settings"
-                                        Click="SettingsMenuItem_Click">
-                            <MenuFlyoutItem.Icon>
-                                <FontIcon Glyph="&#xE713;" />
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                        <MenuFlyoutItem x:Name="AboutMenuItem"
-                                        Text="About"
-                                        Click="AboutMenuItem_Click">
-                            <MenuFlyoutItem.Icon>
-                                <FontIcon Glyph="&#xE946;" />
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                    </MenuFlyout>
+                    <Flyout>
+                        <StackPanel Width="180">
+                            <StackPanel Name="menuheader">
+                                <PersonPicture  ProfilePicture="ms-appx:///accountpictures/clippy.png"/>
+                                <TextBlock x:Name="username" Style="{ThemeResource SubtitleTextBlockStyle}" Text="ItzBluebxrry" TextAlignment="Center"
+                                           Margin="0,10"/>
+                                <Button Style="{ThemeResource AccentButtonStyle}" Content="Edit profile" HorizontalAlignment="Stretch"
+                                        x:Name="editprofile" Click="editprofile_Click"/>
+                                <Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,15,10,10" BorderThickness="1"/>
+
+                                <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left" Margin="0,0,0,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xE734;" FontSize="15"/>
+                                        <TextBlock Margin="10,0,0,0" Text="Favorites"/>
+                                    </StackPanel>
+                                </Button>
+                                
+                                <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left">
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xE81C;" FontSize="15"/>
+                                        <TextBlock Margin="10,0,0,0" Text="History"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left" x:Name="downloadbutton" Click="downloadbutton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xE896;" FontSize="15"/>
+                                        <TextBlock Margin="10,0,0,0" Text="Downloads"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left" x:Name="fullscreenbutton" Click="fullscreenbutton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xE740;" FontSize="15"/>
+                                        <TextBlock Margin="10,0,0,0" Text="Toggle fullscreen"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left" x:Name="printbutton" Click="printbutton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xE749;" FontSize="15"/>
+                                        <TextBlock Margin="10,0,0,0" Text="Print"/>
+                                    </StackPanel>
+                                </Button>
+                                <Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,10" BorderThickness="1"/>
+                                <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left">
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xE90F;" FontSize="15"/>
+                                        <TextBlock Margin="10,0,0,0" Text="Tools"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left">
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xE713;" FontSize="15"/>
+                                        <TextBlock Margin="10,0,0,0" Text="Settings"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        x:Name="aboutbutton" Click="AboutMenuItem_Click" HorizontalContentAlignment="Left">
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xE946;" FontSize="15"/>
+                                        <TextBlock Margin="10,0,0,0" Text="About"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Flyout>
                 </Button.Flyout>
 
                 <FontIcon Glyph="&#xe712;"
                           FontSize="16" />
 
             </Button>
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" ><TextBlock x:Name="homescreen" Text="Project Radon" FontSize="50" FontWeight="Light"/>
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" ><TextBlock x:Name="homescreen" Text="Project Radon" FontSize="50" FontWeight="Light"/>
             <TextBlock x:Name="homescreensub" Text="ALPHA" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Light"/>
             </StackPanel>
-            
-            <winui:WebView2 NavigationStarting="WebBrowser_NavigationStarting"
+            <winui:TabView Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Bottom"
+                           AddTabButtonClick="Tabs_AddTabButtonClick" TabCloseRequested="Tabs_TabCloseRequested"
+                           Loaded="TabView_Loaded" TabWidthMode="Equal" SelectionChanged="Tabs_SelectionChanged">
+                
+            </winui:TabView>
+            <Frame Grid.Row="2" Grid.ColumnSpan="4">
+                <winui:WebView2 NavigationStarting="WebBrowser_NavigationStarting"
                                     NavigationCompleted="WebBrowser_NavigationCompleted"
                                     x:Name="WebBrowser"
                                     Visibility="Visible"
                                     Source="https://start.zorin.com"
                                     Grid.Row="2" Grid.ColumnSpan="4"/>
+            </Frame>
 
-            
+
         </Grid>
         
     </Grid>

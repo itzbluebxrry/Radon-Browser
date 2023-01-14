@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -17,7 +20,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
 using Yttrium;
+
 
 
 
@@ -130,7 +135,7 @@ namespace Yttrium_browser
 
             if (WebBrowser.Source.AbsoluteUri.Contains("start.zorin"))
             {
-                SearchBar.Text = "Search the web or enter a URL";
+                SearchBar.Text = String.Empty;
             }
             if (WebBrowser.CanGoForward)
             {
@@ -153,11 +158,12 @@ namespace Yttrium_browser
             try
             {
                 WebBrowser.CoreWebView2.Settings.IsStatusBarEnabled = false;
-                Uri icoURI = new Uri("https://www.google.com/s2/favicons?sz=64&domain_url=" + WebBrowser.Source);
-                // FaviconIcon.Source = new Windows.UI.Xaml.Media.ImageSource() == icoURI;
+                Uri icoURI = new Uri("https://www.google.com/s2/favicons?sz=48&domain_url=" + WebBrowser.Source);
+                faviconicon.UriSource = icoURI;
+                faviconicon.ShowAsMonochrome = false;
                 // favicon. = WebBrowser.CoreWebView2.DocumentTitle.ToString();
-                
-                
+
+
 
                 RefreshButton.Visibility = Visibility.Visible;
                 StopRefreshButton.Visibility = Visibility.Collapsed;
@@ -345,18 +351,49 @@ namespace Yttrium_browser
         //add new tab
         private void Tabs_AddTabButtonClick(TabView sender, object args)
         {
-            //WebView2 webView = new WebView2();
-            //await webView.EnsureCoreWebView2Async();
-            //webView.CoreWebView2.Navigate("https://google.com");
-            //newTab.Content = new HomePage();
-            //sender.TabItems.Add(new TabViewItem() { Content = newTab });
-            //sender.SelectedItem = newTab ;
-            //SearchBar.Text = newTab.Header.ToString();
-            
+            sender.TabItems.Add(CreateNewTab(sender.TabItems.Count));
         }
 
-        //close tab
-        private void Tabs_TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
+        //WebView2 webView = new WebView2();
+        //await webView.EnsureCoreWebView2Async();
+        //webView.CoreWebView2.Navigate("https://google.com");
+        //newTab.Content = new HomePage();
+        //sender.TabItems.Add(new TabViewItem() { Content = newTab });
+        //sender.SelectedItem = newTab ;
+        //SearchBar.Text = newTab.Header.ToString();
+
+    
+
+    //close tab
+
+    private TabViewItem CreateNewTab(int index)
+    {
+        TabViewItem newItem = new TabViewItem();
+
+        newItem.Header = $"Document {index}";
+        newItem.IconSource = new Microsoft.UI.Xaml.Controls.SymbolIconSource() { Symbol = Symbol.Document };
+
+        // The content of the tab is often a frame that contains a page, though it could be any UIElement.
+        Frame frame = new Frame();
+
+        switch (index % 3)
+        {
+            case 0:
+                frame.Navigate(typeof(HomePage));
+                break;
+            case 1:
+                frame.Navigate(typeof(HomePage));
+                break;
+            case 2:
+                frame.Navigate(typeof(HomePage));
+                break;
+        }
+
+        newItem.Content = frame;
+
+        return newItem;
+    }
+    private void Tabs_TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
         {
             if (sender.TabItems.Count <= 1)
                 Tabs_AddTabButtonClick(sender, args);
@@ -378,6 +415,48 @@ namespace Yttrium_browser
             
         }
 
+        private void printbutton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TabView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void downloadbutton_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("https://google.com"));
+        }
+
+        private async void editprofile_Click(object sender, RoutedEventArgs e)
+        {
+            await new UserProfileDialog().ShowAsync();
+        }
+
+        private void fullscreenbutton_Click(object sender, RoutedEventArgs e)
+        {
+            var view = ApplicationView.GetForCurrentView();
+            if (view.IsFullScreenMode)
+            {
+                view.ExitFullScreenMode();
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+                // The SizeChanged event will be raised when the exit from full-screen mode is complete.
+                tabs_grid.Height = new GridLength(40);
+            }
+            else
+            {
+                if (view.TryEnterFullScreenMode())
+                {
+                    ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
+                    // The SizeChanged event will be raised when the entry to full-screen mode is complete.
+                    tabs_grid.Height = new GridLength(0);
+                }
+            }
+
+            
+        }
     }
-}
+    }
 
