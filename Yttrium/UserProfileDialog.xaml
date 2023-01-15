@@ -10,66 +10,68 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick" CornerRadius="8"
     Opened="ContentDialog_Opened">
-    <ScrollViewer>
-    <Grid Width="350" HorizontalAlignment="Left" Margin="0,0,16,0">
-        <StackPanel>
-            <TextBlock Style="{ThemeResource TitleTextBlockStyle}" TextAlignment="Center">Your Profile</TextBlock>
-            <PersonPicture x:Name="pfppreview" ProfilePicture="ms-appx:///accountpictures/clippy.png" Margin="0,10"/>
-                <TextBlock x:Name="Username_Display"  Style="{ThemeResource SubtitleTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,5">ItzBluebxrry</TextBlock>
-                <TextBlock TextAlignment="Center">Project Radon user</TextBlock>
-                <Button HorizontalAlignment="Center" Margin="0,20" Style="{ThemeResource AccentButtonStyle}"
+    <Grid>
+        <Button x:Name="CloseButton" VerticalAlignment="Top" HorizontalAlignment="Right" Height="35" Width="35" ToolTipService.ToolTip="Close">
+            <Button.Content>
+                <TextBlock Text="&#xE711;" FontFamily="Segoe Fluent Icons" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button.Content>
+        </Button>
+        <ScrollViewer>
+            <Grid Width="300" HorizontalAlignment="Left" Margin="0,0,16,0">
+                <StackPanel>
+                    <TextBlock Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center">Your Profile</TextBlock>
+                    <PersonPicture x:Name="pfppreview" ProfilePicture="ms-appx:///accountpictures/clippy.png" Margin="0,10"/>
+                    <TextBlock x:Name="Username_Display"  Style="{ThemeResource SubtitleTextBlockStyle}" TextAlignment="Center" Margin="0,0,0,5">Radon Placeholder</TextBlock>
+                    <TextBlock TextAlignment="Center">Project Radon user</TextBlock>
+                    <Button HorizontalAlignment="Center" Margin="0,20" Style="{ThemeResource AccentButtonStyle}"
                     Content="Edit profile">
-                    <Button.Flyout>
-                        <Flyout>
-                            <StackPanel>
-                                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                        <Button.Flyout>
+                            <Flyout>
+                                <StackPanel>
+                                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
                                            Margin="0,0,0,20" TextAlignment="Center">Edit profile</TextBlock>
-                                <StackPanel Orientation="Horizontal">
-
-                                    
-                                    <TextBox HorizontalAlignment="Center" TextAlignment="Center" PlaceholderText="What should we call you?" Margin="0,0,0,0" x:Name="username_box" Width="250"/>
-                                </StackPanel>
-                                <Button x:Name="updateprofile" Style="{ThemeResource AccentButtonStyle}" Content="Save changes"
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox HorizontalAlignment="Center" TextAlignment="Center" PlaceholderText="What should we call you?" Margin="0,0,0,0" x:Name="username_box" Width="250"/>
+                                    </StackPanel>
+                                    <Button x:Name="updateprofile" Style="{ThemeResource AccentButtonStyle}" Content="Save changes"
                                         Margin="0,30,0,10" Click="updateprofile_Click" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                        </Flyout>
-                    </Button.Flyout>
-                </Button>
-                <muxc:Expander HorizontalAlignment="Stretch"
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                    <muxc:Expander HorizontalAlignment="Stretch"
                            Header="Avatar" IsExpanded="True">
-                    <StackPanel HorizontalAlignment="Left">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock VerticalAlignment="Center" TextAlignment="Left">Profile Picture:</TextBlock>
-                            <ComboBox x:Name="pfpchanged" PlaceholderText="Pick a picture" SelectionChanged="pfpchanged_SelectionChanged" Width="200" Margin="10,0">
-                                <ComboBoxItem x:Name="ball" Content="Ball"/>
-                                <ComboBoxItem x:Name="bot" Content="Bot"/>
-                                <ComboBoxItem x:Name="butterfly" Content="Butterfly"/>
-                                <ComboBoxItem x:Name="car" Content="Car"/>
-                                <ComboBoxItem x:Name="clippy" Content="Clippy"/>
-                                <ComboBoxItem x:Name="crayon" Content="Crayon"/>
-                                <ComboBoxItem x:Name="sunflower" Content="Sunflower"/>
-                                <ComboBoxItem x:Name="duckcool" Content="Cool Duck"/>
-                                <ComboBoxItem x:Name="fish" Content="Fish"/>
-                                <ComboBoxItem x:Name="goofywindow" Content="Window"/>
-                                <ComboBoxItem x:Name="guitar" Content="Guitar"/>
-                                <ComboBoxItem x:Name="music" Content="Music"/>
-                                <ComboBoxItem x:Name="present" Content="Present"/>
-                            </ComboBox>
+                        <StackPanel HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" TextAlignment="Left">Profile Picture:</TextBlock>
+                                <ComboBox x:Name="pfpchanged" PlaceholderText="Pick a picture" SelectionChanged="pfpchanged_SelectionChanged" Width="200" Margin="10,0">
+                                    <ComboBoxItem x:Name="ball" Content="Ball"/>
+                                    <ComboBoxItem x:Name="bot" Content="Bot"/>
+                                    <ComboBoxItem x:Name="butterfly" Content="Butterfly"/>
+                                    <ComboBoxItem x:Name="car" Content="Car"/>
+                                    <ComboBoxItem x:Name="clippy" Content="Clippy"/>
+                                    <ComboBoxItem x:Name="crayon" Content="Crayon"/>
+                                    <ComboBoxItem x:Name="sunflower" Content="Sunflower"/>
+                                    <ComboBoxItem x:Name="duckcool" Content="Cool Duck"/>
+                                    <ComboBoxItem x:Name="fish" Content="Fish"/>
+                                    <ComboBoxItem x:Name="goofywindow" Content="Window"/>
+                                    <ComboBoxItem x:Name="guitar" Content="Guitar"/>
+                                    <ComboBoxItem x:Name="music" Content="Music"/>
+                                    <ComboBoxItem x:Name="present" Content="Present"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <TextBlock x:Name="debuginfo" Text=""/>
                         </StackPanel>
-                        <TextBlock x:Name="debuginfo" Text=""/>
-                    </StackPanel>
-                    
-            </muxc:Expander>
-            <muxc:Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="0,10"
+                    </muxc:Expander>
+                    <muxc:Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Margin="0,10"
                            Header="Authentication" IsExpanded="True">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center">Password: </TextBlock>
-                        <PasswordBox PlaceholderText="Enter a password" HorizontalAlignment="Stretch" Width="200" Margin="40,0"/>
-                    </StackPanel>
-                </muxc:Expander>
-
-
-        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center">Password:</TextBlock>
+                            <PasswordBox PlaceholderText="Enter a password" HorizontalAlignment="Stretch" Width="200" Margin="40,0"/>
+                        </StackPanel>
+                    </muxc:Expander>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
-    </ScrollViewer>
 </ContentDialog>

@@ -30,9 +30,9 @@
                     </StackPanel.ChildrenTransitions>
                     <Image Width="100" Source="assets\StoreLogo.scale-400.png"/>
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" Text="Project Radon"/>
-                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" x:Name="txtVersion" Text="version 0.0.0"/>
-                    <TextBlock HorizontalAlignment="Center">© 2021-2023 ItzBluebxrry</TextBlock>
-                    <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWholeWords" Text="Project Radon is a minimal web browser powered by &#10;WebView2with integrated Windows 11 design system with &#10;a focused and uncluttered user interface."/>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" x:Name="txtVersion" Text="Version 0.0.0.0"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="10">© 2021-2023 ItzBluebxrry</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWholeWords" Width="400" Text="Introducing Project Radon, a sleek and streamlined web browser that utilizes the latest WebView2 technology. Its integrated Windows 11 design system offers a clean, intuitive user interface that prioritizes ease of use and clarity."/>
                 </StackPanel>
                 <muxc:Expander IsExpanded="True" Grid.Row="1" Margin="0,15,0,0" HorizontalAlignment="Stretch" Header="List of Contributors" HorizontalContentAlignment="Left">
                     <ScrollViewer HorizontalScrollMode="Enabled">
@@ -48,6 +48,16 @@
                                         <TextBlock TextAlignment="Center">Developer</TextBlock>
                                     </StackPanel>
                                 </Button>
+                                <Button x:Name="pdawg" Height="150" Width="120" Margin="10,0,0,0" Click="pdawg_Click">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <Grid Width="70" Height="70">
+                                            <muxc:PersonPicture Initials="Pd" Width="70"/>
+                                            <muxc:PersonPicture ProfilePicture="https://avatars.githubusercontent.com/u/83825746" Width="70"/>
+                                        </Grid>
+                                        <TextBlock Text="Pdawg" HorizontalAlignment="Center" Margin="0,5" FontWeight="SemiBold" FontSize="16"/>
+                                        <TextBlock TextAlignment="Center">Developer</TextBlock>
+                                    </StackPanel>
+                                </Button>
                                 <Button x:Name="register_as_contributor" Click="register_as_contributor_Click" Height="150" Width="120" Margin="10,0">
                                     <StackPanel HorizontalAlignment="Center">
                                         <SymbolIcon Symbol="AddFriend"/>
@@ -59,16 +69,12 @@
                         </Grid>
                     </ScrollViewer>
                 </muxc:Expander>
-                <muxc:Expander Grid.Row="2" Margin="0,5,0,0" HorizontalAlignment="Stretch" Header="Addtional links" HorizontalContentAlignment="Center">
+                <muxc:Expander Grid.Row="2" Margin="0,5,0,10" HorizontalAlignment="Stretch" Header="Addtional links" HorizontalContentAlignment="Center">
                     <Grid>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <HyperlinkButton NavigateUri="https://github.com/itzbluebxrry/Al-Mathurat-UWP" Content="Github"/>
+                                <HyperlinkButton NavigateUri="https://github.com/itzbluebxrry/Project-Radon" Content="GitHub"/>
                                 <HyperlinkButton NavigateUri="https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide" Content="What is UWP?"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <HyperlinkButton NavigateUri="https://home.itzbluebxrry.ml/" Content="Website"/>
-                                <HyperlinkButton NavigateUri="https://youtube.com/c/ItzBluebxrry?sub_confirmation=1" Content="YouTube"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -76,6 +82,6 @@
             </Grid>
         </ScrollViewer>
         <Button x:Name="done" Click="done_Click" Content="OK" VerticalAlignment="Bottom"
-                HorizontalAlignment="Right" Width="150" Margin="16,20,16,0" Style="{ThemeResource AccentButtonStyle}"/>
+                HorizontalAlignment="Stretch" Width="150" Style="{ThemeResource AccentButtonStyle}"/>
     </Grid>
 </ContentDialog>

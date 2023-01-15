@@ -131,7 +131,7 @@
                                     Glyph="&#xe705;"
                                     FontSize="18" />
                                 <TextBlock x:Name="SSLFlyoutHeader" Style="{ThemeResource BaseTextBlockStyle}" Margin="10,0" Text="Connection informations"/>
-                                
+
                             </StackPanel>
                             <TextBlock x:Name="SSLFlyoutStatus" TextWrapping="WrapWholeWords" Margin="0,20,0,0" Text="Website's SSL status goes here."/>
                             <TextBlock x:Name="SSLFlyoutStatus2" TextWrapping="WrapWholeWords" Margin="0,15,0,10" Text="Website's SSL status goes here."/>
@@ -184,7 +184,7 @@
                                         <TextBlock Margin="10,0,0,0" Text="Favorites"/>
                                     </StackPanel>
                                 </Button>
-                                
+
                                 <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
                                         HorizontalContentAlignment="Left">
                                     <StackPanel Orientation="Horizontal">
@@ -244,25 +244,23 @@
                           FontSize="16" />
 
             </Button>
-            <StackPanel Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" ><TextBlock x:Name="homescreen" Text="Project Radon" FontSize="50" FontWeight="Light"/>
-            <TextBlock x:Name="homescreensub" Text="ALPHA" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Light"/>
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <TextBlock x:Name="homescreen" Text="Project Radon" FontSize="50" FontWeight="Light"/>
+                <TextBlock x:Name="homescreensub" Text="ALPHA" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Light"/>
             </StackPanel>
             <winui:TabView Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Bottom"
                            AddTabButtonClick="Tabs_AddTabButtonClick" TabCloseRequested="Tabs_TabCloseRequested"
                            Loaded="TabView_Loaded" TabWidthMode="Equal" SelectionChanged="Tabs_SelectionChanged">
-                
+
             </winui:TabView>
             <Frame Grid.Row="2" Grid.ColumnSpan="4">
                 <winui:WebView2 NavigationStarting="WebBrowser_NavigationStarting"
                                     NavigationCompleted="WebBrowser_NavigationCompleted"
                                     x:Name="WebBrowser"
                                     Visibility="Visible"
-                                    Source="https://start.zorin.com"
+                                    Source="https://google.com"
                                     Grid.Row="2" Grid.ColumnSpan="4"/>
             </Frame>
-
-
         </Grid>
-        
     </Grid>
 </Page>
