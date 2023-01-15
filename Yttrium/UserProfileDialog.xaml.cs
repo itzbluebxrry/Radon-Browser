@@ -40,5 +40,10 @@ namespace Yttrium
             ApplicationData.Current.LocalSettings.Values["username"] = username_box.Text;
             Username_Display.Text = username_box.Text;
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
+        }
     }
 }

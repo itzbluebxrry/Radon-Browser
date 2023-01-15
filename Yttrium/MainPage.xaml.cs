@@ -192,8 +192,8 @@ namespace Yttrium_browser
                 SSLFlyoutIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
                 SSLFlyoutIcon.Glyph = "\xe705";
                 SSLFlyoutHeader.Text = "Your connection is secured";
-                SSLFlyoutStatus.Text = "This site has a valid SSL certificate with secure connections.";
-                SSLFlyoutStatus2.Text = "Your personal informations will be securely sent to the site and cannot be intercepted or seen by others.";
+                SSLFlyoutStatus.Text = "This site has a valid SSL certificate.";
+                SSLFlyoutStatus2.Text = "Your data will be securely sent to the site and will not be intercepted or seen by others.";
 
                 //ToolTip tooltip = new ToolTip
                 //{
@@ -213,8 +213,7 @@ namespace Yttrium_browser
                 SSLFlyoutIcon.Glyph = "\xe783";
                 SSLFlyoutHeader.Text = "This site seems dangerous";
                 SSLFlyoutStatus.Text = "This site does not have a valid SSL certificate.";
-                SSLFlyoutStatus2.Text = "Informations will not be securely sent to this site and likely to be intercepted and seen by others.";
-
+                SSLFlyoutStatus2.Text = "You data may be at risk of being stolen or intercepted. Be careful on this website.";
             }
 
 

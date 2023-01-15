@@ -97,20 +97,6 @@
             </StackPanel>
 
             <!-- SSL certification icon-->
-
-            <Button x:Name="favicon"
-                    VerticalAlignment="Center"
-                    Grid.Column="1" HorizontalAlignment="Right"
-                    Margin="0,0,0,0"
-                    BorderThickness="0"
-                    Canvas.ZIndex="1"
-                    Padding="6.9"
-                    Grid.Row="0"
-                    ToolTipService.ToolTip=""
-                    Width="32" Height="32">
-                <BitmapIcon x:Name="faviconicon" Width="18" Height="18"/>
-
-            </Button>
             <Button x:Name="SSLButton"
                     VerticalAlignment="Center"
                     Grid.Column="2"
@@ -119,7 +105,7 @@
                     Canvas.ZIndex="1"
                     Padding="6.9"
                     Grid.Row="0"
-                    ToolTipService.ToolTip="View connection informations.">
+                    ToolTipService.ToolTip="View connection information">
                 <FontIcon  x:Name="SSLIcon"
                            Glyph="&#xe705;"
                            FontSize="18" />
@@ -140,9 +126,9 @@
                 </Button.Flyout>
 
             </Button>
-
+            
             <!-- search bar -->
-            <TextBox x:Name="SearchBar"
+                <TextBox x:Name="SearchBar"
                      KeyDown="SearchBar_KeyDown"
                      VerticalAlignment="Center"
                      Margin="43,0,45,0"
@@ -152,10 +138,10 @@
                      PlaceholderText="Search the web or enter a URL"
                      Height="25"
                      VerticalContentAlignment="Center"
-                     Grid.Row="0"
                      GotFocus="SearchBar_GotFocus"
                      TextAlignment="Center" FontWeight="SemiBold"/>
-            <winui:ProgressBar x:Name="loadingbar" Grid.Column="2" VerticalAlignment="Bottom" Margin="44,0,46,9" IsIndeterminate="True"/>
+                <winui:ProgressBar x:Name="loadingbar" Grid.Column="2" VerticalAlignment="Bottom" Margin="44,0,46,9" IsIndeterminate="True"/>
+            <BitmapIcon x:Name="faviconicon" Width="18" Height="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2" Margin="50,0,0,0"/>
 
             <!-- settings flyout -->
             <Button x:Name="MenuButton"
@@ -171,9 +157,9 @@
                         <StackPanel Width="180">
                             <StackPanel Name="menuheader">
                                 <PersonPicture  ProfilePicture="ms-appx:///accountpictures/clippy.png"/>
-                                <TextBlock x:Name="username" Style="{ThemeResource SubtitleTextBlockStyle}" Text="ItzBluebxrry" TextAlignment="Center"
+                                <TextBlock x:Name="username" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Radon User" TextAlignment="Center"
                                            Margin="0,10"/>
-                                <Button Style="{ThemeResource AccentButtonStyle}" Content="Edit profile" HorizontalAlignment="Stretch"
+                                <Button Style="{ThemeResource AccentButtonStyle}" Content="Edit profile" HorizontalAlignment="Stretch" Margin="10,0,10,0"
                                         x:Name="editprofile" Click="editprofile_Click"/>
                                 <Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,15,10,10" BorderThickness="1"/>
 
