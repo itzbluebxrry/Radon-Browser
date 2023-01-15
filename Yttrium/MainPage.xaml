@@ -124,7 +124,7 @@
                            Glyph="&#xe705;"
                            FontSize="18" />
                 <Button.Flyout>
-                    <Flyout x:Name="SSLFlyout">
+                    <Flyout x:Name="SSLFlyout" ShouldConstrainToRootBounds="False">
                         <StackPanel Width="340">
                             <StackPanel Orientation="Horizontal">
                                 <FontIcon  x:Name="SSLFlyoutIcon"
@@ -167,7 +167,7 @@
                     Grid.Row="0"
                     Padding="8.5">
                 <Button.Flyout>
-                    <Flyout>
+                    <Flyout ShouldConstrainToRootBounds="False">
                         <StackPanel Width="180">
                             <StackPanel Name="menuheader">
                                 <PersonPicture  ProfilePicture="ms-appx:///accountpictures/clippy.png"/>

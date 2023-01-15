@@ -250,9 +250,14 @@ namespace Yttrium_browser
             {
                 WebBrowser.Visibility = Visibility.Visible;
                 if (SearchBar.Text.Contains("."))
-
+                    if (SearchBar.Text.Contains(':')) 
+                    {
+                        WebBrowser.Source = new Uri(SearchBar.Text);
+                    }
+                    else 
+                    {
                         WebBrowser.Source = new Uri("https://" + SearchBar.Text);
-
+                    }
                 else if (SearchBar.Text.Contains(":"))
                 {
                     WebBrowser.Source = new Uri(SearchBar.Text);
