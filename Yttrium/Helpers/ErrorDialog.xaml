@@ -1,0 +1,32 @@
+﻿<ContentDialog
+    x:Class="Project_Radon.Helpers.ErrorDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:local="using:Project_Radon.Helpers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Oops! An error occurred."
+    CornerRadius="8">
+
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="If you keep seeing this message, please contact the Radon developers." Height="40" Width="300" VerticalAlignment="Top" TextWrapping="WrapWholeWords" HorizontalAlignment="Left"/>
+            <winui:Expander HorizontalAlignment="Stretch" Margin="0,10,0,0" IsExpanded="True" HorizontalContentAlignment="Left">
+                <winui:Expander.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xEA39;" FontFamily="Segoe Fluent Icons" FontSize="16" VerticalAlignment="Center"/>
+                        <TextBlock Text="Error Content" Margin="10,0,0,1"/>
+                    </StackPanel>
+                </winui:Expander.Header>
+                <winui:Expander.Content>
+                    <StackPanel>
+                        <TextBlock Text="Copy this message below and send it to Radon developers for support." TextWrapping="WrapWholeWords" Width="300" FontWeight="Medium"/>
+                        <TextBlock Text="Exception:" Margin="0,10,0,0" x:Name="ExceptionText" Width="300" TextWrapping="WrapWholeWords"/>
+                    </StackPanel>
+                </winui:Expander.Content>
+            </winui:Expander>
+        </StackPanel>
+    </Grid>
+</ContentDialog>

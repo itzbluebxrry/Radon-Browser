@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
+using Project_Radon.Helpers;
 using Yttrium;
 
 namespace Yttrium_browser
@@ -37,10 +38,7 @@ namespace Yttrium_browser
             SettingsData settings = new SettingsData();
             settings.CreateSettingsFile();
 
-
-
             RefreshButton.IsEnabled = false;
-
 
             //google login fix
             WebBrowser.CoreWebView2Initialized += delegate
@@ -51,25 +49,15 @@ namespace Yttrium_browser
             };
 
             //Navigation Buttons on initialize
-            if (WebBrowser.CanGoForward)
-            {
-
-            }
-            else
+            if (!WebBrowser.CanGoForward)
             {
                 ForwardButton.Visibility = Visibility.Collapsed;
             }
 
-            if (WebBrowser.CanGoBack)
-            {
-                
-            }
-            else
+            if (!WebBrowser.CanGoBack)
             {
                 BackButton.IsEnabled = false;
             }
-
-
         }
 
 
@@ -82,7 +70,7 @@ namespace Yttrium_browser
             }
             else
             {
-                BackButton.IsEnabled= false;
+                BackButton.IsEnabled = false;
             }
             WebBrowser.Visibility = Visibility.Visible;
         }
@@ -97,7 +85,7 @@ namespace Yttrium_browser
             }
             else
             {
-                ForwardButton.Visibility =Visibility.Collapsed;
+                ForwardButton.Visibility = Visibility.Collapsed;
                 
             }
             WebBrowser.Visibility = Visibility.Visible;
@@ -108,12 +96,10 @@ namespace Yttrium_browser
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             WebBrowser.Reload();
-            
-
         }
 
         //navigation completed
-        private void WebBrowser_NavigationCompleted(WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
+        private async void WebBrowser_NavigationCompleted(WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
         {
 
             if (SearchBar.FocusState == FocusState.Unfocused)
@@ -125,10 +111,6 @@ namespace Yttrium_browser
 
             WebBrowser.Visibility = Visibility.Visible;
 
-            if (WebBrowser.Source.AbsoluteUri.Contains("start.zorin"))
-            {
-                SearchBar.Text = String.Empty;
-            }
             if (WebBrowser.CanGoForward)
             {
                 ForwardButton.Visibility = Visibility.Visible;
@@ -146,6 +128,7 @@ namespace Yttrium_browser
             {
                 BackButton.IsEnabled = false;
             }
+
             //website load status
             try
             {
@@ -153,22 +136,14 @@ namespace Yttrium_browser
                 Uri icoURI = new Uri("https://www.google.com/s2/favicons?sz=48&domain_url=" + WebBrowser.Source);
                 faviconicon.UriSource = icoURI;
                 faviconicon.ShowAsMonochrome = false;
-                // favicon. = WebBrowser.CoreWebView2.DocumentTitle.ToString();
-
-
 
                 RefreshButton.Visibility = Visibility.Visible;
                 StopRefreshButton.Visibility = Visibility.Collapsed;
-                if (loadingbar.ShowError == true)
-                {
-                    //do nothing
-                }
-                else
+                if (!loadingbar.ShowError == true)
                 {
                     loadingbar.IsIndeterminate = false;
                 }
                 
-
                 //history
                 DataTransfer datatransfer = new DataTransfer();
                 if (!string.IsNullOrEmpty(SearchBar.Text))
@@ -176,9 +151,10 @@ namespace Yttrium_browser
                     datatransfer.SaveSearchTerm(SearchBar.Text, WebBrowser.CoreWebView2.DocumentTitle, WebBrowser.Source.AbsoluteUri);
                 }
             }
-            catch
+            catch (Exception ExLoader)
             {
-
+                ErrorDialog dialog = new ErrorDialog(ExLoader.ToString());
+                await dialog.ShowAsync();
             }
 
 
@@ -194,13 +170,6 @@ namespace Yttrium_browser
                 SSLFlyoutHeader.Text = "Your connection is secured";
                 SSLFlyoutStatus.Text = "This site has a valid SSL certificate.";
                 SSLFlyoutStatus2.Text = "Your data will be securely sent to the site and will not be intercepted or seen by others.";
-
-                //ToolTip tooltip = new ToolTip
-                //{
-                //    Content = "This website has a SSL certificate"
-                //};
-                //ToolTipService.SetToolTip(SSLButton, tooltip);
-
             }
             else
             {
@@ -215,26 +184,10 @@ namespace Yttrium_browser
                 SSLFlyoutStatus.Text = "This site does not have a valid SSL certificate.";
                 SSLFlyoutStatus2.Text = "You data may be at risk of being stolen or intercepted. Be careful on this website.";
             }
-
-
-            //            await WebBrowser.EnsureCoreWebView2Async();
-            //            await WebBrowser.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(@"
-            //document.addEventListener('DOMContentLoaded', function() {
-            //  const style = document.createElement('style');
-            //  style.textContent = '/* width */ \
-            //::-webkit-scrollbar { \
-            //  width: 20px !important; \
-            //} \
-            // \
-            //::-webkit-scrollbar-track { \
-            //  background: red !important; \
-            //}';
-            //  document.head.append(style);
-            //}, false);");
         }
 
         //if enter is pressed, it searches text in SearchBar or goes to web page
-        private void SearchBar_KeyDown(object sender, KeyRoutedEventArgs e)
+        private async void SearchBar_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             
             if (e.Key == Windows.System.VirtualKey.Enter && WebBrowser != null && WebBrowser.CoreWebView2 != null)
@@ -251,7 +204,15 @@ namespace Yttrium_browser
                     }
                 else if (SearchBar.Text.Contains(":"))
                 {
-                    WebBrowser.Source = new Uri(SearchBar.Text);
+                    try
+                    {
+                        WebBrowser.Source = new Uri(SearchBar.Text);
+                    }
+                    catch (Exception KeyDownArg)
+                    {
+                        ErrorDialog dialog = new ErrorDialog(KeyDownArg.ToString());
+                        await dialog.ShowAsync();
+                    }
                 }
 
                 else
@@ -266,7 +227,6 @@ namespace Yttrium_browser
                 WebBrowser.Focus(FocusState.Pointer);
                 WebBrowser.Focus(FocusState.Keyboard);
             }
-            
         }
 
         //if clicked on SearchBar, the text will be selected
@@ -278,27 +238,12 @@ namespace Yttrium_browser
         //method for search engine + updates link text in SearchBar
         private void Search()
         {
-            //if (SearchBar.Text.Contains("https://") || SearchBar.Text.Contains("http://"))
-            //{
-            //    WebBrowser.Source = new Uri(SearchBar.Text);
-            //}
-            //else
-            //{
-            //    WebBrowser.Source = new Uri("https://www.google.com/search?q=" + SearchBar.Text);
-            //}
-            //string link = "https://" + SearchBar.Text;
-            //WebBrowser.CoreWebView2.Navigate(link);
-
             WebBrowser.Source = new Uri("https://www.google.com/search?q=" + SearchBar.Text);
-            //SearchBar.Text = newTab.Content == new HomePage() ? "Home page" : WebBrowser.Source.AbsoluteUri;
-
         }
 
         //home button redirects to homepage
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-
-
             WebBrowser.Visibility = Visibility.Collapsed;
             SearchBar.Text = string.Empty;
         }
@@ -319,10 +264,6 @@ namespace Yttrium_browser
             WebBrowser.Focus(FocusState.Keyboard);
             RefreshButton.IsEnabled = true;
             loadingbar.IsIndeterminate = true;
-            
-
-
-
             var isGoogleLogin = new Uri(args.Uri).Host.Contains("accounts.google.com");
             WebBrowser.CoreWebView2.Settings.UserAgent = isGoogleLogin ? GoogleSignInUserAgent : OriginalUserAgent;
         }
@@ -341,7 +282,6 @@ namespace Yttrium_browser
         private void DragArea_Loaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SetTitleBar(sender as Border);
-
         }
 
         //add new tab
@@ -350,95 +290,71 @@ namespace Yttrium_browser
             sender.TabItems.Add(CreateNewTab(sender.TabItems.Count));
         }
 
-        //WebView2 webView = new WebView2();
-        //await webView.EnsureCoreWebView2Async();
-        //webView.CoreWebView2.Navigate("https://google.com");
-        //newTab.Content = new HomePage();
-        //sender.TabItems.Add(new TabViewItem() { Content = newTab });
-        //sender.SelectedItem = newTab ;
-        //SearchBar.Text = newTab.Header.ToString();
-
-    
-
-    //close tab
-
-    private TabViewItem CreateNewTab(int index)
-    {
-        TabViewItem newItem = new TabViewItem();
-
-        newItem.Header = $"Document {index}";
-        newItem.IconSource = new Microsoft.UI.Xaml.Controls.SymbolIconSource() { Symbol = Symbol.Document };
-
-        // The content of the tab is often a frame that contains a page, though it could be any UIElement.
-        Frame frame = new Frame();
-
-        switch (index % 3)
+        private TabViewItem CreateNewTab(int index)
         {
-            case 0:
-                frame.Navigate(typeof(HomePage));
-                break;
-            case 1:
-                frame.Navigate(typeof(HomePage));
-                break;
-            case 2:
-                frame.Navigate(typeof(HomePage));
-                break;
+            TabViewItem newItem = new TabViewItem();
+
+            newItem.Header = $"New Tab {index}";
+            newItem.IconSource = new Microsoft.UI.Xaml.Controls.SymbolIconSource() { Symbol = Symbol.Document };
+
+            Frame frame = new Frame();
+
+            frame.Navigate(typeof(HomePage));
+
+            newItem.Content = frame;
+            return newItem;
         }
-
-        newItem.Content = frame;
-
-        return newItem;
-    }
-    private void Tabs_TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
+        private void Tabs_TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
         {
             if (sender.TabItems.Count <= 1)
                 Tabs_AddTabButtonClick(sender, args);
 
             sender.TabItems.Remove(args.Tab);
         }
+
         //opens about app dialog
         private async void AboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            MenuButton.Flyout.Hide();
             ContentDialog aboutdialog = new AboutDialog();
-
             var result = await aboutdialog.ShowAsync();
-
         }
-
 
         private void Tabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            MenuButton.Flyout.Hide();
         }
 
         private void printbutton_Click(object sender, RoutedEventArgs e)
         {
-
+            MenuButton.Flyout.Hide();
         }
 
         private void TabView_Loaded(object sender, RoutedEventArgs e)
         {
-
+            MenuButton.Flyout.Hide();
         }
 
         private async void downloadbutton_Click(object sender, RoutedEventArgs e)
         {
+            MenuButton.Flyout.Hide();
             await Launcher.LaunchUriAsync(new Uri("https://google.com"));
         }
 
         private async void editprofile_Click(object sender, RoutedEventArgs e)
         {
+            MenuButton.Flyout.Hide();
             await new UserProfileDialog().ShowAsync();
         }
 
         private void fullscreenbutton_Click(object sender, RoutedEventArgs e)
         {
+            MenuButton.Flyout.Hide();
             var view = ApplicationView.GetForCurrentView();
             if (view.IsFullScreenMode)
             {
                 view.ExitFullScreenMode();
                 ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
-                // The SizeChanged event will be raised when the exit from full-screen mode is complete.
                 tabs_grid.Height = new GridLength(40);
             }
             else
@@ -446,13 +362,9 @@ namespace Yttrium_browser
                 if (view.TryEnterFullScreenMode())
                 {
                     ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
-                    // The SizeChanged event will be raised when the entry to full-screen mode is complete.
                     tabs_grid.Height = new GridLength(0);
                 }
             }
-
-            
         }
     }
-    }
-
+}

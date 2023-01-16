@@ -28,10 +28,9 @@
                             <EntranceThemeTransition IsStaggeringEnabled="True"/>
                         </TransitionCollection>
                     </StackPanel.ChildrenTransitions>
-                    <Image Width="100" Source="assets\StoreLogo.scale-400.png"/>
+                    <Image Width="100" Source="ms-appx:///Assets/StoreLogo.scale-400.png"/>
                     <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" Text="Project Radon"/>
-                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" x:Name="txtVersion" Text="Version 0.0.0.0"/>
-                    <TextBlock HorizontalAlignment="Center" Margin="10">© 2021-2023 ItzBluebxrry</TextBlock>
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" x:Name="txtVersion" Text="Version 0.0.0.0" Margin="10"/>
                     <TextBlock HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWholeWords" Width="400" Text="Introducing Project Radon, a sleek and streamlined web browser that utilizes the latest WebView2 technology. Its integrated Windows 11 design system offers a clean, intuitive user interface that prioritizes ease of use and clarity."/>
                 </StackPanel>
                 <muxc:Expander IsExpanded="True" Grid.Row="1" Margin="0,15,0,0" HorizontalAlignment="Stretch" Header="List of Contributors" HorizontalContentAlignment="Left">

@@ -16,15 +16,11 @@
         <Grid x:Name="TitleBarGrid"
               Grid.Row="0"
               Canvas.ZIndex="1">
-            <!-- title bar grid -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="173"/>
                 <ColumnDefinition Width="60"/>
-                <!-- nav buttons -->
                 <ColumnDefinition Width="*" />
-                <!-- search bar column -->
                 <ColumnDefinition x:Name="righttitlebarpadding" Width="233"/>
-                <!-- settings column -->
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -237,15 +233,9 @@
             <winui:TabView Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Bottom"
                            AddTabButtonClick="Tabs_AddTabButtonClick" TabCloseRequested="Tabs_TabCloseRequested"
                            Loaded="TabView_Loaded" TabWidthMode="Equal" SelectionChanged="Tabs_SelectionChanged">
-
             </winui:TabView>
             <Frame Grid.Row="2" Grid.ColumnSpan="4">
-                <winui:WebView2 NavigationStarting="WebBrowser_NavigationStarting"
-                                    NavigationCompleted="WebBrowser_NavigationCompleted"
-                                    x:Name="WebBrowser"
-                                    Visibility="Visible"
-                                    Source="https://google.com"
-                                    Grid.Row="2" Grid.ColumnSpan="4"/>
+                <winui:WebView2 NavigationStarting="WebBrowser_NavigationStarting" NavigationCompleted="WebBrowser_NavigationCompleted" x:Name="WebBrowser" Visibility="Visible" Source="https://google.com" Grid.Row="2" Grid.ColumnSpan="4"/>
             </Frame>
         </Grid>
     </Grid>

@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateThumbprint>E3C362D10BEB8C5333B3C3E4D2C2B3B0207888C4</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>E40529A92D770C6DBA0957AB58F41216C5498603</PackageCertificateThumbprint>
     <PackageCertificateKeyFile />
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
@@ -103,13 +103,16 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AboutDialog.xaml.cs">
+    <Compile Include="Helpers\ErrorDialog.xaml.cs">
+      <DependentUpon>ErrorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\AboutDialog.xaml.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataTransfer.cs" />
+    <Compile Include="Helpers\DataTransfer.cs" />
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -117,20 +120,20 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsData.cs" />
-    <Compile Include="SettingsPage.xaml.cs">
+    <Compile Include="Helpers\SettingsData.cs" />
+    <Compile Include="Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsPage_Favorites.xaml.cs">
+    <Compile Include="Settings\SettingsPage_Favorites.xaml.cs">
       <DependentUpon>SettingsPage_Favorites.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsPage_History.xaml.cs">
+    <Compile Include="Settings\SettingsPage_History.xaml.cs">
       <DependentUpon>SettingsPage_History.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsPage_SearchEngine.xaml.cs">
+    <Compile Include="Settings\SettingsPage_SearchEngine.xaml.cs">
       <DependentUpon>SettingsPage_SearchEngine.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserProfileDialog.xaml.cs">
+    <Compile Include="Settings\UserProfileDialog.xaml.cs">
       <DependentUpon>UserProfileDialog.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -200,8 +203,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="Homepage.html" />
-    <Content Include="Homepage.html" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -222,7 +223,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AboutDialog.xaml">
+    <Page Include="Helpers\ErrorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\AboutDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,23 +239,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SettingsPage.xaml">
+    <Page Include="Settings\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsPage_Favorites.xaml">
+    <Page Include="Settings\SettingsPage_Favorites.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsPage_History.xaml">
+    <Page Include="Settings\SettingsPage_History.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsPage_SearchEngine.xaml">
+    <Page Include="Settings\SettingsPage_SearchEngine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserProfileDialog.xaml">
+    <Page Include="Settings\UserProfileDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
