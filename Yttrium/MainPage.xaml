@@ -135,7 +135,7 @@
                      Height="25"
                      VerticalContentAlignment="Center"
                      GotFocus="SearchBar_GotFocus"
-                     TextAlignment="Center" FontWeight="SemiBold" Background="Transparent"/>
+                     TextAlignment="Center" FontWeight="SemiBold"/>
                 <winui:ProgressBar x:Name="loadingbar" Grid.Column="2" VerticalAlignment="Bottom" Margin="44,0,46,9" IsIndeterminate="True"/>
             <BitmapIcon x:Name="faviconicon" Width="18" Height="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2" Margin="50,0,0,0"/>
 
