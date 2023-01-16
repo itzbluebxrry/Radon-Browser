@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Yttrium_browser;
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,6 +24,11 @@ namespace Project_Radon.Helpers
         {
             this.InitializeComponent();
             ExceptionText.Text = "Exception: " + ExceptionHook;
+        }
+
+        private void ContentDialog_Closed(ContentDialog sender, ContentDialogClosedEventArgs args)
+        {
+            App.Current.Exit();
         }
     }
 }
