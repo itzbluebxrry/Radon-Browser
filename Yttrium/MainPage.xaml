@@ -100,7 +100,7 @@
                     BorderThickness="0"
                     Canvas.ZIndex="1"
                     Padding="6.9"
-                    Grid.Row="0" Background="Transparent"
+                    Grid.Row="0"
                     ToolTipService.ToolTip="View connection information">
                 <FontIcon  x:Name="SSLIcon"
                            Glyph="&#xe705;"
