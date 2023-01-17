@@ -67,11 +67,7 @@ namespace Yttrium_browser
             if (SearchBar.FocusState == FocusState.Unfocused)
             {
                 SearchBar.Text = WebBrowser.Source.AbsoluteUri;
-                WebBrowser.Focus(FocusState.Pointer);
-                WebBrowser.Focus(FocusState.Keyboard);
             }
-
-            WebBrowser.Visibility = Visibility.Visible;
 
             if (WebBrowser.CanGoForward)
             {
@@ -90,11 +86,10 @@ namespace Yttrium_browser
             {
                 BackButton.IsEnabled = false;
             }
-
+            
             //website load status
             try
             {
-                WebBrowser.CoreWebView2.Settings.IsStatusBarEnabled = false;
                 Uri icoURI = new Uri("https://www.google.com/s2/favicons?sz=48&domain_url=" + WebBrowser.Source);
                 faviconicon.UriSource = icoURI;
                 faviconicon.ShowAsMonochrome = false;
@@ -104,14 +99,7 @@ namespace Yttrium_browser
                 if (!loadingbar.ShowError == true)
                 {
                     loadingbar.IsIndeterminate = false;
-                }
-                
-                //history
-                DataTransfer datatransfer = new DataTransfer();
-                if (!string.IsNullOrEmpty(SearchBar.Text))
-                {
-                    datatransfer.SaveSearchTerm(SearchBar.Text, WebBrowser.CoreWebView2.DocumentTitle, WebBrowser.Source.AbsoluteUri);
-                }
+                } 
             }
             catch (Exception ExLoader)
             {
@@ -120,7 +108,7 @@ namespace Yttrium_browser
             }
 
 
-            if (WebBrowser.Source.AbsoluteUri.Contains("https"))
+            if (SearchValue.Contains("https"))
             {
                 //change icon to lock
                 SSLIcon.FontFamily = new FontFamily("Segoe Fluent Icons");

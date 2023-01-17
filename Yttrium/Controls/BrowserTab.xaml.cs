@@ -31,16 +31,16 @@ namespace Project_Radon.Controls
                 OriginalUserAgent = WebBrowser.CoreWebView2.Settings.UserAgent;
                 GoogleSignInUserAgent = OriginalUserAgent.Substring(0, OriginalUserAgent.IndexOf("Edg/"))
                 .Replace("Mozilla/5.0", "Mozilla/4.0");
+                WebBrowser.CoreWebView2.Settings.UserAgent = GoogleSignInUserAgent;
             };
 
         }
 
-        public void WebBrowser_NavigationCompleted(Microsoft.UI.Xaml.Controls.WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args, string SearchText)
+        public void WebBrowser_NavigationCompleted(Microsoft.UI.Xaml.Controls.WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
         {
             WebBrowser.Focus(FocusState.Pointer);
             WebBrowser.Focus(FocusState.Keyboard);
-            bool isGoogleLogin = SearchText.Contains("accounts.google.com");
-            WebBrowser.CoreWebView2.Settings.UserAgent = isGoogleLogin ? GoogleSignInUserAgent : OriginalUserAgent;
+            WebBrowser.CoreWebView2.Settings.IsStatusBarEnabled = false;
         }
 
         public void WebBrowser_NavigationStarting(Microsoft.UI.Xaml.Controls.WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs args)

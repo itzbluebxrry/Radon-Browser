@@ -106,6 +106,7 @@
     <Compile Include="Controls\BrowserTab.xaml.cs">
       <DependentUpon>BrowserTab.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\BrowserBackend.cs" />
     <Compile Include="Helpers\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
