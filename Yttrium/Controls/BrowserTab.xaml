@@ -1,0 +1,14 @@
+﻿<Page
+    x:Class="Project_Radon.Controls.BrowserTab"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Project_Radon.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <winui:WebView2 NavigationCompleted="WebBrowser_NavigationCompleted" NavigationStarting="WebBrowser_NavigationStarting" x:Name="WebBrowser" Visibility="Visible" Source="https://google.com" Grid.Row="2" Grid.ColumnSpan="4"/>
+    </Grid>
+</Page>
