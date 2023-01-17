@@ -46,42 +46,19 @@ namespace Yttrium_browser
             BackButton.IsEnabled = false;
         }
 
-
-        //back navigation
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (WebBrowser.CanGoBack)
-            {
-                WebBrowser.GoBack();
-            }
-            else
-            {
-                BackButton.IsEnabled = false;
-            }
-            WebBrowser.Visibility = Visibility.Visible;
+            browserTab.BackButtonSender();
         }
 
-        //forward navigation
         private void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
-
-            if (WebBrowser.CanGoForward)
-            {
-                WebBrowser.GoForward();
-            }
-            else
-            {
-                ForwardButton.Visibility = Visibility.Collapsed;
-                
-            }
-            WebBrowser.Visibility = Visibility.Visible;
-
+            browserTab.FowardButtonSender();
         }
 
-        //refresh 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            WebBrowser.Reload();
+            browserTab.Reload();
         }
 
         //navigation completed
@@ -171,7 +148,6 @@ namespace Yttrium_browser
             }
         }
 
-        //if enter is pressed, it searches text in SearchBar or goes to web page
         private async void SearchBar_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             SearchValue = SearchBar.Text;
@@ -209,7 +185,7 @@ namespace Yttrium_browser
         //stops refreshing if clicked on progressbar
         private async void StopRefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            WebBrowser.CoreWebView2.Stop();
+            browserTab.Stop();
             loadingbar.ShowError = true;
             await Task.Delay(2000);
             loadingbar.ShowError = false;

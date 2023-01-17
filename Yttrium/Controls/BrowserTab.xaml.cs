@@ -107,7 +107,27 @@ namespace Project_Radon.Controls
 
         public void BackButtonSender()
         {
-
+            if (WebBrowser.CanGoBack)
+            {
+                WebBrowser.GoBack();
+            }
+            WebBrowser.Visibility = Visibility.Visible;
+        }
+        public void FowardButtonSender()
+        {
+            if (WebBrowser.CanGoForward)
+            {
+                WebBrowser.GoForward();
+            }
+            WebBrowser.Visibility = Visibility.Visible;
+        }
+        public void Reload()
+        {
+            WebBrowser.Reload();
+        }
+        public void Stop()
+        {
+            WebBrowser.CoreWebView2.Stop();
         }
     }
 }
