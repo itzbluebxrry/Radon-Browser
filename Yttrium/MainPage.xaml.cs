@@ -24,7 +24,10 @@ using Windows.UI.Xaml.Shapes;
 using Project_Radon.Helpers;
 using Project_Radon.Controls;
 using Yttrium;
+using CommunityToolkit.Mvvm;
 using Windows.Networking.NetworkOperators;
+using Project_Radon.ViewModels;
+using System.ServiceModel.Channels;
 
 namespace Yttrium_browser
 {
@@ -44,6 +47,7 @@ namespace Yttrium_browser
             browserTab = new BrowserTab();
             ForwardButton.Visibility = Visibility.Collapsed;
             BackButton.IsEnabled = false;
+
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -64,7 +68,7 @@ namespace Yttrium_browser
         //navigation completed
         private async void WebBrowser_NavigationCompleted(WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
         {
-            if (SearchBar.FocusState == FocusState.Unfocused)
+            /*if (SearchBar.FocusState == FocusState.Unfocused)
             {
                 SearchBar.Text = WebBrowser.Source.AbsoluteUri;
             }
@@ -85,12 +89,12 @@ namespace Yttrium_browser
             else
             {
                 BackButton.IsEnabled = false;
-            }
+            }*/
             
             //website load status
             try
             {
-                Uri icoURI = new Uri("https://www.google.com/s2/favicons?sz=48&domain_url=" + WebBrowser.Source);
+                Uri icoURI = new Uri("https://www.google.com/s2/favicons?sz=48&domain_url=" + SearchValue);
                 faviconicon.UriSource = icoURI;
                 faviconicon.ShowAsMonochrome = false;
 
@@ -151,12 +155,6 @@ namespace Yttrium_browser
         {
             browserTab.VisibilityService(true);
             SearchBar.Text = string.Empty;
-        }
-
-        //opens settings page
-        private void SettingsMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(SettingsPage));
         }
 
 

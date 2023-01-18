@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Yttrium_browser;
+using CommunityToolkit.Mvvm;
 
 namespace Project_Radon.Helpers
 {
     public class BrowserBackend
     {
-        MainPage mainPage = new MainPage();
-        BrowserTab browserTab = new BrowserTab();
         public BrowserBackend()
         {
 

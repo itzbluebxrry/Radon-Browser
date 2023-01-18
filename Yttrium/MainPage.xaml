@@ -6,7 +6,8 @@
       mc:Ignorable="d"
       xmlns:winui="using:Microsoft.UI.Xaml.Controls"
       winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
-      x:Name="MainWindow">
+      x:Name="MainWindow"
+      DataContext="BrowserTabViewModel">
     <Page.Resources>
         <ResourceDictionary>
             <SolidColorBrush x:Key="TabViewItemHeaderBackgroundSelected" Color="{ThemeResource ControlFillColorDefault}"  />
