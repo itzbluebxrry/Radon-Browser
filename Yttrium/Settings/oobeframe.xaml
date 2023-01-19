@@ -15,7 +15,13 @@
             <RowDefinition/>
             <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
-        <Frame x:Name="oobe_frameview" Grid.Row="1"/>
+        <Frame x:Name="oobe_frameview" Grid.Row="1">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition/>
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
         <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock x:Name="oobeprogresstext" Text="Step 1 of 3" Style="{ThemeResource SubtitleTextBlockStyle}"
                        TextAlignment="Center"/>

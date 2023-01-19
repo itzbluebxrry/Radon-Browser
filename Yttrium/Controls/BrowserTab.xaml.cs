@@ -73,14 +73,15 @@ namespace Project_Radon.Controls
 
         private void WebBrowser_NavigationCompleted(Microsoft.UI.Xaml.Controls.WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
         {
-            WebBrowser.Focus(FocusState.Pointer);
-            WebBrowser.Focus(FocusState.Keyboard);
+            
             IsLoading = false;
         }
         public void Close() => WebBrowser.Close();
         private void WebBrowser_NavigationStarting(Microsoft.UI.Xaml.Controls.WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs args)
         {
             IsLoading = true;
+            WebBrowser.Focus(FocusState.Pointer);
+            WebBrowser.Focus(FocusState.Keyboard);
         }
         public async Task SearchOrGoto(string SearchBarText)
         {
