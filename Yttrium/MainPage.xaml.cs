@@ -244,6 +244,69 @@ namespace Yttrium_browser
             (args.Item as BrowserTabViewItem).Tab.Close();
             CurrentTabs.Remove(args.Item as BrowserTabViewItem);
         }
+        private void NewTabKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            BrowserTabs_AddTabButtonClick(null, null);
+            args.Handled = true;
+        }
+
+        private void CloseSelectedTabKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            if (CurrentTabs.Count == 1)
+                Application.Current.Exit();
+
+            CurrentTabs[BrowserTabs.SelectedIndex].Tab.PropertyChanged -= SelectedTabPropertyChanged;
+            CurrentTabs[BrowserTabs.SelectedIndex].Tab.Close();
+            CurrentTabs.RemoveAt(BrowserTabs.SelectedIndex);
+            args.Handled = true;
+        }
+
+        private void NavigateToNumberedTabKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            var InvokedTabView = (args.Element as TabView);
+
+            int tabToSelect = 0;
+
+            switch (sender.Key)
+            {
+                case Windows.System.VirtualKey.Number1:
+                    tabToSelect = 0;
+                    break;
+                case Windows.System.VirtualKey.Number2:
+                    tabToSelect = 1;
+                    break;
+                case Windows.System.VirtualKey.Number3:
+                    tabToSelect = 2;
+                    break;
+                case Windows.System.VirtualKey.Number4:
+                    tabToSelect = 3;
+                    break;
+                case Windows.System.VirtualKey.Number5:
+                    tabToSelect = 4;
+                    break;
+                case Windows.System.VirtualKey.Number6:
+                    tabToSelect = 5;
+                    break;
+                case Windows.System.VirtualKey.Number7:
+                    tabToSelect = 6;
+                    break;
+                case Windows.System.VirtualKey.Number8:
+                    tabToSelect = 7;
+                    break;
+                case Windows.System.VirtualKey.Number9:
+                    // Select the last tab
+                    tabToSelect = InvokedTabView.TabItems.Count - 1;
+                    break;
+            }
+
+            // Only select the tab if it is in the list
+            if (tabToSelect < CurrentTabs.Count)
+            {
+                InvokedTabView.SelectedIndex = tabToSelect;
+            }
+
+            args.Handled = true;
+        }
         #endregion
 
         #region Flyout Handlers
@@ -279,6 +342,7 @@ namespace Yttrium_browser
             var view = ApplicationView.GetForCurrentView();
             if (view.IsFullScreenMode)
             {
+                view.TryEnterFullScreenMode();
                 view.ExitFullScreenMode();
                 ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
             }
@@ -290,7 +354,19 @@ namespace Yttrium_browser
                 }
             }
         }
-        #endregion
 
+        private void SettingsPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            var t = new BrowserTabViewItem()
+            {
+                CustomContentType = typeof(SettingsPage),
+                ShowCustomContent = true,
+                CustomHeader = "Settings"
+            };
+            t.Tab.Close();
+            CurrentTabs.Add(t);
+            BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
+        }
+        #endregion
     }
 }

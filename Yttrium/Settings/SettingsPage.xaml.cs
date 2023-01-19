@@ -54,7 +54,7 @@ namespace Yttrium_browser
 
         private void dragTitleBar_Loaded(object sender, RoutedEventArgs e)
         {
-            Window.Current.SetTitleBar(sender as Border);
+            //Window.Current.SetTitleBar(sender as Border);
         }
     }
 }
