@@ -9,6 +9,11 @@
     mc:Ignorable="d">
 
     <Grid>
-        <winui:WebView2 NavigationCompleted="WebBrowser_NavigationCompleted" NavigationStarting="WebBrowser_NavigationStarting" x:Name="WebBrowser" Visibility="Visible" Source="https://google.com" Grid.Row="2" Grid.ColumnSpan="4"/>
+        <winui:WebView2 
+            NavigationCompleted="WebBrowser_NavigationCompleted" 
+            NavigationStarting="WebBrowser_NavigationStarting"
+            x:Name="WebBrowser" 
+            Visibility="Visible"
+            Source="https://google.com"/>
     </Grid>
 </Page>
