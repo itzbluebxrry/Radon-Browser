@@ -129,6 +129,8 @@
                      VerticalAlignment="Center"
                      Margin="43,0,45,0"
                      BorderThickness="0"
+                     Padding="36,6,6,0"
+                     
                      IsSpellCheckEnabled="False"
                      Grid.Column="2"
                      PlaceholderText="Search the web or enter a URL"

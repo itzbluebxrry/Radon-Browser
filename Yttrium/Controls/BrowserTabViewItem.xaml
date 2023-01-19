@@ -12,6 +12,6 @@
     Content="{x:Bind Tab}"
     mc:Ignorable="d">
     <winui:TabViewItem.IconSource>
-        <winui:BitmapIconSource UriSource="{x:Bind Tab.Favicon,Mode=OneWay}"/>
+        <winui:ImageIconSource ImageSource="{x:Bind Tab.Favicon,Mode=OneWay}"/>
     </winui:TabViewItem.IconSource>
 </winui:TabViewItem>

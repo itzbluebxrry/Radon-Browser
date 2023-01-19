@@ -43,7 +43,7 @@ namespace Project_Radon.Controls
         public bool IsLoading
         {
             get => _IsLoading;
-            set => Set(ref _IsLoading,value);
+            set => Set(ref _IsLoading, value);
         }
         public bool CanGoBack => WebBrowser.CanGoBack;
         public bool CanGoFoward => WebBrowser.CanGoForward;
