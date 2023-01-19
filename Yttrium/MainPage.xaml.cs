@@ -186,7 +186,7 @@ namespace Yttrium_browser
                 loadingbar.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].IsLoading ? Visibility.Visible : Visibility.Collapsed;
                 StopRefreshButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].IsLoading ? Visibility.Visible : Visibility.Collapsed;
                 RefreshButton.Visibility = !CurrentTabs[BrowserTabs.SelectedIndex].IsLoading ? Visibility.Visible : Visibility.Collapsed;
-                BackButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].CanGoBack ? Visibility.Visible : Visibility.Collapsed;
+                BackButton.IsEnabled = CurrentTabs[BrowserTabs.SelectedIndex].CanGoBack ? IsEnabled : false;
                 ForwardButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].CanGoFoward ? Visibility.Visible : Visibility.Collapsed;
             }
         }

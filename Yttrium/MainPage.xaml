@@ -95,12 +95,12 @@
             <!-- SSL certification icon-->
             <Button x:Name="SSLButton"
                     VerticalAlignment="Center"
-                    Grid.Column="2"
-                    Margin="5,0,0,0"
+                    Grid.Column="2" CornerRadius="40"
+                    Margin="45,0,0,0"
                     BorderThickness="0"
                     Canvas.ZIndex="1"
                     Padding="6.9"
-                    Grid.Row="0"
+                    Grid.Row="0" Background="Transparent"
                     ToolTipService.ToolTip="View connection information">
                 <FontIcon  x:Name="SSLIcon"
                            Glyph="&#xe705;"
@@ -133,10 +133,10 @@
                      Grid.Column="2"
                      PlaceholderText="Search the web or enter a URL"
                      Height="25"
-                     VerticalContentAlignment="Center"
+                     VerticalContentAlignment="Center" 
                      GotFocus="SearchBar_GotFocus"
-                     TextAlignment="Center" FontWeight="SemiBold"/>
-            <winui:ProgressBar x:Name="loadingbar" Grid.Column="2" VerticalAlignment="Bottom" Margin="44,0,46,9" IsIndeterminate="True"/>
+                     TextAlignment="Center" FontWeight="SemiBold" CornerRadius="15" />
+            <winui:ProgressBar x:Name="loadingbar" Grid.Column="2" VerticalAlignment="Bottom" Margin="51,0,52,9" IsIndeterminate="True"/>
             <BitmapIcon x:Name="faviconicon" Width="18" Height="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2" Margin="50,0,0,0"/>
 
             <!-- settings flyout -->
