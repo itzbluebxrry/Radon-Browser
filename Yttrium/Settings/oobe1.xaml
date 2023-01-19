@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="Project_Radon.Settings.oobe1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Project_Radon.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+
+    <Grid VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1">
+            <TextBlock Style="{ThemeResource HeaderTextBlockStyle}" Text="Meet Radon" TextAlignment="Center"/>
+            <Grid CornerRadius="12" Margin="100,20">
+                <Image Source="/Screenshots/spotlight.png" Stretch="UniformToFill"/>
+                
+            </Grid>
+            <TextBlock TextAlignment="Center" Style="{ThemeResource SubheaderTextBlockStyle}" Text="A streamlined web browsing experience, with your priority on top." Margin="100,10"/>
+        </StackPanel>
+
+    </Grid>
+</Page>
