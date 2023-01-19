@@ -11,6 +11,8 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
                 <ResourceDictionary Source="/ResourceDictionaries/TabViewItem.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Thickness x:Key="TabViewItemAddButtonContainerPadding">3,0,0,8</Thickness>
+            <x:Double x:Key="TabViewItemAddButtonFontSize">14</x:Double>
         </ResourceDictionary>
     </Application.Resources>
 

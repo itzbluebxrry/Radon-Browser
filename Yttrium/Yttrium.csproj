@@ -106,6 +106,9 @@
     <Compile Include="Controls\BrowserTab.xaml.cs">
       <DependentUpon>BrowserTab.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BrowserTabViewItem.xaml.cs">
+      <DependentUpon>BrowserTabViewItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\BrowserBackend.cs" />
     <Compile Include="Helpers\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
@@ -235,6 +238,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Controls\BrowserTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BrowserTabViewItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

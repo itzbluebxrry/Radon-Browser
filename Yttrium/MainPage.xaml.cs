@@ -37,27 +37,27 @@ namespace Yttrium_browser
         string OriginalUserAgent;
         string GoogleSignInUserAgent;
         public static string SearchValue;
-        private readonly ObservableCollection<BrowserTab> CurrentTabs = new ObservableCollection<BrowserTab>();
+        private readonly ObservableCollection<BrowserTabViewItem> CurrentTabs = new ObservableCollection<BrowserTabViewItem>();
         public MainPage()
         {
             this.InitializeComponent();
-            CurrentTabs.Add(new BrowserTab());
-            CurrentTabs[0].PropertyChanged += SelectedTabPropertyChanged;
+            CurrentTabs.Add(new BrowserTabViewItem());
+            CurrentTabs[0].Tab.PropertyChanged += SelectedTabPropertyChanged;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentTabs[BrowserTabs.SelectedIndex].BackButtonSender();
+            CurrentTabs[BrowserTabs.SelectedIndex].Tab.BackButtonSender();
         }
 
         private void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentTabs[BrowserTabs.SelectedIndex].FowardButtonSender();
+            CurrentTabs[BrowserTabs.SelectedIndex].Tab.FowardButtonSender();
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentTabs[BrowserTabs.SelectedIndex].Reload();
+            CurrentTabs[BrowserTabs.SelectedIndex].Tab.Reload();
         }
 
         //navigation completed
@@ -138,7 +138,7 @@ namespace Yttrium_browser
         private async void SearchBar_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if(e.Key == VirtualKey.Enter && !string.IsNullOrEmpty(SearchBar.Text))
-            await CurrentTabs[BrowserTabs.SelectedIndex].SearchOrGoto(SearchBar.Text);
+            await CurrentTabs[BrowserTabs.SelectedIndex].Tab.SearchOrGoto(SearchBar.Text);
         }
 
         private void SearchBar_GotFocus(object sender, RoutedEventArgs e)
@@ -164,7 +164,7 @@ namespace Yttrium_browser
         //stops refreshing if clicked on progressbar
         private async void StopRefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentTabs[BrowserTabs.SelectedIndex].Stop();
+            CurrentTabs[BrowserTabs.SelectedIndex].Tab.Stop();
             loadingbar.ShowError = true;
             await Task.Delay(2000);
             loadingbar.ShowError = false;
@@ -182,41 +182,40 @@ namespace Yttrium_browser
         {
             if (BrowserTabs.SelectedIndex >= 0)
             {
-                SearchBar.Text = CurrentTabs[BrowserTabs.SelectedIndex].SourceUri;
-                loadingbar.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].IsLoading ? Visibility.Visible : Visibility.Collapsed;
-                StopRefreshButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].IsLoading ? Visibility.Visible : Visibility.Collapsed;
-                RefreshButton.Visibility = !CurrentTabs[BrowserTabs.SelectedIndex].IsLoading ? Visibility.Visible : Visibility.Collapsed;
-                BackButton.IsEnabled = CurrentTabs[BrowserTabs.SelectedIndex].CanGoBack ? IsEnabled : false;
-                ForwardButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].CanGoFoward ? Visibility.Visible : Visibility.Collapsed;
-                VisualStateManager.GoToState(BrowserTabs.SelectedItem as Control, CurrentTabs[BrowserTabs.SelectedIndex].IsLoading ? "Loading" : "NotLoading",false);
+                SearchBar.Text = CurrentTabs[BrowserTabs.SelectedIndex].Tab.SourceUri;
+                loadingbar.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].Tab.IsLoading ? Visibility.Visible : Visibility.Collapsed;
+                StopRefreshButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].Tab.IsLoading ? Visibility.Visible : Visibility.Collapsed;
+                RefreshButton.Visibility = !CurrentTabs[BrowserTabs.SelectedIndex].Tab.IsLoading ? Visibility.Visible : Visibility.Collapsed;
+                BackButton.IsEnabled = CurrentTabs[BrowserTabs.SelectedIndex].Tab.CanGoBack ? IsEnabled : false;
+                ForwardButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].Tab.CanGoFoward ? Visibility.Visible : Visibility.Collapsed;
             }
         }
         private void NewTabRequested(object s,string e)
         {
-            var b = new BrowserTab();
+            var b = new BrowserTabViewItem();
             CurrentTabs.Add(b);
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
-            _ = b.SearchOrGoto(e);
+            _ = b.Tab.SearchOrGoto(e);
         }
         private void BrowserTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var r = e.RemovedItems.Select(x => (BrowserTab)x).ToList();
+            var r = e.RemovedItems.Select(x => (BrowserTabViewItem)x).ToList();
             r.ForEach(x => 
             { 
-                x.PropertyChanged -= SelectedTabPropertyChanged;
-                x.NewTabRequested -= NewTabRequested;
+                x.Tab.PropertyChanged -= SelectedTabPropertyChanged;
+                x.Tab.NewTabRequested -= NewTabRequested;
             });
-            var s = e.AddedItems.Select(x => (BrowserTab)x).ToList(); 
+            var s = e.AddedItems.Select(x => (BrowserTabViewItem)x).ToList(); 
             s.ForEach(x =>
             {
-                x.PropertyChanged += SelectedTabPropertyChanged;
-                x.NewTabRequested += NewTabRequested;
+                x.Tab.PropertyChanged += SelectedTabPropertyChanged;
+                x.Tab.NewTabRequested += NewTabRequested;
             });
             SelectedTabPropertyChanged(null, null);
         }
         private void BrowserTabs_AddTabButtonClick(TabView sender, object args)
         {
-            CurrentTabs.Add(new BrowserTab());
+            CurrentTabs.Add(new BrowserTabViewItem());
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
         }
 
@@ -241,9 +240,9 @@ namespace Yttrium_browser
             if (CurrentTabs.Count == 1)
                 Application.Current.Exit();
 
-            (args.Item as BrowserTab).PropertyChanged -= SelectedTabPropertyChanged;
-            (args.Item as BrowserTab).Close();
-            CurrentTabs.Remove(args.Item as BrowserTab);
+            (args.Item as BrowserTabViewItem).Tab.PropertyChanged -= SelectedTabPropertyChanged;
+            (args.Item as BrowserTabViewItem).Tab.Close();
+            CurrentTabs.Remove(args.Item as BrowserTabViewItem);
         }
         #endregion
 
@@ -259,12 +258,12 @@ namespace Yttrium_browser
         {
             MenuButton.Flyout.Hide();
         }
-        private async void downloadbutton_Click(object sender, RoutedEventArgs e)
+        private void downloadbutton_Click(object sender, RoutedEventArgs e)
         {
             MenuButton.Flyout.Hide();
 
             if (BrowserTabs.SelectedIndex >= 0)
-                _ = CurrentTabs[BrowserTabs.SelectedIndex].OpenDownloadsDialog();
+                _ = CurrentTabs[BrowserTabs.SelectedIndex].Tab.OpenDownloadsDialog();
             
         }
 
