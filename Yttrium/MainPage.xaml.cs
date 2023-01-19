@@ -188,6 +188,7 @@ namespace Yttrium_browser
                 RefreshButton.Visibility = !CurrentTabs[BrowserTabs.SelectedIndex].IsLoading ? Visibility.Visible : Visibility.Collapsed;
                 BackButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].CanGoBack ? Visibility.Visible : Visibility.Collapsed;
                 ForwardButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].CanGoFoward ? Visibility.Visible : Visibility.Collapsed;
+                VisualStateManager.GoToState(BrowserTabs.SelectedItem as Control, CurrentTabs[BrowserTabs.SelectedIndex].IsLoading ? "Loading" : "NotLoading",false);
             }
         }
         private void NewTabRequested(object s,string e)
