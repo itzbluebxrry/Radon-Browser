@@ -78,9 +78,9 @@ namespace Project_Radon.Controls
 
         private void Tab_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            this.PropertyChanged -= Tab_PropertyChanged;
             VisualStateManager.GoToState(this, Tab.IsLoading ? "Loading" : "NotLoading", false);
             this.IconSource = CustomIcon ?? new ImageIconSource() { ImageSource = new BitmapImage(new Uri(Tab.Favicon)) };
+            this.PropertyChanged -= Tab_PropertyChanged;
             InvokePropertyChanged();
             this.PropertyChanged += Tab_PropertyChanged;
         }
