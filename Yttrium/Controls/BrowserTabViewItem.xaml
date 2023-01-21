@@ -7,11 +7,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource TabViewItemStyle}"
-    Header="{x:Bind TabHeader,Mode=OneWay}"
     Padding="0,0,0,6"
     Content="{x:Bind TabContent,Mode=OneWay}"
     mc:Ignorable="d">
-    <winui:TabViewItem.IconSource>
-        <winui:ImageIconSource ImageSource="{x:Bind Tab.Favicon,Mode=OneWay}"/>
-    </winui:TabViewItem.IconSource>
+    <winui:TabViewItem.Header>
+        <TextBlock Text="{x:Bind TabHeader,Mode=OneWay}" ToolTipService.ToolTip="{x:Bind TabHeader,Mode=OneWay}" TextTrimming="CharacterEllipsis"/>
+    </winui:TabViewItem.Header>
 </winui:TabViewItem>

@@ -29,6 +29,7 @@ using Windows.Networking.NetworkOperators;
 using System.ServiceModel.Channels;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using SymbolIconSource = Microsoft.UI.Xaml.Controls.SymbolIconSource;
 
 namespace Yttrium_browser
 {
@@ -195,7 +196,7 @@ namespace Yttrium_browser
             var b = new BrowserTabViewItem();
             CurrentTabs.Add(b);
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
-            _ = b.Tab.SearchOrGoto(e);
+            _ = b.Tab.GoTo(e);
         }
         private void BrowserTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -263,46 +264,51 @@ namespace Yttrium_browser
 
         private void NavigateToNumberedTabKeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
         {
-            var InvokedTabView = (args.Element as TabView);
 
             int tabToSelect = 0;
 
             switch (sender.Key)
             {
-                case Windows.System.VirtualKey.Number1:
+                case VirtualKey.Number1:
                     tabToSelect = 0;
                     break;
-                case Windows.System.VirtualKey.Number2:
+                case VirtualKey.Number2:
                     tabToSelect = 1;
                     break;
-                case Windows.System.VirtualKey.Number3:
+                case VirtualKey.Number3:
                     tabToSelect = 2;
                     break;
-                case Windows.System.VirtualKey.Number4:
+                case VirtualKey.Number4:
                     tabToSelect = 3;
                     break;
-                case Windows.System.VirtualKey.Number5:
+                case VirtualKey.Number5:
                     tabToSelect = 4;
                     break;
-                case Windows.System.VirtualKey.Number6:
+                case VirtualKey.Number6:
                     tabToSelect = 5;
                     break;
-                case Windows.System.VirtualKey.Number7:
+                case VirtualKey.Number7:
                     tabToSelect = 6;
                     break;
-                case Windows.System.VirtualKey.Number8:
+                case VirtualKey.Number8:
                     tabToSelect = 7;
                     break;
-                case Windows.System.VirtualKey.Number9:
+                case VirtualKey.Number9:
                     // Select the last tab
-                    tabToSelect = InvokedTabView.TabItems.Count - 1;
+                    tabToSelect = CurrentTabs.Count - 1;
+                    break;
+                case VirtualKey.LeftButton:
+                    tabToSelect = CurrentTabs.Count == 1 ? 1 : BrowserTabs.SelectedIndex - 1;
+                    break;
+                case VirtualKey.RightButton:
+                    tabToSelect = BrowserTabs.SelectedIndex + 1 == CurrentTabs.Count ? BrowserTabs.SelectedIndex : BrowserTabs.SelectedIndex + 1;
                     break;
             }
 
             // Only select the tab if it is in the list
             if (tabToSelect < CurrentTabs.Count)
             {
-                InvokedTabView.SelectedIndex = tabToSelect;
+                BrowserTabs.SelectedIndex = tabToSelect;
             }
 
             args.Handled = true;
@@ -361,7 +367,8 @@ namespace Yttrium_browser
             {
                 CustomContentType = typeof(SettingsPage),
                 ShowCustomContent = true,
-                CustomHeader = "Settings"
+                CustomHeader = "Settings",
+                CustomIcon = new SymbolIconSource() { Symbol = Symbol.Setting}
             };
             t.Tab.Close();
             CurrentTabs.Add(t);

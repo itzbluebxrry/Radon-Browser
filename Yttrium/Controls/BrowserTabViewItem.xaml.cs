@@ -13,7 +13,9 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using IconSource = Microsoft.UI.Xaml.Controls.IconSource;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -58,18 +60,29 @@ namespace Project_Radon.Controls
             get => _CustomHeader;
             set => Set(ref _CustomHeader, value);
         }
+
+        private IconSource _CustomIcon;
+        public IconSource CustomIcon
+        {
+            get => _CustomIcon;
+            set => Set(ref _CustomIcon, value);
+        }
         private object TabContent => ShowCustomContent && CustomContentType != null ? Activator.CreateInstance(CustomContentType) : Tab;
         private object TabHeader => CustomHeader ?? Tab.Title;
         public BrowserTabViewItem()
         {
             this.InitializeComponent();
             Tab.PropertyChanged += Tab_PropertyChanged;
+            this.PropertyChanged += Tab_PropertyChanged;
         }
 
         private void Tab_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            InvokePropertyChanged();
+            this.PropertyChanged -= Tab_PropertyChanged;
             VisualStateManager.GoToState(this, Tab.IsLoading ? "Loading" : "NotLoading", false);
+            this.IconSource = CustomIcon ?? new ImageIconSource() { ImageSource = new BitmapImage(new Uri(Tab.Favicon)) };
+            InvokePropertyChanged();
+            this.PropertyChanged += Tab_PropertyChanged;
         }
     }
 }

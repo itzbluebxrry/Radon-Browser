@@ -83,6 +83,11 @@ namespace Project_Radon.Controls
             WebBrowser.Focus(FocusState.Pointer);
             WebBrowser.Focus(FocusState.Keyboard);
         }
+        public async Task GoTo(string url)
+        {
+            await WebBrowser.EnsureCoreWebView2Async();
+            WebBrowser.Source = new Uri(url);
+        }
         public async Task SearchOrGoto(string SearchBarText)
         {
             //Won't work as we expected
@@ -90,24 +95,12 @@ namespace Project_Radon.Controls
             var v = UrlMatch.Match(SearchBarText).Value;
             v.ToString();
             await WebBrowser.EnsureCoreWebView2Async();
-            WebBrowser.Visibility = Visibility.Visible;
             if (UrlMatch.IsMatch(SearchBarText))
                 WebBrowser.Source = Uri.TryCreate(SearchBarText,UriKind.Absolute,out var r) ? r : new Uri("https://www.google.com/search?q=" + HttpUtility.UrlEncode(SearchBarText));
             else
                 WebBrowser.Source = new Uri("https://www.google.com/search?q=" + HttpUtility.UrlEncode(SearchBarText));
         }
 
-        public void VisibilityService(bool hidden)
-        {
-            if (hidden)
-            {
-                WebBrowser.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                WebBrowser.Visibility = Visibility.Visible;
-            }
-        }
         public async Task OpenDownloadsDialog()
         {
             await WebBrowser.EnsureCoreWebView2Async();
@@ -120,7 +113,6 @@ namespace Project_Radon.Controls
             {
                 WebBrowser.GoBack();
             }
-            WebBrowser.Visibility = Visibility.Visible;
         }
         public void FowardButtonSender()
         {
@@ -128,7 +120,6 @@ namespace Project_Radon.Controls
             {
                 WebBrowser.GoForward();
             }
-            WebBrowser.Visibility = Visibility.Visible;
         }
         public void Reload()
         {

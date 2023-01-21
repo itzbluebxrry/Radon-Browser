@@ -13,7 +13,6 @@
             NavigationCompleted="WebBrowser_NavigationCompleted" 
             NavigationStarting="WebBrowser_NavigationStarting"
             x:Name="WebBrowser" 
-            Visibility="Visible"
             Source="https://google.com"/>
     </Grid>
 </Page>
