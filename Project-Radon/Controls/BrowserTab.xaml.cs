@@ -96,9 +96,18 @@ namespace Project_Radon.Controls
             v.ToString();
             await WebBrowser.EnsureCoreWebView2Async();
             if (UrlMatch.IsMatch(SearchBarText))
-                WebBrowser.Source = Uri.TryCreate(SearchBarText,UriKind.Absolute,out var r) ? r : new Uri("https://www.google.com/search?q=" + HttpUtility.UrlEncode(SearchBarText));
+            {
+                WebBrowser.Source = Uri.TryCreate(SearchBarText, UriKind.Absolute, out var r) ? r : new Uri("https://www.google.com/search?q=" + HttpUtility.UrlEncode(SearchBarText));
+            }
+
+            else if (SearchBarText.Contains("."))
+            {
+                WebBrowser.Source = new Uri("https://" + HttpUtility.UrlEncode(SearchBarText));
+            }
             else
+            {
                 WebBrowser.Source = new Uri("https://www.google.com/search?q=" + HttpUtility.UrlEncode(SearchBarText));
+            }
         }
 
         public async Task OpenDownloadsDialog()
