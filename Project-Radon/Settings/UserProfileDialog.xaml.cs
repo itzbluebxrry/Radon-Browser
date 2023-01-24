@@ -30,7 +30,7 @@ namespace Yttrium
 
         private void pfpchanged_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            pfppreview.ProfilePicture = new BitmapImage(new Uri(string.Join("ms-appx:///accountpictures/", pfpchanged.SelectedValue, ".png")));
+            pfppreview.ProfilePicture = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///accountpictures/", (pfpchanged.SelectedItem as ComboBoxItem).Content.ToString(), ".png" })));
 
 
         }
