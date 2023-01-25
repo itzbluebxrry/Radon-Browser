@@ -92,10 +92,8 @@
                         Visibility="Collapsed"
                         Click="StopRefreshButton_Click"
                         Padding="8.5" ToolTipService.ToolTip="Stop navigation">
-                    <winui:ProgressRing x:Name="WebsiteLoadingProgressRing"
-                                        Margin="0,0,-1,0"
-                                        Width="15"
-                                        Height="15"/>
+                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xea39;"
+                              FontSize="18" />
                 </Button>
                 <Button x:Name="HomeButton"
                         Background="Transparent" Visibility="Collapsed"
@@ -114,10 +112,10 @@
                               FontSize="18" />
                     <Button.Flyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Width="150" Text="Forward" Icon="Forward"/>
-                            <MenuFlyoutItem Width="150" Text="Refresh" Icon="Refresh"/>
+                            <MenuFlyoutItem Width="150" Text="Forward" Icon="Forward" Click="ForwardButton_Click"/>
+                            <MenuFlyoutItem Width="150" Text="Refresh" Icon="Refresh" Click="RefreshButton_Click"/>
                             <MenuFlyoutItem Width="150" Text="Stop loading" Icon="Document"/>
-                            <MenuFlyoutItem Width="150" Text="Start page" Icon="Home"/>
+                            <MenuFlyoutItem Width="150" Text="Start page" Icon="Home" Click="HomeButton_Click"/>
                         </MenuFlyout>
                     </Button.Flyout>
                 </Button>
@@ -169,7 +167,7 @@
                      VerticalContentAlignment="Center" 
                      GotFocus="SearchBar_GotFocus"
                      TextAlignment="Center" FontWeight="SemiBold" CornerRadius="15" />
-            <winui:ProgressBar x:Name="loadingbar" Grid.Column="2" VerticalAlignment="Bottom" Margin="51,0,52,9" IsIndeterminate="True"/>
+            <winui:ProgressBar x:Name="loadingbar" Grid.Column="2" VerticalAlignment="Bottom" Margin="51,0,52,7" IsIndeterminate="True"/>
             <BitmapIcon x:Name="faviconicon" Width="18" Height="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2" Margin="50,0,0,0"/>
 
             <!-- settings flyout -->
