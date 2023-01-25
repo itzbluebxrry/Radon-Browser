@@ -8,8 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource TabViewItemStyle}"
     Padding="0,0,0,6"
-    Content="{x:Bind TabContent,Mode=OneWay}"
-    mc:Ignorable="d">
+    Content="{x:Bind TabContent,Mode=OneWay}" HorizontalAlignment="Center"
+    mc:Ignorable="d" HorizontalContentAlignment="Center">
     <winui:TabViewItem.Header>
         <TextBlock Text="{x:Bind TabHeader,Mode=OneWay}" ToolTipService.ToolTip="{x:Bind TabHeader,Mode=OneWay}" TextTrimming="CharacterEllipsis"/>
     </winui:TabViewItem.Header>
