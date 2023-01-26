@@ -28,6 +28,11 @@
             <SolidColorBrush x:Key="TabViewItemHeaderBackgroundSelected" Color="{ThemeResource ControlFillColorDefault}"  />
         </ResourceDictionary>
     </Page.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///wallpapers/3.png"/>
+        </Grid.Background>
+        <Grid Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
     <Grid x:Name="BaseGrid">
         <Grid x:Name="TitleBarGrid"
               Grid.Row="0"
@@ -270,6 +275,8 @@
                 AddTabButtonClick="BrowserTabs_AddTabButtonClick">
 
             </winui:TabView>
+        </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Page>
