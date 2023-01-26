@@ -33,10 +33,9 @@
               Grid.Row="0"
               Canvas.ZIndex="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" x:Name="navbuttonbar" MinWidth="100"/>
-                <ColumnDefinition Width="0" MinWidth="43"/>
-                <ColumnDefinition Width="7*" />
-                <ColumnDefinition x:Name="righttitlebarpadding" Width="*" MinWidth="143"/>
+                <ColumnDefinition Width="auto" x:Name="navbuttonbar" MinWidth="143" MaxWidth="300"/>
+                <ColumnDefinition/>
+                <ColumnDefinition x:Name="righttitlebarpadding" Width="auto" MinWidth="143" MaxWidth="300"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
@@ -70,7 +69,7 @@
                 <Button x:Name="ForwardButton"
                         Background="Transparent"
                         BorderThickness="0"
-                        Margin="0,0,10,0" Visibility="Collapsed"
+                        Margin="0,0,10,0"
                         Click="ForwardButton_Click"
                         Padding="6" ToolTipService.ToolTip="Forward">
                     <FontIcon Glyph="&#xe761;"
@@ -78,7 +77,7 @@
                 </Button>
                 <Button x:Name="RefreshButton"
                         Background="Transparent"
-                        BorderThickness="0" Visibility="Collapsed"
+                        BorderThickness="0"
                         Margin="0,0,10,0"
                         Click="RefreshButton_Click"
                         Padding="7.2" ToolTipService.ToolTip="Reload">
@@ -96,7 +95,7 @@
                               FontSize="18" />
                 </Button>
                 <Button x:Name="HomeButton"
-                        Background="Transparent" Visibility="Collapsed"
+                        Background="Transparent"
                         BorderThickness="0"
                         Click="HomeButton_Click"
                         Padding="8.5" ToolTipService.ToolTip="Start page">
@@ -119,12 +118,13 @@
                         </MenuFlyout>
                     </Button.Flyout>
                 </Button>
+                
             </StackPanel>
 
             <!-- SSL certification icon-->
             <Button x:Name="SSLButton"
                     VerticalAlignment="Center"
-                    Grid.Column="2" CornerRadius="40"
+                    Grid.Column="1" CornerRadius="40"
                     Margin="45,0,0,0"
                     BorderThickness="0"
                     Canvas.ZIndex="1"
@@ -161,18 +161,18 @@
                      Padding="36,6,6,0"
                      
                      IsSpellCheckEnabled="False"
-                     Grid.Column="2"
+                     Grid.Column="1"
                      PlaceholderText="Search the web or enter a URL"
                      Height="25"
                      VerticalContentAlignment="Center" 
                      GotFocus="SearchBar_GotFocus"
                      TextAlignment="Center" FontWeight="SemiBold" CornerRadius="15" />
-            <winui:ProgressBar x:Name="loadingbar" Grid.Column="2" VerticalAlignment="Bottom" Margin="51,0,52,7" IsIndeterminate="True"/>
-            <BitmapIcon x:Name="faviconicon" Width="18" Height="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2" Margin="50,0,0,0"/>
+            <winui:ProgressBar x:Name="loadingbar" Grid.Column="1" VerticalAlignment="Bottom" Margin="51,0,52,7" IsIndeterminate="True"/>
+            <BitmapIcon x:Name="faviconicon" Width="18" Height="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Margin="50,0,0,0"/>
 
             <!-- settings flyout -->
             <Button x:Name="MenuButton" Style="{ThemeResource PaneToggleButtonStyle}"
-                    Grid.Column="2" HorizontalAlignment="Right"
+                    Grid.Column="1" HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Background="Transparent"
                     BorderThickness="0"

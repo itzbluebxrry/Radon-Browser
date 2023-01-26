@@ -61,6 +61,8 @@ namespace Yttrium_browser
             CurrentTabs[BrowserTabs.SelectedIndex].Tab.Reload();
         }
 
+        //TODO: On window size changed, if navbuttonbar.Width is less than 140, hide the standard nav buttons and show the overflow buttons.
+
         //navigation completed
         private async void WebBrowser_NavigationCompleted(WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
         {
@@ -140,7 +142,18 @@ namespace Yttrium_browser
         {
             if(e.Key == VirtualKey.Enter && !string.IsNullOrEmpty(SearchBar.Text))
             await CurrentTabs[BrowserTabs.SelectedIndex].Tab.SearchOrGoto(SearchBar.Text);
+            if (e.Key == VirtualKey.Escape)
+            {   
+                // Set the SearchBar.Text to WebView2 source (ESC will cancel URL changes)
+                SearchBar.Text = CurrentTabs[BrowserTabs.SelectedIndex].Tab.SourceUri;
+                
+                //TODO: WebView2 will steal the focus for keyboard and pointer
+            }
+
         }
+
+        //TODO: Create a looping function which will update favicon and tab title with 500 - 1000ms interval (What most browser does)
+
 
         private void SearchBar_GotFocus(object sender, RoutedEventArgs e)
         {
