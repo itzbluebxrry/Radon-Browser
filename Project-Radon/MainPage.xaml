@@ -30,9 +30,9 @@
     </Page.Resources>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///wallpapers/10.png"/>
+            <ImageBrush ImageSource="ms-appx:///wallpapers/1.png"/>
         </Grid.Background>
-        <Grid Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
+        <Grid Background="{ThemeResource AcrylicFillColorDefaultBrush}">
     <Grid x:Name="BaseGrid">
         <Grid x:Name="TitleBarGrid"
               Grid.Row="0"
