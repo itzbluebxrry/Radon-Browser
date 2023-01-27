@@ -28,6 +28,28 @@ namespace Project_Radon.Settings
         public RadonSettings()
         {
             this.InitializeComponent();
+            NavView.ItemInvoked += async (_, e) =>
+            {
+                if (!e.IsSettingsInvoked)
+                    switch ((e.InvokedItemContainer as Microsoft.UI.Xaml.Controls.NavigationViewItem).Tag.ToString())
+                    {
+                        case "personalize":
+                            Settings_Frame.Navigate(typeof(RadonSettings_Personalize), null);
+                            break;
+                        case "user":
+                            Settings_Frame.Navigate(typeof(RadonSettings_User), null);
+                            break;
+                        case "advanced":
+                            Settings_Frame.Navigate(typeof(RadonSettings_Advanced), null);
+                            break;
+                        case "about":
+                            await new AboutDialog().ShowAsync();
+                            break;
+                        default: //Means else 
+                            Settings_Frame.Navigate(typeof(RadonSettings_General), null);
+                            break;
+                    }
+            };
         }
 
         private readonly List<(string Tag, Type Page)> _pages = new List<(string Tag, Type Page)>
@@ -45,7 +67,7 @@ namespace Project_Radon.Settings
             Settings_Frame.Navigate(typeof(RadonSettings_General), null);
         }
 
-        private async void NavView_SelectionChanged(muxc.NavigationView sender, muxc.NavigationViewSelectionChangedEventArgs args)
+        private void NavView_SelectionChanged(muxc.NavigationView sender, muxc.NavigationViewSelectionChangedEventArgs args)
         {
             //if (NavView.Tag == "general")
             //{
@@ -73,31 +95,6 @@ namespace Project_Radon.Settings
             //}
 
 
-            NavView.ItemInvoked += async (_, e) =>
-            {
-                if (!e.IsSettingsInvoked)
-                    switch ((e.InvokedItem as NavigationViewItem).Tag.ToString())
-                    {
-                        case "general":
-                            Settings_Frame.Navigate(typeof(RadonSettings_General), null);
-                            break;
-                        case "personalize":
-                            Settings_Frame.Navigate(typeof(RadonSettings_Personalize), null);
-                            break;
-                        case "user":
-                            Settings_Frame.Navigate(typeof(RadonSettings_User), null);
-                            break;
-                        case "advanced":
-                            Settings_Frame.Navigate(typeof(RadonSettings_Advanced), null);
-                            break;
-                        case "about":
-                            await new AboutDialog().ShowAsync();
-                            break;
-                        default: //Means else 
-                            Settings_Frame.Navigate(typeof(RadonSettings_General), null);
-                            break;
-                    }
-            };
         }
 
 

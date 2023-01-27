@@ -19,6 +19,8 @@ using System.ComponentModel;
 using System.Web;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using Microsoft.Web.WebView2.Core;
+using Windows.Storage;
 
 namespace Project_Radon.Controls
 {
@@ -54,6 +56,7 @@ namespace Project_Radon.Controls
         public BrowserTab()
         {
             this.InitializeComponent();
+            //Windows.System.Launcher.LaunchFolderAsync(ApplicationData.Current.LocalFolder);
             WebBrowser.CoreWebView2Initialized += delegate
             {
                 IsCoreInitialized = true;
