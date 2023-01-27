@@ -30,6 +30,7 @@ using System.ServiceModel.Channels;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using SymbolIconSource = Microsoft.UI.Xaml.Controls.SymbolIconSource;
+using Project_Radon.Settings;
 
 namespace Yttrium_browser
 {
@@ -44,6 +45,8 @@ namespace Yttrium_browser
             this.InitializeComponent();
             CurrentTabs.Add(new BrowserTabViewItem());
             CurrentTabs[0].Tab.PropertyChanged += SelectedTabPropertyChanged;
+
+
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -378,9 +381,9 @@ namespace Yttrium_browser
         {
             var t = new BrowserTabViewItem()
             {
-                CustomContentType = typeof(SettingsPage),
+                CustomContentType = typeof(RadonSettings),
                 ShowCustomContent = true,
-                CustomHeader = "Settings",
+                CustomHeader = "Radon Settings",
                 CustomIcon = new SymbolIconSource() { Symbol = Symbol.Setting}
             };
             t.Tab.Close();

@@ -30,7 +30,7 @@
     </Page.Resources>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///wallpapers/6.png"/>
+            <ImageBrush ImageSource="ms-appx:///wallpapers/10.png"/>
         </Grid.Background>
         <Grid Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
     <Grid x:Name="BaseGrid">
@@ -38,9 +38,9 @@
               Grid.Row="0"
               Canvas.ZIndex="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" x:Name="navbuttonbar" MinWidth="143" MaxWidth="300"/>
-                <ColumnDefinition/>
-                <ColumnDefinition x:Name="righttitlebarpadding" Width="auto" MinWidth="143" MaxWidth="300"/>
+                <ColumnDefinition Width="*" x:Name="navbuttonbar" MinWidth="143" MaxWidth="300"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition x:Name="righttitlebarpadding" Width="*" MinWidth="143" MaxWidth="300"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
@@ -95,8 +95,8 @@
                         Margin="0,0,10,0"
                         Visibility="Collapsed"
                         Click="StopRefreshButton_Click"
-                        Padding="8.5" ToolTipService.ToolTip="Stop navigation">
-                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xea39;"
+                        Padding="7.2" ToolTipService.ToolTip="Stop navigation">
+                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xea39;"
                               FontSize="18" />
                 </Button>
                 <Button x:Name="HomeButton"
@@ -104,7 +104,7 @@
                         BorderThickness="0"
                         Click="HomeButton_Click"
                         Padding="8.5" ToolTipService.ToolTip="Start page">
-                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xe7c4;"
+                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xe80f;"
                               FontSize="18" />
                 </Button>
                 <Button x:Name="NavOverflowButton"
@@ -172,7 +172,7 @@
                      VerticalContentAlignment="Center" 
                      GotFocus="SearchBar_GotFocus"
                      TextAlignment="Center" FontWeight="SemiBold" CornerRadius="15" />
-            <winui:ProgressBar x:Name="loadingbar" Grid.Column="1" VerticalAlignment="Bottom" Margin="51,0,52,7" IsIndeterminate="True"/>
+            <winui:ProgressBar x:Name="loadingbar" Grid.Column="1" VerticalAlignment="Bottom" Margin="51,0,52,6" IsIndeterminate="True"/>
             <BitmapIcon x:Name="faviconicon" Width="18" Height="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Margin="50,0,0,0"/>
 
             <!-- settings flyout -->

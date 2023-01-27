@@ -135,6 +135,9 @@
     <Compile Include="Settings\oobeframe.xaml.cs">
       <DependentUpon>oobeframe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings\RadonSettings.xaml.cs">
+      <DependentUpon>RadonSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,11 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\settings-about-icon.png" />
+    <Content Include="Assets\settings-advanced-icon.png" />
+    <Content Include="Assets\settings-general-icon.png" />
+    <Content Include="Assets\settings-personalize-icon.png" />
+    <Content Include="Assets\settings-user-icon.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />
@@ -233,11 +241,19 @@
     <Content Include="Screenshots\image.png" />
     <Content Include="Screenshots\spotlight.png" />
     <Content Include="Wallpapers\1.png" />
+    <Content Include="Wallpapers\10.png" />
+    <Content Include="Wallpapers\11.png" />
+    <Content Include="Wallpapers\12.png" />
+    <Content Include="Wallpapers\13.png" />
+    <Content Include="Wallpapers\14.png" />
     <Content Include="Wallpapers\2.png" />
     <Content Include="Wallpapers\3.png" />
     <Content Include="Wallpapers\4.png" />
     <Content Include="Wallpapers\5.png" />
     <Content Include="Wallpapers\6.png" />
+    <Content Include="Wallpapers\7.png" />
+    <Content Include="Wallpapers\8.png" />
+    <Content Include="Wallpapers\9.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -277,6 +293,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Settings\oobeframe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\RadonSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

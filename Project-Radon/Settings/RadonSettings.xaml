@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="Project_Radon.Settings.RadonSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Project_Radon.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Width="250" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse>
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="ms-appx:///accountpictures/clippy.png"/>
+                    </Ellipse.Fill>
+                
+                </Ellipse>
+                </StackPanel>
+                <muxc:NavigationView PaneDisplayMode="Left" IsPaneToggleButtonVisible="False" IsSettingsVisible="False">
+                    <muxc:NavigationView.MenuItems>
+                        <muxc:NavigationViewItem >
+                            <StackPanel Orientation="Horizontal" Padding="2,0">
+                                <Image Source="ms-appx:///assets/settings-general-icon.png" Width="20" Height="20"/>
+                                <TextBlock Text="General" VerticalAlignment="Center" Margin="10,0"/>
+                            </StackPanel>
+                        </muxc:NavigationViewItem>
+                        <muxc:NavigationViewItem >
+                            <StackPanel Orientation="Horizontal" Padding="2,0">
+                                <Image Source="ms-appx:///assets/settings-personalize-icon.png" Width="20" Height="20"/>
+                                <TextBlock Text="Personalization" VerticalAlignment="Center" Margin="10,0"/>
+                            </StackPanel>
+                        </muxc:NavigationViewItem>
+                        <muxc:NavigationViewItem >
+                            <StackPanel Orientation="Horizontal" Padding="2,0">
+                                <Image Source="ms-appx:///assets/settings-user-icon.png" Width="20" Height="20"/>
+                                <TextBlock Text="User profile" VerticalAlignment="Center" Margin="10,0"/>
+                            </StackPanel>
+                        </muxc:NavigationViewItem>
+                        <muxc:NavigationViewItem >
+                            <StackPanel Orientation="Horizontal" Padding="2,0">
+                                <Image Source="ms-appx:///assets/settings-advanced-icon.png" Width="20" Height="20"/>
+                                <TextBlock Text="Advanced" VerticalAlignment="Center" Margin="10,0"/>
+                            </StackPanel>
+                        </muxc:NavigationViewItem>
+                        <muxc:NavigationViewItem >
+                            <StackPanel Orientation="Horizontal" Padding="2,0">
+                                <Image Source="ms-appx:///assets/settings-about-icon.png" Width="20" Height="20"/>
+                                <TextBlock Text="About" VerticalAlignment="Center" Margin="10,0"/>
+                            </StackPanel>
+                        </muxc:NavigationViewItem>
+                    </muxc:NavigationView.MenuItems>
+                </muxc:NavigationView>
+            </StackPanel>
+        </ScrollViewer>
+        <Frame x:Name="Settings_Frame" Background="Transparent" Grid.Column="1"/>
+    </Grid>
+</Page>
