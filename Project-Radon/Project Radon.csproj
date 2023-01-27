@@ -232,6 +232,12 @@
     <Content Include="Screenshots\demo2.png" />
     <Content Include="Screenshots\image.png" />
     <Content Include="Screenshots\spotlight.png" />
+    <Content Include="Wallpapers\1.png" />
+    <Content Include="Wallpapers\2.png" />
+    <Content Include="Wallpapers\3.png" />
+    <Content Include="Wallpapers\4.png" />
+    <Content Include="Wallpapers\5.png" />
+    <Content Include="Wallpapers\6.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
