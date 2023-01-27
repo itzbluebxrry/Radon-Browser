@@ -138,6 +138,18 @@
     <Compile Include="Settings\RadonSettings.xaml.cs">
       <DependentUpon>RadonSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings\RadonSettings_Advanced.xaml.cs">
+      <DependentUpon>RadonSettings_Advanced.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\RadonSettings_General.xaml.cs">
+      <DependentUpon>RadonSettings_General.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\RadonSettings_Personalize.xaml.cs">
+      <DependentUpon>RadonSettings_Personalize.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\RadonSettings_User.xaml.cs">
+      <DependentUpon>RadonSettings_User.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -297,6 +309,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Settings\RadonSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\RadonSettings_Advanced.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\RadonSettings_General.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\RadonSettings_Personalize.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\RadonSettings_User.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

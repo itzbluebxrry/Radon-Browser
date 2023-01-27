@@ -19,34 +19,34 @@
             <StackPanel Grid.Column="0" Padding="10,20">
                 
                 
-                <muxc:NavigationView PaneDisplayMode="Left" IsPaneToggleButtonVisible="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
-                                     >
+                <muxc:NavigationView x:Name="NavView" Loaded="NavView_Loaded" PaneDisplayMode="Left" IsPaneToggleButtonVisible="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
+                                     SelectionChanged="NavView_SelectionChanged">
                     <muxc:NavigationView.MenuItems>
-                        <muxc:NavigationViewItem>
+                        <muxc:NavigationViewItem Tag="general">
                             <StackPanel Orientation="Horizontal" Padding="2,0">
                                 <Image Source="ms-appx:///assets/settings-general-icon.png" Width="20" Height="20"/>
                                 <TextBlock Text="General" VerticalAlignment="Center" Margin="10,0"/>
                             </StackPanel>
                         </muxc:NavigationViewItem>
-                        <muxc:NavigationViewItem >
+                        <muxc:NavigationViewItem Tag="personalize">
                             <StackPanel Orientation="Horizontal" Padding="2,0">
                                 <Image Source="ms-appx:///assets/settings-personalize-icon.png" Width="20" Height="20"/>
                                 <TextBlock Text="Personalization" VerticalAlignment="Center" Margin="10,0"/>
                             </StackPanel>
                         </muxc:NavigationViewItem>
-                        <muxc:NavigationViewItem >
+                        <muxc:NavigationViewItem Tag="user">
                             <StackPanel Orientation="Horizontal" Padding="2,0">
                                 <Image Source="ms-appx:///assets/settings-user-icon.png" Width="20" Height="20"/>
                                 <TextBlock Text="User profile" VerticalAlignment="Center" Margin="10,0"/>
                             </StackPanel>
                         </muxc:NavigationViewItem>
-                        <muxc:NavigationViewItem >
+                        <muxc:NavigationViewItem Tag="advanced">
                             <StackPanel Orientation="Horizontal" Padding="2,0">
                                 <Image Source="ms-appx:///assets/settings-advanced-icon.png" Width="20" Height="20"/>
                                 <TextBlock Text="Advanced" VerticalAlignment="Center" Margin="10,0"/>
                             </StackPanel>
                         </muxc:NavigationViewItem>
-                        <muxc:NavigationViewItem>
+                        <muxc:NavigationViewItem x:Name="about_nav" Tag="about">
                             <StackPanel Orientation="Horizontal" Padding="2,0">
                                 <Image Source="ms-appx:///assets/settings-about-icon.png" Width="20" Height="20"/>
                                 <TextBlock Text="About" VerticalAlignment="Center" Margin="10,0"/>

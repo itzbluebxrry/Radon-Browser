@@ -29,10 +29,10 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <Grid.Background>
+        <!--<Grid.Background>
             <ImageBrush ImageSource="ms-appx:///wallpapers/1.png"/>
-        </Grid.Background>
-        <Grid Background="{ThemeResource AcrylicFillColorDefaultBrush}">
+        </Grid.Background>-->
+        <Grid>
     <Grid x:Name="BaseGrid">
         <Grid x:Name="TitleBarGrid"
               Grid.Row="0"
@@ -266,6 +266,8 @@
                 TabItemsSource="{x:Bind CurrentTabs}"
                 Grid.Row="1"
                 Grid.ColumnSpan="4"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
                 VerticalAlignment="Stretch"
                 x:Name="BrowserTabs" 
                 Margin="0,0,0,0"
