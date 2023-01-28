@@ -2,6 +2,7 @@
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -25,6 +26,7 @@ namespace Yttrium_browser
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
         }
 
         /// <summary>
