@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -23,7 +22,7 @@ namespace Yttrium
         {
         }
 
-        private async void ContentDialog_Loaded(object sender, RoutedEventArgs e)
+        private void ContentDialog_Loaded(object sender, RoutedEventArgs e)
         {
             string appVersion = string.Format("Version: {0}.{1}.{2}.{3}",
                     Package.Current.Id.Version.Major,
@@ -31,7 +30,6 @@ namespace Yttrium
                     Package.Current.Id.Version.Build,
                     Package.Current.Id.Version.Revision);
             txtVersion.Text = appVersion;
-            Contributers.ItemsSource = (await new Project_Radon.Helpers.ContributersLoader().GetContributers()) ?? new List<Project_Radon.Models.Contributer>();
         }
 
         private async void bluebxrry_Click(object sender, RoutedEventArgs e)

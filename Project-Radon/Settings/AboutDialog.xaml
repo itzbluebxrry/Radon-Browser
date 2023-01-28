@@ -6,8 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:models="using:Project_Radon.Models"
-    Loaded="ContentDialog_Loaded"
     mc:Ignorable="d"
     CornerRadius="8">
     <Grid>
@@ -37,21 +35,37 @@
                 </StackPanel>
                 <muxc:Expander IsExpanded="True" Grid.Row="1" Margin="0,15,0,0" HorizontalAlignment="Stretch" Header="List of Contributors" HorizontalContentAlignment="Left">
                     <ScrollViewer HorizontalScrollMode="Enabled">
-                        <muxc:ItemsRepeater x:Name="Contributers">
-                            <muxc:ItemsRepeater.ItemTemplate>
-                                <DataTemplate x:DataType="models:Contributer">
-                                    <HyperlinkButton Foreground="{ThemeResource ApplicationForegroundThemeBrush}" NavigateUri="{x:Bind html_url}" Height="150" Width="120">
-                                        <StackPanel HorizontalAlignment="Center">
-                                            <Grid Width="70" Height="70">
-                                                <muxc:PersonPicture DisplayName="{x:Bind login}" ProfilePicture="{x:Bind avatar_url}" Width="70"/>
-                                            </Grid>
-                                            <TextBlock Text="{x:Bind login}" Margin="0,5" FontWeight="SemiBold" FontSize="16"/>
-                                            <TextBlock TextAlignment="Center">Developer</TextBlock>
-                                        </StackPanel>
-                                    </HyperlinkButton>
-                                </DataTemplate>
-                            </muxc:ItemsRepeater.ItemTemplate>
-                        </muxc:ItemsRepeater>
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="bluebxrry" Click="bluebxrry_Click" Height="150" Width="120">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <Grid Width="70" Height="70">
+                                            <muxc:PersonPicture Initials="Bx" Width="70"/>
+                                            <muxc:PersonPicture ProfilePicture="https://avatars.githubusercontent.com/u/99461083" Width="70"/>
+                                        </Grid>
+                                        <TextBlock Text="ItzBluebxrry" Margin="0,5" FontWeight="SemiBold" FontSize="16"/>
+                                        <TextBlock TextAlignment="Center">Developer</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="pdawg" Height="150" Width="120" Margin="10,0,0,0" Click="pdawg_Click">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <Grid Width="70" Height="70">
+                                            <muxc:PersonPicture Initials="Pd" Width="70"/>
+                                            <muxc:PersonPicture ProfilePicture="https://avatars.githubusercontent.com/u/83825746" Width="70"/>
+                                        </Grid>
+                                        <TextBlock Text="Pdawg" HorizontalAlignment="Center" Margin="0,5" FontWeight="SemiBold" FontSize="16"/>
+                                        <TextBlock TextAlignment="Center">Developer</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="register_as_contributor" Click="register_as_contributor_Click" Height="150" Width="120" Margin="10,0">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <SymbolIcon Symbol="AddFriend"/>
+                                        <TextBlock TextAlignment="Center" TextWrapping="WrapWholeWords" Text="Register as a contributor!" Margin="0,5" FontWeight="SemiBold" FontSize="14"/>
+
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
                     </ScrollViewer>
                 </muxc:Expander>
                 <muxc:Expander Grid.Row="2" Margin="0,5,0,10" HorizontalAlignment="Stretch" Header="Addtional links" HorizontalContentAlignment="Center">
