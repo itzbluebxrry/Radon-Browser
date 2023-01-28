@@ -176,15 +176,16 @@
             <BitmapIcon x:Name="faviconicon" Width="18" Height="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Margin="50,0,0,0"/>
 
             <!-- settings flyout -->
-            <Button x:Name="MenuButton" Style="{ThemeResource PaneToggleButtonStyle}"
+            <Button x:Name="MenuButton" BorderBrush="Transparent"
                     Grid.Column="1" HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Background="Transparent"
                     BorderThickness="0"
                     Margin="10,0,-10,0"
-                    Grid.Row="0" Width="48"
+                    Grid.Row="0" Width="52"
                     >
-                <Button.Flyout>
+                        <winui:PersonPicture ProfilePicture="ms-appx:///accountpictures/clippy.png" Width="28"/>
+                        <Button.Flyout>
                     <Flyout ShouldConstrainToRootBounds="False">
                         <StackPanel Width="180">
                             <StackPanel Name="menuheader">
