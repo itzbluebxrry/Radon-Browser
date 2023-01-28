@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid CornerRadius="8" Margin="4">
+    <Grid CornerRadius="8" Margin="5">
         <winui:WebView2 
             NavigationCompleted="WebBrowser_NavigationCompleted" 
             NavigationStarting="WebBrowser_NavigationStarting"

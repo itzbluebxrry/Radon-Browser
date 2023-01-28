@@ -103,6 +103,11 @@ namespace Project_Radon.Controls
                 WebBrowser.Source = Uri.TryCreate(SearchBarText, UriKind.Absolute, out var r) ? r : new Uri("https://www.google.com/search?q=" + HttpUtility.UrlEncode(SearchBarText));
             }
 
+            else if (SearchBarText.Contains(":"))
+            {
+                WebBrowser.Source = new Uri(SearchBarText);
+            }
+
             else if (SearchBarText.Contains("."))
             {
                 WebBrowser.Source = new Uri("https://" + HttpUtility.UrlEncode(SearchBarText));

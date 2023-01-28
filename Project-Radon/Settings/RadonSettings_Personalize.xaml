@@ -5,10 +5,55 @@
     xmlns:local="using:Project_Radon.Settings"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d">
 
-    <Grid>
+    <muxc:ScrollView>
+        <StackPanel>
 
-    </Grid>
+
+            <StackPanel CornerRadius="4" Margin="0,5,0,10">
+                <TextBlock Style="{ThemeResource BaseTextBlockStyle}" FontSize="16" Padding="10" Text="Themes and colors"/>
+                <Grid Padding="10,5">
+                    <TextBlock Text="App theme" TextAlignment="Left" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="Apptheme_box" HorizontalAlignment="Right" Width="200" Margin="0,5" Loaded="Appthemecombobox_Loaded"
+                              SelectionChanged="Appthemecombobox_SelectionChanged" SelectedIndex="0">
+                        <ComboBoxItem Content="Day" Width="200"/>
+                        <ComboBoxItem Content="Night" Width="200"/>
+                    </ComboBox>
+                </Grid>
+                <muxc:TeachingTip Target="{x:Bind Apptheme_box}" x:Name="Apptheme_teachingtip" IsOpen="False"
+                                  Title="Relaunch required" ActionButtonContent="Restart now" ActionButtonClick="TeachingTip_ActionButtonClick"
+                                  Subtitle="To apply theme changes, the app needs to restart.">
+                    <muxc:TeachingTip.IconSource>
+                        <muxc:SymbolIconSource Symbol="Sync"/>
+                    </muxc:TeachingTip.IconSource>
+                </muxc:TeachingTip>
+                <Grid Padding="10,5">
+                    <TextBlock Text="Feed view in new tab" TextAlignment="Left" VerticalAlignment="Center"/>
+                    <ToggleSwitch HorizontalAlignment="Right" OffContent="Disabled" OnContent="Enabled" Margin="0,5"/>
+                </Grid>
+                <Grid Padding="10,5">
+                    <TextBlock Text="Feed view provider" TextAlignment="Left" VerticalAlignment="Center"/>
+                    <ComboBox HorizontalAlignment="Right" Width="200" Margin="0,5">
+                        <ComboBoxItem Content="Microsoft Start" Width="200"/>
+                        <ComboBoxItem Content="Google News" Width="200"/>
+                        <ComboBoxItem Content="DuckDuckGo" Width="200"/>
+                    </ComboBox>
+                </Grid>
+
+
+            </StackPanel>
+            <StackPanel CornerRadius="4" Margin="0,10,0,5">
+                <Grid Padding="10,5">
+                    <TextBlock Text="Tab Display Mode" TextAlignment="Left" VerticalAlignment="Center"/>
+                    <ComboBox HorizontalAlignment="Right" Width="200" Margin="0,5">
+                        <ComboBoxItem Content="Equal" Width="200"/>
+                        <ComboBoxItem Content="Size To Content" Width="200"/>
+                        <ComboBoxItem Content="Compact" Width="200"/>
+                    </ComboBox>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </muxc:ScrollView>
 </Page>
