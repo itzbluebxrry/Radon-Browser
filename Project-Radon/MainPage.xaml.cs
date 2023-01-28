@@ -391,5 +391,12 @@ namespace Yttrium_browser
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
         }
         #endregion
+
+        private void BaseGrid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            
+            
+            
+        }
     }
 }

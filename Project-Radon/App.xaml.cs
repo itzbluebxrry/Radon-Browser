@@ -2,6 +2,7 @@
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
+using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.ViewManagement;
@@ -75,6 +76,11 @@ namespace Yttrium_browser
                 var titleBar = ApplicationView.GetForCurrentView().TitleBar;
 
                 titleBar.ButtonBackgroundColor = Colors.Transparent;
+
+
+                // set min window size
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+                ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(500, 500));
             }
         }
 

@@ -33,7 +33,7 @@
             <ImageBrush ImageSource="ms-appx:///wallpapers/1.png"/>
         </Grid.Background>-->
         <Grid>
-    <Grid x:Name="BaseGrid">
+    <Grid x:Name="BaseGrid" SizeChanged="BaseGrid_SizeChanged">
         <Grid x:Name="TitleBarGrid"
               Grid.Row="0"
               Canvas.ZIndex="1">
@@ -266,15 +266,29 @@
                 TabItemsSource="{x:Bind CurrentTabs}"
                 Grid.Row="1"
                 Grid.ColumnSpan="4"
-                HorizontalAlignment="Stretch"
+                
                 HorizontalContentAlignment="Center"
                 VerticalAlignment="Stretch"
                 x:Name="BrowserTabs" 
                 Margin="0,0,0,0"
-               IsAddTabButtonVisible="True"
+               IsAddTabButtonVisible="False"
                 TabCloseRequested="BrowserTabs_TabCloseRequested"
                 SelectionChanged="BrowserTabs_SelectionChanged"
                 AddTabButtonClick="BrowserTabs_AddTabButtonClick">
+                        <winui:TabView.TabStripHeader>
+                            <!--TODO: The button should add a new tab -->
+                            <Button Style="{ThemeResource PaneToggleButtonStyle}" VerticalAlignment="Center" Width="48">
+                                <Button.Flyout>
+                                    <Flyout/>
+                                </Button.Flyout>
+                            </Button>
+                        </winui:TabView.TabStripHeader>
+                        <winui:TabView.TabStripFooter>
+                            <!--TODO: The button should add a new tab -->
+                            <Button Background="Transparent" HorizontalAlignment="Right" Margin="10,0">
+                                <FontIcon Glyph="&#xe710;" FontSize="13"/>
+                            </Button>
+                        </winui:TabView.TabStripFooter>
 
             </winui:TabView>
         </Grid>
