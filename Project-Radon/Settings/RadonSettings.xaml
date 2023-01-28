@@ -72,6 +72,6 @@
             </StackPanel>
         </ScrollViewer>
         <TextBlock Style="{ThemeResource BaseTextBlockStyle}" FontSize="28" Text="Radon Settings" Margin="25,20" Grid.Column="1"/>
-        <Frame x:Name="Settings_Frame" Grid.Column="1" Margin="25,70,20,20" Background="Black"/>
+        <Frame x:Name="Settings_Frame" Grid.Column="1" Margin="25,70,20,20"/>
     </Grid>
 </Page>

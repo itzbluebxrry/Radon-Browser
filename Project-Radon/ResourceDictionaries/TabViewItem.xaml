@@ -167,7 +167,9 @@
                                 MaxHeight="{ThemeResource TabViewItemHeaderIconSize}"
                                 Margin="{ThemeResource TabViewItemHeaderIconMargin}"
                                 IsIndeterminate="True"
-                                Visibility="Collapsed" />
+                                Visibility="Collapsed"
+                                />
+
 
                             <ContentPresenter
                                 x:Name="ContentPresenter"

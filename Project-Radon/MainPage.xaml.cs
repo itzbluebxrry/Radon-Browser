@@ -147,7 +147,7 @@ namespace Yttrium_browser
             await CurrentTabs[BrowserTabs.SelectedIndex].Tab.SearchOrGoto(SearchBar.Text);
             if (e.Key == VirtualKey.Escape)
             {   
-                // Set the SearchBar.Text to WebView2 source (ESC will cancel URL changes)
+                //TODO: Pressing ESC will set the SearchBar.Text to WebView2 source (ESC will cancel URL changes)
                 SearchBar.Text = CurrentTabs[BrowserTabs.SelectedIndex].Tab.SourceUri;
                 
                 //TODO: WebView2 will steal the focus for keyboard and pointer
