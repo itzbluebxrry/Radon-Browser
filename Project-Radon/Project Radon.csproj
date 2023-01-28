@@ -110,10 +110,11 @@
     <Compile Include="Controls\BrowserTabViewItem.xaml.cs">
       <DependentUpon>BrowserTabViewItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\BrowserBackend.cs" />
+    <Compile Include="Helpers\ContributersLoader.cs" />
     <Compile Include="Helpers\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Contributer.cs" />
     <Compile Include="Settings\AboutDialog.xaml.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
     </Compile>
@@ -361,6 +362,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.8.2-prerelease.220830001</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
