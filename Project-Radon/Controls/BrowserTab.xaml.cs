@@ -49,7 +49,7 @@ namespace Project_Radon.Controls
         }
         public bool CanGoBack => WebBrowser.CanGoBack;
         public bool CanGoFoward => WebBrowser.CanGoForward;
-        public string SourceUri => IsCoreInitialized ? WebBrowser.Source.AbsoluteUri : "";
+        public string SourceUri => IsCoreInitialized ? (WebBrowser.Source.AbsoluteUri.ToLower().Contains("edge://") ? "radon://" + WebBrowser.Source.AbsoluteUri.Remove(0,7) : WebBrowser.Source.AbsoluteUri) : "";
         public string Favicon => IsCoreInitialized && !IsLoading ? ("https://www.google.com/s2/favicons?sz=48&domain_url=" + WebBrowser.Source.AbsoluteUri) : "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Document/SVG/ic_fluent_document_48_regular.svg";
         public string Title => IsCoreInitialized && !IsLoading ? (WebBrowser.CoreWebView2.DocumentTitle ?? WebBrowser.Source.AbsoluteUri) : "Loading...";
         public bool IsCoreInitialized { get; private set; }
@@ -69,10 +69,23 @@ namespace Project_Radon.Controls
                     e.Handled = true;
                     NewTabRequested.Invoke(s, e.Uri);
                 };
+                WebBrowser.CoreWebView2.ContextMenuRequested += WebView_ContextMenuRequested;
             };
 
         }
 
+        private void WebView_ContextMenuRequested(CoreWebView2 sender, CoreWebView2ContextMenuRequestedEventArgs args)
+        {
+        //    IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
+         //   var deferral = args.GetDeferral();
+        //    args.Handled = true;
+       //     var cm = new Microsoft.UI.Xaml.Controls.CommandBarFlyout();
+            
+          //  cm.Closed += (_, ex) => deferral.Complete();
+          ///  PopulateContextMenu(args, menuList, cm);
+          //  cm.ShowAt(WebBrowser,);
+
+        }
 
         private void WebBrowser_NavigationCompleted(Microsoft.UI.Xaml.Controls.WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
         {
@@ -93,24 +106,15 @@ namespace Project_Radon.Controls
         }
         public async Task SearchOrGoto(string SearchBarText)
         {
-            //Won't work as we expected
-            Regex UrlMatch = new Regex(@"(?i)(http(s)?:\/\/)?(\w{2,25}\.)+\w{3}([a-z0-9\-?=$-_.+!*()]+)(?i)", RegexOptions.Singleline);
-            var v = UrlMatch.Match(SearchBarText).Value;
-            v.ToString();
+            Regex UrlMatch = new Regex("^(http(s)?:\\/\\/.)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$", RegexOptions.Singleline);
             await WebBrowser.EnsureCoreWebView2Async();
-            if (UrlMatch.IsMatch(SearchBarText))
+            if (SearchBarText.ToLower().StartsWith("radon://"))
             {
-                WebBrowser.Source = Uri.TryCreate(SearchBarText, UriKind.Absolute, out var r) ? r : new Uri("https://www.google.com/search?q=" + HttpUtility.UrlEncode(SearchBarText));
+                WebBrowser.Source = new Uri("edge://" + SearchBarText.Remove(0, 7));
             }
-
-            else if (SearchBarText.Contains(":"))
+            else if (UrlMatch.IsMatch(SearchBarText) || SearchBarText.StartsWith("https://") || SearchBarText.StartsWith("http://") || SearchBarText.StartsWith("edge://"))
             {
-                WebBrowser.Source = new Uri(SearchBarText);
-            }
-
-            else if (SearchBarText.Contains("."))
-            {
-                WebBrowser.Source = new Uri("https://" + HttpUtility.UrlEncode(SearchBarText));
+                WebBrowser.Source = new Uri(!Uri.TryCreate(SearchBarText, UriKind.Absolute, out var r) || !r.IsAbsoluteUri ? "https://" + SearchBarText : SearchBarText);
             }
             else
             {
