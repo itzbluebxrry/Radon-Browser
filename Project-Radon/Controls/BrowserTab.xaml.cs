@@ -69,23 +69,10 @@ namespace Project_Radon.Controls
                     e.Handled = true;
                     NewTabRequested.Invoke(s, e.Uri);
                 };
-                WebBrowser.CoreWebView2.ContextMenuRequested += WebView_ContextMenuRequested;
             };
 
         }
 
-        private void WebView_ContextMenuRequested(CoreWebView2 sender, CoreWebView2ContextMenuRequestedEventArgs args)
-        {
-        //    IList<CoreWebView2ContextMenuItem> menuList = args.MenuItems;
-         //   var deferral = args.GetDeferral();
-        //    args.Handled = true;
-       //     var cm = new Microsoft.UI.Xaml.Controls.CommandBarFlyout();
-            
-          //  cm.Closed += (_, ex) => deferral.Complete();
-          ///  PopulateContextMenu(args, menuList, cm);
-          //  cm.ShowAt(WebBrowser,);
-
-        }
 
         private void WebBrowser_NavigationCompleted(Microsoft.UI.Xaml.Controls.WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
         {
