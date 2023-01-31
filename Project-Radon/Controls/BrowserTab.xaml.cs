@@ -1,26 +1,11 @@
-﻿using Project_Radon.Helpers;
+﻿using Microsoft.Web.WebView2.Core;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using CommunityToolkit.Mvvm;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using System.ComponentModel;
-using System.Web;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using Microsoft.Web.WebView2.Core;
-using Windows.Storage;
+using System.Threading.Tasks;
+using System.Web;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Project_Radon.Controls
 {
@@ -36,7 +21,7 @@ namespace Project_Radon.Controls
 
         public void InvokePropertyChanged(string name = null)
         {
-            this.PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
         }
         string OriginalUserAgent;
         string GoogleSignInUserAgent;
@@ -49,13 +34,13 @@ namespace Project_Radon.Controls
         }
         public bool CanGoBack => WebBrowser.CanGoBack;
         public bool CanGoFoward => WebBrowser.CanGoForward;
-        public string SourceUri => IsCoreInitialized ? (WebBrowser.Source.AbsoluteUri.ToLower().Contains("edge://") ? "radon://" + WebBrowser.Source.AbsoluteUri.Remove(0,7) : WebBrowser.Source.AbsoluteUri) : "";
+        public string SourceUri => IsCoreInitialized ? (WebBrowser.Source.AbsoluteUri.ToLower().Contains("edge://") ? "radon://" + WebBrowser.Source.AbsoluteUri.Remove(0, 7) : WebBrowser.Source.AbsoluteUri) : "";
         public string Favicon => IsCoreInitialized && !IsLoading ? ("https://www.google.com/s2/favicons?sz=48&domain_url=" + WebBrowser.Source.AbsoluteUri) : "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Document/SVG/ic_fluent_document_48_regular.svg";
         public string Title => IsCoreInitialized && !IsLoading ? (WebBrowser.CoreWebView2.DocumentTitle ?? WebBrowser.Source.AbsoluteUri) : "Loading...";
         public bool IsCoreInitialized { get; private set; }
         public BrowserTab()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             //Windows.System.Launcher.LaunchFolderAsync(ApplicationData.Current.LocalFolder);
             WebBrowser.CoreWebView2Initialized += delegate
             {
@@ -64,7 +49,7 @@ namespace Project_Radon.Controls
                 GoogleSignInUserAgent = OriginalUserAgent.Substring(0, OriginalUserAgent.IndexOf("Edg/"))
                 .Replace("Mozilla/5.0", "Mozilla/4.0");
                 WebBrowser.CoreWebView2.Settings.UserAgent = GoogleSignInUserAgent;
-                WebBrowser.CoreWebView2.NewWindowRequested += delegate (Microsoft.Web.WebView2.Core.CoreWebView2 s, Microsoft.Web.WebView2.Core.CoreWebView2NewWindowRequestedEventArgs e)
+                WebBrowser.CoreWebView2.NewWindowRequested += delegate (CoreWebView2 s, CoreWebView2NewWindowRequestedEventArgs e)
                 {
                     e.Handled = true;
                     NewTabRequested.Invoke(s, e.Uri);
@@ -75,13 +60,13 @@ namespace Project_Radon.Controls
         }
 
 
-        private void WebBrowser_NavigationCompleted(Microsoft.UI.Xaml.Controls.WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
+        private void WebBrowser_NavigationCompleted(Microsoft.UI.Xaml.Controls.WebView2 sender, CoreWebView2NavigationCompletedEventArgs args)
         {
-            
+
             IsLoading = false;
         }
         public void Close() => WebBrowser.Close();
-        private void WebBrowser_NavigationStarting(Microsoft.UI.Xaml.Controls.WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs args)
+        private void WebBrowser_NavigationStarting(Microsoft.UI.Xaml.Controls.WebView2 sender, CoreWebView2NavigationStartingEventArgs args)
         {
             IsLoading = true;
             WebBrowser.Focus(FocusState.Pointer);
@@ -117,7 +102,7 @@ namespace Project_Radon.Controls
             WebBrowser.CoreWebView2.OpenDefaultDownloadDialog();
         }
         public void BackButtonSender()
-        { 
+        {
             if (WebBrowser.CanGoBack)
             {
                 WebBrowser.GoBack();

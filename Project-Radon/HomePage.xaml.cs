@@ -11,7 +11,7 @@ namespace Yttrium
     {
         public HomePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

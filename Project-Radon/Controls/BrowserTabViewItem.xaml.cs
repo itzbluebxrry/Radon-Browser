@@ -1,20 +1,8 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 using IconSource = Microsoft.UI.Xaml.Controls.IconSource;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -35,7 +23,7 @@ namespace Project_Radon.Controls
 
         public void InvokePropertyChanged(string name = null)
         {
-            this.PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public BrowserTab Tab { get; private set; } = new BrowserTab();
@@ -71,18 +59,18 @@ namespace Project_Radon.Controls
         private object TabHeader => CustomHeader ?? Tab.Title;
         public BrowserTabViewItem()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             Tab.PropertyChanged += Tab_PropertyChanged;
-            this.PropertyChanged += Tab_PropertyChanged;
+            PropertyChanged += Tab_PropertyChanged;
         }
 
         private void Tab_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             VisualStateManager.GoToState(this, Tab.IsLoading ? "Loading" : "NotLoading", false);
-            this.IconSource = CustomIcon ?? new ImageIconSource() { ImageSource = new BitmapImage(new Uri(Tab.Favicon)) };
-            this.PropertyChanged -= Tab_PropertyChanged;
+            IconSource = CustomIcon ?? new ImageIconSource() { ImageSource = new BitmapImage(new Uri(Tab.Favicon)) };
+            PropertyChanged -= Tab_PropertyChanged;
             InvokePropertyChanged();
-            this.PropertyChanged += Tab_PropertyChanged;
+            PropertyChanged += Tab_PropertyChanged;
         }
     }
 }

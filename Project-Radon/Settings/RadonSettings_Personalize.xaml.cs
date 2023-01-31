@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.Storage;
 
 
 
@@ -30,7 +19,7 @@ namespace Project_Radon.Settings
     {
         public RadonSettings_Personalize()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private async void TeachingTip_ActionButtonClick(Microsoft.UI.Xaml.Controls.TeachingTip sender, object args)
@@ -67,7 +56,7 @@ namespace Project_Radon.Settings
             // Save a setting locally on the device
             localSettings.Values["apptheme"] = Apptheme_box.SelectedIndex;
 
-            
+
         }
     }
 }

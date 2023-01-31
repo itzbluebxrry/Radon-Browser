@@ -14,7 +14,7 @@ namespace Yttrium_browser
     {
         public SettingsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             settingsNavView.SelectedItem = FavoritesItem;
         }
 

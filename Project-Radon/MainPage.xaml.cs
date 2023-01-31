@@ -1,36 +1,20 @@
 using Microsoft.UI.Xaml.Controls;
+using Project_Radon.Controls;
+using Project_Radon.Helpers;
+using Project_Radon.Settings;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Storage;
 using Windows.System;
-using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.UI.Xaml.Shapes;
-using Project_Radon.Helpers;
-using Project_Radon.Controls;
 using Yttrium;
-using CommunityToolkit.Mvvm;
-using Windows.Networking.NetworkOperators;
-using System.ServiceModel.Channels;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using SymbolIconSource = Microsoft.UI.Xaml.Controls.SymbolIconSource;
-using Project_Radon.Settings;
 
 namespace Yttrium_browser
 {
@@ -42,7 +26,7 @@ namespace Yttrium_browser
         private readonly ObservableCollection<BrowserTabViewItem> CurrentTabs = new ObservableCollection<BrowserTabViewItem>();
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             CurrentTabs.Add(new BrowserTabViewItem());
             CurrentTabs[0].Tab.PropertyChanged += SelectedTabPropertyChanged;
 
@@ -91,7 +75,7 @@ namespace Yttrium_browser
             {
                 BackButton.IsEnabled = false;
             }*/
-            
+
             //website load status
             try
             {
@@ -105,7 +89,7 @@ namespace Yttrium_browser
                 {
                     loadingbar.IsIndeterminate = false;
                     compactloadingbar.IsIndeterminate = false;
-                } 
+                }
             }
             catch (Exception ExLoader)
             {
@@ -144,13 +128,13 @@ namespace Yttrium_browser
 
         private async void SearchBar_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if(e.Key == VirtualKey.Enter && !string.IsNullOrEmpty(SearchBar.Text))
-            await CurrentTabs[BrowserTabs.SelectedIndex].Tab.SearchOrGoto(SearchBar.Text);
+            if (e.Key == VirtualKey.Enter && !string.IsNullOrEmpty(SearchBar.Text))
+                await CurrentTabs[BrowserTabs.SelectedIndex].Tab.SearchOrGoto(SearchBar.Text);
             if (e.Key == VirtualKey.Escape)
-            {   
+            {
                 //TODO: Pressing ESC will set the SearchBar.Text to WebView2 source (ESC will cancel URL changes)
                 SearchBar.Text = CurrentTabs[BrowserTabs.SelectedIndex].Tab.SourceUri;
-                
+
                 //TODO: WebView2 will steal the focus for keyboard and pointer
             }
 
@@ -208,7 +192,7 @@ namespace Yttrium_browser
                 ForwardButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].Tab.CanGoFoward ? Visibility.Visible : Visibility.Collapsed;
             }
         }
-        private void NewTabRequested(object s,string e)
+        private void NewTabRequested(object s, string e)
         {
             var b = new BrowserTabViewItem();
             CurrentTabs.Add(b);
@@ -218,12 +202,12 @@ namespace Yttrium_browser
         private void BrowserTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var r = e.RemovedItems.Select(x => (BrowserTabViewItem)x).ToList();
-            r.ForEach(x => 
-            { 
+            r.ForEach(x =>
+            {
                 x.Tab.PropertyChanged -= SelectedTabPropertyChanged;
                 x.Tab.NewTabRequested -= NewTabRequested;
             });
-            var s = e.AddedItems.Select(x => (BrowserTabViewItem)x).ToList(); 
+            var s = e.AddedItems.Select(x => (BrowserTabViewItem)x).ToList();
             s.ForEach(x =>
             {
                 x.Tab.PropertyChanged += SelectedTabPropertyChanged;
@@ -349,7 +333,7 @@ namespace Yttrium_browser
             MenuButton.Flyout.Hide();
 
             await new Downloads_Dialog().ShowAsync();
-            
+
         }
 
         private async void editprofile_Click(object sender, RoutedEventArgs e)
@@ -384,7 +368,7 @@ namespace Yttrium_browser
                 CustomContentType = typeof(RadonSettings),
                 ShowCustomContent = true,
                 CustomHeader = "Radon Settings",
-                CustomIcon = new SymbolIconSource() { Symbol = Symbol.Setting}
+                CustomIcon = new SymbolIconSource() { Symbol = Symbol.Setting }
             };
             t.Tab.Close();
             CurrentTabs.Add(t);
@@ -394,9 +378,9 @@ namespace Yttrium_browser
 
         private void BaseGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            
-            
-            
+
+
+
         }
 
         private async void CompactSearchBar_KeyDown(object sender, KeyRoutedEventArgs e)

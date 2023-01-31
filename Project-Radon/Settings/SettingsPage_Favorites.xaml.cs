@@ -11,7 +11,7 @@ namespace Yttrium_browser
     {
         public SettingsPage_Favorites()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

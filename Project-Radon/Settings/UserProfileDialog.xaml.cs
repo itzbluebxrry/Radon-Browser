@@ -12,7 +12,7 @@ namespace Yttrium
     {
         public UserProfileDialog()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
