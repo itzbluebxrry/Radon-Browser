@@ -104,6 +104,7 @@ namespace Yttrium_browser
                 if (!loadingbar.ShowError == true)
                 {
                     loadingbar.IsIndeterminate = false;
+                    compactloadingbar.IsIndeterminate = false;
                 } 
             }
             catch (Exception ExLoader)
@@ -343,12 +344,11 @@ namespace Yttrium_browser
         {
             MenuButton.Flyout.Hide();
         }
-        private void downloadbutton_Click(object sender, RoutedEventArgs e)
+        private async void downloadbutton_Click(object sender, RoutedEventArgs e)
         {
             MenuButton.Flyout.Hide();
 
-            if (BrowserTabs.SelectedIndex >= 0)
-                _ = CurrentTabs[BrowserTabs.SelectedIndex].Tab.OpenDownloadsDialog();
+            await new Downloads_Dialog().ShowAsync();
             
         }
 
@@ -397,6 +397,36 @@ namespace Yttrium_browser
             
             
             
+        }
+
+        private async void CompactSearchBar_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+
+            if (e.Key == VirtualKey.Enter && !string.IsNullOrEmpty(SearchBar.Text))
+            {
+                SearchBar.Text = CompactSearchBar.Text;
+                await CurrentTabs[BrowserTabs.SelectedIndex].Tab.SearchOrGoto(SearchBar.Text);
+            }
+            if (e.Key == VirtualKey.Escape)
+            {
+                //TODO: Pressing ESC will set the SearchBar.Text to WebView2 source (ESC will cancel URL changes)
+                CompactSearchBar.Text = CurrentTabs[BrowserTabs.SelectedIndex].Tab.SourceUri;
+
+                //TODO: WebView2 will steal the focus for keyboard and pointer
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void addtab_button_Click(object sender, RoutedEventArgs e)
+        {
+            var b = new BrowserTabViewItem();
+            CurrentTabs.Add(b);
+            BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
+
         }
     }
 }

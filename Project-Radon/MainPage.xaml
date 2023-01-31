@@ -43,7 +43,7 @@
                 <ColumnDefinition x:Name="righttitlebarpadding" Width="*" MinWidth="143" MaxWidth="300"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="45"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -59,7 +59,7 @@
             <!-- refresh and home buttons -->
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
-                        Margin="12,0,0,0"
+                        Margin="5,0,0,0"
                         Grid.Column="0"
                         Grid.Row="0"
                         Canvas.ZIndex="1">
@@ -189,12 +189,16 @@
                     <Flyout ShouldConstrainToRootBounds="False">
                         <StackPanel Width="180">
                             <StackPanel Name="menuheader">
-                                <PersonPicture  ProfilePicture="ms-appx:///accountpictures/clippy.png"/>
-                                <TextBlock x:Name="username" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Radon User" TextAlignment="Center"
-                                           Margin="0,10"/>
-                                <Button Style="{ThemeResource AccentButtonStyle}" Content="Edit profile" HorizontalAlignment="Stretch" Margin="10,0,10,0"
-                                        x:Name="editprofile" Click="editprofile_Click"/>
-                                <Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,15,10,10" BorderThickness="1"/>
+                                        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" BorderBrush="Transparent" Background="Transparent" Margin="0,0,0,10">
+                                            <StackPanel Orientation="Horizontal">
+                                                <PersonPicture ProfilePicture="ms-appx:///accountpictures/clippy.png" Width="45"/>
+                                                <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+                                                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontSize="15" Text="Radon User"/>
+                                                    <TextBlock Text="Local account" FontSize="12"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Button>
+                                        <Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,5,10,10" BorderThickness="1"/>
 
                                 <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
                                         HorizontalContentAlignment="Left" Margin="0,0,0,0">
@@ -267,7 +271,7 @@
                 TabItemsSource="{x:Bind CurrentTabs}"
                 Grid.Row="1"
                 Grid.ColumnSpan="4"
-                
+                TabWidthMode="Equal"
                 HorizontalContentAlignment="Center"
                 VerticalAlignment="Stretch"
                 x:Name="BrowserTabs" 
@@ -275,20 +279,151 @@
                IsAddTabButtonVisible="False"
                 TabCloseRequested="BrowserTabs_TabCloseRequested"
                 SelectionChanged="BrowserTabs_SelectionChanged"
-                AddTabButtonClick="BrowserTabs_AddTabButtonClick">
+                AddTabButtonClick="BrowserTabs_AddTabButtonClick"
+                >
                         <winui:TabView.TabStripHeader>
-                            <!--TODO: The button should add a new tab -->
-                            <Button Style="{ThemeResource PaneToggleButtonStyle}" VerticalAlignment="Center" Width="48">
+                        <Grid>
+                                <Grid x:Name="tabaction">
+                                    <Button x:Name="tabactions_button" Margin="5,0,0,0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Click="HomeButton_Click"
+                        Padding="7.2" ToolTipService.ToolTip="Tab actions">
+                                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xeb41;"
+                              FontSize="18" />
+                                        <Button.Flyout>
+                                            <Flyout ShouldConstrainToRootBounds="False">
+                                                <StackPanel Width="180">
+
+
+                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left" Margin="0,0,0,0">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <FontIcon Glyph="&#xf7ed;" FontSize="16"/>
+                                                            <TextBlock Margin="10,0,0,0" Text="New tab"/>
+                                                        </StackPanel>
+                                                    </Button>
+
+                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <FontIcon Glyph="&#xec6c;" FontSize="15"/>
+                                                            <TextBlock Margin="10,0,0,0" Text="Inline Mode"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left" Click="downloadbutton_Click">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <FontIcon Glyph="&#xE896;" FontSize="15"/>
+                                                            <TextBlock Margin="10,0,0,0" Text="Downloads"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left" Click="fullscreenbutton_Click">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <FontIcon Glyph="&#xE740;" FontSize="15"/>
+                                                            <TextBlock Margin="10,0,0,0" Text="Toggle fullscreen"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left" Click="printbutton_Click">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <FontIcon Glyph="&#xE749;" FontSize="15"/>
+                                                            <TextBlock Margin="10,0,0,0" Text="Print"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                    <Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,10" BorderThickness="1"/>
+                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <FontIcon Glyph="&#xE90F;" FontSize="15"/>
+                                                            <TextBlock Margin="10,0,0,0" Text="Tools"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                    <Button Click="SettingsPageButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <FontIcon Glyph="&#xE713;" FontSize="15"/>
+                                                            <TextBlock Margin="10,0,0,0" Text="Settings"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        Click="AboutMenuItem_Click" HorizontalContentAlignment="Left">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <FontIcon Glyph="&#xE946;" FontSize="15"/>
+                                                            <TextBlock Margin="10,0,0,0" Text="About"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                </StackPanel>
+                                            </Flyout>
+                                        </Button.Flyout>
+                                    </Button>
+                                </Grid>
+                            <Grid Visibility="Collapsed">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="compactnavbar" MinWidth="100" Width="*"/>
+                                    <ColumnDefinition x:Name="compactsearchbar" Width="999*" MaxWidth="400"/>
+                                </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                        <Button x:Name="CompactBackButton"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Margin="12,5,10,5"
+                        Click="BackButton_Click"
+                        Padding="6" ToolTipService.ToolTip="Back">
+                             <FontIcon Glyph="&#xe760;" FontSize="20" FontFamily="Segoe Fluent Icons"/>
+                        </Button>
+                        <Button x:Name="CompactNavOverflowButton"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Click="HomeButton_Click"
+                        Padding="8.5" ToolTipService.ToolTip="Navigation options">
+                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xe712;"
+                              FontSize="18" />
+                                    <Button.Flyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem Width="150" Text="Forward" Icon="Forward" Click="ForwardButton_Click"/>
+                                            <MenuFlyoutItem Width="150" Text="Refresh" Icon="Refresh" Click="RefreshButton_Click"/>
+                                            <MenuFlyoutItem Width="150" Text="Stop loading" Icon="Document"/>
+                                            <MenuFlyoutItem Width="150" Text="Start page" Icon="Home" Click="HomeButton_Click"/>
+                                        </MenuFlyout>
+                                    </Button.Flyout>
+                                </Button>
+                                
+                                <!--TODO: The button should add a new tab -->
+                            <Button Style="{ThemeResource PaneToggleButtonStyle}"  VerticalAlignment="Center" Width="48" Visibility="Collapsed">
                                 <Button.Flyout>
                                     <Flyout/>
                                 </Button.Flyout>
                             </Button>
+                            </StackPanel>
+                                <TextBox x:Name="CompactSearchBar"
+                         KeyDown="CompactSearchBar_KeyDown"
+                         VerticalAlignment="Center"
+                         Margin="13,0,15,0"
+                         BorderThickness="0"
+                         Padding="36,6,6,0"
+                        HorizontalAlignment="Stretch"
+                        FontWeight="SemiBold"
+                         IsSpellCheckEnabled="False"
+                         Grid.Column="1"
+                         PlaceholderText="Search the web or enter a URL"
+                         Height="25"
+                         VerticalContentAlignment="Center" 
+                         GotFocus="SearchBar_GotFocus"
+                         TextAlignment="Center" CornerRadius="8" />
+                                <winui:ProgressBar x:Name="compactloadingbar" Grid.Column="1" VerticalAlignment="Bottom" Margin="21,0,23,5" IsIndeterminate="True"/>
+                            </Grid>
+                        </Grid>
                         </winui:TabView.TabStripHeader>
                         <winui:TabView.TabStripFooter>
-                            <!--TODO: The button should add a new tab -->
-                            <Button Background="Transparent" HorizontalAlignment="Right" Margin="10,0">
-                                <FontIcon Glyph="&#xe710;" FontSize="13"/>
-                            </Button>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <!--TODO: The button should add a new tab -->
+                                <Button x:Name="addtab_button" Click="addtab_button_Click" Background="Transparent" HorizontalAlignment="Right" Margin="10,0">
+                                    <FontIcon Glyph="&#xe710;" FontSize="13"/>
+                                </Button>
+                                <Grid x:Name="compacttitlebar_rightpadding" Width="150" Visibility="Collapsed"/>
+                            </StackPanel>
                         </winui:TabView.TabStripFooter>
 
             </winui:TabView>
