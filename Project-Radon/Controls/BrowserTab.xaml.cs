@@ -69,6 +69,7 @@ namespace Project_Radon.Controls
                     e.Handled = true;
                     NewTabRequested.Invoke(s, e.Uri);
                 };
+                WebBrowser.CoreWebView2.DocumentTitleChanged += (_, e) => InvokePropertyChanged();
             };
 
         }

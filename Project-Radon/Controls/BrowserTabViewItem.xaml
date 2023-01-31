@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource TabViewItemStyle}"
     Padding="0,0,0,6"
+    Background="Transparent"
     Content="{x:Bind TabContent,Mode=OneWay}" HorizontalAlignment="Center"
     mc:Ignorable="d" HorizontalContentAlignment="Center">
     <winui:TabViewItem.Header>

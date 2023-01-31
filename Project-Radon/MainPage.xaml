@@ -25,7 +25,7 @@
     </Page.KeyboardAccelerators>
     <Page.Resources>
         <ResourceDictionary>
-            <SolidColorBrush x:Key="TabViewItemHeaderBackgroundSelected" Color="{ThemeResource ControlFillColorDefault}"  />
+            <SolidColorBrush x:Key="TabViewItemHeaderBackgroundSelected" Color="Transparent"  />
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
