@@ -43,7 +43,7 @@
                 <ColumnDefinition x:Name="righttitlebarpadding" Width="*" MinWidth="143" MaxWidth="300"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
+                <RowDefinition x:Name="DefaultBarUI" Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -292,74 +292,58 @@
                                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xeb41;"
                               FontSize="18" />
                                         <Button.Flyout>
-                                            <Flyout ShouldConstrainToRootBounds="False">
-                                                <StackPanel Width="180">
+                                            <MenuFlyout ShouldConstrainToRootBounds="True">
+                                                <MenuFlyoutItem Text="New tab" Width="250" x:Name="tabaction_newtab" Click="addtab_button_Click">
+                                                    <MenuFlyoutItem.Icon>
+                                                        <FontIcon Glyph="&#xe737;"/>
+                                                    </MenuFlyoutItem.Icon>
+                                                </MenuFlyoutItem>
+                                                <MenuFlyoutItem Text="New window" Width="250">
+                                                    <MenuFlyoutItem.Icon>
+                                                        <FontIcon Glyph="&#xe78b;"/>
+                                                    </MenuFlyoutItem.Icon>
+                                                </MenuFlyoutItem>
+                                                <MenuFlyoutItem Text="Inline mode" Width="250" x:Name="tabaction_inline" Click="tabaction_inline_Click">
+                                                    <MenuFlyoutItem.Icon>
+                                                        <FontIcon Glyph="&#xf26b;"/>
+                                                    </MenuFlyoutItem.Icon>
+                                                </MenuFlyoutItem>
+                                                <MenuFlyoutItem Text="Snip tab" Width="250">
+                                                    <MenuFlyoutItem.Icon>
+                                                        <FontIcon Glyph="&#xe931;"/>
+                                                    </MenuFlyoutItem.Icon>
+                                                </MenuFlyoutItem>
+                                                <MenuFlyoutItem Text="Web grabber" Width="250">
+                                                    <MenuFlyoutItem.Icon>
+                                                        <FontIcon Glyph="&#xe8ac;"/>
+                                                    </MenuFlyoutItem.Icon>
+                                                </MenuFlyoutItem>
+                                                <MenuFlyoutItem Text="Generate QR code" Width="250">
+                                                    <MenuFlyoutItem.Icon>
+                                                        <FontIcon Glyph="&#xed14;"/>
+                                                    </MenuFlyoutItem.Icon>
+                                                </MenuFlyoutItem>
+                                                <MenuFlyoutItem Text="Developer Tools" Width="250" x:Name="tabactions_devtools" Click="tabactions_devtools_Click">
+                                                    <MenuFlyoutItem.Icon>
+                                                        <FontIcon Glyph="&#xec7a;"/>
+                                                    </MenuFlyoutItem.Icon>
+                                                </MenuFlyoutItem>
 
 
-                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                                <!--<Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
                                         HorizontalContentAlignment="Left" Margin="0,0,0,0">
                                                         <StackPanel Orientation="Horizontal">
                                                             <FontIcon Glyph="&#xf7ed;" FontSize="16"/>
                                                             <TextBlock Margin="10,0,0,0" Text="New tab"/>
                                                         </StackPanel>
-                                                    </Button>
+                                                    </Button>-->
 
-                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <FontIcon Glyph="&#xec6c;" FontSize="15"/>
-                                                            <TextBlock Margin="10,0,0,0" Text="Inline Mode"/>
-                                                        </StackPanel>
-                                                    </Button>
-                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left" Click="downloadbutton_Click">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <FontIcon Glyph="&#xE896;" FontSize="15"/>
-                                                            <TextBlock Margin="10,0,0,0" Text="Downloads"/>
-                                                        </StackPanel>
-                                                    </Button>
-                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left" Click="fullscreenbutton_Click">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <FontIcon Glyph="&#xE740;" FontSize="15"/>
-                                                            <TextBlock Margin="10,0,0,0" Text="Toggle fullscreen"/>
-                                                        </StackPanel>
-                                                    </Button>
-                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left" Click="printbutton_Click">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <FontIcon Glyph="&#xE749;" FontSize="15"/>
-                                                            <TextBlock Margin="10,0,0,0" Text="Print"/>
-                                                        </StackPanel>
-                                                    </Button>
-                                                    <Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,10" BorderThickness="1"/>
-                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <FontIcon Glyph="&#xE90F;" FontSize="15"/>
-                                                            <TextBlock Margin="10,0,0,0" Text="Tools"/>
-                                                        </StackPanel>
-                                                    </Button>
-                                                    <Button Click="SettingsPageButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <FontIcon Glyph="&#xE713;" FontSize="15"/>
-                                                            <TextBlock Margin="10,0,0,0" Text="Settings"/>
-                                                        </StackPanel>
-                                                    </Button>
-                                                    <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        Click="AboutMenuItem_Click" HorizontalContentAlignment="Left">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <FontIcon Glyph="&#xE946;" FontSize="15"/>
-                                                            <TextBlock Margin="10,0,0,0" Text="About"/>
-                                                        </StackPanel>
-                                                    </Button>
-                                                </StackPanel>
-                                            </Flyout>
+
+                                            </MenuFlyout>
                                         </Button.Flyout>
                                     </Button>
                                 </Grid>
-                            <Grid Visibility="Collapsed">
+                            <Grid x:Name="compactuibar" Visibility="Collapsed" Margin="45,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition x:Name="compactnavbar" MinWidth="100" Width="*"/>
                                     <ColumnDefinition x:Name="compactsearchbar" Width="999*" MaxWidth="400"/>

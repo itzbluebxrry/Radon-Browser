@@ -332,7 +332,8 @@ namespace Yttrium_browser
         {
             MenuButton.Flyout.Hide();
 
-            await new Downloads_Dialog().ShowAsync();
+            if (BrowserTabs.SelectedIndex >= 0)
+                _ = CurrentTabs[BrowserTabs.SelectedIndex].Tab.OpenDownloadsDialog();
 
         }
 
@@ -411,6 +412,32 @@ namespace Yttrium_browser
             CurrentTabs.Add(b);
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
 
+        }
+
+        private void tabactions_devtools_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void tabaction_inline_Click(object sender, RoutedEventArgs e)
+        {
+            if (compactuibar.Visibility == Visibility.Collapsed)
+            {
+                compactuibar.Visibility = Visibility.Visible;
+                DefaultBarUI.Height = new Windows.UI.Xaml.GridLength(0);
+                Window.Current.SetTitleBar(tabaction);
+                BrowserTabs.TabWidthMode = TabViewWidthMode.Compact;
+                compacttitlebar_rightpadding.Visibility = Visibility.Visible;
+            }
+
+            else
+            {
+                compactuibar.Visibility = Visibility.Collapsed;
+                DefaultBarUI.Height = new Windows.UI.Xaml.GridLength(40);
+                Window.Current.SetTitleBar(TitleBarGrid);
+                BrowserTabs.TabWidthMode = TabViewWidthMode.Equal;
+                compacttitlebar_rightpadding.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
