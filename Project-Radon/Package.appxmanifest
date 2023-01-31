@@ -4,18 +4,19 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  IgnorableNamespaces="uap mp uap3">
 
   <Identity
     Name="Project.Radon"
-    Publisher="CN=Temp"
-    Version="1.4.4.0" />
+    Publisher="CN=ItzBluebxrry"
+    Version="1.4.5.0" />
 
   <mp:PhoneIdentity PhoneProductId="62b3ecf5-f123-4873-9bfb-b6d325b51f33" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>ItzBluebxrry</DisplayName>
-    <PublisherDisplayName>ItzBluebxrry, Pdawg</PublisherDisplayName>
+    <PublisherDisplayName>ItzBluebxrry</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,7 +33,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="Project_Radon.App">
       <uap:VisualElements
-        DisplayName="Project Radon"
+        DisplayName="Radon WebExplorer"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="An experimental UWP web browser powered by WebView2 with integrated Windows 11 design system"
@@ -48,8 +49,9 @@
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="project.radon">
+          <uap:Protocol Name="radon">
             <uap:DisplayName>Project Radon</uap:DisplayName>
+            <uap:Logo>Project Radon.png</uap:Logo>
           </uap:Protocol>
         </uap:Extension>
       </Extensions>
@@ -58,5 +60,8 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
+    <uap3:Capability Name="backgroundMediaPlayback"/>
+    <uap:Capability Name="voipCall"/>
+    <DeviceCapability Name="webcam"/>
   </Capabilities>
 </Package>
