@@ -417,7 +417,8 @@ namespace Yttrium_browser
 
         private void tabactions_devtools_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (!CurrentTabs[BrowserTabs.SelectedIndex].ShowCustomContent)
+               _ = CurrentTabs[BrowserTabs.SelectedIndex].Tab.OpenDevTools();
         }
 
         private void tabaction_inline_Click(object sender, RoutedEventArgs e)

@@ -325,7 +325,7 @@
                                                         <FontIcon Glyph="&#xed14;"/>
                                                     </MenuFlyoutItem.Icon>
                                                 </MenuFlyoutItem>
-                                                <MenuFlyoutItem Text="Developer Tools (in development)" Width="250" x:Name="tabactions_devtools" Click="tabactions_devtools_Click" IsEnabled="False">
+                                                <MenuFlyoutItem Text="Developer Tools (in development)" Width="250" x:Name="tabactions_devtools" Click="tabactions_devtools_Click">
                                                     <MenuFlyoutItem.Icon>
                                                         <FontIcon Glyph="&#xec7a;"/>
                                                     </MenuFlyoutItem.Icon>

@@ -8,8 +8,8 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     >
-    <muxc:ScrollView>
-    <StackPanel>
+    <ScrollViewer>
+        <StackPanel>
 
 
             <StackPanel Background="DimGray" CornerRadius="4" Margin="0,5,0,10">
@@ -48,5 +48,5 @@
                 </Grid>
             </StackPanel>
         </StackPanel>
-    </muxc:ScrollView>
+    </ScrollViewer>
 </Page>

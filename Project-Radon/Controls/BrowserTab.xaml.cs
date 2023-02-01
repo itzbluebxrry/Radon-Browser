@@ -101,6 +101,11 @@ namespace Project_Radon.Controls
             WebBrowser.CoreWebView2.DefaultDownloadDialogCornerAlignment = Microsoft.Web.WebView2.Core.CoreWebView2DefaultDownloadDialogCornerAlignment.TopRight;
             WebBrowser.CoreWebView2.OpenDefaultDownloadDialog();
         }
+        public async Task OpenDevTools()
+        {
+            await WebBrowser.EnsureCoreWebView2Async();
+            WebBrowser.CoreWebView2.OpenDevToolsWindow();
+        }
         public void BackButtonSender()
         {
             if (WebBrowser.CanGoBack)
