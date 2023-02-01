@@ -28,7 +28,7 @@
             <SolidColorBrush x:Key="TabViewItemHeaderBackgroundSelected" Color="Transparent"  />
         </ResourceDictionary>
     </Page.Resources>
-    <Grid>
+    <Grid x:Name="BasicGrid">
         <!--<Grid.Background>
             <ImageBrush ImageSource="ms-appx:///wallpapers/1.png"/>
         </Grid.Background>-->
@@ -201,7 +201,7 @@
                                         <Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,5,10,10" BorderThickness="1"/>
 
                                 <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left" Margin="0,0,0,0">
+                                        HorizontalContentAlignment="Left" Margin="0,0,0,0" IsEnabled="False">
                                     <StackPanel Orientation="Horizontal">
                                         <FontIcon Glyph="&#xE734;" FontSize="15"/>
                                         <TextBlock Margin="10,0,0,0" Text="Favorites"/>
@@ -209,14 +209,14 @@
                                 </Button>
 
                                 <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left">
+                                        HorizontalContentAlignment="Left" IsEnabled="False">
                                     <StackPanel Orientation="Horizontal">
                                         <FontIcon Glyph="&#xE81C;" FontSize="15"/>
                                         <TextBlock Margin="10,0,0,0" Text="History"/>
                                     </StackPanel>
                                 </Button>
                                 <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left" x:Name="downloadbutton" Click="downloadbutton_Click">
+                                        HorizontalContentAlignment="Left" x:Name="downloadbutton" Click="downloadbutton_Click" >
                                     <StackPanel Orientation="Horizontal">
                                         <FontIcon Glyph="&#xE896;" FontSize="15"/>
                                         <TextBlock Margin="10,0,0,0" Text="Downloads"/>
@@ -226,11 +226,11 @@
                                         HorizontalContentAlignment="Left" x:Name="fullscreenbutton" Click="fullscreenbutton_Click">
                                     <StackPanel Orientation="Horizontal">
                                         <FontIcon Glyph="&#xE740;" FontSize="15"/>
-                                        <TextBlock Margin="10,0,0,0" Text="Toggle fullscreen"/>
+                                        <TextBlock Margin="10,0,0,0" Text="Fullscreen (beta)"/>
                                     </StackPanel>
                                 </Button>
                                 <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left" x:Name="printbutton" Click="printbutton_Click">
+                                        HorizontalContentAlignment="Left" x:Name="printbutton" Click="printbutton_Click" IsEnabled="False">
                                     <StackPanel Orientation="Horizontal">
                                         <FontIcon Glyph="&#xE749;" FontSize="15"/>
                                         <TextBlock Margin="10,0,0,0" Text="Print"/>
@@ -238,17 +238,17 @@
                                 </Button>
                                 <Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,10" BorderThickness="1"/>
                                 <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left">
+                                        HorizontalContentAlignment="Left" IsEnabled="False">
                                     <StackPanel Orientation="Horizontal">
                                         <FontIcon Glyph="&#xE90F;" FontSize="15"/>
-                                        <TextBlock Margin="10,0,0,0" Text="Tools"/>
+                                        <TextBlock Margin="10,0,0,0" Text="More tools" />
                                     </StackPanel>
                                 </Button>
                                 <Button x:Name="SettingsPageButton" Click="SettingsPageButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
                                         HorizontalContentAlignment="Left">
                                     <StackPanel Orientation="Horizontal">
                                         <FontIcon Glyph="&#xE713;" FontSize="15"/>
-                                        <TextBlock Margin="10,0,0,0" Text="Settings"/>
+                                        <TextBlock Margin="10,0,0,0" Text="Settings (beta)"/>
                                     </StackPanel>
                                 </Button>
                                 <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
@@ -293,37 +293,39 @@
                               FontSize="18" />
                                         <Button.Flyout>
                                             <MenuFlyout ShouldConstrainToRootBounds="True">
+                                                <MenuFlyoutItem Text="Some items are not available in Alpha." IsEnabled="False"/>
+                                                <MenuFlyoutSeparator/>
                                                 <MenuFlyoutItem Text="New tab" Width="250" x:Name="tabaction_newtab" Click="addtab_button_Click">
                                                     <MenuFlyoutItem.Icon>
                                                         <FontIcon Glyph="&#xe737;"/>
                                                     </MenuFlyoutItem.Icon>
                                                 </MenuFlyoutItem>
-                                                <MenuFlyoutItem Text="New window" Width="250">
+                                                <MenuFlyoutItem Text="New window (in development)" Width="250" IsEnabled="False">
                                                     <MenuFlyoutItem.Icon>
                                                         <FontIcon Glyph="&#xe78b;"/>
                                                     </MenuFlyoutItem.Icon>
                                                 </MenuFlyoutItem>
-                                                <MenuFlyoutItem Text="Inline mode" Width="250" x:Name="tabaction_inline" Click="tabaction_inline_Click">
+                                                <MenuFlyoutItem Text="Inline mode (experimental)" Width="250" x:Name="tabaction_inline" Click="tabaction_inline_Click">
                                                     <MenuFlyoutItem.Icon>
                                                         <FontIcon Glyph="&#xf26b;"/>
                                                     </MenuFlyoutItem.Icon>
                                                 </MenuFlyoutItem>
-                                                <MenuFlyoutItem Text="Snip tab" Width="250">
+                                                <MenuFlyoutItem Text="Snip tab (in development)" Width="250" IsEnabled="False">
                                                     <MenuFlyoutItem.Icon>
                                                         <FontIcon Glyph="&#xe931;"/>
                                                     </MenuFlyoutItem.Icon>
                                                 </MenuFlyoutItem>
-                                                <MenuFlyoutItem Text="Web grabber" Width="250">
+                                                <MenuFlyoutItem Text="Web grabber (in development)" Width="250" IsEnabled="False">
                                                     <MenuFlyoutItem.Icon>
                                                         <FontIcon Glyph="&#xe8ac;"/>
                                                     </MenuFlyoutItem.Icon>
                                                 </MenuFlyoutItem>
-                                                <MenuFlyoutItem Text="Generate QR code" Width="250">
+                                                <MenuFlyoutItem Text="Generate QR code" Width="250" IsEnabled="False">
                                                     <MenuFlyoutItem.Icon>
                                                         <FontIcon Glyph="&#xed14;"/>
                                                     </MenuFlyoutItem.Icon>
                                                 </MenuFlyoutItem>
-                                                <MenuFlyoutItem Text="Developer Tools" Width="250" x:Name="tabactions_devtools" Click="tabactions_devtools_Click">
+                                                <MenuFlyoutItem Text="Developer Tools (in development)" Width="250" x:Name="tabactions_devtools" Click="tabactions_devtools_Click" IsEnabled="False">
                                                     <MenuFlyoutItem.Icon>
                                                         <FontIcon Glyph="&#xec7a;"/>
                                                     </MenuFlyoutItem.Icon>
@@ -407,7 +409,20 @@
                                     <FontIcon Glyph="&#xe710;" FontSize="13"/>
                                 </Button>
                                 <Grid x:Name="compacttitlebar_rightpadding" Width="150" Visibility="Collapsed"/>
+                                <winui:TeachingTip IsOpen="False" x:Name="addtabtip" Target="{x:Bind addtab_button}" Title="Didn't see anything?"
+                                                   >
+                                    <winui:TeachingTip.IconSource>
+                                        <winui:SymbolIconSource Symbol="Repair"/>
+                                    </winui:TeachingTip.IconSource>
+                                    <StackPanel>
+                                        
+                                        <TextBlock Text="There have been reports that tabs aren't displaying the page." TextWrapping="WrapWholeWords"/>
+                                        <TextBlock Text="To fix this, go to any other open tabs and go back to the tab you're currently on." Margin="0,10,0,0" TextWrapping="WrapWholeWords"/>
+                                        <Button HorizontalAlignment="Stretch" Content="Got it!" Margin="0,20,0,0" Click="Button_Click_1"/>
+                                    </StackPanel>
+                                </winui:TeachingTip>
                             </StackPanel>
+                            
                         </winui:TabView.TabStripFooter>
 
             </winui:TabView>

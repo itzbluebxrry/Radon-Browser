@@ -411,6 +411,7 @@ namespace Yttrium_browser
             var b = new BrowserTabViewItem();
             CurrentTabs.Add(b);
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
+            addtabtip.IsOpen = true;
 
         }
 
@@ -425,7 +426,7 @@ namespace Yttrium_browser
             {
                 compactuibar.Visibility = Visibility.Visible;
                 DefaultBarUI.Height = new Windows.UI.Xaml.GridLength(0);
-                Window.Current.SetTitleBar(tabaction);
+                Window.Current.SetTitleBar(TitleBarGrid);
                 BrowserTabs.TabWidthMode = TabViewWidthMode.Compact;
                 compacttitlebar_rightpadding.Visibility = Visibility.Visible;
             }
@@ -438,6 +439,11 @@ namespace Yttrium_browser
                 BrowserTabs.TabWidthMode = TabViewWidthMode.Equal;
                 compacttitlebar_rightpadding.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            addtabtip.IsOpen = false;
         }
     }
 }
