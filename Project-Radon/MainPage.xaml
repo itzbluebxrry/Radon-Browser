@@ -29,9 +29,9 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid x:Name="BasicGrid">
-        <!--<Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///wallpapers/1.png"/>
-        </Grid.Background>-->
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///wallpapers/13.png" Opacity="0.2"/>
+        </Grid.Background>
         <Grid>
     <Grid x:Name="BaseGrid" SizeChanged="BaseGrid_SizeChanged">
         <Grid x:Name="TitleBarGrid"
@@ -236,7 +236,8 @@
                                         <TextBlock Margin="10,0,0,0" Text="Print"/>
                                     </StackPanel>
                                 </Button>
-                                <Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,10" BorderThickness="1"/>
+                                        <Slider x:Name="ZoomSlider" ValueChanged="ZoomSlider_ValueChanged"/>
+                                        <Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,10" BorderThickness="1"/>
                                 <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
                                         HorizontalContentAlignment="Left" IsEnabled="False">
                                     <StackPanel Orientation="Horizontal">

@@ -9,7 +9,11 @@
     mc:Ignorable="d"
     >
     <ScrollViewer>
+<<<<<<< HEAD
         <StackPanel>
+=======
+    <StackPanel>
+>>>>>>> themes
 
 
             <StackPanel Background="DimGray" CornerRadius="4" Margin="0,5,0,10">

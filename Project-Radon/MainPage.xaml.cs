@@ -98,7 +98,7 @@ namespace Yttrium_browser
             }
 
 
-            if (SearchValue.Contains("https"))
+            if (SearchBar.Text.Contains("https"))
             {
                 //change icon to lock
                 SSLIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
@@ -427,6 +427,7 @@ namespace Yttrium_browser
             {
                 compactuibar.Visibility = Visibility.Visible;
                 DefaultBarUI.Height = new Windows.UI.Xaml.GridLength(0);
+                Window.Current.SetTitleBar(null);
                 Window.Current.SetTitleBar(TitleBarGrid);
                 BrowserTabs.TabWidthMode = TabViewWidthMode.Compact;
                 compacttitlebar_rightpadding.Visibility = Visibility.Visible;
@@ -436,8 +437,9 @@ namespace Yttrium_browser
             {
                 compactuibar.Visibility = Visibility.Collapsed;
                 DefaultBarUI.Height = new Windows.UI.Xaml.GridLength(40);
-                Window.Current.SetTitleBar(TitleBarGrid);
+                Window.Current.SetTitleBar(null);
                 BrowserTabs.TabWidthMode = TabViewWidthMode.Equal;
+                Window.Current.SetTitleBar(TitleBarGrid);
                 compacttitlebar_rightpadding.Visibility = Visibility.Collapsed;
             }
         }
@@ -445,15 +447,6 @@ namespace Yttrium_browser
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             addtabtip.IsOpen = false;
-        }
-
-        private async void HistryButton_Click(object sender, RoutedEventArgs e)
-        {
-            var tab = new BrowserTabViewItem();
-            CurrentTabs.Add(tab);
-            BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
-            await tab.Tab.GoTo("radon://history");
-            await tab.Tab.ExecuteScriptAsyc("document.getElementById('recentlyClosed').style = 'display:none'");
         }
     }
 }
