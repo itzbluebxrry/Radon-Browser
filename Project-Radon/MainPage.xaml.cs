@@ -446,5 +446,14 @@ namespace Yttrium_browser
         {
             addtabtip.IsOpen = false;
         }
+
+        private async void HistryButton_Click(object sender, RoutedEventArgs e)
+        {
+            var tab = new BrowserTabViewItem();
+            CurrentTabs.Add(tab);
+            BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
+            await tab.Tab.GoTo("radon://history");
+            await tab.Tab.ExecuteScriptAsyc("document.getElementById('recentlyClosed').style = 'display:none'");
+        }
     }
 }

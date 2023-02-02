@@ -208,8 +208,8 @@
                                     </StackPanel>
                                 </Button>
 
-                                <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
-                                        HorizontalContentAlignment="Left" IsEnabled="False">
+                                <Button x:Name="HistryButton" Click="HistryButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                        HorizontalContentAlignment="Left">
                                     <StackPanel Orientation="Horizontal">
                                         <FontIcon Glyph="&#xE81C;" FontSize="15"/>
                                         <TextBlock Margin="10,0,0,0" Text="History"/>

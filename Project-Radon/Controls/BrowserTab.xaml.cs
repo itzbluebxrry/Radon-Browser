@@ -1,9 +1,13 @@
-﻿using Microsoft.Web.WebView2.Core;
+﻿using Fluent.Icons;
+using Microsoft.Web.WebView2.Core;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -49,12 +53,28 @@ namespace Project_Radon.Controls
                 GoogleSignInUserAgent = OriginalUserAgent.Substring(0, OriginalUserAgent.IndexOf("Edg/"))
                 .Replace("Mozilla/5.0", "Mozilla/4.0");
                 WebBrowser.CoreWebView2.Settings.UserAgent = GoogleSignInUserAgent;
-                WebBrowser.CoreWebView2.NewWindowRequested += delegate (CoreWebView2 s, CoreWebView2NewWindowRequestedEventArgs e)
-                {
-                    e.Handled = true;
-                    NewTabRequested.Invoke(s, e.Uri);
-                };
                 WebBrowser.CoreWebView2.DocumentTitleChanged += (_, e) => InvokePropertyChanged();
+                WebBrowser.CoreWebView2.SourceChanged+= (_, e) => InvokePropertyChanged();
+                WebBrowser.CoreWebView2.ContextMenuRequested += async (s, e) =>
+                {
+                    IList<CoreWebView2ContextMenuItem> menuList = e.MenuItems;
+                    if (e.ContextMenuTarget.HasLinkUri)
+                    {
+                        CoreWebView2ContextMenuItem newItem = WebBrowser.CoreWebView2.Environment.CreateContextMenuItem("Open link in new tab", null, CoreWebView2ContextMenuItemKind.Command);
+                        newItem.CustomItemSelected += (CoreWebView2ContextMenuItem sender, object args) =>
+                        {
+                            NewTabRequested.Invoke(s, e.ContextMenuTarget.LinkUri);
+                        };
+                        for (int index = 0; index < menuList.Count; index++)
+                        {
+                            if (menuList[index].Name == "openLinkInNewWindow")
+                            {
+                                menuList.RemoveAt(index);
+                                break;
+                            }
+                        }
+                    }
+                };
             };
 
         }
@@ -74,8 +94,16 @@ namespace Project_Radon.Controls
         }
         public async Task GoTo(string url)
         {
+            Regex UrlMatch = new Regex("^(http(s)?:\\/\\/.)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$", RegexOptions.Singleline);
             await WebBrowser.EnsureCoreWebView2Async();
-            WebBrowser.Source = new Uri(url);
+            if (url.ToLower().StartsWith("radon://"))
+            {
+                WebBrowser.Source = new Uri("edge://" + url.Remove(0, 7));
+            }
+            else if (UrlMatch.IsMatch(url) || url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("edge://"))
+            {
+                WebBrowser.Source = new Uri(!Uri.TryCreate(url, UriKind.Absolute, out var r) || !r.IsAbsoluteUri ? "https://" + url : url);
+            }
         }
         public async Task SearchOrGoto(string SearchBarText)
         {
@@ -128,6 +156,10 @@ namespace Project_Radon.Controls
         {
             WebBrowser.CoreWebView2.Stop();
         }
-
+        public async Task ExecuteScriptAsyc(string script)
+        {
+            await WebBrowser.EnsureCoreWebView2Async();
+            await WebBrowser.CoreWebView2.ExecuteScriptAsync(script);
+        }
     }
 }
