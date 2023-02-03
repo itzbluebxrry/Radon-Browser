@@ -10,13 +10,13 @@
   <Identity
     Name="Project.Radon"
     Publisher="CN=ItzBluebxrry - Pdawg - NoobNotFound"
-    Version="1.4.8.0" />
+    Version="1.4.9.0" />
 
   <mp:PhoneIdentity PhoneProductId="62b3ecf5-f123-4873-9bfb-b6d325b51f33" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Radon WebExplorer Dev</DisplayName>
-    <PublisherDisplayName>ItzBluebxrry</PublisherDisplayName>
+    <DisplayName>Radon Browser Dev</DisplayName>
+    <PublisherDisplayName>ItzBluebxrry - Pdawg - NoobNotFound</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -33,18 +33,18 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="Project_Radon.App">
       <uap:VisualElements
-        DisplayName="Radon WebExplorer Dev"
+        DisplayName="Radon Browser Dev"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="An experimental UWP web browser powered by WebView2 with integrated Windows 11 design system" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png" ShortName="Radon Web Dev">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png" ShortName="Radon Dev">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo"/>
             <uap:ShowOn Tile="wide310x150Logo"/>
             <uap:ShowOn Tile="square310x310Logo"/>
           </uap:ShowNameOnTiles>
         </uap:DefaultTile >
-        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#090909"/>
+        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#121212"/>
         <uap:LockScreen BadgeLogo="Assets\BadgeLogo.png" Notification="badge"/>
       </uap:VisualElements>
       <Extensions>
