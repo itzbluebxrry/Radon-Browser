@@ -30,7 +30,7 @@
     </Page.Resources>
     <Grid x:Name="BasicGrid">
         <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///wallpapers/13.png" Opacity="0.2"/>
+            <ImageBrush x:Name="appthemebackground" ImageSource="ms-appx:///wallpapers/13.png" Opacity="0.2"/>
         </Grid.Background>
         <Grid>
     <Grid x:Name="BaseGrid" SizeChanged="BaseGrid_SizeChanged">
@@ -172,7 +172,7 @@
                      VerticalContentAlignment="Center" 
                      GotFocus="SearchBar_GotFocus"
                      TextAlignment="Center" FontWeight="SemiBold" CornerRadius="15" />
-            <winui:ProgressBar x:Name="loadingbar" Grid.Column="1" VerticalAlignment="Bottom" Margin="51,0,52,6" IsIndeterminate="True"/>
+            <winui:ProgressBar x:Name="loadingbar" Grid.Column="1" VerticalAlignment="Bottom" Margin="51,0,52,4" IsIndeterminate="True"/>
             <BitmapIcon x:Name="faviconicon" Width="18" Height="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Margin="50,0,0,0"/>
 
             <!-- settings flyout -->
@@ -184,7 +184,7 @@
                     Margin="10,0,-10,0"
                     Grid.Row="0" Width="52"
                     >
-                        <winui:PersonPicture ProfilePicture="ms-appx:///accountpictures/clippy.png" Width="28"/>
+                        <winui:PersonPicture ProfilePicture="ms-appx:///accountpictures/clippy.png" Width="28" BorderBrush="{ThemeResource SystemAccentColor}" BorderThickness="1"/>
                         <Button.Flyout>
                     <Flyout ShouldConstrainToRootBounds="False">
                         <StackPanel Width="180">
@@ -208,7 +208,7 @@
                                     </StackPanel>
                                 </Button>
 
-                                <Button x:Name="HistryButton" Click="HistryButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                <Button x:Name="HistoryButton" Click="HistoryButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
                                         HorizontalContentAlignment="Left">
                                     <StackPanel Orientation="Horizontal">
                                         <FontIcon Glyph="&#xE81C;" FontSize="15"/>
@@ -309,6 +309,11 @@
                                                 <MenuFlyoutItem Text="Inline mode (experimental)" Width="250" x:Name="tabaction_inline" Click="tabaction_inline_Click">
                                                     <MenuFlyoutItem.Icon>
                                                         <FontIcon Glyph="&#xf26b;"/>
+                                                    </MenuFlyoutItem.Icon>
+                                                </MenuFlyoutItem>
+                                                <MenuFlyoutItem Text="System titlebar" Width="250" x:Name="tabaction_titlebar" Click="tabaction_titlebar_Click">
+                                                    <MenuFlyoutItem.Icon>
+                                                        <FontIcon Glyph="&#xe967;"/>
                                                     </MenuFlyoutItem.Icon>
                                                 </MenuFlyoutItem>
                                                 <MenuFlyoutItem Text="Snip tab (in development)" Width="250" IsEnabled="False">

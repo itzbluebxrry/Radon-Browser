@@ -14,7 +14,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Yttrium;
+using Windows.ApplicationModel.Core;
 using SymbolIconSource = Microsoft.UI.Xaml.Controls.SymbolIconSource;
+using Windows.UI.Core;
+using Windows.UI;
+using Microsoft.Web.WebView2.Core;
 
 namespace Yttrium_browser
 {
@@ -30,9 +34,33 @@ namespace Yttrium_browser
             CurrentTabs.Add(new BrowserTabViewItem());
             CurrentTabs[0].Tab.PropertyChanged += SelectedTabPropertyChanged;
 
+            Window.Current.CoreWindow.Activated += CoreWindow_Activated;
 
+            // TitleBar customizations
+
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            
+            // Set active window colors
+            titleBar.ButtonBackgroundColor = null;
+            titleBar.BackgroundColor = null;
+
+            // Set inactive window colors
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            titleBar.InactiveBackgroundColor = null;
         }
 
+        private void CoreWindow_Activated(CoreWindow sender, WindowActivatedEventArgs args)
+        {
+            if (args.WindowActivationState == CoreWindowActivationState.Deactivated)
+            {
+                appthemebackground.Opacity = 0.2;
+            }
+
+            else
+            {
+                appthemebackground.Opacity = 0.3;
+            }
+        }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             CurrentTabs[BrowserTabs.SelectedIndex].Tab.BackButtonSender();
@@ -447,6 +475,30 @@ namespace Yttrium_browser
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             addtabtip.IsOpen = false;
+        }
+
+        private void HistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ZoomSlider_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
+        {
+
+        }
+
+        private void tabaction_titlebar_Click(object sender, RoutedEventArgs e)
+        {
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            if (coreTitleBar.ExtendViewIntoTitleBar == true)
+            {
+                coreTitleBar.ExtendViewIntoTitleBar = false;
+            }
+
+            else
+            {
+                coreTitleBar.ExtendViewIntoTitleBar = true;
+            }
         }
     }
 }
