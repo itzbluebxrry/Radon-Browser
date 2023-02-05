@@ -8,7 +8,9 @@ This project's purpose is to aim for a minimal and fast browsing experience at n
 
 Like any ordinary browser, Project Radon can browse anything your regular browser can. We value productivity strongly, so we uncluttered the controls, so you always get to your top priority.
 
-## Screenshots
+## Sponsor this project
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D8I7WNI)
 
 
 
