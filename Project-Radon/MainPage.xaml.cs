@@ -19,6 +19,7 @@ using SymbolIconSource = Microsoft.UI.Xaml.Controls.SymbolIconSource;
 using Windows.UI.Core;
 using Windows.UI;
 using Microsoft.Web.WebView2.Core;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Yttrium_browser
 {
@@ -58,7 +59,7 @@ namespace Yttrium_browser
 
             else
             {
-                appthemebackground.Opacity = 0.3;
+                appthemebackground.Opacity = 0.4;
             }
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -499,6 +500,23 @@ namespace Yttrium_browser
             {
                 coreTitleBar.ExtendViewIntoTitleBar = true;
             }
+        }
+
+        private void ChangeThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ThemePopup.IsOpen = true;
+        }
+
+        private void ThemePickerComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // TODO: Fix the background changing mechanism
+            //appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///accountpictures/", (pfpchanged.SelectedItem as ComboBoxItem).Content.ToString(), ".png" })));
+
+        }
+
+        private void ThemePopupDoneButton_Click(object sender, RoutedEventArgs e)
+        {
+            ThemePopup.IsOpen = false;
         }
     }
 }

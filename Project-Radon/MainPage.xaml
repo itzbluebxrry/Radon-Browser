@@ -30,7 +30,7 @@
     </Page.Resources>
     <Grid x:Name="BasicGrid">
         <Grid.Background>
-            <ImageBrush x:Name="appthemebackground" ImageSource="ms-appx:///wallpapers/13.png" Opacity="0.2"/>
+            <ImageBrush x:Name="appthemebackground" ImageSource="ms-appx:///wallpapers/10.png" Opacity="0.2"/>
         </Grid.Background>
         <Grid>
     <Grid x:Name="BaseGrid" SizeChanged="BaseGrid_SizeChanged">
@@ -252,7 +252,19 @@
                                         <TextBlock Margin="10,0,0,0" Text="Settings (beta)"/>
                                     </StackPanel>
                                 </Button>
-                                <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                <Button x:Name="ChangeThemeButton" Click="ChangeThemeButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Left">
+                                            <Button.Flyout>
+                                                <Flyout>
+                                                    <TextBlock Text="Hello"/>
+                                                </Flyout>
+                                            </Button.Flyout>
+                                    <StackPanel Orientation="Horizontal">
+                                        <FontIcon Glyph="&#xe771;" FontSize="15"/>
+                                        <TextBlock Margin="10,0,0,0" Text="Change theme (beta)"/>
+                                    </StackPanel>
+                                </Button>
+                                        <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
                                         x:Name="aboutbutton" Click="AboutMenuItem_Click" HorizontalContentAlignment="Left">
                                     <StackPanel Orientation="Horizontal">
                                         <FontIcon Glyph="&#xE946;" FontSize="15"/>
@@ -264,10 +276,10 @@
                     </Flyout>
                 </Button.Flyout>
 
-
+                
 
             </Button>
-
+                    
             <winui:TabView
                 TabItemsSource="{x:Bind CurrentTabs}"
                 Grid.Row="1"
@@ -435,5 +447,24 @@
         </Grid>
             </Grid>
         </Grid>
+        <Popup x:Name="ThemePopup" IsOpen="False" HorizontalAlignment="Center">
+            <StackPanel Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Padding="10" HorizontalAlignment="Center" CornerRadius="8">
+                <TextBlock HorizontalAlignment="Center" Text="Pick a theme:" Style="{ThemeResource SubtitleTextBlockStyle}" TextAlignment="Center"/>
+                <ComboBox x:Name="ThemePickerComboBox" Width="300" Margin="0,10,0,0" SelectionChanged="ThemePickerComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Unknown"/>
+                    <ComboBoxItem Content="Forest"/>
+                    <ComboBoxItem Content="Candy"/>
+                    <ComboBoxItem Content="Midnight"/>
+                    <ComboBoxItem Content="Azure"/>
+                    <ComboBoxItem Content="Maple"/>
+                    <ComboBoxItem Content="Unknown1"/>
+                    <ComboBoxItem Content="Rainbow"/>
+                    <ComboBoxItem Content="Unknown2"/>
+                    <ComboBoxItem Content="Sweet"/>
+                    <ComboBoxItem Content="Dreamy"/>
+                </ComboBox>
+                <Button Style="{ThemeResource AccentButtonStyle}" Margin="0,20,0,0" Content="Done" HorizontalAlignment="Stretch" x:Name="ThemePopupDoneButton" Click="ThemePopupDoneButton_Click"/>
+            </StackPanel>
+        </Popup>
     </Grid>
 </Page>
