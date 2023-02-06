@@ -459,7 +459,7 @@
                     <ComboBoxItem Content="Maple"/>
                     <ComboBoxItem Content="Unknown1"/>
                     <ComboBoxItem Content="Rainbow"/>
-                    <ComboBoxItem Content="Unknown2"/>
+                    <ComboBoxItem Content="Deep Blue"/>
                     <ComboBoxItem Content="Sweet"/>
                     <ComboBoxItem Content="Dreamy"/>
                 </ComboBox>

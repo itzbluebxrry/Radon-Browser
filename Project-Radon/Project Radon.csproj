@@ -273,20 +273,20 @@
     <Content Include="Screenshots\demo2.png" />
     <Content Include="Screenshots\image.png" />
     <Content Include="Screenshots\spotlight.png" />
-    <Content Include="Wallpapers\1.png" />
-    <Content Include="Wallpapers\10.png" />
-    <Content Include="Wallpapers\11.png" />
     <Content Include="Wallpapers\12.png" />
     <Content Include="Wallpapers\13.png" />
     <Content Include="Wallpapers\14.png" />
-    <Content Include="Wallpapers\2.png" />
-    <Content Include="Wallpapers\3.png" />
-    <Content Include="Wallpapers\4.png" />
-    <Content Include="Wallpapers\5.png" />
-    <Content Include="Wallpapers\6.png" />
-    <Content Include="Wallpapers\7.png" />
-    <Content Include="Wallpapers\8.png" />
-    <Content Include="Wallpapers\9.png" />
+    <Content Include="Wallpapers\Azure.png" />
+    <Content Include="Wallpapers\Candy.png" />
+    <Content Include="Wallpapers\Deep Blue.png" />
+    <Content Include="Wallpapers\Dreamy.png" />
+    <Content Include="Wallpapers\Forest.png" />
+    <Content Include="Wallpapers\Maple.png" />
+    <Content Include="Wallpapers\Midnight.png" />
+    <Content Include="Wallpapers\Rainbow.png" />
+    <Content Include="Wallpapers\Sweet.png" />
+    <Content Include="Wallpapers\Unknown.png" />
+    <Content Include="Wallpapers\Unknown1.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

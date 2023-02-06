@@ -47,7 +47,16 @@ namespace Yttrium_browser
 
             // Set inactive window colors
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-            titleBar.InactiveBackgroundColor = null;
+
+            Windows.Storage.ApplicationDataContainer localSettings =
+    Windows.Storage.ApplicationData.Current.LocalSettings;
+            Windows.Storage.StorageFolder localFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            string colorthemevalue = (string)localSettings.Values["appcolortheme"];
+            appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/", colorthemevalue, ".png" })));
+
+
         }
 
         private void CoreWindow_Activated(CoreWindow sender, WindowActivatedEventArgs args)
@@ -504,13 +513,21 @@ namespace Yttrium_browser
 
         private void ChangeThemeButton_Click(object sender, RoutedEventArgs e)
         {
+            MenuButton.Flyout.Hide();
             ThemePopup.IsOpen = true;
+            
         }
 
         private void ThemePickerComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // TODO: Fix the background changing mechanism
-            //appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///accountpictures/", (pfpchanged.SelectedItem as ComboBoxItem).Content.ToString(), ".png" })));
+
+            Windows.Storage.ApplicationDataContainer localSettings =
+    Windows.Storage.ApplicationData.Current.LocalSettings;
+            Windows.Storage.StorageFolder localFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/", (ThemePickerComboBox.SelectedItem as ComboBoxItem).Content.ToString(), ".png" })));
+            localSettings.Values["appcolortheme"] = (string)(ThemePickerComboBox.SelectedItem as string);
 
         }
 
