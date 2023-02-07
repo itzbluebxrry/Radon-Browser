@@ -66,54 +66,38 @@
                 <Button x:Name="BackButton"
                         Background="Transparent"
                         BorderThickness="0"
-                        Margin="0,0,10,0"
+                        Margin="0,0,5,0" CornerRadius="15" VerticalAlignment="Center" HorizontalAlignment="Center"
                         Click="BackButton_Click"
                         Padding="6" ToolTipService.ToolTip="Back">
+
                     <FontIcon Glyph="&#xe760;" FontSize="20" FontFamily="Segoe Fluent Icons"/>
                 </Button>
                 <Button x:Name="ForwardButton"
                         Background="Transparent"
                         BorderThickness="0"
-                        Margin="0,0,10,0"
+                        Margin="0,0,5,0" CornerRadius="15"
                         Click="ForwardButton_Click"
                         Padding="6" ToolTipService.ToolTip="Forward">
                     <FontIcon Glyph="&#xe761;"
                               FontSize="20" FontFamily="segoe fluent icons" />
                 </Button>
-                <Button x:Name="RefreshButton"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Margin="0,0,10,0"
-                        Click="RefreshButton_Click"
-                        Padding="7.2" ToolTipService.ToolTip="Reload">
-                    <FontIcon Glyph="&#xedab;"
-                              FontSize="18" FontFamily="segoe fluent icons"/>
-                </Button>
-                <Button x:Name="StopRefreshButton"
-                        Background="Transparent"
-                        BorderThickness="0" 
-                        Margin="0,0,10,0"
-                        Visibility="Collapsed"
-                        Click="StopRefreshButton_Click"
-                        Padding="7.2" ToolTipService.ToolTip="Stop navigation">
-                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xea39;"
-                              FontSize="18" />
-                </Button>
+                
+                
                 <Button x:Name="HomeButton"
                         Background="Transparent"
                         BorderThickness="0"
-                        Click="HomeButton_Click"
+                        Click="HomeButton_Click" Margin="0,0,5,0" CornerRadius="15"
                         Padding="8.5" ToolTipService.ToolTip="Start page">
                             <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xe80f;"
-                              FontSize="18" />
+                              FontSize="16" />
                 </Button>
                 <Button x:Name="NavOverflowButton"
                         Background="Transparent"
                         BorderThickness="0"
-                        Click="HomeButton_Click"
+                        Click="HomeButton_Click" CornerRadius="15"
                         Padding="8.5" ToolTipService.ToolTip="Navigation options">
                     <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xe70d;"
-                              FontSize="18" />
+                              FontSize="16" />
                     <Button.Flyout>
                         <MenuFlyout>
                             <MenuFlyoutItem Width="150" Text="Forward" Icon="Forward" Click="ForwardButton_Click"/>
@@ -158,31 +142,52 @@
             </Button>
 
             <!-- search bar -->
-            <TextBox x:Name="SearchBar"
+                    <TextBox x:Name="SearchBar"
                      KeyDown="SearchBar_KeyDown"
                      VerticalAlignment="Center"
                      Margin="43,0,45,0"
                      BorderThickness="0"
-                     Padding="36,6,6,0"
-                     
+                     Padding="36,6,36,2"
+                     FontSize="14" Height="21" 
                      IsSpellCheckEnabled="False"
                      Grid.Column="1"
                      PlaceholderText="Search the web or enter a URL"
-                     Height="25"
+                     
                      VerticalContentAlignment="Center" 
                      GotFocus="SearchBar_GotFocus"
-                     TextAlignment="Center" FontWeight="SemiBold" CornerRadius="15" />
-            <winui:ProgressBar x:Name="loadingbar" Grid.Column="1" VerticalAlignment="Bottom" Margin="51,0,52,4" IsIndeterminate="True"/>
+                     TextAlignment="Center" FontWeight="SemiBold" CornerRadius="15">
+                    </TextBox>
+
+                    <Button x:Name="RefreshButton"
+                        Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Grid.Column="1" HorizontalAlignment="Right"
+                        BorderThickness="0" PointerEntered="RefreshButton_PointerEntered"
+                        Margin="0,0,48,0"
+                        Click="RefreshButton_Click"
+                        CornerRadius="40" Padding="6" ToolTipService.ToolTip="Reload">
+                        <FontIcon Glyph="&#xedab;"
+                              FontSize="17" FontFamily="segoe fluent icons"/>
+                    </Button>
+                    <Button x:Name="StopRefreshButton"
+                        Background="Transparent" Grid.Column="1"
+                        BorderThickness="0" HorizontalAlignment="Right"
+                        Margin="0,0,48,0"
+                        Visibility="Collapsed"
+                        Click="StopRefreshButton_Click"
+                        Padding="6" CornerRadius="40" ToolTipService.ToolTip="Stop navigation">
+                        <winui:ProgressRing Width="17" Height="17"/>
+                    </Button>
+
+                    
             <BitmapIcon x:Name="faviconicon" Width="18" Height="18" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Margin="50,0,0,0"/>
 
             <!-- settings flyout -->
             <Button x:Name="MenuButton" BorderBrush="Transparent"
                     Grid.Column="1" HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Background="Transparent"
+                    Background="Transparent" CornerRadius="12"
                     BorderThickness="0"
-                    Margin="10,0,-10,0"
-                    Grid.Row="0" Width="52"
+                    Margin="0,0,-10,0"
+                    Grid.Row="0" Width="56"
                     >
                         <winui:PersonPicture ProfilePicture="ms-appx:///accountpictures/clippy.png" Width="28" BorderBrush="{ThemeResource SystemAccentColor}" BorderThickness="1"/>
                         <Button.Flyout>
@@ -444,7 +449,8 @@
                         </winui:TabView.TabStripFooter>
 
             </winui:TabView>
-        </Grid>
+                    <winui:ProgressBar x:Name="loadingbar" Grid.ColumnSpan="4" VerticalAlignment="Top" Grid.Row="1" Margin="10,51" Visibility="Visible" IsIndeterminate="True"/>
+                </Grid>
             </Grid>
         </Grid>
         <Popup x:Name="ThemePopup" IsOpen="False" HorizontalAlignment="Center">

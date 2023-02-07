@@ -20,6 +20,8 @@ using Windows.UI.Core;
 using Windows.UI;
 using Microsoft.Web.WebView2.Core;
 using Windows.UI.Xaml.Media.Imaging;
+using System.Numerics;
+
 
 namespace Yttrium_browser
 {
@@ -534,6 +536,11 @@ namespace Yttrium_browser
         private void ThemePopupDoneButton_Click(object sender, RoutedEventArgs e)
         {
             ThemePopup.IsOpen = false;
+        }
+
+        private void RefreshButton_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            
         }
     }
 }
