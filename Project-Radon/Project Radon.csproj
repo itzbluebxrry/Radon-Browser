@@ -112,6 +112,9 @@
       <DependentUpon>BrowserTabViewItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\BrowserBackend.cs" />
+    <Compile Include="Helpers\ConfirmExitDialog.xaml.cs">
+      <DependentUpon>ConfirmExitDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
@@ -298,6 +301,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\BrowserTabViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Helpers\ConfirmExitDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

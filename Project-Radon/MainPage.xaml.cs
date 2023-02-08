@@ -21,7 +21,7 @@ using Windows.UI;
 using Microsoft.Web.WebView2.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Numerics;
-
+using Windows.UI.Core.Preview;
 
 namespace Yttrium_browser
 {
@@ -58,7 +58,14 @@ namespace Yttrium_browser
             string colorthemevalue = (string)localSettings.Values["appcolortheme"];
             appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/", colorthemevalue, ".png" })));
 
+            SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += this.OnCloseRequest;
 
+
+        }
+
+        private async void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
+        {
+            await new ConfirmExitDialog().ShowAsync();
         }
 
         private void CoreWindow_Activated(CoreWindow sender, WindowActivatedEventArgs args)
@@ -86,6 +93,7 @@ namespace Yttrium_browser
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             CurrentTabs[BrowserTabs.SelectedIndex].Tab.Reload();
+
         }
 
         //TODO: On window size changed, if navbuttonbar.Width is less than 140, hide the standard nav buttons and show the overflow buttons.
@@ -127,7 +135,7 @@ namespace Yttrium_browser
                 StopRefreshButton.Visibility = Visibility.Collapsed;
                 if (!loadingbar.ShowError == true)
                 {
-                    loadingbar.IsIndeterminate = false;
+                    loadingbar.IsIndeterminate = true;
                     compactloadingbar.IsIndeterminate = false;
                 }
             }
@@ -229,7 +237,7 @@ namespace Yttrium_browser
                 StopRefreshButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].Tab.IsLoading ? Visibility.Visible : Visibility.Collapsed;
                 RefreshButton.Visibility = !CurrentTabs[BrowserTabs.SelectedIndex].Tab.IsLoading ? Visibility.Visible : Visibility.Collapsed;
                 BackButton.IsEnabled = CurrentTabs[BrowserTabs.SelectedIndex].Tab.CanGoBack ? IsEnabled : false;
-                ForwardButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].Tab.CanGoFoward ? Visibility.Visible : Visibility.Collapsed;
+                ForwardButton.IsEnabled = CurrentTabs[BrowserTabs.SelectedIndex].Tab.CanGoFoward ? IsEnabled : false;
             }
         }
         private void NewTabRequested(object s, string e)
@@ -238,6 +246,8 @@ namespace Yttrium_browser
             CurrentTabs.Add(b);
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
             _ = b.Tab.GoTo(e);
+
+
         }
         private void BrowserTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -271,11 +281,11 @@ namespace Yttrium_browser
 
         private void Tabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MenuButton.Flyout.Hide();
+            //MenuButton.Flyout.Hide();
         }
         private void TabView_Loaded(object sender, RoutedEventArgs e)
         {
-            MenuButton.Flyout.Hide();
+            //MenuButton.Flyout.Hide();
         }
         private void BrowserTabs_TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
         {
@@ -360,17 +370,17 @@ namespace Yttrium_browser
         //opens about app dialog
         private async void AboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MenuButton.Flyout.Hide();
+            //MenuButton.Flyout.Hide();
             ContentDialog aboutdialog = new AboutDialog();
             var result = await aboutdialog.ShowAsync();
         }
         private void printbutton_Click(object sender, RoutedEventArgs e)
         {
-            MenuButton.Flyout.Hide();
+            //MenuButton.Flyout.Hide();
         }
         private async void downloadbutton_Click(object sender, RoutedEventArgs e)
         {
-            MenuButton.Flyout.Hide();
+            //MenuButton.Flyout.Hide();
 
             if (BrowserTabs.SelectedIndex >= 0)
                 _ = CurrentTabs[BrowserTabs.SelectedIndex].Tab.OpenDownloadsDialog();
@@ -379,13 +389,13 @@ namespace Yttrium_browser
 
         private async void editprofile_Click(object sender, RoutedEventArgs e)
         {
-            MenuButton.Flyout.Hide();
+            //MenuButton.Flyout.Hide();
             await new UserProfileDialog().ShowAsync();
         }
 
         private void fullscreenbutton_Click(object sender, RoutedEventArgs e)
         {
-            MenuButton.Flyout.Hide();
+            //MenuButton.Flyout.Hide();
             var view = ApplicationView.GetForCurrentView();
             if (view.IsFullScreenMode)
             {
@@ -515,7 +525,7 @@ namespace Yttrium_browser
 
         private void ChangeThemeButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuButton.Flyout.Hide();
+            //MenuButton.Flyout.Hide();
             ThemePopup.IsOpen = true;
             
         }
