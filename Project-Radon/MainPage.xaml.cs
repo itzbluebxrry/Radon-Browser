@@ -60,6 +60,8 @@ namespace Yttrium_browser
 
             SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += this.OnCloseRequest;
 
+            
+
 
         }
 

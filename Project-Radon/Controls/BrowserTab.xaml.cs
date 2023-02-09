@@ -45,6 +45,9 @@ namespace Project_Radon.Controls
         public BrowserTab()
         {
             InitializeComponent();
+
+            
+            
             //Windows.System.Launcher.LaunchFolderAsync(ApplicationData.Current.LocalFolder);
             WebBrowser.CoreWebView2Initialized += delegate
             {

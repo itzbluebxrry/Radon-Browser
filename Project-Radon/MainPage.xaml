@@ -138,17 +138,17 @@
                         BorderThickness="0"
                         Margin="0,2,5,0" VerticalAlignment="Center" HorizontalAlignment="Center"
                         Click="BackButton_Click"
-                        Padding="6" ToolTipService.ToolTip="Back">
+                        Padding="3,6" ToolTipService.ToolTip="Back">
 
-                    <FontIcon Glyph="&#xe760;" FontSize="20" FontFamily="Segoe Fluent Icons"/>
+                            <FontIcon Glyph="&#xe973;" FontSize="20" FontFamily="Segoe Fluent Icons"/>
                 </Button>
                 <Button x:Name="ForwardButton"
                         Background="Transparent"
                         BorderThickness="0"
                         Margin="0,2,5,0"
                         Click="ForwardButton_Click"
-                        Padding="6" ToolTipService.ToolTip="Forward">
-                    <FontIcon Glyph="&#xe761;"
+                        Padding="3,6" ToolTipService.ToolTip="Forward">
+                            <FontIcon Glyph="&#xe974;"
                               FontSize="20" FontFamily="segoe fluent icons" />
                 </Button>
                 
@@ -233,9 +233,9 @@
                         BorderThickness="0" PointerEntered="RefreshButton_PointerEntered"
                         Margin="0,4,48,0"
                         Click="RefreshButton_Click"
-                        CornerRadius="40" Padding="6" ToolTipService.ToolTip="Reload">
-                        <FontIcon Glyph="&#xedab;"
-                              FontSize="15" FontFamily="segoe fluent icons"/>
+                        CornerRadius="40" Padding="6.5" ToolTipService.ToolTip="Reload">
+                        <FontIcon Glyph="&#xe72c;"
+                              FontSize="13" FontFamily="segoe fluent icons"/>
                     </Button>
                     <Button x:Name="StopRefreshButton"
                         Background="Transparent" Grid.Column="1"
@@ -445,7 +445,7 @@
                          VerticalContentAlignment="Center" 
                          GotFocus="SearchBar_GotFocus"
                          CornerRadius="8" />
-                                <winui:ProgressBar x:Name="compactloadingbar" Grid.Column="1" VerticalAlignment="Bottom" Margin="21,0,23,5" IsIndeterminate="True"/>
+                                <winui:ProgressBar x:Name="compactloadingbar" VerticalAlignment="Bottom" Margin="21,0,23,5" IsIndeterminate="True"/>
                             </Grid>
                         </Grid>
                         </winui:TabView.TabStripHeader>
@@ -462,7 +462,7 @@
 
 
             </winui:TabView>
-                    <winui:ProgressBar x:Name="loadingbar" Grid.ColumnSpan="4" VerticalAlignment="Top" Grid.Row="1" Margin="10,51" Visibility="Visible" IsIndeterminate="True"/>
+                    <winui:ProgressBar x:Name="loadingbar" Grid.ColumnSpan="4" VerticalAlignment="Top" Grid.Row="0" Visibility="Visible" IsIndeterminate="True"/>
                 </Grid>
             </Grid>
         </Grid>

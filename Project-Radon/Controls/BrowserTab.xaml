@@ -8,12 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid CornerRadius="8" Margin="5">
+    <Grid CornerRadius="8" Margin="8,0,8,8" BorderBrush="{ThemeResource SystemBaseLowColor}" Opacity="1" BorderThickness="1">
         <winui:WebView2 
             NavigationCompleted="WebBrowser_NavigationCompleted" 
             NavigationStarting="WebBrowser_NavigationStarting"
             x:Name="WebBrowser" 
             Source="https://google.com"
-            BorderBrush="DimGray" Opacity="0.5" BorderThickness="1"/>
+            />
     </Grid>
 </Page>
