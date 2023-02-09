@@ -72,8 +72,7 @@
                               FontSize="16" />
                             <winui:DropDownButton.Flyout>
                                 <MenuFlyout ShouldConstrainToRootBounds="True">
-                                    <MenuFlyoutItem Text="Some items are not available in Alpha." IsEnabled="False"/>
-                                    <MenuFlyoutSeparator/>
+                                   
                                     <MenuFlyoutItem Text="New tab" Width="250" x:Name="tabaction_newtab" Click="addtab_button_Click">
                                         <MenuFlyoutItem.Icon>
                                             <FontIcon Glyph="&#xe737;"/>
@@ -109,7 +108,7 @@
                                             <FontIcon Glyph="&#xed14;"/>
                                         </MenuFlyoutItem.Icon>
                                     </MenuFlyoutItem>
-                                    <MenuFlyoutItem Text="Developer Tools (in development)" Width="250" x:Name="tabactions_devtools" Click="tabactions_devtools_Click">
+                                    <MenuFlyoutItem Text="Developer Tools" Width="250" x:Name="tabactions_devtools" Click="tabactions_devtools_Click">
                                         <MenuFlyoutItem.Icon>
                                             <FontIcon Glyph="&#xec7a;"/>
                                         </MenuFlyoutItem.Icon>
@@ -133,6 +132,7 @@
                                 </MenuFlyout>
                             </winui:DropDownButton.Flyout>
                         </winui:DropDownButton>
+                        <Grid Width="8"/>
                         <Button x:Name="BackButton"
                         Background="Transparent"
                         BorderThickness="0"
@@ -191,7 +191,7 @@
                     Grid.Row="0" Background="Transparent"
                     ToolTipService.ToolTip="View connection information">
                 <FontIcon  x:Name="SSLIcon"
-                           Glyph="&#xe705;"
+                           Glyph="&#xea18;"
                            FontSize="15" />
                 <Button.Flyout>
                     <Flyout x:Name="SSLFlyout" ShouldConstrainToRootBounds="False">
@@ -212,26 +212,26 @@
             </Button>
 
             <!-- search bar -->
-                    <TextBox x:Name="SearchBar"
-                     KeyDown="SearchBar_KeyDown"
-                     VerticalAlignment="Center"
-                     Margin="43,3,45,0"
-                     BorderThickness="0"
-                     Padding="36,6,36,2"
-                     FontSize="13" Height="21" 
-                     IsSpellCheckEnabled="False"
-                     Grid.Column="1"
-                     PlaceholderText="Search the web or enter a URL"
-                     
-                     VerticalContentAlignment="Center" 
-                     GotFocus="SearchBar_GotFocus"
-                     TextAlignment="Center" FontWeight="Medium" CornerRadius="8">
-                    </TextBox>
+                <TextBox x:Name="SearchBar"
+                    KeyDown="SearchBar_KeyDown"
+                    VerticalAlignment="Center"
+                    Margin="43,3,45,0"
+                    BorderThickness="0"
+                    Padding="30,6,30,2"
+                    FontSize="13" Height="21" 
+                    IsSpellCheckEnabled="False"
+                    Grid.Column="1"
+                    PlaceholderText="Search the web or enter a URL"
+                    VerticalContentAlignment="Center" 
+                    GotFocus="SearchBar_GotFocus" PlaceholderForeground="{ThemeResource ContentDialogDimmingThemeBrush}"
+                    LostFocus="SearchBar_LostFocus" CharacterSpacing="1"
+                    TextAlignment="Center" FontWeight="Medium" CornerRadius="8">
+                </TextBox>
 
                     <Button x:Name="RefreshButton"
-                        Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Grid.Column="1" HorizontalAlignment="Right"
+                        Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Right"
                         BorderThickness="0" PointerEntered="RefreshButton_PointerEntered"
-                        Margin="0,0,48,0"
+                        Margin="0,4,48,0"
                         Click="RefreshButton_Click"
                         CornerRadius="40" Padding="6" ToolTipService.ToolTip="Reload">
                         <FontIcon Glyph="&#xedab;"
@@ -240,11 +240,12 @@
                     <Button x:Name="StopRefreshButton"
                         Background="Transparent" Grid.Column="1"
                         BorderThickness="0" HorizontalAlignment="Right"
-                        Margin="0,0,48,0"
+                        Margin="0,4,48,0"
                         Visibility="Collapsed"
                         Click="StopRefreshButton_Click"
                         Padding="6" CornerRadius="40" ToolTipService.ToolTip="Stop navigation">
-                        <winui:ProgressRing Width="17" Height="17"/>
+                        <FontIcon Glyph="&#xe711;" FontSize="15"
+                                  FontFamily="Segoe fluent icons"/>
                     </Button>
 
                     
@@ -371,6 +372,24 @@
                 >
                         <winui:TabView.TabStripHeader>
                         <Grid>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="8,0,0,0">
+                                    <!--TODO: The button should add a new tab -->
+                                    
+
+                                    <Grid x:Name="compacttitlebar_rightpadding" Width="40" Visibility="Collapsed"/>
+                                    <winui:TeachingTip IsOpen="False" x:Name="addtabtip" Target="{x:Bind addtab_button}" Title="Didn't see anything?"
+                                                   >
+                                        <winui:TeachingTip.IconSource>
+                                            <winui:SymbolIconSource Symbol="Repair"/>
+                                        </winui:TeachingTip.IconSource>
+                                        <StackPanel>
+
+                                            <TextBlock Text="There have been reports that tabs aren't displaying the page." TextWrapping="WrapWholeWords"/>
+                                            <TextBlock Text="To fix this, go to any other open tabs and go back to the tab you're currently on." Margin="0,10,0,0" TextWrapping="WrapWholeWords"/>
+                                            <Button HorizontalAlignment="Stretch" Content="Got it!" Margin="0,20,0,0" Click="Button_Click_1"/>
+                                        </StackPanel>
+                                    </winui:TeachingTip>
+                                </StackPanel>
                                 <Grid x:Name="tabaction">
                                     
                                 </Grid>
@@ -432,26 +451,15 @@
                         </winui:TabView.TabStripHeader>
                         <winui:TabView.TabStripFooter>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <!--TODO: The button should add a new tab -->
-                                <Button x:Name="addtab_button" Click="addtab_button_Click" Background="Transparent" HorizontalAlignment="Right" Margin="10,0">
-                                    <FontIcon Glyph="&#xe710;" FontSize="13"/>
-                                </Button>
-                                <Grid x:Name="compacttitlebar_rightpadding" Width="150" Visibility="Collapsed"/>
-                                <winui:TeachingTip IsOpen="False" x:Name="addtabtip" Target="{x:Bind addtab_button}" Title="Didn't see anything?"
-                                                   >
-                                    <winui:TeachingTip.IconSource>
-                                        <winui:SymbolIconSource Symbol="Repair"/>
-                                    </winui:TeachingTip.IconSource>
-                                    <StackPanel>
-                                        
-                                        <TextBlock Text="There have been reports that tabs aren't displaying the page." TextWrapping="WrapWholeWords"/>
-                                        <TextBlock Text="To fix this, go to any other open tabs and go back to the tab you're currently on." Margin="0,10,0,0" TextWrapping="WrapWholeWords"/>
-                                        <Button HorizontalAlignment="Stretch" Content="Got it!" Margin="0,20,0,0" Click="Button_Click_1"/>
-                                    </StackPanel>
-                                </winui:TeachingTip>
+                            <Button x:Name="addtab_button" BorderBrush="{x:Null}" Width="auto" Click="addtab_button_Click" Background="Transparent" HorizontalAlignment="Right">
+                                <FontIcon Glyph="&#xe710;" FontSize="16"/>
+                            </Button>
+                            <Button BorderBrush="{x:Null}" Width="40" Background="Transparent" HorizontalAlignment="Right">
+                                <FontIcon Glyph="&#xe7c4;" FontSize="16"/>
+                            </Button>
                             </StackPanel>
-                            
                         </winui:TabView.TabStripFooter>
+
 
             </winui:TabView>
                     <winui:ProgressBar x:Name="loadingbar" Grid.ColumnSpan="4" VerticalAlignment="Top" Grid.Row="1" Margin="10,51" Visibility="Visible" IsIndeterminate="True"/>

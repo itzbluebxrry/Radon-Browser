@@ -101,28 +101,11 @@ namespace Yttrium_browser
         //navigation completed
         private async void WebBrowser_NavigationCompleted(WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
         {
-            /*if (SearchBar.FocusState == FocusState.Unfocused)
+            if (SearchBar.FocusState == FocusState.Unfocused)
             {
-                SearchBar.Text = WebBrowser.Source.AbsoluteUri;
+                
             }
 
-            if (WebBrowser.CanGoForward)
-            {
-                ForwardButton.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                ForwardButton.Visibility = Visibility.Collapsed;
-            }
-
-            if (WebBrowser.CanGoBack)
-            {
-                BackButton.IsEnabled = true;
-            }
-            else
-            {
-                BackButton.IsEnabled = false;
-            }*/
 
             //website load status
             try
@@ -135,7 +118,7 @@ namespace Yttrium_browser
                 StopRefreshButton.Visibility = Visibility.Collapsed;
                 if (!loadingbar.ShowError == true)
                 {
-                    loadingbar.IsIndeterminate = true;
+                    loadingbar.IsIndeterminate = false;
                     compactloadingbar.IsIndeterminate = false;
                 }
             }
@@ -194,6 +177,12 @@ namespace Yttrium_browser
         private void SearchBar_GotFocus(object sender, RoutedEventArgs e)
         {
             SearchBar.SelectAll();
+            RefreshButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void SearchBar_LostFocus(object sender, RoutedEventArgs e)
+        {
+            RefreshButton.Visibility = Visibility.Visible;
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -378,7 +367,7 @@ namespace Yttrium_browser
         {
             //MenuButton.Flyout.Hide();
         }
-        private async void downloadbutton_Click(object sender, RoutedEventArgs e)
+        private void downloadbutton_Click(object sender, RoutedEventArgs e)
         {
             //MenuButton.Flyout.Hide();
 
@@ -552,5 +541,7 @@ namespace Yttrium_browser
         {
             
         }
+
+
     }
 }

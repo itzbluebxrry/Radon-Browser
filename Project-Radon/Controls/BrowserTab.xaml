@@ -13,6 +13,7 @@
             NavigationCompleted="WebBrowser_NavigationCompleted" 
             NavigationStarting="WebBrowser_NavigationStarting"
             x:Name="WebBrowser" 
-            Source="https://google.com"/>
+            Source="https://google.com"
+            BorderBrush="DimGray" Opacity="0.5" BorderThickness="1"/>
     </Grid>
 </Page>
