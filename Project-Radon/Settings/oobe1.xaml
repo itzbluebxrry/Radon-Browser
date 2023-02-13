@@ -5,24 +5,33 @@
     xmlns:local="using:Project_Radon.Settings"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
 
-    <Grid VerticalAlignment="Center">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="1">
-            <TextBlock Style="{ThemeResource HeaderTextBlockStyle}" Text="Meet Radon" TextAlignment="Center"/>
-            <Grid CornerRadius="12" Margin="100,20">
-                <Image Source="/Screenshots/spotlight.png" Stretch="UniformToFill"/>
-                
-            </Grid>
-            <TextBlock TextAlignment="Center" Style="{ThemeResource SubheaderTextBlockStyle}" Text="A streamlined web browsing experience, with your priority on top." Margin="100,10"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Image Source="ms-appx:///wallpapers/deep blue.png" Stretch="UniformToFill"/>
+        </Grid>
+        <StackPanel Grid.Row="1" Margin="0,8">
+            
+            <TextBlock Text="Welcome to Radon" Style="{ThemeResource SubheaderTextBlockStyle}" TextAlignment="Center"/>
+            
+            <TextBlock Text="We need to set a few things up before you start surfing the web." Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="18" TextAlignment="Center" Margin="0,8"/>
+           
         </StackPanel>
+        <Button Style="{ThemeResource AccentButtonStyle}" Grid.Row="1" VerticalAlignment="Bottom"
+                HorizontalAlignment="Center" Margin="0,20" Click="Button_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>
+                <FontIcon Glyph="&#xe974;" Margin="8,0,0,0" FontSize="18" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
 
     </Grid>
 </Page>

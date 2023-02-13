@@ -22,6 +22,8 @@ using Microsoft.Web.WebView2.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Numerics;
 using Windows.UI.Core.Preview;
+using Windows.Devices.Enumeration;
+using Windows.UI.Xaml.Navigation;
 
 namespace Yttrium_browser
 {
@@ -58,9 +60,8 @@ namespace Yttrium_browser
             string colorthemevalue = (string)localSettings.Values["appcolortheme"];
             appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/", colorthemevalue, ".png" })));
 
-            SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += this.OnCloseRequest;
-
             
+
 
 
         }
