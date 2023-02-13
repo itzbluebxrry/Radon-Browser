@@ -11,7 +11,10 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Windows.Storage;
+using Yttrium_browser;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +28,28 @@ namespace Project_Radon.Settings
         public oobe2()
         {
             this.InitializeComponent();
+
+            setlicensetext();
+
+        }
+
+        public async void setlicensetext()
+        {
+            Windows.Storage.StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            Windows.Storage.StorageFile file = await storageFolder.GetFileAsync(@"\Settings\License.txt");
+
+            string text = await Windows.Storage.FileIO.ReadTextAsync(file);
+            LicenseTextBox.Text = text;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(oobe1), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
     }
 }

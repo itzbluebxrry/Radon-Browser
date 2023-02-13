@@ -9,6 +9,50 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Image Source="ms-appx:///assets/oobe1img.jpg" Stretch="Fill"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="30,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel VerticalAlignment="Center" Margin="20,0">
+                <Image Source="ms-appx:///Assets/license.png" Width="120"/>
+                <TextBlock Text="License Agreements" Style="{ThemeResource SubheaderTextBlockStyle}" TextAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="Before you can use Radon, please agree to the following license agreements." TextWrapping="WrapWholeWords" Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="18" TextAlignment="Center" Margin="0,8"/>
+            </StackPanel>
+            <ScrollViewer Grid.Column="1" Margin="20,40,20,130">
+            <StackPanel CornerRadius="8">
 
+            
+
+            
+            <TextBox x:Name="LicenseTextBox" TextWrapping="Wrap" AcceptsReturn="True"  Margin="30,20,30,0" PlaceholderText="Retrieving license text..." IsReadOnly="True"/>
+            
+
+            </StackPanel>
+            </ScrollViewer>
+            
+            <Button Style="{ThemeResource AccentButtonStyle}" Grid.Column="1" VerticalAlignment="Bottom"
+                HorizontalAlignment="Right" Margin="50,40" Click="Button_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>
+                    <FontIcon Glyph="&#xe974;" Margin="8,0,0,0" FontSize="18" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="1" VerticalAlignment="Bottom"
+                HorizontalAlignment="Left" Margin="50,40" Click="Button_Click_1">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Glyph="&#xe973;" Margin="0,0,8,0" FontSize="18" VerticalAlignment="Center"/>
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" VerticalAlignment="Center">Go back</TextBlock>
+                </StackPanel>
+            </Button>
+            <CheckBox Content="I agree to the terms and conditions" VerticalAlignment="Bottom" Margin="50,90" Grid.Column="1"/>
+        </Grid>
     </Grid>
 </Page>

@@ -205,6 +205,8 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\license.png" />
+    <Content Include="Assets\oobe1img.jpg" />
     <Content Include="Assets\OpenInNewTab.png" />
     <Content Include="Assets\settings-about-icon.png" />
     <Content Include="Assets\settings-advanced-icon.png" />
@@ -256,6 +258,7 @@
     <Content Include="Assets\StoreLogo.scale-150.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\welcomegif.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
@@ -276,6 +279,7 @@
     <Content Include="Screenshots\demo2.png" />
     <Content Include="Screenshots\image.png" />
     <Content Include="Screenshots\spotlight.png" />
+    <Content Include="Settings\License.txt" />
     <Content Include="Wallpapers\12.png" />
     <Content Include="Wallpapers\13.png" />
     <Content Include="Wallpapers\14.png" />

@@ -12,13 +12,14 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Grid>
-            <Image Source="ms-appx:///wallpapers/deep blue.png" Stretch="UniformToFill"/>
+            <Image Source="ms-appx:///assets/oobe1img.jpg" Stretch="Fill"/>
         </Grid>
-        <StackPanel Grid.Row="1" Margin="0,8">
+        <StackPanel Grid.Row="1" Margin="0,48" >
+            <Image Source="ms-appx:///Assets/welcomegif.png" Width="120"/>
             
             <TextBlock Text="Welcome to Radon" Style="{ThemeResource SubheaderTextBlockStyle}" TextAlignment="Center"/>
             
@@ -26,8 +27,9 @@
            
         </StackPanel>
         <Button Style="{ThemeResource AccentButtonStyle}" Grid.Row="1" VerticalAlignment="Bottom"
-                HorizontalAlignment="Center" Margin="0,20" Click="Button_Click">
+                HorizontalAlignment="Center" Margin="0,40" Click="Button_Click">
             <StackPanel Orientation="Horizontal">
+                
                 <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>
                 <FontIcon Glyph="&#xe974;" Margin="8,0,0,0" FontSize="18" VerticalAlignment="Center"/>
             </StackPanel>
