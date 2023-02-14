@@ -142,6 +142,18 @@
     <Compile Include="Settings\oobe2.xaml.cs">
       <DependentUpon>oobe2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings\oobe3.xaml.cs">
+      <DependentUpon>oobe3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\oobe4.xaml.cs">
+      <DependentUpon>oobe4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\oobe5.xaml.cs">
+      <DependentUpon>oobe5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\oobe6.xaml.cs">
+      <DependentUpon>oobe6.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\RadonSettings.xaml.cs">
       <DependentUpon>RadonSettings.xaml</DependentUpon>
     </Compile>
@@ -208,6 +220,7 @@
     <Content Include="Assets\license.png" />
     <Content Include="Assets\oobe1img.jpg" />
     <Content Include="Assets\OpenInNewTab.png" />
+    <Content Include="Assets\personalize.png" />
     <Content Include="Assets\settings-about-icon.png" />
     <Content Include="Assets\settings-advanced-icon.png" />
     <Content Include="Assets\settings-general-icon.png" />
@@ -258,6 +271,9 @@
     <Content Include="Assets\StoreLogo.scale-150.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\uwpc.png" />
+    <Content Include="Assets\uwpcbanner.png" />
+    <Content Include="Assets\web-design.png" />
     <Content Include="Assets\welcomegif.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
@@ -341,6 +357,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Settings\oobe2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\oobe3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\oobe4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\oobe5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\oobe6.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
