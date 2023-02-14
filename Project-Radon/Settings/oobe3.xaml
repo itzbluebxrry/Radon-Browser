@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel VerticalAlignment="Center" Margin="20,0">
-                <Image Source="ms-appx:///Assets/web-design.png" Width="120"/>
+                <Image Source="ms-appx:///Assets/laptop_3d.png" Width="120"/>
                 <TextBlock Text="Customize your browsing experience" Style="{ThemeResource SubheaderTextBlockStyle}" TextAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Text="To maximize your productivity, we can help making Radon work for you. You just need to set a few things up and you're ready to go." TextWrapping="WrapWholeWords" Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="18" TextAlignment="Center" Margin="0,8"/>
             </StackPanel>

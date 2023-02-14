@@ -118,6 +118,9 @@
     <Compile Include="Helpers\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\loginpage.xaml.cs">
+      <DependentUpon>loginpage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\AboutDialog.xaml.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
     </Compile>
@@ -211,6 +214,8 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\clipboard_3d.png" />
+    <Content Include="Assets\laptop_3d.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -218,8 +223,11 @@
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
     <Content Include="Assets\license.png" />
+    <Content Include="Assets\locked_with_key_3d.png" />
     <Content Include="Assets\oobe1img.jpg" />
     <Content Include="Assets\OpenInNewTab.png" />
+    <Content Include="Assets\paintbrush_3d.png" />
+    <Content Include="Assets\paintbrush_color.svg" />
     <Content Include="Assets\personalize.png" />
     <Content Include="Assets\settings-about-icon.png" />
     <Content Include="Assets\settings-advanced-icon.png" />
@@ -329,6 +337,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Helpers\ErrorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Helpers\loginpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

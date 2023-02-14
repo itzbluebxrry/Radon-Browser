@@ -44,7 +44,7 @@ namespace Project_Radon.Settings
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(oobe3));
+            this.Frame.Navigate(typeof(oobe3),null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -1,11 +1,11 @@
-﻿using Project_Radon.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -18,26 +18,24 @@ using Yttrium_browser;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Project_Radon.Settings
+namespace Project_Radon.Helpers
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class oobe5 : Page
+    public sealed partial class loginpage : Page
     {
-        public oobe5()
+        public loginpage()
         {
             this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void PasswordBox_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(loginpage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(oobe4), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+            if (e.Key == VirtualKey.Enter)
+            {
+                this.Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+            }
         }
     }
 }

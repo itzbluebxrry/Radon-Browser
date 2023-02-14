@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="Project_Radon.Helpers.loginpage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Project_Radon.Helpers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" RequestedTheme="Dark">
+
+    <Grid>
+        <Image Source="ms-appx:///wallpapers/deep blue.png" Stretch="UniformToFill" Opacity="1"/>
+        <Grid Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Opacity="0.6"/>
+        <Grid Margin="150,70" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" CornerRadius="8">
+            <StackPanel VerticalAlignment="Center">
+                <Image Source="ms-appx:///Assets/locked_with_key_3d.png" Width="80"/>
+                <Grid Height="8"/>
+                <TextBlock Style="{ThemeResource TitleTextBlockStyle}" TextAlignment="Center">Welcome back, user!</TextBlock>
+                <Grid Height="22"/>
+                <PasswordBox Width="300" PlaceholderText="Password" IsPasswordRevealButtonEnabled="True" BorderThickness="0" KeyDown="PasswordBox_KeyDown"/>
+            </StackPanel>
+            <Button Style="{ThemeResource TextBlockButtonStyle}" Content="Forgot your password?" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                    Margin="20"/>
+        </Grid>
+
+    </Grid>
+</Page>
