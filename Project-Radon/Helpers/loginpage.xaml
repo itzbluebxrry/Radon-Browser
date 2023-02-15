@@ -8,19 +8,33 @@
     mc:Ignorable="d" RequestedTheme="Dark">
 
     <Grid>
-        <Image Source="ms-appx:///wallpapers/deep blue.png" Stretch="UniformToFill" Opacity="1"/>
-        <Grid Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Opacity="0.6"/>
-        <Grid Margin="150,70" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" CornerRadius="8">
-            <StackPanel VerticalAlignment="Center">
-                <Image Source="ms-appx:///Assets/locked_with_key_3d.png" Width="80"/>
-                <Grid Height="8"/>
-                <TextBlock Style="{ThemeResource TitleTextBlockStyle}" TextAlignment="Center">Welcome back, user!</TextBlock>
+        <StackPanel VerticalAlignment="Center">
+            <Ellipse Width="100" Height="100">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="ms-appx:///accountpictures/clippy.png"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Grid Height="8"/>
+                <TextBlock Style="{ThemeResource TitleTextBlockStyle}" TextAlignment="Center">Radon user</TextBlock>
                 <Grid Height="22"/>
                 <PasswordBox Width="300" PlaceholderText="Password" IsPasswordRevealButtonEnabled="True" BorderThickness="0" KeyDown="PasswordBox_KeyDown"/>
             </StackPanel>
-            <Button Style="{ThemeResource TextBlockButtonStyle}" Content="Forgot your password?" VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                    Margin="20"/>
-        </Grid>
+        <StackPanel Orientation="Horizontal" Margin="20" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+        <Button Background="{x:Null}" BorderThickness="0">
+            <Button.Flyout>
+                <Flyout>
+                    <StackPanel Padding="5" Width="350">
+                        <TextBlock Text="Having trouble logging in?" Style="{ThemeResource BaseTextBlockStyle}"/>
+                        <TextBlock Margin="0,8,0,0" TextWrapping="WrapWholeWords" Text="If you're unable to log into Radon, you might need to do a reset."/>
+                        <Button Style="{ThemeResource TextBlockButtonStyle}" Margin="-10,5,0,0" Content="Show me how"/>
+                    </StackPanel>
+                </Flyout>
+            </Button.Flyout>
+            <FontIcon Glyph="&#xe785;" Margin="5" FontSize="17" ToolTipService.ToolTip="Forgot your password?"/>
+        </Button>
+        
+        </StackPanel>
+
 
     </Grid>
 </Page>

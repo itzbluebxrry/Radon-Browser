@@ -113,7 +113,7 @@
                                             <FontIcon Glyph="&#xec7a;"/>
                                         </MenuFlyoutItem.Icon>
                                     </MenuFlyoutItem>
-                                    <MenuFlyoutItem x:Name="ChangeThemeButton" Text="Change theme" Click="ChangeThemeButton_Click" Width="250">
+                                    <MenuFlyoutItem x:Name="ChangeThemeButtonAction" Text="Change theme" Click="ChangeThemeButton_Click" Width="250">
                                         <MenuFlyoutItem.Icon>
                                             <FontIcon Glyph="&#xe771;"/>
                                         </MenuFlyoutItem.Icon>
@@ -454,9 +454,102 @@
                             <Button x:Name="addtab_button" BorderBrush="{x:Null}" Width="auto" Click="addtab_button_Click" Background="Transparent" HorizontalAlignment="Right">
                                 <FontIcon Glyph="&#xe710;" FontSize="16"/>
                             </Button>
-                            <Button BorderBrush="{x:Null}" Width="40" Background="Transparent" HorizontalAlignment="Right">
-                                <FontIcon Glyph="&#xe7c4;" FontSize="16"/>
-                            </Button>
+								<winui:DropDownButton BorderBrush="{x:Null}" Width="40" Background="Transparent" HorizontalAlignment="Right">
+									<winui:DropDownButton.Content>
+										<FontIcon Glyph="&#xe9e9;" FontSize="16"/>
+									</winui:DropDownButton.Content>
+									<winui:DropDownButton.Flyout>
+												<Flyout ShouldConstrainToRootBounds="False">
+													<StackPanel Width="180">
+														<StackPanel Name="menuheader">
+															<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" BorderBrush="Transparent" Background="Transparent" Margin="0,0,0,10">
+																<StackPanel Orientation="Horizontal">
+																	<PersonPicture ProfilePicture="ms-appx:///accountpictures/clippy.png" Width="45"/>
+																	<StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
+																		<TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontSize="15" Text="Radon User"/>
+																		<TextBlock Text="Local account" FontSize="12"/>
+																	</StackPanel>
+																</StackPanel>
+															</Button>
+															<Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,5,10,10" BorderThickness="1"/>
+
+															<Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+																	HorizontalContentAlignment="Left" Margin="0,0,0,0" IsEnabled="False">
+																<StackPanel Orientation="Horizontal">
+																	<FontIcon Glyph="&#xE734;" FontSize="15"/>
+																	<TextBlock Margin="10,0,0,0" Text="Favorites"/>
+																</StackPanel>
+															</Button>
+
+															<Button x:Name="HistoryButton" Click="HistoryButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+																	HorizontalContentAlignment="Left">
+																<StackPanel Orientation="Horizontal">
+																	<FontIcon Glyph="&#xE81C;" FontSize="15"/>
+																	<TextBlock Margin="10,0,0,0" Text="History"/>
+																</StackPanel>
+															</Button>
+															<Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+																	HorizontalContentAlignment="Left" x:Name="downloadbutton" Click="downloadbutton_Click" >
+																<StackPanel Orientation="Horizontal">
+																	<FontIcon Glyph="&#xE896;" FontSize="15"/>
+																	<TextBlock Margin="10,0,0,0" Text="Downloads"/>
+																</StackPanel>
+															</Button>
+															<Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+																	HorizontalContentAlignment="Left" x:Name="fullscreenbutton" Click="fullscreenbutton_Click">
+																<StackPanel Orientation="Horizontal">
+																	<FontIcon Glyph="&#xE740;" FontSize="15"/>
+																	<TextBlock Margin="10,0,0,0" Text="Fullscreen (beta)"/>
+																</StackPanel>
+															</Button>
+															<Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+																	HorizontalContentAlignment="Left" x:Name="printbutton" Click="printbutton_Click" IsEnabled="False">
+																<StackPanel Orientation="Horizontal">
+																	<FontIcon Glyph="&#xE749;" FontSize="15"/>
+																	<TextBlock Margin="10,0,0,0" Text="Print"/>
+																</StackPanel>
+															</Button>
+															<Slider x:Name="ZoomSlider" ValueChanged="ZoomSlider_ValueChanged"/>
+															<Border BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Opacity="0.3" Margin="10,10" BorderThickness="1"/>
+															<Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+																	HorizontalContentAlignment="Left" IsEnabled="False">
+																<StackPanel Orientation="Horizontal">
+																	<FontIcon Glyph="&#xE90F;" FontSize="15"/>
+																	<TextBlock Margin="10,0,0,0" Text="More tools" />
+																</StackPanel>
+															</Button>
+															<Button x:Name="SettingsPageButton" Click="SettingsPageButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+																	HorizontalContentAlignment="Left">
+																<StackPanel Orientation="Horizontal">
+																	<FontIcon Glyph="&#xE713;" FontSize="15"/>
+																	<TextBlock Margin="10,0,0,0" Text="Settings (beta)"/>
+																</StackPanel>
+															</Button>
+															<Button x:Name="ChangeThemeButton" Click="ChangeThemeButton_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+															HorizontalContentAlignment="Left">
+																<Button.Flyout>
+																	<Flyout>
+																		<TextBlock Text="Hello"/>
+																	</Flyout>
+																</Button.Flyout>
+																<StackPanel Orientation="Horizontal">
+																	<FontIcon Glyph="&#xe771;" FontSize="15"/>
+																	<TextBlock Margin="10,0,0,0" Text="Change theme (beta)"/>
+																</StackPanel>
+															</Button>
+															<Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Stretch"
+															x:Name="aboutbutton" Click="AboutMenuItem_Click" HorizontalContentAlignment="Left">
+																<StackPanel Orientation="Horizontal">
+																	<FontIcon Glyph="&#xE946;" FontSize="15"/>
+																	<TextBlock Margin="10,0,0,0" Text="About"/>
+																</StackPanel>
+															</Button>
+														</StackPanel>
+													</StackPanel>
+												</Flyout>
+									</winui:DropDownButton.Flyout>
+
+								</winui:DropDownButton>
                             </StackPanel>
                         </winui:TabView.TabStripFooter>
 

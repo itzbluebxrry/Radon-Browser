@@ -51,5 +51,15 @@ namespace Project_Radon.Settings
         {
             this.Frame.Navigate(typeof(oobe1), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            nextbutton.IsEnabled = true;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            nextbutton.IsEnabled = false;
+        }
     }
 }

@@ -11,12 +11,10 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Grid>
-            <Image Source="ms-appx:///assets/oobe1img.jpg" Stretch="Fill"/>
-        </Grid>
+        <Grid/>
         <Grid Grid.Row="1" Margin="30,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
