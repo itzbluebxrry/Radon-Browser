@@ -17,41 +17,87 @@
         <Grid/>
         <Grid Grid.Row="1" Margin="30,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <StackPanel VerticalAlignment="Center" Margin="20,0">
                 <Image Source="ms-appx:///Assets/laptop_3d.png" Width="120"/>
                 <TextBlock Text="Customize your browsing experience" Style="{ThemeResource SubheaderTextBlockStyle}" TextAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Text="To maximize your productivity, we can help making Radon work for you. You just need to set a few things up and you're ready to go." TextWrapping="WrapWholeWords" Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="18" TextAlignment="Center" Margin="0,8"/>
             </StackPanel>
-            <ScrollViewer Grid.Column="1" Margin="20,40,20,130">
-                <StackPanel CornerRadius="8">
-
-
-
-
-                    
-
-
-                </StackPanel>
-            </ScrollViewer>
 
             <Button Style="{ThemeResource AccentButtonStyle}" Grid.Column="1" VerticalAlignment="Bottom"
                 HorizontalAlignment="Right" Margin="50,40" Click="Button_Click">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>
-                    <FontIcon Glyph="&#xe974;" Margin="8,0,0,0" FontSize="18" VerticalAlignment="Center"/>
+                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>
+                    <FontIcon Glyph="&#xe974;" Margin="8,0,0,0" FontSize="15" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
             <Button Grid.Column="1" VerticalAlignment="Bottom"
                 HorizontalAlignment="Left" Margin="50,40" Click="Button_Click_1">
                 <StackPanel Orientation="Horizontal">
-                    <FontIcon Glyph="&#xe973;" Margin="0,0,8,0" FontSize="18" VerticalAlignment="Center"/>
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" VerticalAlignment="Center">Go back</TextBlock>
+                    <FontIcon Glyph="&#xe973;" Margin="0,0,8,0" FontSize="15" VerticalAlignment="Center"/>
+                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Go back</TextBlock>
                 </StackPanel>
             </Button>
-            
+            <ScrollViewer Grid.Column="1" Margin="40,50,40,100">
+                <StackPanel>
+                    <StackPanel CornerRadius="4" Margin="1,2" HorizontalAlignment="Stretch" Padding="0,10" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
+                        <StackPanel>
+                            <Grid>
+                                <FontIcon Glyph="&#xec4a;" FontSize="17" Margin="17,0,0,0" HorizontalAlignment="Left"/>
+                                <StackPanel Margin="42,10">
+                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}">Enable prelaunch</TextBlock>
+                                    <TextBlock Style="{ThemeResource CaptionTextBlockStyle}">This may help Radon start up faster.</TextBlock>
+                                </StackPanel>
+                                <ToggleSwitch HorizontalAlignment="Right" Margin="0,0,-100,0" OnContent="" OffContent=""/>
+                            </Grid>
+
+                        </StackPanel>
+                    </StackPanel>
+                    <muxc:Expander Padding="0" Background="{x:Null}" IsExpanded="True" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <muxc:Expander.Header>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <FontIcon Glyph="&#xf6fa;" FontSize="17" HorizontalAlignment="Left"/>
+                                <StackPanel CornerRadius="4" Margin="0,8">
+                                    <TextBlock Margin="8,8,0,0" Style="{ThemeResource BaseTextBlockStyle}" Text="Web search"/>
+                                    <TextBlock Margin="8,0,0,8" Style="{ThemeResource CaptionTextBlockStyle}">Change how you search and browse the web.</TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </muxc:Expander.Header>
+                        <StackPanel>
+                            <StackPanel Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Margin="0,3" Padding="0,20" VerticalAlignment="Center">
+                                <TextBlock Margin="28,0">Startup page</TextBlock>
+                                <muxc:RadioButtons SelectedIndex="0" Margin="25,10">
+                                    <RadioButton Content="Home page"/>
+                                    <RadioButton Content="Blank page"/>
+                                    <RadioButton Content="Custom URL"/>
+                                </muxc:RadioButtons>
+                            </StackPanel>
+                            <Grid>
+                                
+                                
+                            </Grid>
+
+                            <Grid CornerRadius="4" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Margin="0,1" Padding="25,20">
+                                <StackPanel VerticalAlignment="Center" >
+                                    <TextBlock >Search engine</TextBlock>
+                                </StackPanel>
+                                <ComboBox HorizontalAlignment="Right" Width="150" SelectedIndex="0">
+                                    <ComboBoxItem Content="Google"/>
+                                    <ComboBoxItem Content="Bing"/>
+                                    <ComboBoxItem Content="DuckDuckGo"/>
+                                    <ComboBoxItem Content="Ecosia"/>
+                                    <ComboBoxItem Content="Brave"/>
+                                </ComboBox>
+                            </Grid>
+                        </StackPanel>
+                        
+                    </muxc:Expander>
+
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
+        
     </Grid>
 </Page>

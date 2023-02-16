@@ -27,8 +27,8 @@
                 HorizontalAlignment="Center" Margin="0,40" Click="Button_Click">
             <StackPanel Orientation="Horizontal">
                 
-                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>
-                <FontIcon Glyph="&#xe974;" Margin="8,0,0,0" FontSize="18" VerticalAlignment="Center"/>
+                <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>
+                <FontIcon Glyph="&#xe974;" Margin="8,0,0,0" FontSize="15" VerticalAlignment="Center"/>
             </StackPanel>
         </Button>
 
