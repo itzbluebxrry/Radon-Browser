@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Project_Radon;
 using Project_Radon.Settings;
+using Windows.Storage;
 
 // TODO: Import Cubekit.UI (Firecube's GlowUI refer https://github.com/FireCubeStudios/TemplateApp)
 
@@ -29,6 +30,14 @@ namespace Yttrium_browser
             InitializeComponent();
             Suspending += OnSuspending;
 
+            object value = ApplicationData.Current.LocalSettings.Values["themeSetting"];
+
+            if (value != null)
+            {
+                // Apply theme choice.
+                App.Current.RequestedTheme = (ApplicationTheme)(int)value;
+            }
+
         }
 
         /// <summary>
@@ -44,6 +53,7 @@ namespace Yttrium_browser
             // just ensure that the window is active
             if (rootFrame == null)
             {
+                
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
@@ -77,12 +87,17 @@ namespace Yttrium_browser
                 var titleBar = ApplicationView.GetForCurrentView().TitleBar;
 
                 titleBar.ButtonBackgroundColor = Colors.Transparent;
+                titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
 
                 // set min window size
                 ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
                 ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(500, 500));
+
+                
             }
+            
+            
         }
 
 

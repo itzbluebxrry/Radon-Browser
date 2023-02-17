@@ -19,8 +19,8 @@
         </Grid>
         <Grid Grid.Row="1" Margin="30,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <StackPanel VerticalAlignment="Center" Margin="20,0">
                 <Image Source="ms-appx:///Assets/clipboard_3d.png" Width="120"/>
@@ -40,7 +40,7 @@
             </ScrollViewer>
             
             <Button Style="{ThemeResource AccentButtonStyle}" x:Name="nextbutton" Grid.Column="1" VerticalAlignment="Bottom"
-                HorizontalAlignment="Right" Margin="50,40" Click="Button_Click" IsEnabled="False">
+                HorizontalAlignment="Right" Margin="20,40" Click="Button_Click" IsEnabled="False">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>
                     <FontIcon Glyph="&#xe974;" Margin="8,0,0,0" FontSize="15" VerticalAlignment="Center"/>

@@ -27,22 +27,22 @@
             </StackPanel>
 
             <Button Style="{ThemeResource AccentButtonStyle}" Grid.Column="1" VerticalAlignment="Bottom"
-                HorizontalAlignment="Right" Margin="50,40" Click="Button_Click">
+                HorizontalAlignment="Right" Margin="40,40" Click="Button_Click">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>
                     <FontIcon Glyph="&#xe974;" Margin="8,0,0,0" FontSize="15" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
             <Button Grid.Column="1" VerticalAlignment="Bottom"
-                HorizontalAlignment="Left" Margin="50,40" Click="Button_Click_1">
+                HorizontalAlignment="Left" Margin="40,40" Click="Button_Click_1">
                 <StackPanel Orientation="Horizontal">
                     <FontIcon Glyph="&#xe973;" Margin="0,0,8,0" FontSize="15" VerticalAlignment="Center"/>
                     <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Go back</TextBlock>
                 </StackPanel>
             </Button>
             <ScrollViewer Grid.Column="1" Margin="40,50,40,100">
-                <StackPanel>
-                    <StackPanel CornerRadius="4" Margin="1,2" HorizontalAlignment="Stretch" Padding="0,10" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
+                <StackPanel Margin="0,0,16,0">
+                    <StackPanel  CornerRadius="4" Margin="1,2" HorizontalAlignment="Stretch" Padding="0,10" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
                         <StackPanel>
                             <Grid>
                                 <FontIcon Glyph="&#xec4a;" FontSize="17" Margin="17,0,0,0" HorizontalAlignment="Left"/>
@@ -55,7 +55,7 @@
 
                         </StackPanel>
                     </StackPanel>
-                    <muxc:Expander Padding="0" Background="{x:Null}" IsExpanded="True" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <muxc:Expander Padding="0" Background="{x:Null}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
                         <muxc:Expander.Header>
                             <StackPanel Orientation="Horizontal" Margin="0,2">
                                 <FontIcon Glyph="&#xf6fa;" FontSize="17" HorizontalAlignment="Left"/>
@@ -66,12 +66,19 @@
                             </StackPanel>
                         </muxc:Expander.Header>
                         <StackPanel>
-                            <StackPanel Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Margin="0,3" Padding="0,20" VerticalAlignment="Center">
+                            <StackPanel Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Margin="0,1" Padding="0,20" VerticalAlignment="Center">
                                 <TextBlock Margin="28,0">Startup page</TextBlock>
                                 <muxc:RadioButtons SelectedIndex="0" Margin="25,10">
-                                    <RadioButton Content="Home page"/>
+                                    <RadioButton Content="New tab (Radon NTP)"/>
                                     <RadioButton Content="Blank page"/>
-                                    <RadioButton Content="Custom URL"/>
+                                    <RadioButton>
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Custom URL: " />
+                                                <TextBox Width="250" Margin="20,-4,0,0" PlaceholderText="Enter a URL"/>
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
                                 </muxc:RadioButtons>
                             </StackPanel>
                             <Grid>
@@ -79,7 +86,7 @@
                                 
                             </Grid>
 
-                            <Grid CornerRadius="4" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Margin="0,1" Padding="25,20">
+                            <Grid CornerRadius="0" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Margin="0,1" Padding="25,20">
                                 <StackPanel VerticalAlignment="Center" >
                                     <TextBlock >Search engine</TextBlock>
                                 </StackPanel>
@@ -93,6 +100,51 @@
                             </Grid>
                         </StackPanel>
                         
+                    </muxc:Expander>
+                    <muxc:Expander Padding="0" Background="{x:Null}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <muxc:Expander.Header>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <FontIcon Glyph="&#xee57;" FontSize="17" HorizontalAlignment="Left"/>
+                                <StackPanel CornerRadius="4" Margin="0,8">
+                                    <TextBlock Margin="8,8,0,0" Style="{ThemeResource BaseTextBlockStyle}" Text="User Experience"/>
+                                    <TextBlock Margin="8,0,0,8" Style="{ThemeResource CaptionTextBlockStyle}">Customize Radon's user experience settings.</TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </muxc:Expander.Header>
+                        <StackPanel>
+                            <StackPanel Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Margin="0,1" Padding="0,20" VerticalAlignment="Center">
+                                <TextBlock Margin="28,0">Title Placeholder</TextBlock>
+                                <muxc:RadioButtons SelectedIndex="0" Margin="25,10">
+                                    <RadioButton Content="Option1"/>
+                                    <RadioButton Content="Option2"/>
+                                    <RadioButton>
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Option 3" />
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
+                                </muxc:RadioButtons>
+                            </StackPanel>
+                            <Grid>
+
+
+                            </Grid>
+
+                            <Grid CornerRadius="0" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Margin="0,1" Padding="25,20">
+                                <StackPanel VerticalAlignment="Center" >
+                                    <TextBlock >Another placeholder</TextBlock>
+                                </StackPanel>
+                                <ComboBox HorizontalAlignment="Right" Width="150" SelectedIndex="0">
+                                    <ComboBoxItem Content="ComboBox"/>
+                                    <ComboBoxItem Content="Bing"/>
+                                    <ComboBoxItem Content="DuckDuckGo"/>
+                                    <ComboBoxItem Content="Ecosia"/>
+                                    <ComboBoxItem Content="Brave"/>
+                                </ComboBox>
+                            </Grid>
+                        </StackPanel>
+
                     </muxc:Expander>
 
                 </StackPanel>
