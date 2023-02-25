@@ -86,16 +86,21 @@ namespace Yttrium_browser
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             CurrentTabs[BrowserTabs.SelectedIndex].Tab.BackButtonSender();
+            ElementSoundPlayer.Play(ElementSoundKind.MovePrevious);
+
         }
 
         private void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
             CurrentTabs[BrowserTabs.SelectedIndex].Tab.FowardButtonSender();
+            ElementSoundPlayer.Play(ElementSoundKind.MoveNext);
+
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             CurrentTabs[BrowserTabs.SelectedIndex].Tab.Reload();
+            ElementSoundPlayer.Play(ElementSoundKind.GoBack);
 
         }
 
@@ -260,7 +265,8 @@ namespace Yttrium_browser
         private void BrowserTabs_AddTabButtonClick(TabView sender, object args)
         {
             CurrentTabs.Add(new BrowserTabViewItem());
-            BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
+            //await Task.Delay(1000);
+            //BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
         }
 
         private void Tabs_TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
@@ -453,7 +459,8 @@ namespace Yttrium_browser
             var b = new BrowserTabViewItem();
             CurrentTabs.Add(b);
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
-            addtabtip.IsOpen = true;
+            //addtabtip.IsOpen = true;
+            controlCenter.IsOpen = false;
 
         }
 
@@ -507,11 +514,22 @@ namespace Yttrium_browser
             if (coreTitleBar.ExtendViewIntoTitleBar == true)
             {
                 coreTitleBar.ExtendViewIntoTitleBar = false;
+
+                var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+
+                titleBar.ButtonBackgroundColor = null;
+                titleBar.ButtonInactiveBackgroundColor = null;
+                titleBar.BackgroundColor = null;
             }
 
             else
             {
+                var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+                
                 coreTitleBar.ExtendViewIntoTitleBar = true;
+                titleBar.ButtonBackgroundColor = Colors.Transparent;
+                titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+                titleBar.BackgroundColor = null;
             }
         }
 
@@ -545,6 +563,48 @@ namespace Yttrium_browser
             
         }
 
+        private void controlCenterToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (controlCenterToggleButton.IsChecked == true) 
+            {
+                controlCenter.IsOpen = true;
+            }
+            else
+            {
+                controlCenter.IsOpen = false;
+            }
+        }
 
+        private void controlCenter_Closed(object sender, object e)
+        {
+            controlCenterToggleButton.IsChecked = false;
+        }
+
+        private void controlCenter_sound_Click(object sender, RoutedEventArgs e)
+        {
+            if (controlCenter_sound.IsChecked == true)
+            {
+                ElementSoundPlayer.State = ElementSoundPlayerState.On;
+                controlCenter_sound_icon.Glyph = "\uE994";
+            }
+
+            else
+            {
+                ElementSoundPlayer.State = ElementSoundPlayerState.Off;
+                controlCenter_sound_icon.Glyph = "\uE74F";
+            }
+        }
+
+        private void controlcenter_sidebar_Click(object sender, RoutedEventArgs e)
+        {
+            if (controlcenter_sidebar.IsChecked == true)
+            {
+                sidebarSearch.IsOpen = true;
+            }
+            else
+            {
+                sidebarSearch.IsOpen = false;
+            }
+        }
     }
 }

@@ -26,8 +26,8 @@
                 <TextBlock Text="To maximize your productivity, we can help making Radon work for you. You just need to set a few things up and you're ready to go." TextWrapping="WrapWholeWords" Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="18" TextAlignment="Center" Margin="0,8"/>
             </StackPanel>
 
-            <Button Style="{ThemeResource AccentButtonStyle}" Grid.Column="1" VerticalAlignment="Bottom"
-                HorizontalAlignment="Right" Margin="40,40" Click="Button_Click">
+            <Button Style="{ThemeResource AccentButtonStyle}" x:Name="nextbutton" Grid.Column="1" VerticalAlignment="Bottom"
+                HorizontalAlignment="Right" Margin="16,40" Click="Button_Click">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>
                     <FontIcon Glyph="&#xe974;" Margin="8,0,0,0" FontSize="15" VerticalAlignment="Center"/>
@@ -40,7 +40,7 @@
                     <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Go back</TextBlock>
                 </StackPanel>
             </Button>
-            <ScrollViewer Grid.Column="1" Margin="40,50,40,100">
+            <ScrollViewer Grid.Column="1" Margin="40,50,0,100">
                 <StackPanel Margin="0,0,16,0">
                     <StackPanel  CornerRadius="4" Margin="1,2" HorizontalAlignment="Stretch" Padding="0,10" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
                         <StackPanel>
@@ -68,14 +68,15 @@
                         <StackPanel>
                             <StackPanel Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Margin="0,1" Padding="0,20" VerticalAlignment="Center">
                                 <TextBlock Margin="28,0">Startup page</TextBlock>
-                                <muxc:RadioButtons SelectedIndex="0" Margin="25,10">
+                                <muxc:RadioButtons SelectedIndex="0" Margin="25,10" x:Name="startupPageRadioButtons" SelectionChanged="startupPageRadioButtons_SelectionChanged">
                                     <RadioButton Content="New tab (Radon NTP)"/>
                                     <RadioButton Content="Blank page"/>
                                     <RadioButton>
                                         <RadioButton.Content>
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock Text="Custom URL: " />
-                                                <TextBox Width="250" Margin="20,-4,0,0" PlaceholderText="Enter a URL"/>
+                                                <TextBox x:Name="startupCustomURL" KeyUp="startupCustomURL_KeyDown" IsEnabled="False" Width="250" Margin="20,-4,0,0" PlaceholderText="Enter a URL"/>
+                                                <TextBlock Margin="10,0" x:Name="startupCustomURLError" Foreground="{ThemeResource SystemErrorTextColor}">Invalid URL.</TextBlock>
                                             </StackPanel>
                                         </RadioButton.Content>
                                     </RadioButton>

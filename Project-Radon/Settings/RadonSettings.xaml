@@ -8,6 +8,18 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     muxc:BackdropMaterial.ApplyToRootOrPageBackground="True">
+    <Page.Resources>
+        <Storyboard x:Name="Storyboard1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="NavView" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="25.2"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="744"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="NavView" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)">
+                <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="60.6"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="-48"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,12 +27,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <ScrollViewer Width="270" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
-            
+
             <StackPanel Grid.Column="0" Padding="10,20">
-                
-                
+
+
                 <muxc:NavigationView x:Name="NavView" Loaded="NavView_Loaded" PaneDisplayMode="Left" IsPaneToggleButtonVisible="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
-                                     SelectionChanged="NavView_SelectionChanged">
+                                     SelectionChanged="NavView_SelectionChanged" RenderTransformOrigin="0.5,0.5">
                     <muxc:NavigationView.MenuItems>
                         <muxc:NavigationViewItem IsSelected="True" Tag="general">
                             <StackPanel Orientation="Horizontal" Padding="2,0">
@@ -57,15 +69,15 @@
                     <muxc:NavigationView.PaneCustomContent>
                         <StackPanel>
                             <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" BorderBrush="Transparent" Background="Transparent" Margin="0,0,0,10">
-                            <StackPanel Orientation="Horizontal">
-                                <PersonPicture ProfilePicture="ms-appx:///accountpictures/clippy.png" Width="65"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <PersonPicture ProfilePicture="ms-appx:///accountpictures/clippy.png" Width="65"/>
                                     <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
                                         <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontSize="15" Text="Radon User"/>
                                         <TextBlock Text="Local account" FontSize="12"/>
                                     </StackPanel>
-                            </StackPanel>
-                        </Button>
-                        <AutoSuggestBox QueryIcon="Forward" Margin="5,0,5,20" PlaceholderText="Find a setting"/>
+                                </StackPanel>
+                            </Button>
+                            <AutoSuggestBox QueryIcon="Forward" Margin="5,0,5,20" PlaceholderText="Find a setting"/>
                         </StackPanel>
                     </muxc:NavigationView.PaneCustomContent>
                 </muxc:NavigationView>

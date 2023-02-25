@@ -12,6 +12,6 @@
     Content="{x:Bind TabContent,Mode=OneWay}" HorizontalAlignment="Center"
     mc:Ignorable="d" HorizontalContentAlignment="Center">
     <winui:TabViewItem.Header>
-        <TextBlock Text="{x:Bind TabHeader,Mode=OneWay}" ToolTipService.ToolTip="{x:Bind TabHeader,Mode=OneWay}" TextTrimming="CharacterEllipsis"/>
+        <TextBlock Text="{x:Bind TabHeader,Mode=OneWay}" ToolTipService.ToolTip="{x:Bind TabHeader,Mode=OneWay}" TextTrimming="Clip"/>
     </winui:TabViewItem.Header>
 </winui:TabViewItem>

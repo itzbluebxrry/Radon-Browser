@@ -33,7 +33,7 @@
             
 
             
-            <TextBlock x:Name="LicenseTextBox" TextWrapping="WrapWholeWords" Margin="30,20,30,0" Text="Getting license..."/>
+            <TextBlock x:Name="LicenseTextBox" TextAlignment="Justify" TextWrapping="WrapWholeWords" Margin="30,20,30,0" Text="Getting license..."/>
             
 
             </StackPanel>

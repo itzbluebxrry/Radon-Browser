@@ -9,7 +9,10 @@
   xmlns:iot2="http://schemas.microsoft.com/appx/manifest/iot/windows10/2"   
   
 
-  IgnorableNamespaces="uap mp uap3 desktop4 iot2">
+  xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10"   
+  
+
+  IgnorableNamespaces="uap mp uap3 desktop4 iot2 iot">
 
   <Identity
     Name="Project.Radon"
@@ -68,6 +71,11 @@
     <Capability Name="internetClient" />
     <uap3:Capability Name="backgroundMediaPlayback"/>
     <uap:Capability Name="voipCall"/>
-    <DeviceCapability Name="webcam"/> 
+    <Capability Name="internetClientServer"/>
+    <Capability Name="privateNetworkClientServer"/>
+    <iot:Capability Name="systemManagement"/>
+    <DeviceCapability Name="webcam"/>
+    <DeviceCapability Name="location"/>
+    <DeviceCapability Name="microphone"/> 
   </Capabilities>
 </Package>

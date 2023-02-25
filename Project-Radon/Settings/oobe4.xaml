@@ -38,7 +38,7 @@
             </ScrollViewer>
 
             <Button Style="{ThemeResource AccentButtonStyle}" Grid.Column="1" VerticalAlignment="Bottom"
-                HorizontalAlignment="Right" Margin="50,40" Click="Button_Click">
+                HorizontalAlignment="Right" Margin="16,40" Click="Button_Click">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>
                     <FontIcon Glyph="&#xe974;" Margin="8,0,0,0" FontSize="15" VerticalAlignment="Center"/>
@@ -51,7 +51,7 @@
                     <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Go back</TextBlock>
                 </StackPanel>
             </Button>
-            <ScrollViewer Grid.Column="1" Margin="40,50,40,100">
+            <ScrollViewer Grid.Column="1" Margin="40,50,0,100">
                 <StackPanel Margin="0,0,16,0">
                     <StackPanel  CornerRadius="4" Margin="1,2" HorizontalAlignment="Stretch" Padding="0,10" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
                         <StackPanel>

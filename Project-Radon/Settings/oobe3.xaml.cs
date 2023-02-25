@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,5 +38,88 @@ namespace Project_Radon.Settings
         {
             this.Frame.Navigate(typeof(oobe2), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
+
+        private void startupPageRadioButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (startupPageRadioButtons.SelectedIndex != 2)
+            {
+                startupCustomURL.IsEnabled = false;
+                startupCustomURLError.Visibility = Visibility.Collapsed;
+                nextbutton.IsEnabled = true;
+            }
+            else
+            {
+                startupCustomURL.IsEnabled = true;
+
+                if (startupCustomURL.Text.Contains(".") && !startupCustomURL.Text.Contains(" "))
+                {
+                    startupCustomURLError.Visibility = Visibility.Collapsed;
+                    startupCustomURL.IsEnabled = true;
+                }
+
+                else if (startupCustomURL.Text.Equals(""))
+                {
+                    startupCustomURLError.Text = "Please enter a URL.";
+                    startupCustomURLError.Visibility = Visibility.Visible;
+                    nextbutton.IsEnabled = false;
+                }
+                
+                else if (startupCustomURL.Text.Equals("about:blank"))
+                {
+                    startupCustomURLError.Text = "Consider selecting \"Blank page\" instead.";
+                    startupCustomURLError.Visibility = Visibility.Visible;
+                    nextbutton.IsEnabled = false;
+                }
+
+                else
+                {
+                    startupCustomURLError.Text = "Invalid URL.";
+                    startupCustomURLError.Visibility = Visibility.Visible;
+                    nextbutton.IsEnabled = false;
+                }
+            }
+        }
+
+        private void startupCustomURL_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            
+
+            if (startupCustomURL.Text.Contains(".")&&!startupCustomURL.Text.Contains(" "))
+            {
+                if (startupCustomURL.Text.EndsWith("."))
+                {
+                    startupCustomURLError.Text = "URL can't end with a period.";
+                    startupCustomURLError.Visibility = Visibility.Visible;
+                    nextbutton.IsEnabled = false;
+                }
+                else
+                {
+                    startupCustomURLError.Visibility = Visibility.Collapsed;
+                    startupCustomURL.IsEnabled = true;
+                    nextbutton.IsEnabled = true;
+                }
+            }
+
+            else if(startupCustomURL.Text.Equals(""))
+            {
+                startupCustomURLError.Text = "Please enter a URL.";
+                startupCustomURLError.Visibility = Visibility.Visible;
+                nextbutton.IsEnabled = false;
+            }
+
+            else if (startupCustomURL.Text.Equals("about:blank"))
+            {
+                startupCustomURLError.Text = "Consider selecting \"Blank page\" instead.";
+                startupCustomURLError.Visibility = Visibility.Visible;
+                nextbutton.IsEnabled = false;
+            }
+
+            else 
+            {
+                startupCustomURLError.Text = "Invalid URL.";
+                startupCustomURLError.Visibility = Visibility.Visible;
+                nextbutton.IsEnabled = false;
+            }
+        }       
     }
 }
