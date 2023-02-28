@@ -606,5 +606,16 @@ namespace Yttrium_browser
                 sidebarSearch.IsOpen = false;
             }
         }
+
+        // Forgot to name the ToggleButton, btw it's the toggle for profileCenter
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+                profileCenter.IsOpen = true;
+        }
+
+        private void profileCenter_Closed(object sender, object e)
+        {
+            
+        }
     }
 }

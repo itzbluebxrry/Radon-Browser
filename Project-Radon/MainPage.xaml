@@ -469,9 +469,18 @@
                 >
                         <winui:TabView.TabStripHeader>
                             <Grid>
+                                <Button Style="{ThemeResource ButtonRevealStyle}" x:Name="profileCenterToggle" Background="{x:Null}" BorderThickness="0" ToolTipService.ToolTip="[NEW] Profile center" Margin="10,0,0,0" Padding="5" CornerRadius="40" Click="ToggleButton_Click">
+                                    <Ellipse Width="28" Height="28">
+                                        <Ellipse.Fill>
+                                            <ImageBrush  ImageSource="ms-appx:///accountpictures/clippy.png" Stretch="UniformToFill"/>
+                                        </Ellipse.Fill>
+                                        <Ellipse.RenderTransform>
+                                            <CompositeTransform/>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                </Button>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="8,0,0,0">
                                     <!--TODO: The button should add a new tab -->
-
 
                                     <Grid x:Name="compacttitlebar_rightpadding" Width="40" Visibility="Collapsed"/>
                                     <winui:TeachingTip IsOpen="False" x:Name="addtabtip" Target="{x:Bind addtab_button}" Title="Didn't see anything?"
@@ -592,7 +601,7 @@
         </Popup>
 
         <!--#region ControlCenter -->
-        <Popup x:Name="controlCenter" IsLightDismissEnabled="True" HorizontalAlignment="Right" Margin="0,44,727,90" Closed="controlCenter_Closed"
+        <Popup x:Name="controlCenter" IsLightDismissEnabled="True" HorizontalAlignment="Right" Margin="0,44,487,90" Closed="controlCenter_Closed"
                >
             <Popup.ChildTransitions>
                 <TransitionCollection>
@@ -601,13 +610,9 @@
             </Popup.ChildTransitions>
 
 
-            <Grid Width="630" Background="{ThemeResource SystemControlAcrylicElementBrush}" BorderBrush="{ThemeResource SystemBaseLowColor}"
+            <Grid Width="358" Background="{ThemeResource SystemControlAcrylicWindowBrush}" BorderBrush="{ThemeResource SystemBaseLowColor}"
                   BorderThickness="1" CornerRadius="9">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="9*"/>
-                    <ColumnDefinition Width="10*"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" Padding="20,10" CornerRadius="8">
+                <Grid Grid.Row="1" Margin="0,0,0,0" Padding="20,10" CornerRadius="8">
                     <!--#region ColumnRowDef -->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -699,6 +704,137 @@
             </Grid>
             </Popup.Child>
         </Popup>
+        
+        
+        <!--#region profileCenterPopup-->
+
+        <Popup IsLightDismissEnabled="True" x:Name="profileCenter" HorizontalAlignment="Left" Margin="8,84" Closed="profileCenter_Closed">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PopupThemeTransition/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+
+            <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}" BorderBrush="{ThemeResource SystemBaseLowColor}" BorderThickness="1" 
+                  Padding="10" CornerRadius="8" Width="600">
+                <Grid.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                    </TransitionCollection>
+                </Grid.ChildrenTransitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="8,0">
+                    <TextBlock TextAlignment="Center" Text="Profile" FontWeight="Semibold" Margin="0,10,0,20"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="8,0,0,20">
+                        <PersonPicture Width="48"/>
+                        <StackPanel Margin="8,0,0,0" VerticalAlignment="Center">
+                            <TextBlock Text="Radon User" FontWeight="Semibold" FontSize="18"/>
+                            <Button Content="Edit profile" Padding="0" Margin="0,4,0,0" Style="{ThemeResource TextBlockButtonStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Border BorderBrush="White" BorderThickness="1" Margin="25,30" Opacity="0.5"/>
+                    <TextBlock TextAlignment="Center" Text="Recent" FontWeight="Semibold" Margin="0,0,0,20"/>
+                    <StackPanel Margin="0,0,10,0">
+                        <StackPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                            </TransitionCollection>
+                        </StackPanel.ChildrenTransitions>
+                        <Button HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <FontIcon FontFamily="FluentSystemIcons-Regular" Glyph="&#xF379;" FontSize="18"/>
+                                <TextBlock TextTrimming="Clip" Text="(9+) f h k r l  on Twitter • 89 Tweets" Margin="8,0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <FontIcon FontFamily="FluentSystemIcons-Regular" Glyph="&#xF379;" FontSize="18"/>
+                                <TextBlock TextTrimming="Clip" Text="GitHub - itzbluebxrry/Project-Radon" Margin="8,0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <FontIcon FontFamily="FluentSystemIcons-Regular" Glyph="&#xF379;" FontSize="18"/>
+                                <TextBlock TextTrimming="Clip" Text="Modestep - WIP • Spotify" Margin="8,0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <FontIcon FontFamily="FluentSystemIcons-Regular" Glyph="&#xF379;" FontSize="18"/>
+                                <TextBlock TextTrimming="Clip" Text="503 Forbidden - nginx" Margin="8,0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <FontIcon FontFamily="FluentSystemIcons-Regular" Glyph="&#xF379;" FontSize="18"/>
+                                <TextBlock TextTrimming="Clip" Text="how to code brainf*ck - Google Search" Margin="8,0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Content="Show full history" HorizontalAlignment="Center" Margin="0,7" Style="{ThemeResource TextBlockButtonStyle}"/>
+
+
+                    </StackPanel>
+                </StackPanel>
+                <Border HorizontalAlignment="Right" Margin="0,20" BorderBrush="White" BorderThickness="1" Opacity="0.5"/>
+
+
+                <StackPanel Grid.Column="1" Margin="20,10">
+                    <StackPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                            </TransitionCollection>
+                        </StackPanel.ChildrenTransitions>
+                    <TextBlock TextAlignment="Center" Text="Activity" FontWeight="Semibold" Margin="0,0,0,20"/>
+                    <TextBlock Margin="0,0,0,0" Text="1h 32min" FontSize="32" FontWeight="Semibold"/>
+                    <TextBlock Text="spent on the Internet today" FontWeight="light" FontSize="18"/>
+
+                    <TextBlock TextAlignment="Center" Text="Top sites" FontWeight="Semibold" Margin="0,20,0,0"/>
+                    <StackPanel Margin="0,8,10,0">
+                        <StackPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                            </TransitionCollection>
+                        </StackPanel.ChildrenTransitions>
+                        <Button HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <FontIcon FontFamily="FluentSystemIcons-Regular" Glyph="&#xF379;" FontSize="18"/>
+                                <TextBlock TextTrimming="Clip" Text="open.spotify.com" Margin="8,0"/>
+                                <TextBlock TextTrimming="Clip" Text="4h 53min" Opacity="0.7" Margin="0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <FontIcon FontFamily="FluentSystemIcons-Regular" Glyph="&#xF379;" FontSize="18"/>
+                                <TextBlock TextTrimming="Clip" Text="youtube.com" Margin="8,0"/>
+                                <TextBlock TextTrimming="Clip" Text="2h 12min" Opacity="0.7" Margin="0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <FontIcon FontFamily="FluentSystemIcons-Regular" Glyph="&#xF379;" FontSize="18"/>
+                                <TextBlock TextTrimming="Clip" Text="discord.com" Margin="8,0"/>
+                                <TextBlock TextTrimming="Clip" Text="1h 59min" Opacity="0.7" Margin="0"/>
+                            </StackPanel>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <FontIcon FontFamily="FluentSystemIcons-Regular" Glyph="&#xF379;" FontSize="18"/>
+                                <TextBlock TextTrimming="Clip" Text="chat.openai.com" Margin="8,0"/>
+                                <TextBlock TextTrimming="Clip" Text="47 min" Opacity="0.7" Margin="0"/>
+                            </StackPanel>
+                        </Button>
+
+
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Popup>
+         
+        <!--#endregion-->
 
 
 
