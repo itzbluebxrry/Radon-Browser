@@ -32,12 +32,27 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid x:Name="BasicGrid">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True"/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
         <Grid.Background>
             <ImageBrush x:Name="appthemebackground" ImageSource="ms-appx:///wallpapers/10.png" Opacity="0.2"/>
         </Grid.Background>
         <Grid>
-    <Grid x:Name="BaseGrid" SizeChanged="BaseGrid_SizeChanged">
-        <Grid x:Name="TitleBarGrid"
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+            <Grid x:Name="BaseGrid" SizeChanged="BaseGrid_SizeChanged">
+                <Grid.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                    </TransitionCollection>
+                </Grid.ChildrenTransitions>
+                <Grid x:Name="TitleBarGrid"
               Grid.Row="0"
               Canvas.ZIndex="1">
             <Grid.ColumnDefinitions>
@@ -140,20 +155,29 @@
                         Background="Transparent"
                         BorderThickness="0"
                         Margin="0,2,5,0" VerticalAlignment="Center" HorizontalAlignment="Center"
-                        Click="BackButton_Click"
+                        Click="BackButton_Click" ClickMode="Press"
                         Padding="3,6" ToolTipService.ToolTip="Back">
 
-                            <FontIcon Glyph="&#xe973;" FontSize="20" FontFamily="Segoe Fluent Icons"/>
-                </Button>
+
+                            <FontIcon x:Name="backbutton_icon" Glyph="&#xe973;" FontSize="20" Translation="0,0,0" FontFamily="Segoe Fluent Icons">
+                                <FontIcon.TranslationTransition>
+                                    <Vector3Transition/>
+                                </FontIcon.TranslationTransition>
+                            </FontIcon>
+                        </Button>
                 <Button x:Name="ForwardButton"
                         Background="Transparent"
                         BorderThickness="0"
-                        Margin="0,2,5,0"
+                        Margin="0,2,5,0" ClickMode="Press"
                         Click="ForwardButton_Click"
                         Padding="3,6" ToolTipService.ToolTip="Forward">
-                            <FontIcon Glyph="&#xe974;"
-                              FontSize="20" FontFamily="segoe fluent icons" />
-                </Button>
+                            <FontIcon Glyph="&#xe974;" Translation="0,0,0" x:Name="forwardbutton_icon"
+                              FontSize="20" FontFamily="segoe fluent icons">
+                                <FontIcon.TranslationTransition>
+                                    <Vector3Transition/>
+                                </FontIcon.TranslationTransition>
+                            </FontIcon>
+                        </Button>
                 
                 
                 <Button x:Name="HomeButton"
@@ -469,6 +493,11 @@
                 >
                         <winui:TabView.TabStripHeader>
                             <Grid>
+                                <Grid.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                                    </TransitionCollection>
+                                </Grid.ChildrenTransitions>
                                 <Button Style="{ThemeResource ButtonRevealStyle}" x:Name="profileCenterToggle" Background="{x:Null}" BorderThickness="0" ToolTipService.ToolTip="[NEW] Profile center" Margin="10,0,0,0" Padding="5" CornerRadius="40" Click="ToggleButton_Click">
                                     <Ellipse Width="28" Height="28">
                                         <Ellipse.Fill>
@@ -557,6 +586,11 @@
                         </winui:TabView.TabStripHeader>
                         <winui:TabView.TabStripFooter>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <StackPanel.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                                    </TransitionCollection>
+                                </StackPanel.ChildrenTransitions>
                                 <Button x:Name="addtab_button" BorderBrush="{x:Null}" Padding="10,6.8" Width="auto" Click="addtab_button_Click" Background="Transparent" HorizontalAlignment="Right">
                                     <FontIcon Glyph="&#xe710;" FontSize="16"/>
                                 </Button>

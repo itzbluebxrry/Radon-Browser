@@ -83,15 +83,22 @@ namespace Yttrium_browser
                 appthemebackground.Opacity = 0.4;
             }
         }
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private async void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            backbutton_icon.Translation = new Vector3(-12, 0, 0);
+            await Task.Delay(150);
+            backbutton_icon.Translation = new Vector3(0, 0, 0);
+            
             CurrentTabs[BrowserTabs.SelectedIndex].Tab.BackButtonSender();
             ElementSoundPlayer.Play(ElementSoundKind.MovePrevious);
 
         }
 
-        private void ForwardButton_Click(object sender, RoutedEventArgs e)
+        private async void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
+            forwardbutton_icon.Translation = new Vector3(12, 0, 0);
+            await Task.Delay(150);
+            forwardbutton_icon.Translation = new Vector3(0, 0, 0);
             CurrentTabs[BrowserTabs.SelectedIndex].Tab.FowardButtonSender();
             ElementSoundPlayer.Play(ElementSoundKind.MoveNext);
 
