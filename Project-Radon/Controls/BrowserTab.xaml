@@ -14,6 +14,26 @@
             NavigationStarting="WebBrowser_NavigationStarting"
             x:Name="WebBrowser" 
             Source="https://google.com"
+            Visibility="Collapsed"
             />
+        <Grid x:Name="ntpGrid">
+            <Grid.Background>
+                <ImageBrush ImageSource="https://images.wallpapersden.com/image/download/aurora-borealis-near-sea_bGplammUmZqaraWkpJRmbmdlrWZlbWU.jpg"/>
+            </Grid.Background>
+            <Grid Background="Black" Opacity="0.5"/>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0">
+                <TextBlock Style="{ThemeResource HeaderTextBlockStyle}"
+                       Text="Browse the&#x0a;Internet." Foreground="White" FontSize="72"/>
+                <TextBox x:Name="ntpSearchBar" Margin="-10,20" FontSize="20" Width="400" Background="{x:Null}" FontStretch="Condensed"
+                         PlaceholderText="What are you looking for?" Padding="10" BorderThickness="1" PlaceholderForeground="WhiteSmoke"
+                         KeyDown="ntpSearchBar_KeyDown"/>
+                
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="12" HorizontalAlignment="Right">
+                <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="20" Text="12:02 AM"/>
+            </StackPanel>
+            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Photo: Aurora by Authorname"
+                       Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,12"/>
+        </Grid>
     </Grid>
 </Page>

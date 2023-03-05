@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -39,14 +40,14 @@ namespace Project_Radon.Controls
         public bool CanGoBack => WebBrowser.CanGoBack;
         public bool CanGoFoward => WebBrowser.CanGoForward;
         public string SourceUri => IsCoreInitialized ? (WebBrowser.Source.AbsoluteUri.ToLower().Contains("edge://") ? "radon://" + WebBrowser.Source.AbsoluteUri.Remove(0, 7) : WebBrowser.Source.AbsoluteUri) : "";
-        public string Favicon => IsCoreInitialized && !IsLoading ? ("https://www.google.com/s2/favicons?sz=48&domain_url=" + WebBrowser.Source.AbsoluteUri) : "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Document/SVG/ic_fluent_document_48_regular.svg";
+        public string Favicon => IsCoreInitialized && !IsLoading ? ("https://icons.duckduckgo.com/ip3/" + WebBrowser.Source.AbsoluteUri+".ico") : "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Document/SVG/ic_fluent_document_48_regular.svg";
         public string Title => IsCoreInitialized && !IsLoading ? (WebBrowser.CoreWebView2.DocumentTitle ?? WebBrowser.Source.AbsoluteUri) : "Loading";
         public bool IsCoreInitialized { get; private set; }
         public BrowserTab()
         {
             InitializeComponent();
 
-            
+            WebBrowser.Source = new Uri("about:radon-ntp");
             
             //Windows.System.Launcher.LaunchFolderAsync(ApplicationData.Current.LocalFolder);
             WebBrowser.CoreWebView2Initialized += delegate
@@ -87,6 +88,16 @@ namespace Project_Radon.Controls
         {
 
             IsLoading = false;
+            if (WebBrowser.Source.Equals("edge://radon-ntp/"))
+            {
+                WebBrowser.Visibility = Visibility.Collapsed;
+                ntpGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                WebBrowser.Visibility = Visibility.Visible;
+                ntpGrid.Visibility = Visibility.Collapsed;
+            }
         }
         public void Close() => WebBrowser.Close();
         private void WebBrowser_NavigationStarting(Microsoft.UI.Xaml.Controls.WebView2 sender, CoreWebView2NavigationStartingEventArgs args)
@@ -94,6 +105,12 @@ namespace Project_Radon.Controls
             IsLoading = true;
             WebBrowser.Focus(FocusState.Pointer);
             WebBrowser.Focus(FocusState.Keyboard);
+
+            if (WebBrowser.Source.Equals("edge://radon-ntp/"))
+            {
+                WebBrowser.Visibility = Visibility.Collapsed;
+                ntpGrid.Visibility = Visibility.Visible;
+            }
         }
         public async Task GoTo(string url)
         {
@@ -163,6 +180,14 @@ namespace Project_Radon.Controls
         {
             await WebBrowser.EnsureCoreWebView2Async();
             await WebBrowser.CoreWebView2.ExecuteScriptAsync(script);
+        }
+
+        private void ntpSearchBar_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter && !string.IsNullOrEmpty(ntpSearchBar.Text))
+            {
+                WebBrowser.Source = new Uri("https://www.google.com/search?q=" + HttpUtility.UrlEncode(ntpSearchBar.Text));
+            }
         }
     }
 }

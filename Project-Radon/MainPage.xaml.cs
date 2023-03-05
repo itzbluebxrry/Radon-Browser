@@ -125,7 +125,7 @@ namespace Yttrium_browser
             //website load status
             try
             {
-                Uri icoURI = new Uri("https://www.google.com/s2/favicons?sz=48&domain_url=" + SearchValue);
+                Uri icoURI = new Uri("https://icons.duckduckgo.com/ip3/" + SearchValue+".ico");
                 faviconicon.UriSource = icoURI;
                 faviconicon.ShowAsMonochrome = false;
 
