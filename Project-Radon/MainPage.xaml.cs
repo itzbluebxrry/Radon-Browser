@@ -24,6 +24,7 @@ using System.Numerics;
 using Windows.UI.Core.Preview;
 using Windows.Devices.Enumeration;
 using Windows.UI.Xaml.Navigation;
+using Windows.Storage;
 
 namespace Yttrium_browser
 {
@@ -43,25 +44,61 @@ namespace Yttrium_browser
 
             // TitleBar customizations
 
-            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            
-            // Set active window colors
-            titleBar.ButtonBackgroundColor = null;
-            titleBar.BackgroundColor = null;
-
-            // Set inactive window colors
-            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-
-            Windows.Storage.ApplicationDataContainer localSettings =
-    Windows.Storage.ApplicationData.Current.LocalSettings;
-            Windows.Storage.StorageFolder localFolder =
-                Windows.Storage.ApplicationData.Current.LocalFolder;
-
-            string colorthemevalue = (string)localSettings.Values["appcolortheme"];
-            appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/", colorthemevalue, ".png" })));
-
             
 
+
+
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+            //load theme settings
+            String colorthemevalue = localSettings.Values["appcolortheme"] as string;
+            appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/"+ colorthemevalue + ".png" })));
+
+            //load Inline Mode settings
+            String inlineMode = localSettings.Values["inlineMode"] as string;
+            if (inlineMode == "True")
+            {
+                compactuibar.Visibility = Visibility.Visible;
+                DefaultBarUI.Height = new Windows.UI.Xaml.GridLength(0);
+
+                BrowserTabs.TabWidthMode = TabViewWidthMode.Compact;
+                compacttitlebar_rightpadding.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                compactuibar.Visibility = Visibility.Collapsed;
+                DefaultBarUI.Height = new Windows.UI.Xaml.GridLength(40);
+
+                BrowserTabs.TabWidthMode = TabViewWidthMode.Equal;
+
+                compacttitlebar_rightpadding.Visibility = Visibility.Collapsed;
+            }
+
+            //load titlebar settings
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            String systemTitleBar = localSettings.Values["systemTitleBar"] as string;
+
+            if (systemTitleBar == "True")
+            {
+                coreTitleBar.ExtendViewIntoTitleBar = false;
+
+                var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+
+                titleBar.ButtonBackgroundColor = null;
+                titleBar.ButtonInactiveBackgroundColor = null;
+                titleBar.BackgroundColor = null;
+
+                localSettings.Values["systemTitleBar"] = "True";
+            }
+
+            else
+            {
+                var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+
+                coreTitleBar.ExtendViewIntoTitleBar = true;
+
+                localSettings.Values["systemTitleBar"] = "False";
+            }
 
 
         }
@@ -119,6 +156,11 @@ namespace Yttrium_browser
             if (SearchBar.FocusState == FocusState.Unfocused)
             {
                 
+            }
+
+            if (SearchBar.Text.Equals("radon://radon-ntp/"))
+            {
+                SearchBar.Text = string.Empty;
             }
 
 
@@ -479,24 +521,29 @@ namespace Yttrium_browser
 
         private void tabaction_inline_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
             if (compactuibar.Visibility == Visibility.Collapsed)
             {
                 compactuibar.Visibility = Visibility.Visible;
                 DefaultBarUI.Height = new Windows.UI.Xaml.GridLength(0);
-                Window.Current.SetTitleBar(null);
-                Window.Current.SetTitleBar(TitleBarGrid);
+
                 BrowserTabs.TabWidthMode = TabViewWidthMode.Compact;
                 compacttitlebar_rightpadding.Visibility = Visibility.Visible;
+
+                localSettings.Values["inlineMode"] = "True";
             }
 
             else
             {
                 compactuibar.Visibility = Visibility.Collapsed;
                 DefaultBarUI.Height = new Windows.UI.Xaml.GridLength(40);
-                Window.Current.SetTitleBar(null);
+
                 BrowserTabs.TabWidthMode = TabViewWidthMode.Equal;
-                Window.Current.SetTitleBar(TitleBarGrid);
+
                 compacttitlebar_rightpadding.Visibility = Visibility.Collapsed;
+
+                localSettings.Values["inlineMode"] = "False";
             }
         }
 
@@ -517,6 +564,8 @@ namespace Yttrium_browser
 
         private void tabaction_titlebar_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             if (coreTitleBar.ExtendViewIntoTitleBar == true)
             {
@@ -527,6 +576,8 @@ namespace Yttrium_browser
                 titleBar.ButtonBackgroundColor = null;
                 titleBar.ButtonInactiveBackgroundColor = null;
                 titleBar.BackgroundColor = null;
+
+                localSettings.Values["systemTitleBar"] = "True";
             }
 
             else
@@ -537,6 +588,8 @@ namespace Yttrium_browser
                 titleBar.ButtonBackgroundColor = Colors.Transparent;
                 titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
                 titleBar.BackgroundColor = null;
+
+                localSettings.Values["systemTitleBar"] = "False";
             }
         }
 
@@ -549,14 +602,11 @@ namespace Yttrium_browser
 
         private void ThemePickerComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values["appcolortheme"] = (ThemePickerComboBox.SelectedItem as ComboBoxItem).Content.ToString();
 
-            Windows.Storage.ApplicationDataContainer localSettings =
-    Windows.Storage.ApplicationData.Current.LocalSettings;
-            Windows.Storage.StorageFolder localFolder =
-                Windows.Storage.ApplicationData.Current.LocalFolder;
 
             appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/", (ThemePickerComboBox.SelectedItem as ComboBoxItem).Content.ToString(), ".png" })));
-            localSettings.Values["appcolortheme"] = (string)(ThemePickerComboBox.SelectedItem as string);
 
         }
 
@@ -572,46 +622,21 @@ namespace Yttrium_browser
 
         private void controlCenterToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            if (controlCenterToggleButton.IsChecked == true) 
-            {
-                controlCenter.IsOpen = true;
-            }
-            else
-            {
-                controlCenter.IsOpen = false;
-            }
+
         }
 
         private void controlCenter_Closed(object sender, object e)
         {
-            controlCenterToggleButton.IsChecked = false;
         }
 
         private void controlCenter_sound_Click(object sender, RoutedEventArgs e)
         {
-            if (controlCenter_sound.IsChecked == true)
-            {
-                ElementSoundPlayer.State = ElementSoundPlayerState.On;
-                controlCenter_sound_icon.Glyph = "\uE994";
-            }
 
-            else
-            {
-                ElementSoundPlayer.State = ElementSoundPlayerState.Off;
-                controlCenter_sound_icon.Glyph = "\uE74F";
-            }
         }
 
         private void controlcenter_sidebar_Click(object sender, RoutedEventArgs e)
         {
-            if (controlcenter_sidebar.IsChecked == true)
-            {
-                sidebarSearch.IsOpen = true;
-            }
-            else
-            {
-                sidebarSearch.IsOpen = false;
-            }
+
         }
 
         // Forgot to name the ToggleButton, btw it's the toggle for profileCenter

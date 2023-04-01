@@ -31,7 +31,9 @@
             <SolidColorBrush x:Key="TabViewItemHeaderBackgroundSelected" Color="Transparent"  />
         </ResourceDictionary>
     </Page.Resources>
+
     <Grid x:Name="BasicGrid">
+       
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True"/>
@@ -40,6 +42,7 @@
         <Grid.Background>
             <ImageBrush x:Name="appthemebackground" ImageSource="ms-appx:///wallpapers/10.png" Opacity="0.2"/>
         </Grid.Background>
+
         <Grid>
             <Grid.ChildrenTransitions>
                 <TransitionCollection>
@@ -73,8 +76,10 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="4"
                     Grid.RowSpan="2" />
+                <MediaPlayerElement Source="ms-appx:///Assets/startup.wav"
+                    AutoPlay="True" Grid.Row="2"/>
 
-            <!-- refresh and home buttons -->
+                    <!-- refresh and home buttons -->
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         Margin="5,0,0,0"
@@ -84,7 +89,6 @@
                         <winui:DropDownButton x:Name="tabactions_button" Margin="5,2,0,0"
                         Background="Transparent"
                         BorderThickness="0"
-                        Click="HomeButton_Click"
                         Padding="7.2" ToolTipService.ToolTip="Tab actions">
                             <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xeb41;"
                               FontSize="16" />
@@ -218,14 +222,14 @@
                     Grid.Row="0" Background="Transparent"
                     ToolTipService.ToolTip="View connection information">
                 <FontIcon  x:Name="SSLIcon"
-                           Glyph="&#xea18;"
+                           Glyph="&#xE72E;"
                            FontSize="15" />
                 <Button.Flyout>
                     <Flyout x:Name="SSLFlyout" ShouldConstrainToRootBounds="False">
                         <StackPanel Width="340">
                             <StackPanel Orientation="Horizontal">
                                 <FontIcon  x:Name="SSLFlyoutIcon"
-                                    Glyph="&#xe705;"
+                                    Glyph="&#xE72E;"
                                     FontSize="18" />
                                 <TextBlock x:Name="SSLFlyoutHeader" Style="{ThemeResource BaseTextBlockStyle}" Margin="10,0" Text="Connection informations"/>
 
@@ -239,6 +243,7 @@
             </Button>
 
             <!-- search bar -->
+                
                 <TextBox x:Name="SearchBar"
                     KeyDown="SearchBar_KeyDown"
                     VerticalAlignment="Center"
@@ -275,7 +280,7 @@
                                   FontFamily="Segoe fluent icons"/>
                     </Button>
 
-                    <ToggleButton x:Name="controlCenterToggleButton" Click="controlCenterToggleButton_Click" VerticalAlignment="Center" Grid.Column="1" Padding="7" Margin="0,4,5,0" BorderBrush="{x:Null}" Background="Transparent" HorizontalAlignment="Right">
+                    <ToggleButton Visibility="Collapsed" x:Name="controlCenterToggleButton" Click="controlCenterToggleButton_Click" VerticalAlignment="Center" Grid.Column="1" Padding="7" Margin="0,4,5,0" BorderBrush="{x:Null}" Background="Transparent" HorizontalAlignment="Right">
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE011;" FontSize="15"/>
 
                         <!--<Flyout ShouldConstrainToRootBounds="False">
@@ -486,7 +491,7 @@
                 VerticalAlignment="Stretch"
                 x:Name="BrowserTabs" 
                 Margin="0,-3,0,0"
-               IsAddTabButtonVisible="False"
+               IsAddTabButtonVisible="True"
                 TabCloseRequested="BrowserTabs_TabCloseRequested"
                 SelectionChanged="BrowserTabs_SelectionChanged"
                 AddTabButtonClick="BrowserTabs_AddTabButtonClick"
@@ -594,7 +599,210 @@
                                 <Button x:Name="addtab_button" BorderBrush="{x:Null}" Padding="10,6.8" Width="auto" Click="addtab_button_Click" Background="Transparent" HorizontalAlignment="Right">
                                     <FontIcon Glyph="&#xe710;" FontSize="16"/>
                                 </Button>
-                                
+                                <Button x:Name="controlCenterButton" Click="controlCenterToggleButton_Click" VerticalAlignment="Center" Grid.Column="1" Padding="10,6.8" Margin="0,4,5,0" BorderBrush="{x:Null}" Background="Transparent" HorizontalAlignment="Right">
+                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE712;" FontSize="17"/>
+                                    <Button.Flyout>
+                                        <Flyout ShouldConstrainToRootBounds="False" Placement="LeftEdgeAlignedTop" >
+                                            <ScrollViewer Padding="0" VerticalScrollBarVisibility="Auto" CornerRadius="8">
+                                                <Grid Margin="0,2">
+
+                                                    <StackPanel>
+
+                                                        <Grid Margin="0,0,0,8">
+                                                            <Grid.ChildrenTransitions>
+                                                                <TransitionCollection>
+                                                                    <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                                                                </TransitionCollection>
+                                                            </Grid.ChildrenTransitions>
+                                                            <Button Background="{x:Null}" BorderThickness="0" Padding="7" HorizontalAlignment="Left" Margin="4,0"
+                                                                    ToolTipService.ToolTip="Go to home">
+                                                                <FontIcon FontFamily="Segoe Fluent Icons" FontSize="17" Glyph="&#xEA8A;" />
+                                                            </Button>
+                                                            <Button Style="{ThemeResource TextBlockButtonStyle}" Content="Sign in" HorizontalAlignment="Right" Margin="37,0"/>
+                                                            <Button Background="{x:Null}" BorderThickness="0" Padding="4" HorizontalAlignment="Right" Margin="4,0"
+                                                                    ToolTipService.ToolTip="Radon user">
+                                                                <winui:PersonPicture HorizontalAlignment="Right" Width="30"/>
+                                                            </Button>
+                                                        </Grid>
+                                                        <Grid>
+                                                            <StackPanel Orientation="Horizontal">
+
+                                                                <Button Background="{x:Null}" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
+                                                                <StackPanel>
+                                                                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xEC6C;" FontSize="18"/>
+                                                                    <TextBlock Margin="0,8" Text="New tab" TextAlignment="Center"/>
+                                                                </StackPanel>
+                                                            </Button>
+                                                                <Border BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" Margin="0,8" Opacity="0.3"  BorderThickness="1"/>
+                                                                <Button Background="{x:Null}" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
+                                                                    <StackPanel>
+                                                                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE737;" FontSize="18"/>
+                                                                        <TextBlock Margin="0,8" Text="New window" TextAlignment="Center"/>
+                                                                    </StackPanel>
+                                                                </Button>
+                                                                <Border BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" Margin="0,8" Opacity="0.3" BorderThickness="1"/>
+
+
+                                                                <Button Background="{x:Null}" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
+                                                                    <StackPanel>
+                                                                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE621;" FontSize="18"/>
+                                                                        <TextBlock Margin="0,8" Text="New InPrivate" TextWrapping="WrapWholeWords" TextAlignment="Center"/>
+                                                                    </StackPanel>
+                                                                </Button>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                        <Border Margin="8,4" Opacity="0.3" BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" BorderThickness="1"/>
+                                                        
+                                                        <Button Background="Transparent" BorderBrush="Transparent" Margin="1,2" HorizontalAlignment="Stretch"
+                                                                HorizontalContentAlignment="Left">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <FontIcon Glyph="&#xE118;" FontSize="15"/>
+                                                                <TextBlock Margin="9,0,0,0" Text="Downloads"/>
+                                                            </StackPanel>
+                                                        </Button>
+
+                                                        <Button Background="Transparent" BorderBrush="Transparent" Margin="1,2" HorizontalAlignment="Stretch"
+                                                                HorizontalContentAlignment="Left">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <FontIcon Glyph="&#xF738;" FontSize="15"/>
+                                                                <TextBlock Margin="9,0,0,0" Text="History"/>
+                                                            </StackPanel>
+                                                        </Button>
+
+                                                        <Button Background="Transparent" BorderBrush="Transparent" Margin="1,2" HorizontalAlignment="Stretch"
+                                                                HorizontalContentAlignment="Left">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <FontIcon Glyph="&#xE006;" FontSize="17"/>
+                                                                <TextBlock Margin="9,0,0,0" Text="Favorites"/>
+                                                            </StackPanel>
+                                                        </Button>
+                                                        <Border Margin="8,0" Opacity="0.3" BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" BorderThickness="1"/>
+                                                        <Grid>
+                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="12,0">
+                                                                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8A3;" FontSize="17" />
+                                                                <TextBlock Margin="8,0" Text="Zoom" VerticalAlignment="Center"/>
+                                                            </StackPanel>
+                                                            <Button Background="{x:Null}" BorderThickness="0" Padding="7" HorizontalAlignment="Right" Margin="110,0">
+                                                                <FontIcon FontFamily="Segoe Fluent Icons" FontSize="15" Glyph="&#xE740;" />
+                                                            </Button>
+                                                            <winui:DropDownButton Content="100%" Width="95" Margin="4,4" HorizontalContentAlignment="Left" HorizontalAlignment="Right">
+                                                                <winui:DropDownButton.Flyout>
+                                                                    <MenuFlyout Placement="BottomEdgeAlignedRight">
+                                                                        <MenuFlyoutItem Text="25%"/>
+                                                                        <MenuFlyoutItem Text="50%"/>
+                                                                        <MenuFlyoutItem Text="75%"/>
+                                                                        <MenuFlyoutItem Text="100%"/>
+                                                                        <MenuFlyoutItem Text="125%"/>
+                                                                        <MenuFlyoutItem Text="150%"/>
+                                                                        <MenuFlyoutItem Text="200%"/>
+                                                                        <MenuFlyoutItem Text="300%"/>
+                                                                        <MenuFlyoutItem Text="500%"/>
+                                                                    </MenuFlyout>
+                                                                </winui:DropDownButton.Flyout>
+                                                            </winui:DropDownButton>
+                                                        </Grid>
+                                                        <Border Margin="8,0" Opacity="0.3" BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" BorderThickness="1"/>
+                                                        <Button Background="Transparent" BorderBrush="Transparent" Margin="1,2" HorizontalAlignment="Stretch"
+                                                                HorizontalContentAlignment="Left">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                    <FontIcon Glyph="&#xE118;" FontSize="15"/>
+                                                                    <TextBlock Margin="9,0,0,0" Text="Share"/>
+                                                                    <FontIcon FontSize="14" FontFamily="Segoe Fluent Icons" Glyph="&#xE097;" Margin="201,0,0,0"/>
+                                                            </StackPanel>
+                                                            <Button.Flyout>
+                                                                <MenuFlyout Placement="RightEdgeAlignedTop" ShouldConstrainToRootBounds="False">
+                                                                    <MenuFlyoutItem Text="Copy URL to clipboard">
+                                                                        <MenuFlyoutItem.Icon>
+                                                                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8C8;" />
+                                                                        </MenuFlyoutItem.Icon>
+                                                                    </MenuFlyoutItem>
+                                                                    <MenuFlyoutItem Text="Email link">
+                                                                        <MenuFlyoutItem.Icon>
+                                                                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE119;" />
+                                                                        </MenuFlyoutItem.Icon>
+                                                                    </MenuFlyoutItem>
+                                                                    <MenuFlyoutItem Text="Save as TXT">
+                                                                        <MenuFlyoutItem.Icon>
+                                                                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE792;" />
+                                                                        </MenuFlyoutItem.Icon>
+                                                                    </MenuFlyoutItem>
+                                                                    <MenuFlyoutSeparator/>
+                                                                    <MenuFlyoutItem Text="More sharing options">
+                                                                        <MenuFlyoutItem.Icon>
+                                                                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE712;" />
+                                                                        </MenuFlyoutItem.Icon>
+                                                                    </MenuFlyoutItem>
+                                                                </MenuFlyout>
+                                                            </Button.Flyout>
+
+                                                        </Button>
+
+                                                        <Button Background="Transparent" BorderBrush="Transparent" Margin="1,2" HorizontalAlignment="Stretch"
+                                                                HorizontalContentAlignment="Left">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <FontIcon Glyph="&#xE792;" FontSize="15"/>
+                                                                <TextBlock Margin="9,0,0,0" Text="Save page as"/>
+                                                            </StackPanel>
+                                                        </Button>
+
+                                                        <Button Background="Transparent" BorderBrush="Transparent" Margin="1,2" HorizontalAlignment="Stretch"
+                                                                HorizontalContentAlignment="Left">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <FontIcon Glyph="&#xE74F;" FontSize="17"/>
+                                                                <TextBlock Margin="9,0,0,0" Text="Toggle mute tab"/>
+                                                            </StackPanel>
+                                                        </Button>
+
+                                                        <Button Background="Transparent" BorderBrush="Transparent" Margin="1,2" HorizontalAlignment="Stretch"
+                                                                HorizontalContentAlignment="Left">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <FontIcon Glyph="&#xE749;" FontSize="15"/>
+                                                                <TextBlock Margin="9,0,0,0" Text="Print"/>
+                                                            </StackPanel>
+                                                        </Button>
+
+                                                        <Button Background="Transparent" BorderBrush="Transparent" Margin="1,2" HorizontalAlignment="Stretch"
+                                                                HorizontalContentAlignment="Left">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <FontIcon Glyph="&#xE722;" FontSize="15"/>
+                                                                <TextBlock Margin="9,0,0,0" Text="Snipping tool"/>
+                                                                <FontIcon FontSize="14" FontFamily="Segoe Fluent Icons" Glyph="&#xE097;" Margin="154,0,0,0"/>
+                                                            </StackPanel>
+                                                            <Button.Flyout>
+                                                                <MenuFlyout Placement="RightEdgeAlignedTop" ShouldConstrainToRootBounds="False">
+                                                                    <MenuFlyoutItem Text="Copy URL to clipboard">
+                                                                        <MenuFlyoutItem.Icon>
+                                                                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8C8;" />
+                                                                        </MenuFlyoutItem.Icon>
+                                                                    </MenuFlyoutItem>
+                                                                    <MenuFlyoutItem Text="Email link">
+                                                                        <MenuFlyoutItem.Icon>
+                                                                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE119;" />
+                                                                        </MenuFlyoutItem.Icon>
+                                                                    </MenuFlyoutItem>
+                                                                    <MenuFlyoutItem Text="Save as TXT">
+                                                                        <MenuFlyoutItem.Icon>
+                                                                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE792;" />
+                                                                        </MenuFlyoutItem.Icon>
+                                                                    </MenuFlyoutItem>
+                                                                    <MenuFlyoutSeparator/>
+                                                                    <MenuFlyoutItem Text="More sharing options">
+                                                                        <MenuFlyoutItem.Icon>
+                                                                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE712;" />
+                                                                        </MenuFlyoutItem.Icon>
+                                                                    </MenuFlyoutItem>
+                                                                </MenuFlyout>
+                                                            </Button.Flyout>
+                                                        </Button>
+                                                        <Border Margin="8,0" Opacity="0.3" BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" BorderThickness="1"/>
+
+                                                    </StackPanel>
+                                                </Grid>
+                                            </ScrollViewer>
+                                        </Flyout>
+                                    </Button.Flyout>
+                                </Button>
+
                             </StackPanel>
                         </winui:TabView.TabStripFooter>
 
@@ -635,7 +843,7 @@
         </Popup>
 
         <!--#region ControlCenter -->
-        <Popup x:Name="controlCenter" IsLightDismissEnabled="True" HorizontalAlignment="Right" Margin="0,44,487,90" Closed="controlCenter_Closed"
+        <Popup x:Name="controlCenter" IsLightDismissEnabled="True" HorizontalAlignment="Right" Margin="0,76,308,90" Closed="controlCenter_Closed"
                >
             <Popup.ChildTransitions>
                 <TransitionCollection>
@@ -644,73 +852,8 @@
             </Popup.ChildTransitions>
 
 
-            <Grid Width="358" Background="{ThemeResource SystemControlAcrylicWindowBrush}" BorderBrush="{ThemeResource SystemBaseLowColor}"
-                  BorderThickness="1" CornerRadius="9">
-                <Grid Grid.Row="1" Margin="0,0,0,0" Padding="20,10" CornerRadius="8">
-                    <!--#region ColumnRowDef -->
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <!--#endregion-->
-                    <TextBlock Grid.ColumnSpan="3" Text="Control Center" Style="{ThemeResource BaseTextBlockStyle}"
-                               TextAlignment="Center" Margin="0,5,0,15"/>
-                    <StackPanel Grid.Row="1">
-                        <Button Margin="5,10,5,5" HorizontalAlignment="Stretch" Height="50" Width="79"
-                                BorderBrush="{ThemeResource SystemBaseLowColor}" Click="addtab_button_Click">
-                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xEC6C;" FontSize="17"/>
-                        </Button>
-                        <TextBlock TextAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}">New tab</TextBlock>
-                    </StackPanel>
-                    <StackPanel Grid.Row="1" Grid.Column="1">
-                        <winui:SplitButton Margin="5,10,5,5" Width="80" HorizontalAlignment="Center" Height="50"
-                                BorderBrush="{ThemeResource SystemBaseLowColor}">
-                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE737;" FontSize="17"/>
-                            <winui:SplitButton.Flyout>
-                                <MenuFlyout Placement="Bottom">
-                                    <MenuFlyoutItem Text="New window" Width="230">
-                                        <MenuFlyoutItem.Icon>
-                                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE737;" />
-                                        </MenuFlyoutItem.Icon>
-                                    </MenuFlyoutItem>
-                                    <MenuFlyoutItem Text="New mini-mode window" Width="230">
-                                        <MenuFlyoutItem.Icon>
-                                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8A7;" />
-                                        </MenuFlyoutItem.Icon>
-                                    </MenuFlyoutItem>
-                                    <MenuFlyoutItem Text="New InPrivate window" Width="230">
-                                        <MenuFlyoutItem.Icon>
-                                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE2AC;" />
-                                        </MenuFlyoutItem.Icon>
-                                    </MenuFlyoutItem>
-                                </MenuFlyout>
-                            </winui:SplitButton.Flyout>
-                        </winui:SplitButton>
-                        <TextBlock TextAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}">New window</TextBlock>
-                    </StackPanel>
-                    <StackPanel Grid.Column="2" Grid.Row="1">
-                        <ToggleButton x:Name="controlcenter_sidebar" Click="controlcenter_sidebar_Click"
-                            Margin="5,10,5,5" Width="80" HorizontalAlignment="Center" Height="50"
-                            BorderBrush="{ThemeResource SystemBaseLowColor}">
-                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE90D;" FontSize="17"/>
-                        </ToggleButton>
-                        <TextBlock TextAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}">Sidebar</TextBlock>
-                    </StackPanel>
-                    <StackPanel Grid.Column="0" Grid.Row="2">
-                        <ToggleButton x:Name="controlCenter_sound" Click="controlCenter_sound_Click" Margin="5,25,5,5" Width="80" HorizontalAlignment="Center" Height="50"
-                                BorderBrush="{ThemeResource SystemBaseLowColor}">
-                            <FontIcon x:Name="controlCenter_sound_icon" FontFamily="Segoe Fluent Icons" Glyph="&#xE994;" FontSize="17"/>
-                        </ToggleButton>
-                        <TextBlock TextAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}">Sound effects</TextBlock>
-                    </StackPanel>
-                </Grid>
-
+            <Grid Height="Auto">
+                
             </Grid>
         </Popup>
         <!--#endregion-->

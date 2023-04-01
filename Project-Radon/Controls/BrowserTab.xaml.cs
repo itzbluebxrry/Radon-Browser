@@ -86,7 +86,7 @@ namespace Project_Radon.Controls
 
         private void WebBrowser_NavigationCompleted(Microsoft.UI.Xaml.Controls.WebView2 sender, CoreWebView2NavigationCompletedEventArgs args)
         {
-
+            ntpSearchBar.Text = string.Empty;
             IsLoading = false;
             if (WebBrowser.Source.Equals("edge://radon-ntp/"))
             {
@@ -188,6 +188,11 @@ namespace Project_Radon.Controls
             {
                 WebBrowser.Source = new Uri("https://www.google.com/search?q=" + HttpUtility.UrlEncode(ntpSearchBar.Text));
             }
+        }
+
+        private void ntpSearchBar_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+
         }
     }
 }

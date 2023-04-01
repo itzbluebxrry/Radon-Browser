@@ -163,12 +163,13 @@
 
                             <winui:ProgressRing
                                 x:Name="LoadingIndicator"
-                                MaxWidth="{ThemeResource TabViewItemHeaderIconSize}"
-                                MaxHeight="{ThemeResource TabViewItemHeaderIconSize}"
+                                
                                 Margin="{ThemeResource TabViewItemHeaderIconMargin}"
                                 IsIndeterminate="True"
-                                Visibility="Collapsed"
+                                Visibility="Collapsed" Width="0" Height="0" BorderThickness="0"
                                 />
+                            <!--MaxWidth="{ThemeResource TabViewItemHeaderIconSize}"
+                                MaxHeight="{ThemeResource TabViewItemHeaderIconSize}"-->
 
 
                             <ContentPresenter

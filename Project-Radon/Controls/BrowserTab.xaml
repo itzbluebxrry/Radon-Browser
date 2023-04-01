@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
+    xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
     mc:Ignorable="d">
 
     <Grid CornerRadius="8" Margin="8,0,8,8" BorderBrush="{ThemeResource SystemBaseLowColor}" Opacity="1" BorderThickness="1">
@@ -21,16 +23,23 @@
                 <ImageBrush ImageSource="https://images.wallpapersden.com/image/download/aurora-borealis-near-sea_bGplammUmZqaraWkpJRmbmdlrWZlbWU.jpg"/>
             </Grid.Background>
             <Grid Background="Black" Opacity="0.5"/>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0">
-                <TextBlock Style="{ThemeResource HeaderTextBlockStyle}"
-                       Text="Browse the&#x0a;Internet." Foreground="White" FontSize="72"/>
-                <TextBox x:Name="ntpSearchBar" Margin="-10,20" FontSize="20" Width="400" Background="{x:Null}" FontStretch="Condensed"
-                         PlaceholderText="What are you looking for?" Padding="10" BorderThickness="1" PlaceholderForeground="WhiteSmoke"
-                         KeyDown="ntpSearchBar_KeyDown"/>
+            <Grid Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" CornerRadius="4" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="100,90" MinWidth="500"
+                         RequestedTheme="Dark">
+                <ui:Effects.Shadow>
+                    <media:AttachedCardShadow BlurRadius="100"
+                                    CornerRadius="0"
+                                    Color="Black"
+                                    Offset="0"
+                                    Opacity="100"/>
+                </ui:Effects.Shadow>
                 
-            </StackPanel>
+                <TextBox x:Name="ntpSearchBar" PlaceholderText="Search the Internet" BorderThickness="0" TextAlignment="Center" FontWeight="SemiBold"
+                         KeyDown="ntpSearchBar_KeyDown" Padding="50,9" Background="{x:Null}" CornerRadius="4" FontSize="14"/>
+                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xF78B;" Margin="15,0" HorizontalAlignment="Left" FontSize="17"/>
+            </Grid>
+            
             <StackPanel Orientation="Horizontal" Margin="12" HorizontalAlignment="Right">
-                <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="20" Text="12:02 AM"/>
+                <TextBlock FontSize="17" Text="12:02 AM"/>
             </StackPanel>
             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Photo: Aurora by Authorname"
                        Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,12"/>
