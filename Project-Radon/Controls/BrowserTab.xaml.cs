@@ -11,6 +11,7 @@ using Windows.Storage.Streams;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Project_Radon.Controls
 {
@@ -92,6 +93,8 @@ namespace Project_Radon.Controls
             {
                 WebBrowser.Visibility = Visibility.Collapsed;
                 ntpGrid.Visibility = Visibility.Visible;
+                ntpbackgroundbrush.ImageSource = new BitmapImage(new Uri("https://bing.biturl.top/?resolution=1366&format=image&index=random&mkt=en-US"));
+
             }
             else
             {
@@ -106,11 +109,7 @@ namespace Project_Radon.Controls
             WebBrowser.Focus(FocusState.Pointer);
             WebBrowser.Focus(FocusState.Keyboard);
 
-            if (WebBrowser.Source.Equals("edge://radon-ntp/"))
-            {
-                WebBrowser.Visibility = Visibility.Collapsed;
-                ntpGrid.Visibility = Visibility.Visible;
-            }
+            
         }
         public async Task GoTo(string url)
         {
@@ -186,6 +185,8 @@ namespace Project_Radon.Controls
         {
             if (e.Key == VirtualKey.Enter && !string.IsNullOrEmpty(ntpSearchBar.Text))
             {
+                WebBrowser.Source = new Uri("about:blank");
+                ntpGrid.Visibility = Visibility.Collapsed;
                 WebBrowser.Source = new Uri("https://www.google.com/search?q=" + HttpUtility.UrlEncode(ntpSearchBar.Text));
             }
         }

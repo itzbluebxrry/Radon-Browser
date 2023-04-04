@@ -20,7 +20,7 @@
             />
         <Grid x:Name="ntpGrid">
             <Grid.Background>
-                <ImageBrush ImageSource="https://images.wallpapersden.com/image/download/aurora-borealis-near-sea_bGplammUmZqaraWkpJRmbmdlrWZlbWU.jpg"/>
+                <ImageBrush x:Name="ntpbackgroundbrush" ImageSource="https://bing.biturl.top/?resolution=1366&amp;format=image&amp;index=random&amp;mkt=en-US"/>
             </Grid.Background>
             <Grid Background="Black" Opacity="0.5"/>
             <Grid Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" CornerRadius="4" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="100,90" MinWidth="500"
@@ -41,7 +41,7 @@
             <StackPanel Orientation="Horizontal" Margin="12" HorizontalAlignment="Right">
                 <TextBlock FontSize="17" Text="12:02 AM"/>
             </StackPanel>
-            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Photo: Aurora by Authorname"
+            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Photo: Bing daily photos"
                        Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,12"/>
         </Grid>
     </Grid>

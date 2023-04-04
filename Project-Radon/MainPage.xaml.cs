@@ -437,6 +437,7 @@ namespace Yttrium_browser
         private async void editprofile_Click(object sender, RoutedEventArgs e)
         {
             //MenuButton.Flyout.Hide();
+            controlCenterButton.Flyout.Hide();
             await new UserProfileDialog().ShowAsync();
         }
 

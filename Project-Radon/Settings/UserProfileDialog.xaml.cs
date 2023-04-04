@@ -25,7 +25,9 @@ namespace Yttrium
 
         private void ContentDialog_Opened(ContentDialog sender, ContentDialogOpenedEventArgs args)
         {
-
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            String username = localSettings.Values["username"] as string;
+            Username_Display.Text = username;
         }
 
         private void pfpchanged_SelectionChanged(object sender, SelectionChangedEventArgs e)

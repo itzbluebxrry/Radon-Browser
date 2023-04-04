@@ -620,7 +620,7 @@
                                                             </Button>
                                                             <Button Style="{ThemeResource TextBlockButtonStyle}" Content="Sign in" HorizontalAlignment="Right" Margin="37,0"/>
                                                             <Button Background="{x:Null}" BorderThickness="0" Padding="4" HorizontalAlignment="Right" Margin="4,0"
-                                                                    ToolTipService.ToolTip="Radon user">
+                                                                    ToolTipService.ToolTip="Radon user" Click="editprofile_Click">
                                                                 <winui:PersonPicture HorizontalAlignment="Right" Width="30"/>
                                                             </Button>
                                                         </Grid>
