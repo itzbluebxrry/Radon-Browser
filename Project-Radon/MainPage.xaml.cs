@@ -650,5 +650,13 @@ namespace Yttrium_browser
         {
             
         }
+
+        private void profileCenter_Opened(object sender, object e)
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            String localValue = localSettings.Values["username"] as string;
+
+            profileCenter_UsernameHeader.Text = localValue;
+        }
     }
 }

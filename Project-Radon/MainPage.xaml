@@ -95,16 +95,6 @@
                             <winui:DropDownButton.Flyout>
                                 <MenuFlyout ShouldConstrainToRootBounds="True">
                                    
-                                    <MenuFlyoutItem Text="New tab" Width="250" x:Name="tabaction_newtab" Click="addtab_button_Click">
-                                        <MenuFlyoutItem.Icon>
-                                            <FontIcon Glyph="&#xe737;"/>
-                                        </MenuFlyoutItem.Icon>
-                                    </MenuFlyoutItem>
-                                    <MenuFlyoutItem Text="New window (in development)" Width="250" IsEnabled="False">
-                                        <MenuFlyoutItem.Icon>
-                                            <FontIcon Glyph="&#xe78b;"/>
-                                        </MenuFlyoutItem.Icon>
-                                    </MenuFlyoutItem>
                                     <MenuFlyoutItem Text="Inline mode (experimental)" Width="250" x:Name="tabaction_inline" Click="tabaction_inline_Click">
                                         <MenuFlyoutItem.Icon>
                                             <FontIcon Glyph="&#xf26b;"/>
@@ -503,16 +493,7 @@
                                         <EntranceThemeTransition IsStaggeringEnabled="True"/>
                                     </TransitionCollection>
                                 </Grid.ChildrenTransitions>
-                                <Button Style="{ThemeResource ButtonRevealStyle}" x:Name="profileCenterToggle" Background="{x:Null}" BorderThickness="0" ToolTipService.ToolTip="[NEW] Profile center" Margin="10,0,0,0" Padding="5" CornerRadius="40" Click="ToggleButton_Click">
-                                    <Ellipse Width="28" Height="28">
-                                        <Ellipse.Fill>
-                                            <ImageBrush  ImageSource="ms-appx:///accountpictures/clippy.png" Stretch="UniformToFill"/>
-                                        </Ellipse.Fill>
-                                        <Ellipse.RenderTransform>
-                                            <CompositeTransform/>
-                                        </Ellipse.RenderTransform>
-                                    </Ellipse>
-                                </Button>
+                                
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="8,0,0,0">
                                     <!--TODO: The button should add a new tab -->
 
@@ -596,14 +577,24 @@
                                         <EntranceThemeTransition IsStaggeringEnabled="True"/>
                                     </TransitionCollection>
                                 </StackPanel.ChildrenTransitions>
-                                <Button x:Name="addtab_button" BorderBrush="{x:Null}" Padding="10,6.8" Width="auto" Click="addtab_button_Click" Background="Transparent" HorizontalAlignment="Right">
+                                <Button Visibility="Collapsed"  x:Name="addtab_button" BorderBrush="{x:Null}" Padding="10,6.8" Width="auto" Click="addtab_button_Click" Background="Transparent" HorizontalAlignment="Right">
                                     <FontIcon Glyph="&#xe710;" FontSize="16"/>
+                                </Button>
+                                <Button Style="{ThemeResource ButtonRevealStyle}" x:Name="profileCenterToggle" Background="{x:Null}" BorderThickness="0" ToolTipService.ToolTip="[NEW] Profile center" Margin="10,0,0,0" Padding="5" CornerRadius="40" Click="ToggleButton_Click">
+                                    <Ellipse Width="28" Height="28">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="ms-appx:///accountpictures/clippy.png" Stretch="UniformToFill"/>
+                                        </Ellipse.Fill>
+                                        <Ellipse.RenderTransform>
+                                            <CompositeTransform/>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
                                 </Button>
                                 <Button x:Name="controlCenterButton" Click="controlCenterToggleButton_Click" VerticalAlignment="Center" Grid.Column="1" Padding="10,6.8" Margin="0,4,5,0" BorderBrush="{x:Null}" Background="Transparent" HorizontalAlignment="Right">
                                     <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE712;" FontSize="17"/>
                                     <Button.Flyout>
                                         <Flyout ShouldConstrainToRootBounds="False" Placement="LeftEdgeAlignedTop" >
-                                            <ScrollViewer Padding="0" VerticalScrollBarVisibility="Auto" CornerRadius="8">
+                                            <ScrollViewer Padding="0" VerticalScrollBarVisibility="Auto" CornerRadius="8" Margin="-8">
                                                 <Grid Margin="0,2">
 
                                                     <StackPanel>
@@ -618,7 +609,7 @@
                                                                     ToolTipService.ToolTip="Go to home">
                                                                 <FontIcon FontFamily="Segoe Fluent Icons" FontSize="17" Glyph="&#xEA8A;" />
                                                             </Button>
-                                                            <Button Style="{ThemeResource TextBlockButtonStyle}" Content="Sign in" HorizontalAlignment="Right" Margin="37,0"/>
+                                                            <Button Style="{ThemeResource TextBlockButtonStyle}" Content="Log out" HorizontalAlignment="Right" Margin="37,0"/>
                                                             <Button Background="{x:Null}" BorderThickness="0" Padding="4" HorizontalAlignment="Right" Margin="4,0"
                                                                     ToolTipService.ToolTip="Radon user" Click="editprofile_Click">
                                                                 <winui:PersonPicture HorizontalAlignment="Right" Width="30"/>
@@ -627,7 +618,7 @@
                                                         <Grid>
                                                             <StackPanel Orientation="Horizontal">
 
-                                                                <Button Background="{x:Null}" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
+                                                                <Button Click="addtab_button_Click" Background="{x:Null}" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
                                                                 <StackPanel>
                                                                     <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xEC6C;" FontSize="18"/>
                                                                     <TextBlock Margin="0,8" Text="New tab" TextAlignment="Center"/>
@@ -654,7 +645,7 @@
                                                         <Border Margin="8,4" Opacity="0.3" BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" BorderThickness="1"/>
                                                         
                                                         <Button Background="Transparent" BorderBrush="Transparent" Margin="1,2" HorizontalAlignment="Stretch"
-                                                                HorizontalContentAlignment="Left">
+                                                                HorizontalContentAlignment="Left" Click="downloadbutton_Click">
                                                             <StackPanel Orientation="Horizontal">
                                                                 <FontIcon Glyph="&#xE118;" FontSize="15"/>
                                                                 <TextBlock Margin="9,0,0,0" Text="Downloads"/>
@@ -885,7 +876,7 @@
         
         <!--#region profileCenterPopup-->
 
-        <Popup IsLightDismissEnabled="True" x:Name="profileCenter" HorizontalAlignment="Left" Margin="8,84" Closed="profileCenter_Closed">
+        <Popup IsOpen="True" Opened="profileCenter_Opened" x:Name="profileCenter" HorizontalAlignment="Right" Margin="-908,83" Closed="profileCenter_Closed">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PopupThemeTransition/>
@@ -909,8 +900,8 @@
                     <StackPanel Orientation="Horizontal" Margin="8,0,0,20">
                         <PersonPicture Width="48"/>
                         <StackPanel Margin="8,0,0,0" VerticalAlignment="Center">
-                            <TextBlock Text="Radon User" FontWeight="Semibold" FontSize="18"/>
-                            <Button Content="Edit profile" Padding="0" Margin="0,4,0,0" Style="{ThemeResource TextBlockButtonStyle}"/>
+                            <TextBlock x:Name="profileCenter_UsernameHeader" FontWeight="Semibold" FontSize="18"/>
+                            <Button Content="Edit profile" Click="editprofile_Click" Padding="0" Margin="0,4,0,0" Style="{ThemeResource TextBlockButtonStyle}"/>
                         </StackPanel>
                     </StackPanel>
                     <Border BorderBrush="White" BorderThickness="1" Margin="25,30" Opacity="0.5"/>
