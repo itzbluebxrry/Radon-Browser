@@ -580,16 +580,7 @@
                                 <Button Visibility="Collapsed"  x:Name="addtab_button" BorderBrush="{x:Null}" Padding="10,6.8" Width="auto" Click="addtab_button_Click" Background="Transparent" HorizontalAlignment="Right">
                                     <FontIcon Glyph="&#xe710;" FontSize="16"/>
                                 </Button>
-                                <Button Style="{ThemeResource ButtonRevealStyle}" x:Name="profileCenterToggle" Background="{x:Null}" BorderThickness="0" ToolTipService.ToolTip="[NEW] Profile center" Margin="10,0,0,0" Padding="5" CornerRadius="40" Click="ToggleButton_Click">
-                                    <Ellipse Width="28" Height="28">
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="ms-appx:///accountpictures/clippy.png" Stretch="UniformToFill"/>
-                                        </Ellipse.Fill>
-                                        <Ellipse.RenderTransform>
-                                            <CompositeTransform/>
-                                        </Ellipse.RenderTransform>
-                                    </Ellipse>
-                                </Button>
+                                
                                 <Button x:Name="controlCenterButton" Click="controlCenterToggleButton_Click" VerticalAlignment="Center" Grid.Column="1" Padding="10,6.8" Margin="0,4,5,0" BorderBrush="{x:Null}" Background="Transparent" HorizontalAlignment="Right">
                                     <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE712;" FontSize="17"/>
                                     <Button.Flyout>
@@ -801,7 +792,11 @@
 
                     </winui:TabView>
                     <winui:ProgressBar x:Name="loadingbar" Grid.ColumnSpan="4" VerticalAlignment="Top" Grid.Row="0" Visibility="Visible" IsIndeterminate="True"/>
-                    
+                    <Grid  Grid.Row="1" Grid.ColumnSpan="4" CornerRadius="8"
+                                    Margin="12,44,8,8" Width="335" HorizontalAlignment="Right">
+                        <!--<winui:WebView2 Source="https://adamw.uk/bingai"/>-->
+                    </Grid>
+
                 </Grid>
         
             </Grid>
@@ -1003,6 +998,7 @@
         </Popup>
          
         <!--#endregion-->
+        
 
 
 

@@ -20,10 +20,13 @@
             />
         <Grid x:Name="ntpGrid">
             <Grid.Background>
-                <ImageBrush x:Name="ntpbackgroundbrush" ImageSource="https://bing.biturl.top/?resolution=1366&amp;format=image&amp;index=random&amp;mkt=en-US"/>
+                <ImageBrush x:Name="ntpbackgroundbrush" Stretch="UniformToFill" ImageSource="https://bing.biturl.top/?resolution=1366&amp;format=image&amp;index=random&amp;mkt=en-US"/>
             </Grid.Background>
             <Grid Background="Black" Opacity="0.5"/>
-            <Grid Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" CornerRadius="4" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="100,90" MinWidth="500"
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="100,90" MinWidth="500">
+                <TextBlock x:Name="ntpTimeDisplay" FontWeight="Medium" TextAlignment="Center" Text="12:00" FontSize="68" />
+                <TextBlock x:Name="ntpDateDisplay" FontWeight="Medium" TextAlignment="Center" Text="Saturday, April 15th" Margin="0,0,0,60" FontSize="16" />
+                <Grid Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" BorderBrush="{StaticResource SystemControlAcrylicElementBrush}" BorderThickness="0" CornerRadius="4" 
                          RequestedTheme="Dark">
                 <ui:Effects.Shadow>
                     <media:AttachedCardShadow BlurRadius="100"
@@ -34,12 +37,34 @@
                 </ui:Effects.Shadow>
                 
                 <TextBox x:Name="ntpSearchBar" PlaceholderText="Search the Internet" BorderThickness="0" TextAlignment="Center" FontWeight="SemiBold"
-                         KeyDown="ntpSearchBar_KeyDown" Padding="50,9" Background="{x:Null}" CornerRadius="4" FontSize="14"/>
+                         KeyDown="ntpSearchBar_KeyDown" Padding="50,9" Background="{x:Null}" CornerRadius="4" FontSize="14" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xF78B;" Margin="15,0" HorizontalAlignment="Left" FontSize="17"/>
             </Grid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE753;" Margin="8,0"/>
+                <TextBlock Text="24°C • Cloudy"/>
+            </StackPanel>
             
-            <StackPanel Orientation="Horizontal" Margin="12" HorizontalAlignment="Right">
-                <TextBlock FontSize="17" Text="12:02 AM"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">
+
+                <Button Style="{ThemeResource ButtonRevealStyle}" x:Name="profileCenterToggle" Background="{x:Null}" BorderThickness="0" Margin="10,0,0,0" Padding="5" CornerRadius="40">
+                    <Ellipse Width="28" Height="28">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="ms-appx:///accountpictures/clippy.png" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                        <Ellipse.RenderTransform>
+                            <CompositeTransform/>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="8">
+
+                <Button x:Name="ntpEditButton" Background="{x:Null}" BorderThickness="0"  ToolTipService.ToolTip="New tab options" Margin="10,0,0,0" Padding="10">
+                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE70F;" FontSize="14" />
+                </Button>
             </StackPanel>
             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Photo: Bing daily photos"
                        Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,12"/>

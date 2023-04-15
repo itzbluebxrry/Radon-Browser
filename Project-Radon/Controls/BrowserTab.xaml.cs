@@ -82,6 +82,13 @@ namespace Project_Radon.Controls
                 };
             };
 
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            String username = localSettings.Values["username"] as string;
+            ToolTip toolTip = new ToolTip
+            {
+                Content = username
+            };
+            ToolTipService.SetToolTip(profileCenterToggle, toolTip);
         }
 
 
