@@ -471,7 +471,7 @@
                 
 
             </Button>-->
-
+                    
                     <winui:TabView
                 TabItemsSource="{x:Bind CurrentTabs}"
                 Grid.Row="1"
@@ -664,8 +664,8 @@
                                                                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8A3;" FontSize="17" />
                                                                 <TextBlock Margin="8,0" Text="Zoom" VerticalAlignment="Center"/>
                                                             </StackPanel>
-                                                            <Button Background="{x:Null}" BorderThickness="0" Padding="7" HorizontalAlignment="Right" Margin="110,0">
-                                                                <FontIcon FontFamily="Segoe Fluent Icons" FontSize="15" Glyph="&#xE740;" />
+                                                            <Button Background="{x:Null}" BorderThickness="0" Padding="7" HorizontalAlignment="Right" Margin="110,0" Click="fullscreenbutton_Click">
+                                                                <FontIcon x:Name="fullscreenbutton_icon" FontFamily="Segoe Fluent Icons" FontSize="15" Glyph="&#xE740;" />
                                                             </Button>
                                                             <winui:DropDownButton Content="100%" Width="95" Margin="4,4" HorizontalContentAlignment="Left" HorizontalAlignment="Right">
                                                                 <winui:DropDownButton.Flyout>
@@ -791,11 +791,12 @@
 
 
                     </winui:TabView>
-                    <winui:ProgressBar x:Name="loadingbar" Grid.ColumnSpan="4" VerticalAlignment="Top" Grid.Row="0" Visibility="Visible" IsIndeterminate="True"/>
+                    <winui:ProgressBar x:Name="loadingbar" Grid.ColumnSpan="4" VerticalAlignment="Top" Grid.RowSpan="2" Visibility="Visible" IsIndeterminate="True"/>
                     <Grid  Grid.Row="1" Grid.ColumnSpan="4" CornerRadius="8"
                                     Margin="12,44,8,8" Width="335" HorizontalAlignment="Right">
                         <!--<winui:WebView2 Source="https://adamw.uk/bingai"/>-->
                     </Grid>
+                    <Button x:Name="fullscreentopbar" Visibility="Collapsed" Click="fullscreentopbar_Click" Canvas.ZIndex="3" HorizontalAlignment="Stretch" Background="{x:Null}" ClickMode="Hover" Grid.Row="1"  Grid.ColumnSpan="4" VerticalAlignment="Top"/>
 
                 </Grid>
         
@@ -995,6 +996,88 @@
                     </StackPanel>
                 </StackPanel>
             </Grid>
+        </Popup>
+        <Popup x:Name="fullscreentopbar_flyout" IsLightDismissEnabled="True" HorizontalAlignment="Center" IsOpen="True" Canvas.ZIndex="3" Margin="0, -8, 636, 0">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Top"/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+
+            <Grid Height="48" CornerRadius="12" HorizontalAlignment="Stretch">
+                <Grid.Background>
+                    <ImageBrush x:Name="fullscreentopbarbackground" ImageSource="ms-appx:///wallpapers/10.png" Opacity="0.7"/>
+                </Grid.Background>
+                <Grid Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
+                <StackPanel Margin="8, 8, 8, 0" Orientation="Horizontal" >
+                    <Button 
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Margin="0,2,5,0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Click="BackButton_Click" ClickMode="Press"
+                        Padding="3,6" ToolTipService.ToolTip="Back">
+
+
+                        <FontIcon  Glyph="&#xe973;" FontSize="20" Translation="0,0,0" FontFamily="Segoe Fluent Icons">
+                            <FontIcon.TranslationTransition>
+                                <Vector3Transition/>
+                            </FontIcon.TranslationTransition>
+                        </FontIcon>
+                    </Button>
+                    <Button
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Margin="0,2,5,0" ClickMode="Press"
+                        Click="ForwardButton_Click"
+                        Padding="3,6" ToolTipService.ToolTip="Forward">
+                        <FontIcon Glyph="&#xe974;" Translation="0,0,0"
+                              FontSize="20" FontFamily="segoe fluent icons">
+                            <FontIcon.TranslationTransition>
+                                <Vector3Transition/>
+                            </FontIcon.TranslationTransition>
+                        </FontIcon>
+                    </Button>
+                    <TextBox
+                    KeyDown="SearchBar_KeyDown"
+                    VerticalAlignment="Center"
+                    Margin="43,0,45,0"
+                    BorderThickness="0"
+                    Padding="30,6,30,2" Width="400"
+                    FontSize="13" Height="21" 
+                    IsSpellCheckEnabled="False"
+                    Grid.Column="1"
+                    PlaceholderText="Search the web or enter a URL"
+                    VerticalContentAlignment="Center" 
+                    GotFocus="SearchBar_GotFocus" PlaceholderForeground="{ThemeResource ContentDialogDimmingThemeBrush}"
+                    LostFocus="SearchBar_LostFocus" CharacterSpacing="1"
+                    TextAlignment="Center" FontWeight="Medium" CornerRadius="8">
+                    </TextBox>
+                    <Button
+                        Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Right"
+                        BorderThickness="0" PointerEntered="RefreshButton_PointerEntered"
+                        Margin="0,0,8,0"
+                        Click="RefreshButton_Click"
+                        CornerRadius="40" Padding="6.5" ToolTipService.ToolTip="Reload">
+                        <FontIcon Glyph="&#xe72c;"
+                              FontSize="13" FontFamily="segoe fluent icons"/>
+                    </Button>
+                    <Button
+                        Background="Transparent" Grid.Column="1"
+                        BorderThickness="0" HorizontalAlignment="Right"
+                        Margin="0,0,8,0"
+                        Visibility="Collapsed"
+                        Click="StopRefreshButton_Click"
+                        Padding="6" CornerRadius="40" ToolTipService.ToolTip="Stop navigation">
+                        <FontIcon Glyph="&#xe711;" FontSize="15"
+                                  FontFamily="Segoe fluent icons"/>
+                    </Button>
+                    <Button ToolTipService.ToolTip="Exit fullscreen view" Background="{x:Null}" BorderThickness="0" Padding="7" HorizontalAlignment="Right" Margin="4,0,8,0" Click="fullscreenbutton_Click">
+                        <FontIcon FontFamily="Segoe Fluent Icons" FontSize="15" Glyph="&#xE73F;" />
+                    </Button>
+                </StackPanel>
+                </Grid>
+            </Grid>
+            
         </Popup>
          
         <!--#endregion-->

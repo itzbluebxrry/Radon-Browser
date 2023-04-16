@@ -53,6 +53,7 @@ namespace Yttrium_browser
             //load theme settings
             String colorthemevalue = localSettings.Values["appcolortheme"] as string;
             appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/"+ colorthemevalue + ".png" })));
+            fullscreentopbarbackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/" + colorthemevalue + ".png" })));
 
             //load Inline Mode settings
             String inlineMode = localSettings.Values["inlineMode"] as string;
@@ -450,13 +451,20 @@ namespace Yttrium_browser
                 view.TryEnterFullScreenMode();
                 view.ExitFullScreenMode();
                 ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+                fullscreenbutton_icon.Glyph = "\uE740";
+                BrowserTabs.Margin = new Windows.UI.Xaml.Thickness(0, 0, 0, 0);
+                DefaultBarUI.Height = new Windows.UI.Xaml.GridLength(40);
+                fullscreentopbar.Visibility = Visibility.Collapsed;
             }
             else
             {
-                if (view.TryEnterFullScreenMode())
-                {
-                    ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
-                }
+                view.TryEnterFullScreenMode();
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+                fullscreenbutton_icon.Glyph = "\uE73F";
+                BrowserTabs.Margin = new Windows.UI.Xaml.Thickness(0, -40, 0, 0);
+                DefaultBarUI.Height = new Windows.UI.Xaml.GridLength(0);
+                fullscreentopbar.Visibility = Visibility.Visible;
+
             }
         }
 
@@ -657,6 +665,11 @@ namespace Yttrium_browser
             String localValue = localSettings.Values["username"] as string;
 
             profileCenter_UsernameHeader.Text = localValue;
+        }
+
+        private void fullscreentopbar_Click(object sender, RoutedEventArgs e)
+        {
+            fullscreentopbar_flyout.IsOpen = true;
         }
     }
 }
