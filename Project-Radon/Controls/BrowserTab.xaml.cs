@@ -12,6 +12,7 @@ using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using Yttrium;
 
 namespace Project_Radon.Controls
 {
@@ -44,12 +45,14 @@ namespace Project_Radon.Controls
         public string Favicon => IsCoreInitialized && !IsLoading ? ("https://icons.duckduckgo.com/ip3/" + WebBrowser.Source.AbsoluteUri+".ico") : "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Document/SVG/ic_fluent_document_48_regular.svg";
         public string Title => IsCoreInitialized && !IsLoading ? (WebBrowser.CoreWebView2.DocumentTitle ?? WebBrowser.Source.AbsoluteUri) : "Loading";
         public bool IsCoreInitialized { get; private set; }
+
         public BrowserTab()
         {
             InitializeComponent();
+            
 
             WebBrowser.Source = new Uri("about:radon-ntp");
-            
+
             //Windows.System.Launcher.LaunchFolderAsync(ApplicationData.Current.LocalFolder);
             WebBrowser.CoreWebView2Initialized += delegate
             {
@@ -59,7 +62,7 @@ namespace Project_Radon.Controls
                 .Replace("Mozilla/5.0", "Mozilla/4.0");
                 WebBrowser.CoreWebView2.Settings.UserAgent = GoogleSignInUserAgent;
                 WebBrowser.CoreWebView2.DocumentTitleChanged += (_, e) => InvokePropertyChanged();
-                WebBrowser.CoreWebView2.SourceChanged+= (_, e) => InvokePropertyChanged();
+                WebBrowser.CoreWebView2.SourceChanged += (_, e) => InvokePropertyChanged();
                 WebBrowser.CoreWebView2.ContextMenuRequested += async (s, e) =>
                 {
                     IList<CoreWebView2ContextMenuItem> menuList = e.MenuItems;
@@ -89,7 +92,13 @@ namespace Project_Radon.Controls
                 Content = username
             };
             ToolTipService.SetToolTip(profileCenterToggle, toolTip);
+
+
         }
+
+        
+
+
 
 
         private void WebBrowser_NavigationCompleted(Microsoft.UI.Xaml.Controls.WebView2 sender, CoreWebView2NavigationCompletedEventArgs args)
@@ -201,6 +210,11 @@ namespace Project_Radon.Controls
         private void ntpSearchBar_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
 
+        }
+
+        private async void profileCenterToggle_Click(object sender, RoutedEventArgs e)
+        {
+            await new UserProfileDialog().ShowAsync();
         }
     }
 }

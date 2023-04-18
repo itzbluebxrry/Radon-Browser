@@ -24,7 +24,10 @@
             </Grid.Background>
             <Grid Background="Black" Opacity="0.5"/>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="100,90" MinWidth="500">
-                <TextBlock x:Name="ntpTimeDisplay" FontWeight="Medium" TextAlignment="Center" Text="12:00" FontSize="68" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <TextBlock x:Name="ntpHourDisplay" FontWeight="Medium" TextAlignment="Center" Text="12:00" FontSize="68" />
+                    
+                </StackPanel>
                 <TextBlock x:Name="ntpDateDisplay" FontWeight="Medium" TextAlignment="Center" Text="Saturday, April 15th" Margin="0,0,0,60" FontSize="16" />
                 <Grid Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" BorderBrush="{StaticResource SystemControlAcrylicElementBrush}" BorderThickness="0" CornerRadius="4" 
                          RequestedTheme="Dark">
@@ -49,7 +52,7 @@
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">
 
-                <Button Style="{ThemeResource ButtonRevealStyle}" x:Name="profileCenterToggle" Background="{x:Null}" BorderThickness="0" Margin="10,0,0,0" Padding="5" CornerRadius="40">
+                <Button Style="{ThemeResource ButtonRevealStyle}" Click="profileCenterToggle_Click" x:Name="profileCenterToggle" Background="{x:Null}" BorderThickness="0" Margin="10,0,0,0" Padding="5" CornerRadius="40">
                     <Ellipse Width="28" Height="28">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="ms-appx:///accountpictures/clippy.png" Stretch="UniformToFill"/>
