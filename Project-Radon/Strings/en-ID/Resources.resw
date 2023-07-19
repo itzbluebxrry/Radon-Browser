@@ -124,33 +124,33 @@
     <value>Kembali</value>
   </data>
   <data name="nav_forwardtooltip" xml:space="preserve">
-    <value>Forward</value>
+    <value>Maju</value>
   </data>
   <data name="nav_refreshtooltip" xml:space="preserve">
-    <value>Refresh</value>
+    <value>Muat ulang</value>
   </data>
   <data name="nav_searchboxplaceholder" xml:space="preserve">
-    <value>Search the web or enter a URL </value>
+    <value>Telusuri web atau masukkan URL</value>
   </data>
   <data name="nav_stoptooltip" xml:space="preserve">
-    <value>Stop loading</value>
+    <value>Berhenti memuat</value>
   </data>
   <data name="tabactions_devtools" xml:space="preserve">
-    <value>Developer tools</value>
+    <value>Alat pengembang</value>
   </data>
   <data name="tabactions_inlinemode" xml:space="preserve">
-    <value>Inline mode</value>
+    <value>Mode inline</value>
   </data>
   <data name="tabactions_systemtitlebar" xml:space="preserve">
-    <value>System titlebar</value>
+    <value>Bilah judul sistem</value>
   </data>
   <data name="tabactions_tooltip" xml:space="preserve">
-    <value>Tab actions</value>
+    <value>Tab aksi</value>
   </data>
   <data name="themepopup_done" xml:space="preserve">
-    <value>Done</value>
+    <value>Selesai</value>
   </data>
   <data name="themepopup_header" xml:space="preserve">
-    <value>Pick a theme:</value>
+    <value>Pilih sebuah tema:</value>
   </data>
 </root>
