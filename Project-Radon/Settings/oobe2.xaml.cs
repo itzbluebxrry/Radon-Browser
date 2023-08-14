@@ -15,6 +15,9 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 using Yttrium_browser;
+using Windows.ApplicationModel.Core;
+using Windows.UI.ViewManagement;
+using Windows.UI;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -30,6 +33,16 @@ namespace Project_Radon.Settings
             this.InitializeComponent();
 
             setlicensetext();
+
+            // Title bar code-behind
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            coreTitleBar.ExtendViewIntoTitleBar = true;
+
+            // Set XAML element as a drag region.
+            Window.Current.SetTitleBar(titleBar);
+            var ititleBar = ApplicationView.GetForCurrentView().TitleBar;
+            ititleBar.ButtonBackgroundColor = Colors.Transparent;
+            ititleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
         }
 

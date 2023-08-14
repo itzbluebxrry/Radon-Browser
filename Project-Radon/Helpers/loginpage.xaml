@@ -17,7 +17,7 @@
             <Grid Height="8"/>
                 <TextBlock Style="{ThemeResource TitleTextBlockStyle}" TextAlignment="Center">Radon user</TextBlock>
                 <Grid Height="22"/>
-                <PasswordBox Width="300" PlaceholderText="Password" IsPasswordRevealButtonEnabled="True" BorderThickness="0" KeyDown="PasswordBox_KeyDown"/>
+                <PasswordBox Width="300" PlaceholderText="Password" BorderThickness="0" KeyDown="PasswordBox_KeyDown"/>
             </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="20" VerticalAlignment="Bottom" HorizontalAlignment="Right">
         <Button Background="{x:Null}" BorderThickness="0">

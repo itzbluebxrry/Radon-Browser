@@ -25,6 +25,7 @@ using Windows.UI.Core.Preview;
 using Windows.Devices.Enumeration;
 using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace Yttrium_browser
 {
@@ -631,7 +632,7 @@ namespace Yttrium_browser
 
         private void controlCenterToggleButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void controlCenter_Closed(object sender, object e)
@@ -664,7 +665,13 @@ namespace Yttrium_browser
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             String localValue = localSettings.Values["username"] as string;
 
-            profileCenter_UsernameHeader.Text = localValue;
+            if (localValue != null)
+            {
+                profileCenter_UsernameHeader.Text = localValue;
+            }
+            else {
+               // this.Frame.Navigate(typeof(oobe1), null, new EntranceNavigationTransitionInfo());
+            }
         }
 
         private void fullscreentopbar_Click(object sender, RoutedEventArgs e)

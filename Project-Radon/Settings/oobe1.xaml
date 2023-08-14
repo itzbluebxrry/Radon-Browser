@@ -12,9 +12,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
+            <RowDefinition Height="48"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
+        <Border x:Name="titleBar" BorderBrush="Red" BorderThickness="0">
+            <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" Orientation="Horizontal">
+                <Image Margin="15,0,0,0" Source="ms-appx:///Assets/StoreLogo.png" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20"/>
+                <TextBlock Margin="15,0,0,0" VerticalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}">Radon Browser • Initial setup</TextBlock>
+            </StackPanel>
+        </Border>
         <StackPanel Grid.Row="1" Margin="0,48" VerticalAlignment="Center">
             <Image Source="ms-appx:///Assets/welcomegif.png" Width="120"/>
             

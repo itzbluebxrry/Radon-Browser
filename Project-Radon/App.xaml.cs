@@ -11,6 +11,8 @@ using Windows.UI.Xaml.Navigation;
 using Project_Radon;
 using Project_Radon.Settings;
 using Windows.Storage;
+using Microsoft.Toolkit.Uwp.Notifications;
+using Windows.Foundation.Collections;
 
 // TODO: Import Cubekit.UI (Firecube's GlowUI refer https://github.com/FireCubeStudios/TemplateApp)
 
@@ -143,6 +145,22 @@ namespace Yttrium_browser
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        protected override void OnActivated(IActivatedEventArgs e)
+        {
+            // Handle notification activation
+            if (e is ToastNotificationActivatedEventArgs toastActivationArgs)
+            {
+                // Obtain the arguments from the notification
+                ToastArguments args = ToastArguments.Parse(toastActivationArgs.Argument);
+
+                // Obtain any user input (text boxes, menu selections) from the notification
+                ValueSet userInput = toastActivationArgs.UserInput;
+
+                // TODO: Show the corresponding content
+                
+            }
         }
     }
 }

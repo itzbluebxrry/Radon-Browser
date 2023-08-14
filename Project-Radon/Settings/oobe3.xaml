@@ -11,15 +11,22 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0*"/>
+            <RowDefinition Height="48"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Grid/>
+        <Border x:Name="titleBar" BorderBrush="Red" BorderThickness="0">
+            <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" Orientation="Horizontal">
+                <Image Margin="15,0,0,0" Source="ms-appx:///Assets/StoreLogo.png" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20"/>
+                <TextBlock Margin="15,0,0,0" VerticalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}">Radon Browser • Initial setup</TextBlock>
+            </StackPanel>
+        </Border>
         <Grid Grid.Row="1" Margin="30,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
+            
             <StackPanel VerticalAlignment="Center" Margin="20,0">
                 <Image Source="ms-appx:///Assets/laptop_3d.png" Width="120"/>
                 <TextBlock Text="Customize your browsing experience" Style="{ThemeResource SubheaderTextBlockStyle}" TextAlignment="Center" VerticalAlignment="Center"/>
@@ -40,8 +47,13 @@
                     <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Go back</TextBlock>
                 </StackPanel>
             </Button>
-            <ScrollViewer Grid.Column="1" Margin="40,50,0,100">
+            <ScrollViewer Grid.Column="1" Margin="40,0,0,100">
                 <StackPanel Margin="0,0,16,0">
+                    <muxc:InfoBar
+                        IsOpen="True"
+                        Severity="Warning"
+                        Title="Warning"
+                        Message="This section is currently under development. Some changes you've made might not be saved at the moment."/> 
                     <StackPanel  CornerRadius="4" Margin="1,2" HorizontalAlignment="Stretch" Padding="0,10" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
                         <StackPanel>
                             <Grid>

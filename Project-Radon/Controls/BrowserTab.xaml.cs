@@ -12,7 +12,10 @@ using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.Toolkit.Uwp;
+using Microsoft.Toolkit.Uwp.Connectivity;
 using Yttrium;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace Project_Radon.Controls
 {
@@ -49,7 +52,10 @@ namespace Project_Radon.Controls
         public BrowserTab()
         {
             InitializeComponent();
+
             
+
+
 
             WebBrowser.Source = new Uri("about:radon-ntp");
 
@@ -111,21 +117,69 @@ namespace Project_Radon.Controls
                 ntpGrid.Visibility = Visibility.Visible;
                 ntpbackgroundbrush.ImageSource = new BitmapImage(new Uri("https://bing.biturl.top/?resolution=1366&format=image&index=random&mkt=en-US"));
 
+
             }
             else
             {
-                WebBrowser.Visibility = Visibility.Visible;
-                ntpGrid.Visibility = Visibility.Collapsed;
+                if (NetworkHelper.Instance.ConnectionInformation.IsInternetAvailable == false)
+                {
+                    WebBrowser.Visibility = Visibility.Collapsed;
+                    ntpGrid.Visibility = Visibility.Collapsed;
+                    offlinePage.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    WebBrowser.Visibility = Visibility.Visible;
+                    ntpGrid.Visibility = Visibility.Collapsed;
+                    offlinePage.Visibility = Visibility.Collapsed;
+                }
             }
         }
         public void Close() => WebBrowser.Close();
-        private void WebBrowser_NavigationStarting(Microsoft.UI.Xaml.Controls.WebView2 sender, CoreWebView2NavigationStartingEventArgs args)
+
+        private async void WebBrowser_NavigationStarting(Microsoft.UI.Xaml.Controls.WebView2 sender, CoreWebView2NavigationStartingEventArgs args)
         {
+            offlinePage.Visibility = Visibility.Collapsed;
             IsLoading = true;
             WebBrowser.Focus(FocusState.Pointer);
             WebBrowser.Focus(FocusState.Keyboard);
 
-            
+
+            if (NetworkHelper.Instance.ConnectionInformation.IsInternetAvailable == false)
+            {
+                if (!WebBrowser.Source.Equals("edge://radon-ntp"))
+                {
+                    offlinePage.Visibility = Visibility.Visible;
+                    bool isOffline = true;
+                    network_debug.Text = "Internet unavailable - disconnected";
+                    while (isOffline == true)
+                    {
+                        await Task.Delay(1000);
+                        if (NetworkHelper.Instance.ConnectionInformation.IsInternetAvailable == true)
+                        {
+
+                            WebBrowser.Reload();
+                            WebBrowser.Visibility = Visibility.Collapsed;
+                            isOffline = false;
+
+                            network_debug.Text = "Internet available - connected";
+                            new ToastContentBuilder()
+                               .AddArgument("action", "viewConversation")
+                               .AddArgument("conversationId", 9813)
+                                   .AddButton(new ToastButton()
+                                   .SetContent("Dismiss"))
+                               .AddText("You're now online!")
+                               .AddText("The Internet connection has been restored. You can now continue browsing.")
+                               .AddAttributionText("via Radon Browser")
+                               .AddAppLogoOverride(new Uri("ms-appx:///Assets/StoreLogo.scale-100.png"), ToastGenericAppLogoCrop.Circle)
+                               .Show();
+                            await Task.Delay(500);
+                            
+                        }
+                    }
+                }
+            }
+
         }
         public async Task GoTo(string url)
         {
@@ -212,9 +266,9 @@ namespace Project_Radon.Controls
 
         }
 
-        private async void profileCenterToggle_Click(object sender, RoutedEventArgs e)
+        private void profileCenterToggle_Click(object sender, RoutedEventArgs e)
         {
-            await new UserProfileDialog().ShowAsync();
+            
         }
     }
 }
