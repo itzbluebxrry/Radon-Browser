@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,6 +29,17 @@ namespace Project_Radon.Settings
         public oobe1()
         {
             this.InitializeComponent();
+
+
+            // Title bar code-behind
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            coreTitleBar.ExtendViewIntoTitleBar = true;
+
+            // Set XAML element as a drag region.
+            Window.Current.SetTitleBar(titleBar);
+            var ititleBar = ApplicationView.GetForCurrentView().TitleBar;
+            ititleBar.ButtonBackgroundColor = Colors.Transparent;
+            ititleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

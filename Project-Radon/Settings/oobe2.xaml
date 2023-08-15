@@ -11,29 +11,35 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
+            <RowDefinition Height="48"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Grid>
-            
+            <Border x:Name="titleBar" BorderBrush="Red" BorderThickness="0">
+                <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" Orientation="Horizontal">
+                    <Image Margin="15,0,0,0" Source="ms-appx:///Assets/StoreLogo.png" HorizontalAlignment="Left" VerticalAlignment="Center" Width="20"/>
+                    <TextBlock Margin="15,0,0,0" VerticalAlignment="Center" Style="{ThemeResource CaptionTextBlockStyle}">Radon Browser • Initial setup</TextBlock>
+                </StackPanel>
+            </Border>
         </Grid>
         <Grid Grid.Row="1" Margin="30,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
+            
             <StackPanel VerticalAlignment="Center" Margin="20,0">
                 <Image Source="ms-appx:///Assets/clipboard_3d.png" Width="120"/>
                 <TextBlock Text="License Agreements" Style="{ThemeResource SubheaderTextBlockStyle}" TextAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Text="Before you can use Radon, please agree to the following license agreements." TextWrapping="WrapWholeWords" Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="18" TextAlignment="Center" Margin="0,8"/>
             </StackPanel>
-            <ScrollViewer Grid.Column="1" Margin="20,40,20,130" Padding="0,20" CornerRadius="8" BorderThickness="1" BorderBrush="{ThemeResource SystemBaseLowColor}">
+            <ScrollViewer Grid.Column="1" Margin="20,0,20,130" Padding="0,20" CornerRadius="8" BorderThickness="1" BorderBrush="{ThemeResource SystemBaseLowColor}">
             <StackPanel CornerRadius="8">
 
             
 
             
-            <TextBlock x:Name="LicenseTextBox" TextAlignment="Justify" TextWrapping="WrapWholeWords" Margin="30,20,30,0" Text="Getting license..."/>
+            <TextBlock x:Name="LicenseTextBox" IsTextSelectionEnabled="True" TextAlignment="Justify" TextWrapping="WrapWholeWords" Margin="30,20,30,0" Text="Getting license..."/>
             
 
             </StackPanel>

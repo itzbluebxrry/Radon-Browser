@@ -813,6 +813,7 @@
             <StackPanel Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}" Padding="10" HorizontalAlignment="Center" CornerRadius="8">
                 <TextBlock HorizontalAlignment="Center" Text="Pick a theme:" Style="{ThemeResource SubtitleTextBlockStyle}" TextAlignment="Center"/>
                 <ComboBox x:Name="ThemePickerComboBox" Width="300" Margin="0,10,0,0" SelectionChanged="ThemePickerComboBox_SelectionChanged">
+                    <ComboBoxItem Content="None"/>
                     <ComboBoxItem Content="Unknown"/>
                     <ComboBoxItem Content="Forest"/>
                     <ComboBoxItem Content="Candy"/>

@@ -4,8 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.ViewManagement;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,16 +32,56 @@ namespace Project_Radon.Settings
         public oobe5()
         {
             this.InitializeComponent();
+
+            // Title bar code-behind
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            coreTitleBar.ExtendViewIntoTitleBar = true;
+
+            // Set XAML element as a drag region.
+            Window.Current.SetTitleBar(titleBar);
+            var ititleBar = ApplicationView.GetForCurrentView().TitleBar;
+            ititleBar.ButtonBackgroundColor = Colors.Transparent;
+            ititleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+
+            // load Settings if exists
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            String username = localSettings.Values["username"] as string;
+            if ( username != null) { username_textbox.Text = username; username_Header.Text = username; usernameSave_Button.IsEnabled = true; }
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(loginpage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+            this.Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(oobe4), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+        }
+
+        private void usernameSave_Button_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values["username"] = username_textbox.Text;
+            localSettings.Values["email"] = username_textbox.Text;
+            username_Header.Text = username_textbox.Text;
+        }
+
+        private void TextBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            // Accidental event creation, ignore this function
+        }
+
+        private void username_textbox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (username_textbox.Text == null) { usernameSave_Button.IsEnabled = false; }
+            else { usernameSave_Button.IsEnabled = true; }
+        }
+
+        private void email_textbox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+
         }
     }
 }

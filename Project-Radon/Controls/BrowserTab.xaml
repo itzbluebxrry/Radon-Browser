@@ -8,9 +8,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
 
-    <Grid CornerRadius="8" Margin="8,0,8,8" BorderBrush="{ThemeResource SystemBaseLowColor}" Opacity="1" BorderThickness="1">
+    <Grid CornerRadius="8" Margin="4,0,4,4" BorderBrush="{ThemeResource SystemBaseLowColor}" Opacity="1" BorderThickness="1">
+        
         <winui:WebView2 
             NavigationCompleted="WebBrowser_NavigationCompleted" 
             NavigationStarting="WebBrowser_NavigationStarting"
@@ -18,11 +20,12 @@
             Source="https://google.com"
             Visibility="Collapsed"
             />
-        <Grid x:Name="ntpGrid">
+        <Grid x:Name="ntpGrid" Visibility="Collapsed">
             <Grid.Background>
                 <ImageBrush x:Name="ntpbackgroundbrush" Stretch="UniformToFill" ImageSource="https://bing.biturl.top/?resolution=1366&amp;format=image&amp;index=random&amp;mkt=en-US"/>
             </Grid.Background>
             <Grid Background="Black" Opacity="0.5"/>
+            
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="100,90" MinWidth="500">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <TextBlock x:Name="ntpHourDisplay" FontWeight="Medium" TextAlignment="Center" Text="12:00" FontSize="68" />
@@ -72,5 +75,47 @@
             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Photo: Bing daily photos"
                        Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,12"/>
         </Grid>
+        <Grid x:Name="offlinePage" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
+            <ScrollViewer>
+                <StackPanel Margin="0,30">
+                    <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" TextAlignment="Center" FontWeight="SemiLight">Unable to reach the web</TextBlock>
+                    <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="16" TextAlignment="Center" FontWeight="SemiLight">Radon is unable to load the page you're requesting for.</TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="0,12" HorizontalAlignment="Center">
+                        <FontIcon Glyph="&#xE7F8;" FontSize="50"/>
+                        <winui:ProgressBar x:Name="pcToNet" Width="100" Margin="10" Value="100" Foreground="{ThemeResource TextBoxForegroundHeaderThemeBrush}"/>
+                        <FontIcon x:Name="netIcon" Glyph="&#xEC3F;" FontSize="50" Opacity="1" />
+                        <!--Foreground="BlueViolet"-->
+                        <winui:ProgressBar x:Name="netToWeb" Width="100" Margin="10" Value="100"  Foreground="{ThemeResource TextBoxForegroundHeaderThemeBrush}"/>
+                        <FontIcon Glyph="&#xE12B;" FontSize="50" Opacity="0.3"/>
+                    </StackPanel>
+                    <winui:InfoBar x:Name="offlineInfoBar" Margin="20,24" MaxWidth="600" HorizontalAlignment="Stretch" IsOpen="True" Severity="Warning" HorizontalContentAlignment="Center"
+                               Title="It seems like your PC isn't connected to any network." IsClosable="False">
+
+                    </winui:InfoBar>
+                    <TextBlock Margin="20,8,20,8" MaxWidth="600" Style="{ThemeResource SubtitleTextBlockStyle}" FontSize="16">Let's get you back online!</TextBlock>
+                    <TextBlock Margin="20,0" MaxWidth="600">To get connected, try these recommendations:</TextBlock>
+
+                    <winui:Expander HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" Margin="20,28,20,4" MaxWidth="600">
+                        <winui:Expander.Header>
+                            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontSize="15">Check your network cables, modem or routers</TextBlock>
+                        </winui:Expander.Header>
+                        <TextBlock TextAlignment="Left" TextWrapping="WrapWholeWords">
+                        <Run>It's always a good idea to check your network connection sources to ensure they work as expected.</Run>
+                        </TextBlock>
+                    </winui:Expander>
+
+                    <winui:Expander HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" Margin="20,4" MaxWidth="600">
+                        <winui:Expander.Header>
+                            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontSize="15">Reconnect to your wireless network</TextBlock>
+                        </winui:Expander.Header>
+                        <TextBlock TextAlignment="Left" TextWrapping="WrapWholeWords">
+                        <Run>Sometimes your wireless connection could behave unexpected. Reconnecting could be a major fix for this kind of issue.</Run>
+                        </TextBlock>
+                    </winui:Expander>
+                </StackPanel>
+            </ScrollViewer>
+            
+        </Grid>
+        <TextBlock x:Name="network_debug" Text="Internet connection status goes here." VerticalAlignment="Bottom"/>
     </Grid>
 </Page>
