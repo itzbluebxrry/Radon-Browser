@@ -14,7 +14,11 @@
             <RowDefinition Height="32" />
             <RowDefinition />
         </Grid.RowDefinitions>
-
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True"/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
         <Border Grid.Row="0" Background="Transparent" HorizontalAlignment="Stretch" x:Name="dragTitleBar" Loaded="dragTitleBar_Loaded">
             <StackPanel Orientation="Horizontal">
                 <Image x:Name="AppFontIcon"

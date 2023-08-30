@@ -17,7 +17,7 @@
             NavigationCompleted="WebBrowser_NavigationCompleted" 
             NavigationStarting="WebBrowser_NavigationStarting"
             x:Name="WebBrowser" 
-            Source="https://google.com"
+            Source="edge://radon-ntp"
             Visibility="Collapsed"
             />
         <Grid x:Name="ntpGrid" Visibility="Collapsed">
@@ -48,11 +48,22 @@
             </Grid>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE753;" Margin="8,0"/>
+            <Button Padding="5" Margin="6" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
+            <StackPanel Orientation="Horizontal" >
+                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE753;" Margin="0,0,8,0"/>
                 <TextBlock Text="24°C • Cloudy"/>
             </StackPanel>
-            
+                <ToolTipService.ToolTip>
+                    <StackPanel>
+                        <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" FontWeight="SemiBold">Weather informations</TextBlock>
+                        <TextBlock Style="{ThemeResource CaptionTextBlockStyle}">See current weather information in realtime.</TextBlock>
+                    </StackPanel>
+                </ToolTipService.ToolTip>
+                <Button.Flyout>
+                    <Flyout Placement="BottomEdgeAlignedLeft"/>
+                </Button.Flyout>
+            </Button>
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8">
 
                 <Button Style="{ThemeResource ButtonRevealStyle}" Click="profileCenterToggle_Click" x:Name="profileCenterToggle" Background="{x:Null}" BorderThickness="0" Margin="10,0,0,0" Padding="5" CornerRadius="40">
@@ -75,10 +86,10 @@
             <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Photo: Bing daily photos"
                        Style="{ThemeResource CaptionTextBlockStyle}" Margin="0,12"/>
         </Grid>
-        <Grid x:Name="offlinePage" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}">
+        <Grid x:Name="offlinePage" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <ScrollViewer>
                 <StackPanel Margin="0,30">
-                    <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" TextAlignment="Center" FontWeight="SemiLight">Unable to reach the web</TextBlock>
+                    <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" TextAlignment="Center" FontWeight="SemiLight">No Internet </TextBlock>
                     <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="16" TextAlignment="Center" FontWeight="SemiLight">Radon is unable to load the page you're requesting for.</TextBlock>
                     <StackPanel Orientation="Horizontal" Margin="0,12" HorizontalAlignment="Center">
                         <FontIcon Glyph="&#xE7F8;" FontSize="50"/>
@@ -88,10 +99,6 @@
                         <winui:ProgressBar x:Name="netToWeb" Width="100" Margin="10" Value="100"  Foreground="{ThemeResource TextBoxForegroundHeaderThemeBrush}"/>
                         <FontIcon Glyph="&#xE12B;" FontSize="50" Opacity="0.3"/>
                     </StackPanel>
-                    <winui:InfoBar x:Name="offlineInfoBar" Margin="20,24" MaxWidth="600" HorizontalAlignment="Stretch" IsOpen="True" Severity="Warning" HorizontalContentAlignment="Center"
-                               Title="It seems like your PC isn't connected to any network." IsClosable="False">
-
-                    </winui:InfoBar>
                     <TextBlock Margin="20,8,20,8" MaxWidth="600" Style="{ThemeResource SubtitleTextBlockStyle}" FontSize="16">Let's get you back online!</TextBlock>
                     <TextBlock Margin="20,0" MaxWidth="600">To get connected, try these recommendations:</TextBlock>
 
@@ -114,8 +121,7 @@
                     </winui:Expander>
                 </StackPanel>
             </ScrollViewer>
-            
+
         </Grid>
-        <TextBlock x:Name="network_debug" Text="Internet connection status goes here." VerticalAlignment="Bottom"/>
     </Grid>
 </Page>

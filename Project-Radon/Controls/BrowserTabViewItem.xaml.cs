@@ -57,6 +57,10 @@ namespace Project_Radon.Controls
         }
         private object TabContent => ShowCustomContent && CustomContentType != null ? Activator.CreateInstance(CustomContentType) : Tab;
         private object TabHeader => CustomHeader ?? Tab.Title;
+
+        private object TabSourceUri => Tab.SourceUri.ToString();
+
+
         public BrowserTabViewItem()
         {
             InitializeComponent();

@@ -7,12 +7,32 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    CornerRadius="8"
+    CornerRadius="8" Opened="ContentDialog_Opened"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
     Background="#333333">
+    <Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Padding="12" CornerRadius="8">
+            <FontIcon FontSize="18" Glyph="&#xE896;" Margin="0,0,12,0"/>
+            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}">Downloads</TextBlock>
+        </StackPanel>
+        <Button CornerRadius="48" x:Name="closebutton" Padding="12" ToolTipService.ToolTip="Close" HorizontalAlignment="Right" VerticalAlignment="Top"
+                Background="{ThemeResource ButtonPointerOverBackgroundThemeBrush}" Margin="4" Click="closebutton_Click">
+            <FontIcon FontSize="12" Glyph="&#xE8BB;"/>
+        </Button>
+        <muxc:ProgressRing HorizontalAlignment="Center"/>
+        <Grid MinWidth="990" MinHeight="600" Margin="-10,50,-10,-10" Padding="0,-80,0,0" CornerRadius="8"  EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition IsStaggeringEnabled="True"/>
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+            <muxc:WebView2 x:Name="wv2" Source="about:blank"  CornerRadius="8" NavigationStarting="wv2_NavigationStarting" Opacity="0" NavigationCompleted="WebView2_NavigationCompleted">
+                <muxc:WebView2.OpacityTransition>
+                    <ScalarTransition/>
+                </muxc:WebView2.OpacityTransition>
+            </muxc:WebView2>
 
-    <Grid MinWidth="990" MinHeight="600" Margin="-10">
-        <muxc:WebView2 Source="edge://downloads"/>
+        </Grid>
     </Grid>
 </ContentDialog>

@@ -39,9 +39,13 @@
                 <EntranceThemeTransition IsStaggeringEnabled="True"/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        <Grid.Background>
-            <ImageBrush x:Name="appthemebackground" ImageSource="ms-appx:///wallpapers/10.png" Opacity="0.2"/>
-        </Grid.Background>
+
+            <Image x:Name="appthemebackground" Stretch="UniformToFill" Source="ms-appx:///wallpapers/10.png" Opacity="0.2">
+            <Image.OpacityTransition>
+                <ScalarTransition/>
+            </Image.OpacityTransition>
+        </Image>
+
 
         <Grid>
             <Grid.ChildrenTransitions>
@@ -69,15 +73,13 @@
             </Grid.RowDefinitions>
 
             <!-- titlebar drag area -->
-            <Border x:Name="DragArea"
+                    <Border x:Name="DragArea"
                     Loaded="DragArea_Loaded"
                     Background="Transparent"
                     Canvas.ZIndex="0"
                     Grid.Column="0"
                     Grid.ColumnSpan="4"
                     Grid.RowSpan="2" />
-                <MediaPlayerElement Source="ms-appx:///Assets/startup.wav"
-                    AutoPlay="True" Grid.Row="2"/>
 
                     <!-- refresh and home buttons -->
             <StackPanel Orientation="Horizontal"
@@ -89,11 +91,16 @@
                         <winui:DropDownButton x:Name="tabactions_button" Margin="5,2,0,0"
                         Background="Transparent"
                         BorderThickness="0"
-                        Padding="7.2" ToolTipService.ToolTip="Tab actions">
-                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xeb41;"
-                              FontSize="16" />
+                        Padding="7.2">
+                            <ToolTipService.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" FontWeight="SemiBold">Radon quick options</TextBlock>
+                                    <TextBlock Style="{ThemeResource CaptionTextBlockStyle}">Access top-level actions such as navigation, view mode, tools and more.</TextBlock>
+                                </StackPanel>
+                            </ToolTipService.ToolTip>
+                            <Image Source="ms-appx:///Assets/StoreLogo.png" Margin="2"/>
                             <winui:DropDownButton.Flyout>
-                                <MenuFlyout ShouldConstrainToRootBounds="True">
+                                <MenuFlyout ShouldConstrainToRootBounds="False" Placement="BottomEdgeAlignedLeft">
                                    
                                     <MenuFlyoutItem Text="Inline mode (experimental)" Width="250" x:Name="tabaction_inline" Click="tabaction_inline_Click">
                                         <MenuFlyoutItem.Icon>
@@ -150,9 +157,13 @@
                         BorderThickness="0"
                         Margin="0,2,5,0" VerticalAlignment="Center" HorizontalAlignment="Center"
                         Click="BackButton_Click" ClickMode="Press"
-                        Padding="3,6" ToolTipService.ToolTip="Back">
-
-
+                        Padding="3,6">
+                            <ToolTipService.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" FontWeight="SemiBold">Go back (Alt + Left arrow)</TextBlock>
+                                    <TextBlock Style="{ThemeResource CaptionTextBlockStyle}">Navigate to the most recently opened web page.</TextBlock>
+                                </StackPanel>
+                            </ToolTipService.ToolTip>
                             <FontIcon x:Name="backbutton_icon" Glyph="&#xe973;" FontSize="20" Translation="0,0,0" FontFamily="Segoe Fluent Icons">
                                 <FontIcon.TranslationTransition>
                                     <Vector3Transition/>
@@ -164,7 +175,13 @@
                         BorderThickness="0"
                         Margin="0,2,5,0" ClickMode="Press"
                         Click="ForwardButton_Click"
-                        Padding="3,6" ToolTipService.ToolTip="Forward">
+                        Padding="3,6">
+                            <ToolTipService.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" FontWeight="SemiBold">Go forward (Alt + Right arrow)</TextBlock>
+                                    <TextBlock Style="{ThemeResource CaptionTextBlockStyle}">Navigate to the page you've recently navigate back from.</TextBlock>
+                                </StackPanel>
+                            </ToolTipService.ToolTip>
                             <FontIcon Glyph="&#xe974;" Translation="0,0,0" x:Name="forwardbutton_icon"
                               FontSize="20" FontFamily="segoe fluent icons">
                                 <FontIcon.TranslationTransition>
@@ -209,9 +226,14 @@
                     BorderThickness="0"
                     Canvas.ZIndex="1"
                     Padding="6.9"
-                    Grid.Row="0" Background="Transparent"
-                    ToolTipService.ToolTip="View connection information">
-                <FontIcon  x:Name="SSLIcon"
+                    Grid.Row="0" Background="Transparent">
+                        <ToolTipService.ToolTip>
+                            <StackPanel>
+                                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" FontWeight="SemiBold">Connection information</TextBlock>
+                                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}">Inspect your connection to the web provider and it's security status.</TextBlock>
+                            </StackPanel>
+                        </ToolTipService.ToolTip>
+                        <FontIcon  x:Name="SSLIcon"
                            Glyph="&#xE72E;"
                            FontSize="15" />
                 <Button.Flyout>
@@ -233,13 +255,13 @@
             </Button>
 
             <!-- search bar -->
-                
-                <TextBox x:Name="SearchBar"
+
+                    <TextBox x:Name="SearchBar"
                     KeyDown="SearchBar_KeyDown"
                     VerticalAlignment="Center"
                     Margin="43,3,45,0"
                     BorderThickness="0"
-                    Padding="30,6,30,2"
+                    Padding="50,6,50,2"
                     FontSize="13" Height="21" 
                     IsSpellCheckEnabled="False"
                     Grid.Column="1"
@@ -248,16 +270,22 @@
                     GotFocus="SearchBar_GotFocus" PlaceholderForeground="{ThemeResource ContentDialogDimmingThemeBrush}"
                     LostFocus="SearchBar_LostFocus" CharacterSpacing="1"
                     TextAlignment="Center" FontWeight="Medium" CornerRadius="8">
-                </TextBox>
+                    </TextBox>
 
                     <Button x:Name="RefreshButton"
                         Background="{x:Null}" Grid.Column="1" HorizontalAlignment="Right"
                         BorderThickness="0" PointerEntered="RefreshButton_PointerEntered"
                         Margin="0,4,48,0"
                         Click="RefreshButton_Click"
-                        CornerRadius="40" Padding="6.5" ToolTipService.ToolTip="Reload">
+                        CornerRadius="40" Padding="6.5">
                         <FontIcon Glyph="&#xe72c;"
                               FontSize="13" FontFamily="segoe fluent icons"/>
+                        <ToolTipService.ToolTip>
+                            <StackPanel>
+                                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" FontWeight="SemiBold">Refresh</TextBlock>
+                                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}">Reload this page again.</TextBlock>
+                            </StackPanel>
+                        </ToolTipService.ToolTip>
                     </Button>
                     <Button x:Name="StopRefreshButton"
                         Background="Transparent" Grid.Column="1"
@@ -265,9 +293,15 @@
                         Margin="0,4,48,0"
                         Visibility="Collapsed"
                         Click="StopRefreshButton_Click"
-                        Padding="6" CornerRadius="40" ToolTipService.ToolTip="Stop navigation">
+                        Padding="6" CornerRadius="40">
                         <FontIcon Glyph="&#xe711;" FontSize="15"
                                   FontFamily="Segoe fluent icons"/>
+                        <ToolTipService.ToolTip>
+                            <StackPanel>
+                                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" FontWeight="SemiBold">Stop navigation</TextBlock>
+                                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}">Stop the current web page from loading.</TextBlock>
+                            </StackPanel>
+                        </ToolTipService.ToolTip>
                     </Button>
 
                     <ToggleButton Visibility="Collapsed" x:Name="controlCenterToggleButton" Click="controlCenterToggleButton_Click" VerticalAlignment="Center" Grid.Column="1" Padding="7" Margin="0,4,5,0" BorderBrush="{x:Null}" Background="Transparent" HorizontalAlignment="Right">
@@ -625,7 +659,7 @@
                                                                 <Border BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" Margin="0,8" Opacity="0.3" BorderThickness="1"/>
 
 
-                                                                <Button Background="{x:Null}" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
+                                                                <Button x:Name="newWindow" Click="newWindow_Click" Background="{x:Null}" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
                                                                     <StackPanel>
                                                                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE621;" FontSize="18"/>
                                                                         <TextBlock Margin="0,8" Text="New InPrivate" TextWrapping="WrapWholeWords" TextAlignment="Center"/>
@@ -777,6 +811,13 @@
                                                             </Button.Flyout>
                                                         </Button>
                                                         <Border Margin="8,0" Opacity="0.3" BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" BorderThickness="1"/>
+                                                        <Button Background="Transparent" BorderBrush="Transparent" Margin="1,2" HorizontalAlignment="Stretch"
+                                                                HorizontalContentAlignment="Left" Click="SettingsPageButton_Click">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <FontIcon Glyph="&#xE9E9;" FontSize="15"/>
+                                                                <TextBlock Margin="9,0,0,0" Text="Settings"/>
+                                                            </StackPanel>
+                                                        </Button>
 
                                                     </StackPanel>
                                                 </Grid>
@@ -796,7 +837,7 @@
                                     Margin="12,44,8,8" Width="335" HorizontalAlignment="Right">
                         <!--<winui:WebView2 Source="https://adamw.uk/bingai"/>-->
                     </Grid>
-                    <Button x:Name="fullscreentopbar" Visibility="Collapsed" Click="fullscreentopbar_Click" Canvas.ZIndex="3" HorizontalAlignment="Stretch" Background="{x:Null}" ClickMode="Hover" Grid.Row="1"  Grid.ColumnSpan="4" VerticalAlignment="Top"/>
+                    <Button x:Name="fullscreentopbar" Visibility="Collapsed" Click="fullscreentopbar_Click" Canvas.ZIndex="3" HorizontalAlignment="Stretch" BorderBrush="{x:Null}" Background="Transparent" ClickMode="Hover" Grid.Row="1"  Grid.ColumnSpan="4" VerticalAlignment="Top"/>
 
                 </Grid>
         

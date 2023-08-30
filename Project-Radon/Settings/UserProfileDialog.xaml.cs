@@ -47,5 +47,11 @@ namespace Yttrium
         {
             Hide();
         }
+
+        private void debug_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationData.Current.LocalSettings.Values["username"] = null;
+            Username_Display.Text = username_box.Text;
+        }
     }
 }

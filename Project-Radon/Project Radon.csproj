@@ -24,10 +24,10 @@
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>C:\Radon1.4.11update</AppxPackageDir>
+    <AppxPackageDir>C:\Radon</AppxPackageDir>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
-    <AppxBundle>Never</AppxBundle>
-    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
   </PropertyGroup>
@@ -222,13 +222,8 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
-    <Content Include="Assets\license.png" />
-    <Content Include="Assets\locked_with_key_3d.png" />
     <Content Include="Assets\oobe1img.jpg" />
-    <Content Include="Assets\OpenInNewTab.png" />
     <Content Include="Assets\paintbrush_3d.png" />
-    <Content Include="Assets\paintbrush_color.svg" />
-    <Content Include="Assets\personalize.png" />
     <Content Include="Assets\settings-about-icon.png" />
     <Content Include="Assets\settings-advanced-icon.png" />
     <Content Include="Assets\settings-general-icon.png" />
@@ -285,8 +280,6 @@
     <Content Include="Assets\StoreLogo.scale-150.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
-    <Content Include="Assets\uwpc.png" />
-    <Content Include="Assets\uwpcbanner.png" />
     <Content Include="Assets\web-design.png" />
     <Content Include="Assets\welcomegif.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
