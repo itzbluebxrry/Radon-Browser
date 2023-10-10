@@ -1,5 +1,6 @@
 ﻿<winui:TabViewItem
     x:Class="Project_Radon.Controls.BrowserTabViewItem"
+    x:Name="tooltiptarget"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Project_Radon.Controls"
@@ -10,8 +11,14 @@
     Padding="0,0,0,4" VerticalAlignment="Center"
     Background="Transparent"
     Content="{x:Bind TabContent,Mode=OneWay}" HorizontalAlignment="Center"
-    mc:Ignorable="d" HorizontalContentAlignment="Center">
+    mc:Ignorable="d" HorizontalContentAlignment="Center" ToolTipService.Placement="Bottom" ToolTipService.PlacementTarget="{x:Bind tooltiptarget}">
+    <ToolTipService.ToolTip>
+        <StackPanel MinWidth="200">
+            <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" FontWeight="SemiBold" Text="{x:Bind TabHeader,Mode=OneWay}"/>
+            <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" Text="{x:Bind TabSourceUri,Mode=OneWay}"/>
+        </StackPanel>
+    </ToolTipService.ToolTip>
     <winui:TabViewItem.Header>
-        <TextBlock Text="{x:Bind TabHeader,Mode=OneWay}" ToolTipService.ToolTip="{x:Bind TabHeader,Mode=OneWay}" TextTrimming="Clip"/>
+        <TextBlock Text="{x:Bind TabHeader,Mode=OneWay}" TextTrimming="Clip"/>
     </winui:TabViewItem.Header>
 </winui:TabViewItem>

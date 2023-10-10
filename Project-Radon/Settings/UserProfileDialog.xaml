@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
-    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick" Padding="-5"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick" CornerRadius="8"
     Opened="ContentDialog_Opened">
     <Grid>
@@ -34,6 +34,8 @@
                             </Flyout>
                         </Button.Flyout>
                     </Button>
+                    <Button x:Name="debug" HorizontalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}"
+                    Content="debug:makenull" Click="debug_Click"/>
                     <muxc:Expander HorizontalAlignment="Stretch"
                            Header="Avatar" IsExpanded="True">
                         <StackPanel HorizontalAlignment="Left">
@@ -68,7 +70,7 @@
                 </StackPanel>
             </Grid>
         </ScrollViewer>
-        <Button x:Name="CloseButton" VerticalAlignment="Top" HorizontalAlignment="Right" Height="35" Width="35" ToolTipService.ToolTip="Close" Margin="0" Click="CloseButton_Click">
+        <Button x:Name="CloseButton" VerticalAlignment="Top" HorizontalAlignment="Right" Height="35" Width="35" ToolTipService.ToolTip="Close" Margin="0" Click="CloseButton_Click" CornerRadius="48">
             <Button.Content>
                 <TextBlock Text="&#xE711;" FontFamily="Segoe Fluent Icons" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Button.Content>

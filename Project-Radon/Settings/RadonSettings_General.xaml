@@ -16,7 +16,7 @@
 
 
 
-                <StackPanel Background="DimGray" CornerRadius="4" Margin="0,5,0,10">
+                <StackPanel CornerRadius="4" Margin="0,5,0,10">
                     <TextBlock Style="{ThemeResource BaseTextBlockStyle}" FontSize="16" Padding="10" Text="New tab options"/>
                     <Grid Padding="10,5">
                         <TextBlock Text="Search engine" TextAlignment="Left" VerticalAlignment="Center"/>

@@ -199,7 +199,12 @@
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Target="TabContainer.Opacity" Value="0.7" />
+                                        <Setter Target="TabSeparator.Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
 
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
@@ -207,6 +212,7 @@
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource TabViewItemHeaderForegroundPointerOver}" />
                                         <Setter Target="IconControl.Foreground" Value="{ThemeResource TabViewItemIconForegroundPointerOver}" />
                                         <Setter Target="CloseButton.Background" Value="{ThemeResource TabViewItemHeaderPointerOverCloseButtonBackground}" />
+                                        <Setter Target="TabContainer.Opacity" Value="0.8" />
                                         <Setter Target="CloseButton.Foreground" Value="{ThemeResource TabViewItemHeaderPointerOverCloseButtonForeground}" />
                                         <Setter Target="TabSeparator.Opacity" Value="0" />
                                     </VisualState.Setters>
@@ -232,7 +238,8 @@
                                         <Setter Target="TabContainer.Margin" Value="{ThemeResource TabViewSelectedItemHeaderMargin}" />
                                         <Setter Target="TabContainer.BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
                                         <Setter Target="TabContainer.BorderThickness" Value="1" />
-                                        <Setter Target="TabContainer.Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
+                                        <Setter Target="TabContainer.Background" Value="{ThemeResource ButtonPointerOverBackgroundThemeBrush}" />
+                                        <Setter Target="TabContainer.Opacity" Value="0.9" />
                                         <Setter Target="TabContainer.Padding" Value="{ThemeResource TabViewSelectedItemHeaderPadding}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource TabViewItemHeaderForegroundSelected}" />
                                         <Setter Target="IconControl.Foreground" Value="{ThemeResource TabViewItemIconForegroundSelected}" />
@@ -252,7 +259,8 @@
                                         <Setter Target="TabContainer.Margin" Value="{ThemeResource TabViewSelectedItemHeaderMargin}" />
                                         <Setter Target="TabContainer.BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
                                         <Setter Target="TabContainer.BorderThickness" Value="1" />
-                                        <Setter Target="TabContainer.Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
+                                        <Setter Target="TabContainer.Background" Value="{ThemeResource ButtonPointerOverBackgroundThemeBrush}" />
+                                        <Setter Target="TabContainer.Opacity" Value="0.9" />
                                         <Setter Target="TabContainer.Padding" Value="{ThemeResource TabViewSelectedItemHeaderPadding}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource TabViewItemHeaderForegroundSelected}" />
                                         <Setter Target="IconControl.Foreground" Value="{ThemeResource TabViewItemIconForegroundSelected}" />
@@ -273,6 +281,7 @@
                                         <Setter Target="TabContainer.BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
                                         <Setter Target="TabContainer.BorderThickness" Value="1" />
                                         <Setter Target="TabContainer.Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
+                                        <Setter Target="TabContainer.Opacity" Value="0.8" />
                                         <Setter Target="TabContainer.Padding" Value="{ThemeResource TabViewSelectedItemHeaderPadding}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource TabViewItemHeaderForegroundSelected}" />
                                         <Setter Target="IconControl.Foreground" Value="{ThemeResource TabViewItemIconForegroundSelected}" />
@@ -358,7 +367,7 @@
                                             Storyboard.TargetName="LayoutRoot"
                                             Storyboard.TargetProperty="Opacity"
                                             To="{ThemeResource ListViewItemDragThemeOpacity}"
-                                            Duration="0" />
+                                            Duration="0:0:1.000" />
                                         <DragItemThemeAnimation TargetName="LayoutRoot" />
                                     </Storyboard>
                                 </VisualState>
@@ -387,17 +396,17 @@
                                             Storyboard.TargetName="LayoutRoot"
                                             Storyboard.TargetProperty="Opacity"
                                             To="{ThemeResource ListViewItemReorderTargetThemeOpacity}"
-                                            Duration="0:0:0.240" />
+                                            Duration="0:0:0.100" />
                                         <DoubleAnimation
                                             Storyboard.TargetName="LayoutRootScale"
                                             Storyboard.TargetProperty="ScaleX"
                                             To="{ThemeResource ListViewItemReorderTargetThemeScale}"
-                                            Duration="0:0:0.240" />
+                                            Duration="0:0:0.100" />
                                         <DoubleAnimation
                                             Storyboard.TargetName="LayoutRootScale"
                                             Storyboard.TargetProperty="ScaleY"
                                             To="{ThemeResource ListViewItemReorderTargetThemeScale}"
-                                            Duration="0:0:0.240" />
+                                            Duration="0:0:0.1" />
                                     </Storyboard>
                                 </VisualState>
 
@@ -416,7 +425,7 @@
                                 </VisualState>
 
                                 <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.2" To="NotDragging" />
+                                    <VisualTransition GeneratedDuration="0:0:0.1" To="NotDragging" />
                                 </VisualStateGroup.Transitions>
                             </VisualStateGroup>
 

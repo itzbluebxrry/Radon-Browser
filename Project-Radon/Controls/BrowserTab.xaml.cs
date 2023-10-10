@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using Project_Radon;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.System;
@@ -16,6 +17,9 @@ using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.Connectivity;
 using Yttrium;
 using Microsoft.Toolkit.Uwp.Notifications;
+using Project_Radon.Settings;
+using Windows.UI.Xaml.Media.Animation;
+using System.Linq;
 
 namespace Project_Radon.Controls
 {
@@ -44,8 +48,9 @@ namespace Project_Radon.Controls
         }
         public bool CanGoBack => WebBrowser.CanGoBack;
         public bool CanGoFoward => WebBrowser.CanGoForward;
+        public string WVBaseUri => IsCoreInitialized ? (WebBrowser.Source.Host.ToString()) : null;
         public string SourceUri => IsCoreInitialized ? (WebBrowser.Source.AbsoluteUri.ToLower().Contains("edge://") ? "radon://" + WebBrowser.Source.AbsoluteUri.Remove(0, 7) : WebBrowser.Source.AbsoluteUri) : "";
-        public string Favicon => IsCoreInitialized && !IsLoading ? ("https://icons.duckduckgo.com/ip3/" + WebBrowser.Source.AbsoluteUri+".ico") : "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Document/SVG/ic_fluent_document_48_regular.svg";
+        public string Favicon => IsCoreInitialized && !IsLoading ? ("http://www.google.com/s2/favicons?domain=" + WebBrowser.Source.AbsoluteUri) : "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Document/SVG/ic_fluent_document_48_regular.svg";
         public string Title => IsCoreInitialized && !IsLoading ? (WebBrowser.CoreWebView2.DocumentTitle ?? WebBrowser.Source.AbsoluteUri) : "Loading";
         public bool IsCoreInitialized { get; private set; }
 
@@ -57,7 +62,7 @@ namespace Project_Radon.Controls
 
 
 
-            WebBrowser.Source = new Uri("about:radon-ntp");
+            WebBrowser.Source = new Uri("edge://radon-ntp");
 
             //Windows.System.Launcher.LaunchFolderAsync(ApplicationData.Current.LocalFolder);
             WebBrowser.CoreWebView2Initialized += delegate
@@ -93,16 +98,34 @@ namespace Project_Radon.Controls
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             String username = localSettings.Values["username"] as string;
-            ToolTip toolTip = new ToolTip
+            if (username != null)
             {
-                Content = username
-            };
-            ToolTipService.SetToolTip(profileCenterToggle, toolTip);
+                ToolTip toolTip = new ToolTip
+                {
+                    Content = username
+                };
+                ToolTipService.SetToolTip(profileCenterToggle, toolTip);
+            }
 
+
+            ntpTimeDisplayService();
 
         }
 
-        
+        private async void ntpTimeDisplayService()
+        {
+            bool loop = true;
+            while (loop == true)
+            {
+                ntpHourDisplay.Text = DateTime.Now.ToString("H:mm");
+                ntpDateDisplay.Text = DateTime.Today.DayOfWeek.ToString()+", "+DateTime.Today.ToString("MMMM d"); ;
+                await Task.Delay(2000);
+            }
+            
+
+        }
+
+
 
 
 
@@ -111,7 +134,7 @@ namespace Project_Radon.Controls
         {
             ntpSearchBar.Text = string.Empty;
             IsLoading = false;
-            if (WebBrowser.Source.Equals("edge://radon-ntp/"))
+            if (WebBrowser.Source.AbsoluteUri.Contains("edge://radon-ntp"))
             {
                 WebBrowser.Visibility = Visibility.Collapsed;
                 ntpGrid.Visibility = Visibility.Visible;
@@ -121,7 +144,7 @@ namespace Project_Radon.Controls
             }
             else
             {
-                if (NetworkHelper.Instance.ConnectionInformation.IsInternetAvailable == false)
+                if (NetworkHelper.Instance.ConnectionInformation.IsInternetAvailable == false & !WebBrowser.Source.AbsoluteUri.Contains("edge://"))
                 {
                     WebBrowser.Visibility = Visibility.Collapsed;
                     ntpGrid.Visibility = Visibility.Collapsed;
@@ -147,11 +170,10 @@ namespace Project_Radon.Controls
 
             if (NetworkHelper.Instance.ConnectionInformation.IsInternetAvailable == false)
             {
-                if (!WebBrowser.Source.Equals("edge://radon-ntp"))
+                if (!WebBrowser.Source.AbsoluteUri.Contains("edge://"))
                 {
                     offlinePage.Visibility = Visibility.Visible;
                     bool isOffline = true;
-                    network_debug.Text = "Internet unavailable - disconnected";
                     while (isOffline == true)
                     {
                         await Task.Delay(1000);
@@ -162,7 +184,6 @@ namespace Project_Radon.Controls
                             WebBrowser.Visibility = Visibility.Collapsed;
                             isOffline = false;
 
-                            network_debug.Text = "Internet available - connected";
                             new ToastContentBuilder()
                                .AddArgument("action", "viewConversation")
                                .AddArgument("conversationId", 9813)

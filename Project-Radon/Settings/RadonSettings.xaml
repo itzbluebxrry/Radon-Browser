@@ -21,11 +21,12 @@
         </Storyboard>
     </Page.Resources>
 
-    <Grid>
+    <Grid CornerRadius="8" Margin="4,0,4,4" BorderBrush="{ThemeResource SystemBaseLowColor}" BorderThickness="1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="270"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid Background="Black" Opacity="0.5" Grid.ColumnSpan="2"/>
         <ScrollViewer Width="270" VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
 
             <StackPanel Grid.Column="0" Padding="10,20">

@@ -26,6 +26,9 @@ using Windows.Devices.Enumeration;
 using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.WindowManagement;
+using System.ServiceModel.Channels;
+using Windows.UI.Popups;
 
 namespace Yttrium_browser
 {
@@ -45,15 +48,15 @@ namespace Yttrium_browser
 
             // TitleBar customizations
 
-            
 
 
+            profileCheck();
 
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
             //load theme settings
             String colorthemevalue = localSettings.Values["appcolortheme"] as string;
-            appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/"+ colorthemevalue + ".png" })));
+            appthemebackground.Source = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/"+ colorthemevalue + ".png" })));
             fullscreentopbarbackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/" + colorthemevalue + ".png" })));
 
             //load Inline Mode settings
@@ -86,9 +89,9 @@ namespace Yttrium_browser
 
                 var titleBar = ApplicationView.GetForCurrentView().TitleBar;
 
-                titleBar.ButtonBackgroundColor = null;
-                titleBar.ButtonInactiveBackgroundColor = null;
-                titleBar.BackgroundColor = null;
+                titleBar.ButtonBackgroundColor = Colors.Transparent;
+                titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+                titleBar.BackgroundColor = Colors.Transparent;
 
                 localSettings.Values["systemTitleBar"] = "True";
             }
@@ -102,9 +105,21 @@ namespace Yttrium_browser
                 localSettings.Values["systemTitleBar"] = "False";
             }
 
+            // check user registration
 
         }
 
+        private void profileCheck()
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+            // profile check mechanisms
+            string username = localSettings.Values["username"] as string;
+            if (username == null)
+            {
+                //this.Frame.Navigate(typeof(oobe1), null);
+            }
+        }
         private async void OnCloseRequest(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
         {
             await new ConfirmExitDialog().ShowAsync();
@@ -155,6 +170,34 @@ namespace Yttrium_browser
         //navigation completed
         private async void WebBrowser_NavigationCompleted(WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
         {
+
+            if (CurrentTabs[BrowserTabs.SelectedIndex].Tab.SourceUri.Contains("https"))
+            {
+                //change icon to lock
+                SSLIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
+                SSLIcon.Glyph = "\xe705";
+
+                //change icon to lock
+                SSLFlyoutIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
+                SSLFlyoutIcon.Glyph = "\xe705";
+                SSLFlyoutHeader.Text = "Your connection is secured.";
+                SSLFlyoutStatus.Text = "This site has a valid SSL certificate.";
+                SSLFlyoutStatus2.Text = "Your data will be securely sent to the site and will not be intercepted or seen by others.";
+            }
+            else
+            {
+                //change icon to warning
+                SSLIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
+                SSLIcon.Glyph = "\xe783";
+
+                //change icon to lock
+                SSLFlyoutIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
+                SSLFlyoutIcon.Glyph = "\xe783";
+                SSLFlyoutHeader.Text = "This site seems dangerous";
+                SSLFlyoutStatus.Text = "This site does not have a valid SSL certificate.";
+                SSLFlyoutStatus2.Text = "You data may be at risk of being stolen or intercepted. Be careful on this website.";
+            }
+
             if (SearchBar.FocusState == FocusState.Unfocused)
             {
                 
@@ -169,7 +212,7 @@ namespace Yttrium_browser
             //website load status
             try
             {
-                Uri icoURI = new Uri("https://icons.duckduckgo.com/ip3/" + SearchValue+".ico");
+                Uri icoURI = new Uri("http://www.google.com/s2/favicons?domain=" + SearchValue);
                 faviconicon.UriSource = icoURI;
                 faviconicon.ShowAsMonochrome = false;
 
@@ -188,49 +231,37 @@ namespace Yttrium_browser
             }
 
 
-            if (SearchBar.Text.Contains("https"))
-            {
-                //change icon to lock
-                SSLIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
-                SSLIcon.Glyph = "\xe705";
-
-                //change icon to lock
-                SSLFlyoutIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
-                SSLFlyoutIcon.Glyph = "\xe705";
-                SSLFlyoutHeader.Text = "Your connection is secured";
-                SSLFlyoutStatus.Text = "This site has a valid SSL certificate.";
-                SSLFlyoutStatus2.Text = "Your data will be securely sent to the site and will not be intercepted or seen by others.";
-            }
-            else
-            {
-                //change icon to warning
-                SSLIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
-                SSLIcon.Glyph = "\xe783";
-
-                //change icon to lock
-                SSLFlyoutIcon.FontFamily = new FontFamily("Segoe Fluent Icons");
-                SSLFlyoutIcon.Glyph = "\xe783";
-                SSLFlyoutHeader.Text = "This site seems dangerous";
-                SSLFlyoutStatus.Text = "This site does not have a valid SSL certificate.";
-                SSLFlyoutStatus2.Text = "You data may be at risk of being stolen or intercepted. Be careful on this website.";
-            }
+            
         }
 
         private async void SearchBar_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter && !string.IsNullOrEmpty(SearchBar.Text))
-                await CurrentTabs[BrowserTabs.SelectedIndex].Tab.SearchOrGoto(SearchBar.Text);
+            {
+                if (SearchBar.Text.Contains("://settings"))
+                {
+                    settings_click_helper();
+                }
+                else
+                {
+                    await CurrentTabs[BrowserTabs.SelectedIndex].Tab.SearchOrGoto(SearchBar.Text);
+                }
+            }
+              
             if (e.Key == VirtualKey.Escape)
             {
                 //TODO: Pressing ESC will set the SearchBar.Text to WebView2 source (ESC will cancel URL changes)
                 SearchBar.Text = CurrentTabs[BrowserTabs.SelectedIndex].Tab.SourceUri;
 
                 //TODO: WebView2 will steal the focus for keyboard and pointer
+                BrowserTabs.Focus(FocusState.Keyboard);
             }
 
-        }
+            // ======This line is used to quickly renavigate to MainPage========
 
-        //TODO: Create a looping function which will update favicon and tab title with 500 - 1000ms interval (What most browser does)
+            // this.Frame.Navigate(typeof(MainPage), null, new EntranceNavigationTransitionInfo());
+
+        }
 
 
         private void SearchBar_GotFocus(object sender, RoutedEventArgs e)
@@ -257,6 +288,7 @@ namespace Yttrium_browser
             StopRefreshButton.Visibility = Visibility.Visible;
             RefreshButton.IsEnabled = true;
             loadingbar.IsIndeterminate = true;
+            BrowserTabs.Focus(FocusState.Keyboard);
         }
 
         //stops refreshing if clicked on progressbar
@@ -281,6 +313,8 @@ namespace Yttrium_browser
             if (BrowserTabs.SelectedIndex >= 0)
             {
                 SearchBar.Text = CurrentTabs[BrowserTabs.SelectedIndex].Tab.SourceUri;
+                if (SearchBar.Text.Contains("://settings"))
+                    SearchBar.IsEnabled = false;
                 loadingbar.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].Tab.IsLoading ? Visibility.Visible : Visibility.Collapsed;
                 StopRefreshButton.Visibility = CurrentTabs[BrowserTabs.SelectedIndex].Tab.IsLoading ? Visibility.Visible : Visibility.Collapsed;
                 RefreshButton.Visibility = !CurrentTabs[BrowserTabs.SelectedIndex].Tab.IsLoading ? Visibility.Visible : Visibility.Collapsed;
@@ -288,10 +322,11 @@ namespace Yttrium_browser
                 ForwardButton.IsEnabled = CurrentTabs[BrowserTabs.SelectedIndex].Tab.CanGoFoward ? IsEnabled : false;
             }
         }
-        private void NewTabRequested(object s, string e)
+        private async void NewTabRequested(object s, string e)
         {
             var b = new BrowserTabViewItem();
             CurrentTabs.Add(b);
+            await Task.Delay(50);
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
             _ = b.Tab.GoTo(e);
 
@@ -313,11 +348,11 @@ namespace Yttrium_browser
             });
             SelectedTabPropertyChanged(null, null);
         }
-        private void BrowserTabs_AddTabButtonClick(TabView sender, object args)
+        private async void BrowserTabs_AddTabButtonClick(TabView sender, object args)
         {
             CurrentTabs.Add(new BrowserTabViewItem());
-            //await Task.Delay(1000);
-            //BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
+            await Task.Delay(25);
+            BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
         }
 
         private void Tabs_TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
@@ -427,12 +462,14 @@ namespace Yttrium_browser
         {
             //MenuButton.Flyout.Hide();
         }
-        private void downloadbutton_Click(object sender, RoutedEventArgs e)
+        private async void downloadbutton_Click(object sender, RoutedEventArgs e)
         {
             //MenuButton.Flyout.Hide();
+            controlCenterButton.Flyout.Hide();
+            await new Downloads_Dialog().ShowAsync();
 
-            if (BrowserTabs.SelectedIndex >= 0)
-                _ = CurrentTabs[BrowserTabs.SelectedIndex].Tab.OpenDownloadsDialog();
+            //if (BrowserTabs.SelectedIndex >= 0)
+            //    _ = CurrentTabs[BrowserTabs.SelectedIndex].Tab.OpenDownloadsDialog();
 
         }
 
@@ -471,6 +508,11 @@ namespace Yttrium_browser
 
         private void SettingsPageButton_Click(object sender, RoutedEventArgs e)
         {
+            settings_click_helper();
+        }
+
+        private async void settings_click_helper()
+        {
             var t = new BrowserTabViewItem()
             {
                 CustomContentType = typeof(RadonSettings),
@@ -480,7 +522,9 @@ namespace Yttrium_browser
             };
             t.Tab.Close();
             CurrentTabs.Add(t);
+            await Task.Delay(50);
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
+
         }
         #endregion
 
@@ -513,10 +557,11 @@ namespace Yttrium_browser
 
         }
 
-        private void addtab_button_Click(object sender, RoutedEventArgs e)
+        private async void addtab_button_Click(object sender, RoutedEventArgs e)
         {
             var b = new BrowserTabViewItem();
             CurrentTabs.Add(b);
+            await Task.Delay(50);
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
             //addtabtip.IsOpen = true;
             controlCenter.IsOpen = false;
@@ -616,7 +661,7 @@ namespace Yttrium_browser
             localSettings.Values["appcolortheme"] = (ThemePickerComboBox.SelectedItem as ComboBoxItem).Content.ToString();
 
 
-            appthemebackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/", (ThemePickerComboBox.SelectedItem as ComboBoxItem).Content.ToString(), ".png" })));
+            appthemebackground.Source = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/", (ThemePickerComboBox.SelectedItem as ComboBoxItem).Content.ToString(), ".png" })));
 
         }
 
@@ -677,6 +722,15 @@ namespace Yttrium_browser
         private void fullscreentopbar_Click(object sender, RoutedEventArgs e)
         {
             fullscreentopbar_flyout.IsOpen = true;
+        }
+
+        private void newWindow_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Frame newFrame = new Frame();
+            newFrame.Navigate(typeof(MainPage));
+            Window.Current.Content = newFrame;
+            Window.Current.Activate();
         }
     }
 }

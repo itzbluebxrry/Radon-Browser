@@ -16,14 +16,14 @@
 
   <Identity
     Name="Project.Radon"
-    Publisher="CN=ItzBluebxrry"
-    Version="1.4.11.0" />
+    Publisher="CN=itzbluebxrry."
+    Version="1.4.13.0" />
 
   <mp:PhoneIdentity PhoneProductId="62b3ecf5-f123-4873-9bfb-b6d325b51f33" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Radon Browser Dev</DisplayName>
-    <PublisherDisplayName>ItzBluebxrry - Pdawg - NoobNotFound</PublisherDisplayName>
+    <PublisherDisplayName>itzbluebxrry.</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

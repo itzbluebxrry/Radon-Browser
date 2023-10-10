@@ -30,7 +30,7 @@
                         </TransitionCollection>
                     </StackPanel.ChildrenTransitions>
                     <Image Width="100" Source="ms-appx:///Assets/StoreLogo.scale-400.png"/>
-                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" Text="Project Radon"/>
+                    <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" HorizontalAlignment="Center" Text="Radon Browser"/>
                     <TextBlock Style="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" x:Name="txtVersion" Text="Version 0.0.0.0" Margin="10"/>
                     <TextBlock HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWholeWords" Width="400" Text="Introducing Project Radon, a sleek and streamlined web browser that utilizes the latest WebView2 technology. Its integrated Windows 11 design system offers a clean, intuitive user interface that prioritizes ease of use and clarity."/>
                 </StackPanel>
