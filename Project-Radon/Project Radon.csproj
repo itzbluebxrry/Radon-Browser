@@ -462,6 +462,7 @@
     </None>
     <None Include="Project Radon_TemporaryKey.pfx" />
     <None Include="Screenshots\readme.md" />
+    <PRIResource Include="Strings\en-ID\Resources.resw" />
     <PRIResource Include="Strings\en-MY\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
