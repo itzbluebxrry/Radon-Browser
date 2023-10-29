@@ -1,3 +1,5 @@
+<img src="https://github.com/itzbluebxrry/Radon-Browser/assets/99461083/feaa49da-9efd-40a7-9aec-9754c210ae09" width="100" height="100">
+
 # Radon Browser
 
 A sleek, elegant-looking web browsing experience designed to meet the Fluent UI design principle with the fusion of Apple's Safari flavor—promising an intuitive and delightful user experience for your own personalized browsing experience. Built based on native UWP framework, Radon gives you a blazing fast browsing experience with minimal resource impact, even on lower end systems—ensuring convenience anywhere, anytime.
@@ -22,7 +24,10 @@ Have an improvement or feature request? Go to [GitHub Issues](https://github.com
 
 - Get it from [Microsoft Store](https://apps.microsoft.com/detail/Radon%20Browser%20Dev/9N38CTMDRBFF?launch=true&mode=mini) (recommended)
 
-<html><script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script><ms-store-badge productid="9N38CTMDRBFF" window-mode="pop up" theme="dark" language="en-us" animation="on"></ms-store-badge></html>
+<a href="https://apps.microsoft.com/detail/Radon%20Browser%20Dev/9N38CTMDRBFF?launch=true
+	&mode=mini">
+	<img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200"/>
+</a>
 
 - Download sideloading package from GitHub releases [here](https://github.com/itzbluebxrry/radon-browser/releases/latest)
 
