@@ -20,9 +20,9 @@ Have an improvement or feature request? Go to [GitHub Issues](https://github.com
 
 ## Download and installation:
 
-- Get it from [Microsoft Store](https://apps.microsoft.com/detail/Radon%20Browser%20Dev/9N38CTMDRBFF?launch=true &mode=mini) (recommended)
+- Get it from [Microsoft Store](https://apps.microsoft.com/detail/Radon%20Browser%20Dev/9N38CTMDRBFF?launch=true&mode=mini) (recommended)
 
-<script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script><ms-store-badge productid="9N38CTMDRBFF" window-mode="pop up" theme="dark" language="en-us" animation="on"></ms-store-badge>
+<html><script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script><ms-store-badge productid="9N38CTMDRBFF" window-mode="pop up" theme="dark" language="en-us" animation="on"></ms-store-badge></html>
 
 - Download sideloading package from GitHub releases [here](https://github.com/itzbluebxrry/radon-browser/releases/latest)
 
