@@ -53,5 +53,11 @@ namespace Yttrium
             ApplicationData.Current.LocalSettings.Values["username"] = null;
             Username_Display.Text = username_box.Text;
         }
+
+        private void KeyboardAccelerator_Invoked(Windows.UI.Xaml.Input.KeyboardAccelerator sender, Windows.UI.Xaml.Input.KeyboardAcceleratorInvokedEventArgs args)
+        {
+            ApplicationData.Current.LocalSettings.Values["username"] = null;
+            Username_Display.Text = username_box.Text;
+        }
     }
 }

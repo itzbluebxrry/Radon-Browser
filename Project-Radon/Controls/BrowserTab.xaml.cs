@@ -20,6 +20,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using Project_Radon.Settings;
 using Windows.UI.Xaml.Media.Animation;
 using System.Linq;
+using Microsoft.Web.WebView2.Core;
 
 namespace Project_Radon.Controls
 {
@@ -58,8 +59,9 @@ namespace Project_Radon.Controls
         {
             InitializeComponent();
 
-            
 
+            var options = new CoreWebView2EnvironmentOptions();
+            options.AdditionalBrowserArguments = "--edge-webview-optional-enable-uwp-regular-downloads";
 
 
             WebBrowser.Source = new Uri("edge://radon-ntp");
@@ -75,6 +77,8 @@ namespace Project_Radon.Controls
                 WebBrowser.CoreWebView2.DocumentTitleChanged += (_, e) => InvokePropertyChanged();
                 WebBrowser.CoreWebView2.SourceChanged += (_, e) => InvokePropertyChanged();
                 WebBrowser.CoreWebView2.ContextMenuRequested += async (s, e) =>
+                
+                
                 {
                     IList<CoreWebView2ContextMenuItem> menuList = e.MenuItems;
                     if (e.ContextMenuTarget.HasLinkUri)
@@ -258,6 +262,11 @@ namespace Project_Radon.Controls
                 WebBrowser.GoForward();
             }
         }
+
+        public async void Task1()
+        {
+
+        }
         public void Reload()
         {
             WebBrowser.Reload();
@@ -287,9 +296,9 @@ namespace Project_Radon.Controls
 
         }
 
-        private void profileCenterToggle_Click(object sender, RoutedEventArgs e)
+        private async void profileCenterToggle_Click(object sender, RoutedEventArgs e)
         {
-            
+            await new UserProfileDialog().ShowAsync();
         }
     }
 }

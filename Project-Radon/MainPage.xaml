@@ -4,7 +4,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-      xmlns:winui="using:Microsoft.UI.Xaml.Controls" xmlns:controls="using:Project_Radon.Controls"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+      xmlns:controls="using:Project_Radon.Controls"
       xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
       xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
       xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
@@ -30,6 +31,7 @@
         <ResourceDictionary>
             <SolidColorBrush x:Key="TabViewItemHeaderBackgroundSelected" Color="Transparent"  />
         </ResourceDictionary>
+        
     </Page.Resources>
 
     <Grid x:Name="BasicGrid">
@@ -88,7 +90,7 @@
                         Grid.Column="0"
                         Grid.Row="0"
                         Canvas.ZIndex="1">
-                        <winui:DropDownButton x:Name="tabactions_button" Margin="5,2,0,0"
+                        <winui:DropDownButton x:Name="tabactions_button" Margin="5,2,0,0" 
                         Background="Transparent"
                         BorderThickness="0"
                         Padding="7.2">
@@ -102,7 +104,7 @@
                             <winui:DropDownButton.Flyout>
                                 <MenuFlyout ShouldConstrainToRootBounds="False" Placement="BottomEdgeAlignedLeft">
                                    
-                                    <MenuFlyoutItem Text="Inline mode (experimental)" Width="250" x:Name="tabaction_inline" Click="tabaction_inline_Click">
+                                    <MenuFlyoutItem IsEnabled="False" Text="Inline mode (wip)" Width="250" x:Name="tabaction_inline" Click="tabaction_inline_Click">
                                         <MenuFlyoutItem.Icon>
                                             <FontIcon Glyph="&#xf26b;"/>
                                         </MenuFlyoutItem.Icon>
@@ -618,7 +620,7 @@
                                 <Button x:Name="controlCenterButton" Click="controlCenterToggleButton_Click" VerticalAlignment="Center" Grid.Column="1" Padding="10,6.8" Margin="0,4,5,0" BorderBrush="{x:Null}" Background="Transparent" HorizontalAlignment="Right">
                                     <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE712;" FontSize="17"/>
                                     <Button.Flyout>
-                                        <Flyout ShouldConstrainToRootBounds="False" Placement="LeftEdgeAlignedTop" >
+                                        <Flyout x:Name="RadonOverflowMenu" ShouldConstrainToRootBounds="False" Placement="LeftEdgeAlignedTop" >
                                             <ScrollViewer Padding="0" VerticalScrollBarVisibility="Auto" CornerRadius="8" Margin="-8">
                                                 <Grid Margin="0,2">
 
@@ -643,14 +645,14 @@
                                                         <Grid>
                                                             <StackPanel Orientation="Horizontal">
 
-                                                                <Button Click="addtab_button_Click" Background="{x:Null}" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
+                                                                <Button Click="addtab_button_Click" Background="Transparent" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
                                                                 <StackPanel>
                                                                     <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xEC6C;" FontSize="18"/>
                                                                     <TextBlock Margin="0,8" Text="New tab" TextAlignment="Center"/>
                                                                 </StackPanel>
                                                             </Button>
                                                                 <Border BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" Margin="0,8" Opacity="0.3"  BorderThickness="1"/>
-                                                                <Button Background="{x:Null}" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
+                                                                <Button x:Name="newWindow" Click="newWindow_Click" Background="Transparent" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
                                                                     <StackPanel>
                                                                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE737;" FontSize="18"/>
                                                                         <TextBlock Margin="0,8" Text="New window" TextAlignment="Center"/>
@@ -659,7 +661,7 @@
                                                                 <Border BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" Margin="0,8" Opacity="0.3" BorderThickness="1"/>
 
 
-                                                                <Button x:Name="newWindow" Click="newWindow_Click" Background="{x:Null}" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
+                                                                <Button Background="Transparent" HorizontalAlignment="Stretch" Padding="0,10,0,10" Width="98" BorderThickness="0">
                                                                     <StackPanel>
                                                                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE621;" FontSize="18"/>
                                                                         <TextBlock Margin="0,8" Text="New InPrivate" TextWrapping="WrapWholeWords" TextAlignment="Center"/>
@@ -812,7 +814,7 @@
                                                         </Button>
                                                         <Border Margin="8,0" Opacity="0.3" BorderBrush="{ThemeResource MenuFlyoutSeparatorThemeBrush}" BorderThickness="1"/>
                                                         <Button Background="Transparent" BorderBrush="Transparent" Margin="1,2" HorizontalAlignment="Stretch"
-                                                                HorizontalContentAlignment="Left" Click="SettingsPageButton_Click">
+                                                                HorizontalContentAlignment="Left">
                                                             <StackPanel Orientation="Horizontal">
                                                                 <FontIcon Glyph="&#xE9E9;" FontSize="15"/>
                                                                 <TextBlock Margin="9,0,0,0" Text="Settings"/>
@@ -1039,7 +1041,7 @@
                 </StackPanel>
             </Grid>
         </Popup>
-        <Popup x:Name="fullscreentopbar_flyout" IsLightDismissEnabled="True" HorizontalAlignment="Center" IsOpen="True" Canvas.ZIndex="3" Margin="0, -8, 636, 0">
+        <Popup x:Name="fullscreentopbar_flyout" IsLightDismissEnabled="True" HorizontalAlignment="Center" IsOpen="False" Canvas.ZIndex="3" Margin="0, -8, 636, 0">
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <EdgeUIThemeTransition Edge="Top"/>
@@ -1123,9 +1125,25 @@
         </Popup>
          
         <!--#endregion-->
-        
 
+        <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="250" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+            <ListView DropCompleted="verttablist_DropCompleted" x:Name="verttablist" SelectedIndex="{x:Bind BrowserTabs.SelectedIndex, Mode=TwoWay}" CanDragItems="True" AllowDrop="True" CanReorderItems="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <StackPanel Orientation="Horizontal">
+                            
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListViewItem HorizontalContentAlignment="Center" Content="{x:Bind BrowserTabs.SelectedIndex, Mode=TwoWay}"/>
+                <ListViewItem HorizontalContentAlignment="Center" Content="leotrix - Google Search"/>
+                <ListViewItem HorizontalContentAlignment="Center" Content="YouTube"/>
+            </ListView>
+            
+
+        </Grid>-->
 
     </Grid>
-        
+    
 </Page>

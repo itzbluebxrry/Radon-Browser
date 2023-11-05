@@ -102,7 +102,7 @@
                                 <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
                                     <FontIcon Glyph="&#xE8D4;"/>
                                     <TextBox x:Name="username_textbox" Margin="8,0" Width="250" HorizontalAlignment="Left" PlaceholderText="Username *"
-                                             IsSpellCheckEnabled="False" MaxLength="45" KeyDown="username_textbox_KeyDown"/>
+                                             IsSpellCheckEnabled="False" MaxLength="45" KeyUp="username_textbox_KeyDown"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,12,0,12">
                                     <FontIcon Glyph="&#xE119;"/>
@@ -110,8 +110,7 @@
                                              IsSpellCheckEnabled="False" MaxLength="45" KeyDown="email_textbox_KeyDown"/>
                                 </StackPanel>
                                 <TextBlock Margin="28,0,0,0" Style="{ThemeResource CaptionTextBlockStyle}" Opacity="0.7">Fields with * are required.</TextBlock>
-                                <Button x:Name="usernameSave_Button" Click="usernameSave_Button_Click"
-                                            Content="Save changes" Margin="28,8,0,0" IsEnabled="False"/>
+                                
                             </StackPanel>
                             <Grid>
 
@@ -120,7 +119,7 @@
                         </StackPanel>
 
                         </muxc:Expander>
-                        <muxc:Expander Padding="0" Background="{x:Null}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <muxc:Expander IsEnabled="False" Padding="0" Background="{x:Null}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
                             <muxc:Expander.Header>
                                 <StackPanel Orientation="Horizontal" Margin="0,2">
                                 <FontIcon Glyph="&#xE72E;" FontSize="17" HorizontalAlignment="Left"/>
@@ -173,7 +172,7 @@
                 </ScrollViewer>
 
 
-            <Button Style="{ThemeResource AccentButtonStyle}" Grid.Column="1" VerticalAlignment="Bottom"
+            <Button x:Name="nextButton" Style="{ThemeResource AccentButtonStyle}" Grid.Column="1" VerticalAlignment="Bottom"
                 HorizontalAlignment="Right" Margin="20,40" Click="Button_Click">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{ThemeResource BaseTextBlockStyle}" VerticalAlignment="Center">Next</TextBlock>

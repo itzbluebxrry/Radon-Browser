@@ -1,0 +1,159 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:CubeKitControls.Toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls" xmlns:ui="using:Microsoft.Toolkit.Uwp.UI" xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media" xmlns:ToolkitControls="using:CubeKit.UI.Controls.Toolkit">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///CubeKit.UI/Styles/CubeThemeDictionary.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Dark">
+            <Style x:Key="CardContainer" TargetType="GridViewItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="GridViewItem">
+                            <Grid>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="True" Duration="0:0:0.12" To="1"/>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="True" Duration="0:0:0.12" To="1"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="OffsetY" EnableDependentAnimation="True" Duration="0:0:0.12" To="2"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="OffsetX" EnableDependentAnimation="True" Duration="0:0:0.12" To="2"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="ShadowOpacity" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.23"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="True" Duration="0:0:0.12" To="1.02"/>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="True" Duration="0:0:0.12" To="1.02"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="OffsetY" EnableDependentAnimation="True" Duration="0:0:0.12" To="4"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="OffsetX" EnableDependentAnimation="True" Duration="0:0:0.12" To="4"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="ShadowOpacity" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.23"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.98"/>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.98"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="OffsetY" EnableDependentAnimation="True" Duration="0:0:0.12" To="2"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="OffsetX" EnableDependentAnimation="True" Duration="0:0:0.12" To="2"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="ShadowOpacity" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.23"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <ToolkitControls:DropShadowPanel RenderTransformOrigin="0.5, 0.5" x:Name="Shadow" CornerRadius="8" Margin="12, 8, 12, 8" BlurRadius="16" IsMasked="False">
+                                    <ToolkitControls:DropShadowPanel.RenderTransform>
+                                        <ScaleTransform x:Name="Scale" ScaleX="1" ScaleY="1"/>
+                                    </ToolkitControls:DropShadowPanel.RenderTransform>
+                                    <Grid Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="8" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}">
+                                        <ContentPresenter x:Name="contentControl" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}"  ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                    </Grid>
+                                </ToolkitControls:DropShadowPanel>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Light">
+            <Style x:Key="CardContainer" TargetType="GridViewItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="GridViewItem">
+                            <Grid>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="True" Duration="0:0:0.12" To="1"/>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="True" Duration="0:0:0.12" To="1"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Offset" EnableDependentAnimation="True" Duration="0:0:0.12" To="2"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.23"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="True" Duration="0:0:0.12" To="1.02"/>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="True" Duration="0:0:0.12" To="1.02"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Offset" EnableDependentAnimation="True" Duration="0:0:0.12" To="4"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.23"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.98"/>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.98"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Offset" EnableDependentAnimation="True" Duration="0:0:0.12" To="2"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.23"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Grid Background="{ThemeResource LayerFillColorDefaultBrush}" RenderTransformOrigin="0.5, 0.5" CornerRadius="8" Margin="12, 8, 12, 8" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}">
+                                    <Grid.RenderTransform>
+                                        <ScaleTransform x:Name="Scale" ScaleX="1" ScaleY="1"/>
+                                    </Grid.RenderTransform>
+                                    <ui:Effects.Shadow>
+                                        <media:AttachedCardShadow x:Name="Shadow" CornerRadius="8" BlurRadius="16"/>
+                                    </ui:Effects.Shadow>
+                                    <ContentPresenter x:Name="contentControl" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}"  ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                </Grid>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <Style x:Key="CardContainer" TargetType="GridViewItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="GridViewItem">
+                            <Grid>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="True" Duration="0:0:0.12" To="1"/>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="True" Duration="0:0:0.12" To="1"/>
+                                                <!--   <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Offset" EnableDependentAnimation="True" Duration="0:0:0.12" To="2"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.23"/>-->
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="True" Duration="0:0:0.12" To="1.02"/>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="True" Duration="0:0:0.12" To="1.02"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Offset" EnableDependentAnimation="True" Duration="0:0:0.12" To="4"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.23"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleY" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.98"/>
+                                                <DoubleAnimation Storyboard.TargetName="Scale" Storyboard.TargetProperty="ScaleX" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.98"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Offset" EnableDependentAnimation="True" Duration="0:0:0.12" To="2"/>
+                                                <DoubleAnimation Storyboard.TargetName="Shadow" Storyboard.TargetProperty="Opacity" EnableDependentAnimation="True" Duration="0:0:0.12" To="0.23"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Grid Background="{ThemeResource LayerFillColorDefaultBrush}" RenderTransformOrigin="0.5, 0.5" CornerRadius="8" Margin="12, 8, 12, 8" BorderThickness="1" BorderBrush="{ThemeResource MicaBorderBrush}">
+                                    <Grid.RenderTransform>
+                                        <ScaleTransform x:Name="Scale" ScaleX="1" ScaleY="1"/>
+                                    </Grid.RenderTransform>
+                                    <ui:Effects.Shadow>
+                                        <media:AttachedCardShadow x:Name="Shadow" CornerRadius="8" BlurRadius="16"/>
+                                    </ui:Effects.Shadow>
+                                    <ContentPresenter x:Name="contentControl" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}"  ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                </Grid>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

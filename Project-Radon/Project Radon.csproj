@@ -24,12 +24,13 @@
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>C:\Radon</AppxPackageDir>
-    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxPackageDir>V:\RadonBuilds\store\retry</AppxPackageDir>
+    <GenerateTestArtifacts>False</GenerateTestArtifacts>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -111,6 +112,15 @@
     <Compile Include="Controls\BrowserTabViewItem.xaml.cs">
       <DependentUpon>BrowserTabViewItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SplitView.xaml.cs">
+      <DependentUpon>SplitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SplitViewBrowser.xaml.cs">
+      <DependentUpon>SplitViewBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SplitViewRoot.xaml.cs">
+      <DependentUpon>SplitViewRoot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\BrowserBackend.cs" />
     <Compile Include="Helpers\ConfirmExitDialog.xaml.cs">
       <DependentUpon>ConfirmExitDialog.xaml</DependentUpon>
@@ -171,18 +181,6 @@
     </Compile>
     <Compile Include="Settings\RadonSettings_User.xaml.cs">
       <DependentUpon>RadonSettings_User.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\SettingsPage_Favorites.xaml.cs">
-      <DependentUpon>SettingsPage_Favorites.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\SettingsPage_History.xaml.cs">
-      <DependentUpon>SettingsPage_History.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\SettingsPage_SearchEngine.xaml.cs">
-      <DependentUpon>SettingsPage_SearchEngine.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\UserProfileDialog.xaml.cs">
       <DependentUpon>UserProfileDialog.xaml</DependentUpon>
@@ -288,6 +286,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Project Radon.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -330,6 +329,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\BrowserTabViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SplitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SplitViewBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SplitViewRoot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -409,22 +420,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Settings\SettingsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Settings\SettingsPage_Favorites.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Settings\SettingsPage_History.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Settings\SettingsPage_SearchEngine.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Settings\UserProfileDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -433,6 +428,9 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm">
       <Version>8.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="CommunityToolkit.Uwp.Controls.Sizers">
+      <Version>8.0.230907</Version>
     </PackageReference>
     <PackageReference Include="Fluent.Icons">
       <Version>1.1.110</Version>
@@ -462,11 +460,15 @@
     </None>
     <None Include="Project Radon_TemporaryKey.pfx" />
     <None Include="Screenshots\readme.md" />
-    <PRIResource Include="Strings\en-MY\Resources.resw" />
-    <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CubeKit.UI\CubeKit.UI.csproj">
+      <Project>{73936751-6325-49ce-8a7b-7006d6135b19}</Project>
+      <Name>CubeKit.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

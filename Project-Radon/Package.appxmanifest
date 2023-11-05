@@ -15,15 +15,15 @@
   IgnorableNamespaces="uap mp uap3 desktop4 iot2 iot">
 
   <Identity
-    Name="Project.Radon"
-    Publisher="CN=itzbluebxrry."
-    Version="1.4.13.0" />
+    Name="30868ItzBluebxrry.RadonBrowserDev"
+    Publisher="CN=EAB9B2B6-6338-4C0C-A002-D1666231438D"
+    Version="1.14.17.0" />
 
-  <mp:PhoneIdentity PhoneProductId="62b3ecf5-f123-4873-9bfb-b6d325b51f33" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="60865762-084f-44cb-a356-f22b38e6d2ff" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Radon Browser Dev</DisplayName>
-    <PublisherDisplayName>itzbluebxrry.</PublisherDisplayName>
+    <DisplayName>Radon Browser Halo Preview</DisplayName>
+    <PublisherDisplayName>ItzBluebxrry</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -42,11 +42,11 @@
 	  desktop4:SupportsMultipleInstances="true"   
       iot2:SupportsMultipleInstances="true">
       <uap:VisualElements
-        DisplayName="Radon Browser Dev"
+        DisplayName="Radon Browser Halo Preview"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="An experimental UWP web browser powered by WebView2 with integrated Windows 11 design system" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png" ShortName="Radon Browser">
+        Description="Radon is a sleek, elegant-looking browser that is designed to meet the Fluent design principle- promising an intuitive and delightful user interface for your Windows device. Built natively UWP-based, Radon gives you a blazing fast browsing experience- anywhere, anytime." BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png" ShortName="Radon Browser Halo">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo"/>
             <uap:ShowOn Tile="wide310x150Logo"/>

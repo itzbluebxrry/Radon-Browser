@@ -46,26 +46,28 @@ namespace Project_Radon.Settings
             // load Settings if exists
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             String username = localSettings.Values["username"] as string;
-            if ( username != null) { username_textbox.Text = username; username_Header.Text = username; usernameSave_Button.IsEnabled = true; }
+            if ( username != null) { username_textbox.Text = username; username_Header.Text = username; nextButton.IsEnabled = true; }
+            else { nextButton.IsEnabled = false; }
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values["username"] = username_textbox.Text;
+            localSettings.Values["email"] = username_textbox.Text;
+            username_Header.Text = username_textbox.Text;
             this.Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(oobe4), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+            this.Frame.GoBack();
         }
 
         private void usernameSave_Button_Click(object sender, RoutedEventArgs e)
         {
-            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            localSettings.Values["username"] = username_textbox.Text;
-            localSettings.Values["email"] = username_textbox.Text;
-            username_Header.Text = username_textbox.Text;
+
         }
 
         private void TextBox_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -75,8 +77,8 @@ namespace Project_Radon.Settings
 
         private void username_textbox_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if (username_textbox.Text == null) { usernameSave_Button.IsEnabled = false; }
-            else { usernameSave_Button.IsEnabled = true; }
+            if (username_textbox.Text == string.Empty) { nextButton.IsEnabled = false; }
+            else { nextButton.IsEnabled = true; }
         }
 
         private void email_textbox_KeyDown(object sender, KeyRoutedEventArgs e)

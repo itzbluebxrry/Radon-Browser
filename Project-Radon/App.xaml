@@ -9,7 +9,11 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
-                <ResourceDictionary Source="/ResourceDictionaries/TabViewItem.xaml" />
+                <ResourceDictionary Source="ms-appx:///CubeKit.UI/Styles/CubeThemeDictionary.xaml" />
+                <ResourceDictionary Source="ms-appx:///CubeKit.UI/Styles/CubeUI.xaml" />
+                <ResourceDictionary Source="ms-appx:///CubeKit.UI/Styles/GlowUI.xaml" />
+                <ResourceDictionary Source="ms-appx:///CubeKit.UI/Styles/GlowGradientUI.xaml" />
+                <ResourceDictionary Source="/ResourceDictionaries/TabViewItem.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Thickness x:Key="TabViewItemAddButtonContainerPadding">3,0,0,8</Thickness>
             <x:Double x:Key="TabViewItemAddButtonFontSize">14</x:Double>

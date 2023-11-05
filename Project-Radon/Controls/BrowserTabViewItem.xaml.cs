@@ -76,5 +76,10 @@ namespace Project_Radon.Controls
             InvokePropertyChanged();
             PropertyChanged += Tab_PropertyChanged;
         }
+
+        private void tabcontext_closetab_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

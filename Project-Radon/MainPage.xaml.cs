@@ -29,6 +29,10 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.WindowManagement;
 using System.ServiceModel.Channels;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Hosting;
+using Windows.UI.WindowManagement;
+using System.Reflection;
+using Windows.ApplicationModel.Contacts;
 
 namespace Yttrium_browser
 {
@@ -56,7 +60,7 @@ namespace Yttrium_browser
 
             //load theme settings
             String colorthemevalue = localSettings.Values["appcolortheme"] as string;
-            appthemebackground.Source = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/"+ colorthemevalue + ".png" })));
+            appthemebackground.Source = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/" + colorthemevalue + ".png" })));
             fullscreentopbarbackground.ImageSource = new BitmapImage(new Uri(string.Join("", new string[] { "ms-appx:///wallpapers/" + colorthemevalue + ".png" })));
 
             //load Inline Mode settings
@@ -105,9 +109,21 @@ namespace Yttrium_browser
                 localSettings.Values["systemTitleBar"] = "False";
             }
 
-            // check user registration
+            // Fix: Topbar flyout showing on startup
+
+            
+
+
 
         }
+
+        public class TabViewItemData
+        {
+            public string Header { get; set; }
+            public string FaviconURI { get; set; }
+            public string SourceURL { get; set; }
+        }
+
 
         private void profileCheck()
         {
@@ -142,7 +158,7 @@ namespace Yttrium_browser
             backbutton_icon.Translation = new Vector3(-12, 0, 0);
             await Task.Delay(150);
             backbutton_icon.Translation = new Vector3(0, 0, 0);
-            
+
             CurrentTabs[BrowserTabs.SelectedIndex].Tab.BackButtonSender();
             ElementSoundPlayer.Play(ElementSoundKind.MovePrevious);
 
@@ -155,11 +171,12 @@ namespace Yttrium_browser
             forwardbutton_icon.Translation = new Vector3(0, 0, 0);
             CurrentTabs[BrowserTabs.SelectedIndex].Tab.FowardButtonSender();
             ElementSoundPlayer.Play(ElementSoundKind.MoveNext);
-
+            CurrentTabs[BrowserTabs.SelectedIndex].Tab.Task1();
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
+            loadingbar.IsIndeterminate = true;
             CurrentTabs[BrowserTabs.SelectedIndex].Tab.Reload();
             ElementSoundPlayer.Play(ElementSoundKind.GoBack);
 
@@ -184,6 +201,7 @@ namespace Yttrium_browser
                 SSLFlyoutStatus.Text = "This site has a valid SSL certificate.";
                 SSLFlyoutStatus2.Text = "Your data will be securely sent to the site and will not be intercepted or seen by others.";
             }
+
             else
             {
                 //change icon to warning
@@ -200,7 +218,7 @@ namespace Yttrium_browser
 
             if (SearchBar.FocusState == FocusState.Unfocused)
             {
-                
+
             }
 
             if (SearchBar.Text.Equals("radon://radon-ntp/"))
@@ -218,11 +236,7 @@ namespace Yttrium_browser
 
                 RefreshButton.Visibility = Visibility.Visible;
                 StopRefreshButton.Visibility = Visibility.Collapsed;
-                if (!loadingbar.ShowError == true)
-                {
-                    loadingbar.IsIndeterminate = false;
-                    compactloadingbar.IsIndeterminate = false;
-                }
+
             }
             catch (Exception ExLoader)
             {
@@ -231,7 +245,7 @@ namespace Yttrium_browser
             }
 
 
-            
+
         }
 
         private async void SearchBar_KeyDown(object sender, KeyRoutedEventArgs e)
@@ -245,9 +259,10 @@ namespace Yttrium_browser
                 else
                 {
                     await CurrentTabs[BrowserTabs.SelectedIndex].Tab.SearchOrGoto(SearchBar.Text);
+                    SearchBar.RemoveFocusEngagement();
                 }
             }
-              
+
             if (e.Key == VirtualKey.Escape)
             {
                 //TODO: Pressing ESC will set the SearchBar.Text to WebView2 source (ESC will cancel URL changes)
@@ -298,13 +313,13 @@ namespace Yttrium_browser
             loadingbar.ShowError = true;
             await Task.Delay(2000);
             loadingbar.ShowError = false;
-            loadingbar.IsIndeterminate = false;
+            loadingbar.IsIndeterminate = true;
         }
 
         //titlebar
         private void DragArea_Loaded(object sender, RoutedEventArgs e)
         {
-            Window.Current.SetTitleBar(sender as Border);
+            Window.Current.SetTitleBar(DragArea);
         }
 
         #region Tabs
@@ -564,14 +579,20 @@ namespace Yttrium_browser
             await Task.Delay(50);
             BrowserTabs.SelectedIndex = CurrentTabs.Count - 1;
             //addtabtip.IsOpen = true;
-            controlCenter.IsOpen = false;
+            RadonOverflowMenu.Hide();
 
         }
 
-        private void tabactions_devtools_Click(object sender, RoutedEventArgs e)
+        private async void tabactions_devtools_Click(object sender, RoutedEventArgs e)
         {
             if (!CurrentTabs[BrowserTabs.SelectedIndex].ShowCustomContent)
-               _ = CurrentTabs[BrowserTabs.SelectedIndex].Tab.OpenDevTools();
+                _ = CurrentTabs[BrowserTabs.SelectedIndex].Tab.OpenDevTools();
+            ContentDialog dialog = new ContentDialog();
+            dialog.Title = "WebView2 DevTools";
+            dialog.Content = "The developer tools window has launched in the background— you may access it from the taskbar.";
+            dialog.CloseButtonText = "Got it!";
+            dialog.DefaultButton = ContentDialogButton.Close;
+            dialog.ShowAsync();
         }
 
         private void tabaction_inline_Click(object sender, RoutedEventArgs e)
@@ -638,7 +659,7 @@ namespace Yttrium_browser
             else
             {
                 var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-                
+
                 coreTitleBar.ExtendViewIntoTitleBar = true;
                 titleBar.ButtonBackgroundColor = Colors.Transparent;
                 titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
@@ -652,7 +673,7 @@ namespace Yttrium_browser
         {
             //MenuButton.Flyout.Hide();
             ThemePopup.IsOpen = true;
-            
+
         }
 
         private void ThemePickerComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -672,12 +693,12 @@ namespace Yttrium_browser
 
         private void RefreshButton_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            
+
         }
 
         private void controlCenterToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void controlCenter_Closed(object sender, object e)
@@ -697,12 +718,12 @@ namespace Yttrium_browser
         // Forgot to name the ToggleButton, btw it's the toggle for profileCenter
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
-                profileCenter.IsOpen = true;
+            profileCenter.IsOpen = true;
         }
 
         private void profileCenter_Closed(object sender, object e)
         {
-            
+
         }
 
         private void profileCenter_Opened(object sender, object e)
@@ -715,7 +736,7 @@ namespace Yttrium_browser
                 profileCenter_UsernameHeader.Text = localValue;
             }
             else {
-               // this.Frame.Navigate(typeof(oobe1), null, new EntranceNavigationTransitionInfo());
+                // this.Frame.Navigate(typeof(oobe1), null, new EntranceNavigationTransitionInfo());
             }
         }
 
@@ -724,13 +745,31 @@ namespace Yttrium_browser
             fullscreentopbar_flyout.IsOpen = true;
         }
 
-        private void newWindow_Click(object sender, RoutedEventArgs e)
+        private async void newWindow_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: This is template to open new window lmao
+            CoreApplicationView newView = CoreApplication.CreateNewView();
+            int newViewId = 0;
+            await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Frame frame = new Frame();
+                frame.Navigate(typeof(MainPage), null);
+                Window.Current.Content = frame;
+                Window.Current.Activate();
+
+                newViewId = ApplicationView.GetForCurrentView().Id;
+            });
+            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+        }
+
+        private void verttablist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void verttablist_DropCompleted(UIElement sender, DropCompletedEventArgs args)
         {
             
-            Frame newFrame = new Frame();
-            newFrame.Navigate(typeof(MainPage));
-            Window.Current.Content = newFrame;
-            Window.Current.Activate();
         }
     }
 }

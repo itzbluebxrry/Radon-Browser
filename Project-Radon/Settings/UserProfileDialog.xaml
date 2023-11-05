@@ -10,6 +10,7 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick" Padding="-5"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick" CornerRadius="8"
     Opened="ContentDialog_Opened">
+    
     <Grid>
         <ScrollViewer>
             <Grid Width="350" HorizontalAlignment="Left" Margin="0,0,16,0">
@@ -35,13 +36,16 @@
                         </Button.Flyout>
                     </Button>
                     <Button x:Name="debug" HorizontalAlignment="Center" Style="{ThemeResource TextBlockButtonStyle}"
-                    Content="debug:makenull" Click="debug_Click"/>
+                    Content="debug:makenull" Visibility="Collapsed" Click="debug_Click">
+
+                    </Button>
+                    
                     <muxc:Expander HorizontalAlignment="Stretch"
                            Header="Avatar" IsExpanded="True">
                         <StackPanel HorizontalAlignment="Left">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock VerticalAlignment="Center" TextAlignment="Left">Profile Picture:</TextBlock>
-                                <ComboBox x:Name="pfpchanged" PlaceholderText="Pick a picture" SelectionChanged="pfpchanged_SelectionChanged" Width="200" Margin="10,0">
+                                <ComboBox x:Name="pfpchanged" PlaceholderText="Pick a picture" BorderThickness="1" SelectionChanged="pfpchanged_SelectionChanged" Width="200" Margin="10,0">
                                     <ComboBoxItem x:Name="ball" Content="Ball"/>
                                     <ComboBoxItem x:Name="bot" Content="Bot"/>
                                     <ComboBoxItem x:Name="butterfly" Content="Butterfly"/>
@@ -70,9 +74,9 @@
                 </StackPanel>
             </Grid>
         </ScrollViewer>
-        <Button x:Name="CloseButton" VerticalAlignment="Top" HorizontalAlignment="Right" Height="35" Width="35" ToolTipService.ToolTip="Close" Margin="0" Click="CloseButton_Click" CornerRadius="48">
+        <Button x:Name="CloseButton"  VerticalAlignment="Top" HorizontalAlignment="Right" ToolTipService.ToolTip="Close" Padding="10" CornerRadius="48" Margin="0" Click="CloseButton_Click">
             <Button.Content>
-                <TextBlock Text="&#xE711;" FontFamily="Segoe Fluent Icons" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <FontIcon Glyph="&#xE8BB;" FontSize="12"/>
             </Button.Content>
         </Button>
     </Grid>

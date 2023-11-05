@@ -12,6 +12,12 @@
     Background="Transparent"
     Content="{x:Bind TabContent,Mode=OneWay}" HorizontalAlignment="Center"
     mc:Ignorable="d" HorizontalContentAlignment="Center" ToolTipService.Placement="Bottom" ToolTipService.PlacementTarget="{x:Bind tooltiptarget}">
+    <winui:TabViewItem.ContextFlyout>
+        <MenuFlyout Placement="Bottom">
+            <MenuFlyoutItem Text="Reopen closed tab" Width="200"/>
+            <MenuFlyoutItem x:Name="tabcontext_closetab" Click="tabcontext_closetab_Click" Text="Close tab" Width="200"/>
+        </MenuFlyout>
+    </winui:TabViewItem.ContextFlyout>
     <ToolTipService.ToolTip>
         <StackPanel MinWidth="200">
             <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" FontWeight="SemiBold" Text="{x:Bind TabHeader,Mode=OneWay}"/>
